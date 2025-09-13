@@ -1,6 +1,8 @@
 # PDVL Mock Assessments
 
-A lightweight Next.js app for practicing PDVL modules. See [AGENT.MD](./AGENT.MD) for full product and behavior specifications.
+A lightweight Next.js app for practicing PDVL modules. 
+
+See [AGENT.MD](./AGENT.md) for full product and behavior specifications.
 
 ## Setup
 
@@ -20,4 +22,4 @@ A lightweight Next.js app for practicing PDVL modules. See [AGENT.MD](./AGENT.MD
 - Question choices use native radio inputs with proper labels for accessibility.
 - Styling relies on `src/app/globals.css`; custom rules are minimal and prefixed with `.pdvl-`.
 - Landing page module picker is centered using `.pdvl-landing` styles.
- - A theme toggle in the bottom-right lets you switch between system, dark, and light modes; your selection persists in local storage.
+- A theme toggle in the bottom-right lets you switch between system, dark, and light modes; your selection persists in local storage.

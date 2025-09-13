@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { generateSeed } from '@/lib/seed';
 import type { Question } from '@/lib/questions';
 import { MODULE_CONFIG } from '@/lib/config';
+import clsx from 'clsx';
 
 interface Props {
   paper: string;
@@ -84,18 +85,28 @@ export default function ResultsClient({paper, moduleKey, seed, questions}: Props
           const user = answers[i];
           const isCorrect = user !== undefined && user !== null && user === q.correctIndex;
           const userAnswer = q.choices[user];
-          const correctAnswer = q.choices[q.correctIndex];
           return (
-            <li key={i} className="pdvl-review card p-2">
-              <p className="font-bold text-primary mt-0">{q.prompt}</p>
-              <p className={`text-sm ${isCorrect ? 'text-green-500' : 'text-red-500'}`}>
-                <strong>Your answer:</strong> {userAnswer}
+            <li key={i} className="card !py-4 !px-6 shadow-2xl">
+              <p className="font-semibold text-primary mt-0">{q.prompt}</p>
+              <ol type="a">
+                {q.choices.map((c, ci) => {
+                  const id = `q${i}-${ci}`;
+                  const isCorrect = ci === q.correctIndex;
+                  return (
+                    <li key={id} className={clsx({'text-green-500': isCorrect})}>
+                      {c}
+                    </li>
+                  );
+                })}
+              </ol>
+              <p className={clsx({
+                'text-green-500': isCorrect,
+                'text-red-500': !isCorrect,
+              })}>
+                <strong>Your answer:</strong> {
+                user === null ? 'Not answered' : userAnswer
+              }
               </p>
-              {!isCorrect && (
-                <p>
-                  <strong>Correct answer:</strong> {correctAnswer}
-                </p>
-              )}
               {q.explanation && <p className="text-muted-foreground italic text-sm">{q.explanation}</p>}
             </li>
           );

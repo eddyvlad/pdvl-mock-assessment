@@ -1,5 +1,3 @@
-great callouts. here’s a clean repo layout plan + an AGENT.md that opens with “what this project is,” not “go build X.”
-
 # AGENT.md
 
 ## Project overview

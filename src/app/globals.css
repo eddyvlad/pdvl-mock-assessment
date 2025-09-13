@@ -63,6 +63,7 @@
         --color-foreground: var(--color-brand-gray-900);
         --color-muted: var(--color-brand-gray-100);
         --color-muted-foreground: var(--color-brand-gray-600);
+        --color-blue-muted: var(--color-brand-blue-200);
         --color-card: var(--color-brand-white);
         --color-card-foreground: var(--color-brand-gray-900);
         --color-popover: var(--color-brand-white);
@@ -85,6 +86,7 @@
         --color-foreground: var(--color-brand-gray-100);
         --color-muted: var(--color-brand-gray-900);
         --color-muted-foreground: var(--color-brand-gray-400);
+        --color-blue-muted: var(--color-brand-blue-800);
         --color-card: var(--color-brand-gray-950);
         --color-card-foreground: var(--color-brand-gray-100);
         --color-popover: var(--color-brand-gray-950);
@@ -108,6 +110,7 @@
             --color-foreground: var(--color-brand-gray-900);
             --color-muted: var(--color-brand-gray-100);
             --color-muted-foreground: var(--color-brand-gray-600);
+            --color-blue-muted: var(--color-brand-blue-200);
             --color-card: var(--color-brand-white);
             --color-card-foreground: var(--color-brand-gray-900);
             --color-popover: var(--color-brand-white);
@@ -127,6 +130,7 @@
             --color-foreground: var(--color-brand-gray-100);
             --color-muted: var(--color-brand-gray-900);
             --color-muted-foreground: var(--color-brand-gray-400);
+            --color-blue-muted: var(--color-brand-blue-800);
             --color-card: var(--color-brand-gray-950);
             --color-card-foreground: var(--color-brand-gray-100);
             --color-popover: var(--color-brand-gray-950);
@@ -205,10 +209,14 @@ a {
     &.btn {
         @apply no-underline hover:no-underline;
     }
+
+    &.active {
+        @apply border-b-2 rounded-none focus-visible:rounded-sm hover:no-underline;
+    }
 }
 
-a.active {
-    @apply border-b-2 rounded-none focus-visible:rounded-sm hover:no-underline;
+.prose {
+    @apply prose-strong:text-accent-foreground
 }
 
 /* Custom Scrollbar */
@@ -460,51 +468,4 @@ a.active {
     background-image: linear-gradient(color-mix(in srgb, var(--color-foreground) 5%, transparent) 1px, transparent 1px),
     linear-gradient(90deg, color-mix(in srgb, var(--color-foreground) 5%, transparent) 1px, transparent 1px);
     background-size: 20px 20px;
-}
-
-/* PDVL custom styles */
-.pdvl-landing {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    text-align: center;
-}
-
-.pdvl-landing ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.pdvl-landing li {
-    margin: 0.5rem 0;
-}
-
-.pdvl-assessment {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.pdvl-status {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-}
-
-.pdvl-question {
-    margin-bottom: 1rem;
-}
-
-.pdvl-choice label {
-    margin-left: 0.25rem;
-}
-
-.pdvl-submit {
-    margin-top: 1rem;
-}
-
-.pdvl-review {
-    margin-bottom: 1rem;
 }

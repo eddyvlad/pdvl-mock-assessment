@@ -111,8 +111,8 @@ export default function AssessmentClient({paper, moduleKey, seed, questions, min
   const answered = answers.filter((a) => a !== null).length;
 
   return (
-    <div className="pdvl-assessment space-y-4">
-      <div className="pdvl-status">
+    <div className="space-y-4">
+      <div className="flex justify-between items-center">
         <span>Time: {grace > 0 ? `Starts in ${grace}` : `${timeLeft}s`}</span>
         <span>
           {answered}/{total}
@@ -128,28 +128,35 @@ export default function AssessmentClient({paper, moduleKey, seed, questions, min
         }}
       >
         {questions.map((q, qi) => (
-          <fieldset key={qi} data-q={qi} className="pdvl-question card p-4 space-y-2">
+          <fieldset key={qi} data-q={qi} className="card !py-4 !px-6 mb-4 shadow">
             <legend className="font-bold mb-2">Q{qi + 1}</legend>
             <p className="font-bold text-primary mb-2 mt-0">{q.prompt}</p>
-            {q.choices.map((c, ci) => {
-              const id = `q${qi}-${ci}`;
-              return (
-                <div key={id} className="pdvl-choice flex items-center gap-2">
-                  <input
-                    type="radio"
-                    id={id}
-                    name={`q${qi}`}
-                    value={ci}
-                    checked={answers[qi] === ci}
-                    onChange={() => updateAnswer(qi, ci)}
-                  />
-                  <label htmlFor={id}>{c}</label>
-                </div>
-              );
-            })}
+            <ol type="a" className="!pl-4">
+              {q.choices.map((c, ci) => {
+                const id = `q${qi}-${ci}`;
+                return (
+                  <li key={id} className="mb-4 group">
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="radio"
+                        id={id}
+                        name={`q${qi}`}
+                        value={ci}
+                        checked={answers[qi] === ci}
+                        onChange={() => updateAnswer(qi, ci)}
+                      />
+                      <label htmlFor={id}
+                             className="group-has-[input:checked]:bg-blue-muted group-has-[input:focus]:bg-blue-muted/50 transition-colors duration-500 px-2 py-1">{c}</label>
+                    </div>
+                  </li>
+                );
+              })}
+            </ol>
           </fieldset>
         ))}
-        <button type="submit" className="pdvl-submit btn btn-primary">Submit</button>
+        <p className="text-right">
+          <button type="submit" className="btn btn-primary">Submit</button>
+        </p>
       </form>
     </div>
   );
