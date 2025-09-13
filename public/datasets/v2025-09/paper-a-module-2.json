@@ -1,0 +1,352 @@
+[
+  {
+    "prompt": "A courteous start to any trip is to…",
+    "choices": [
+      "Avoid eye contact",
+      "Offer a polite greeting",
+      "Start driving without speaking",
+      "Discuss sensitive topics immediately"
+    ],
+    "correctIndex": 1,
+    "explanation": "A simple greeting sets a professional tone and builds rapport.",
+    "tags": [
+      "customer_service_communication"
+    ]
+  },
+  {
+    "prompt": "After passengers are seated, a key first step is to…",
+    "choices": [
+      "Ask for payment",
+      "Confirm the destination and any landmark",
+      "Complain about traffic",
+      "Stay silent"
+    ],
+    "correctIndex": 1,
+    "explanation": "Confirming destination avoids misunderstandings and wrong routes.",
+    "tags": [
+      "customer_service_communication"
+    ]
+  },
+  {
+    "prompt": "If a passenger proposes a different route, you should…",
+    "choices": [
+      "Refuse immediately",
+      "Confirm their preferred route and assess feasibility",
+      "Argue about your way",
+      "Ignore the request"
+    ],
+    "correctIndex": 1,
+    "explanation": "Acknowledge and confirm their preference if safe and legal.",
+    "tags": [
+      "customer_service_communication"
+    ]
+  },
+  {
+    "prompt": "When you could not hear what the passenger said, the recommended script is…",
+    "choices": [
+      "Speak louder over them",
+      "‘Could you please repeat, Sir/Madam?’",
+      "Guess and proceed",
+      "Ignore and continue"
+    ],
+    "correctIndex": 1,
+    "explanation": "Use polite, clear requests to clarify.",
+    "tags": [
+      "customer_service_communication"
+    ]
+  },
+  {
+    "prompt": "When starting a ride‑hail trip, a driver should…",
+    "choices": [
+      "Tell the passenger you will be using GPS",
+      "Hide that you use apps",
+      "Avoid technology",
+      "Ask them to guide every turn"
+    ],
+    "correctIndex": 0,
+    "explanation": "Informing about GPS use sets expectations and reassures accuracy.",
+    "tags": [
+      "customer_service_communication"
+    ]
+  },
+  {
+    "prompt": "If a passenger asks to alight at an unsafe spot (e.g., at a junction or bus lane during operating hours), you should…",
+    "choices": [
+      "Comply to save time",
+      "Explain and suggest a safe nearby location",
+      "Refuse all requests",
+      "Stop in the middle lane"
+    ],
+    "correctIndex": 1,
+    "explanation": "Politely explain restrictions and propose a safe alternative.",
+    "tags": [
+      "safe_stopping"
+    ]
+  },
+  {
+    "prompt": "Before moving off, a standard safety reminder is…",
+    "choices": [
+      "Keep phones out",
+      "Please fasten your seat belt",
+      "Open the windows",
+      "Remain standing"
+    ],
+    "correctIndex": 1,
+    "explanation": "Seat belts protect passengers and are required by law.",
+    "tags": [
+      "customer_service_communication"
+    ]
+  },
+  {
+    "prompt": "When assisting with heavy luggage or strollers, you should…",
+    "choices": [
+      "Wait inside the car",
+      "Offer help when appropriate and safe",
+      "Refuse to help",
+      "Insist on carrying everything yourself"
+    ],
+    "correctIndex": 1,
+    "explanation": "Offer help respectfully and secure items properly.",
+    "tags": [
+      "assistance_mobility"
+    ]
+  },
+  {
+    "prompt": "A key customer service principle is to…",
+    "choices": [
+      "Discuss politics and religion with passengers",
+      "Behave as a model road user",
+      "Push for tips",
+      "Ignore questions"
+    ],
+    "correctIndex": 1,
+    "explanation": "Professionalism includes safe driving and courteous conduct.",
+    "tags": [
+      "customer_service_communication"
+    ]
+  },
+  {
+    "prompt": "Which topic should drivers avoid to respect a passenger’s comfort zone?",
+    "choices": [
+      "Weather",
+      "Sensitive issues such as sex, religion, race or politics",
+      "Traffic conditions",
+      "Route options"
+    ],
+    "correctIndex": 1,
+    "explanation": "Avoid sensitive topics that may make passengers uncomfortable.",
+    "tags": [
+      "professionalism_boundaries"
+    ]
+  },
+  {
+    "prompt": "A technique to de‑escalate an argument is to…",
+    "choices": [
+      "Respond instantly with emotion",
+      "Pause, breathe and respond based on facts",
+      "Raise your voice",
+      "Get personal"
+    ],
+    "correctIndex": 1,
+    "explanation": "Pause, breathe and address the core issue calmly.",
+    "tags": [
+      "conflict_management"
+    ]
+  },
+  {
+    "prompt": "If a passenger becomes abusive or threatening, you should…",
+    "choices": [
+      "Retaliate verbally",
+      "Stay calm and report to company or police",
+      "Lock the doors and argue",
+      "Post the incident online"
+    ],
+    "correctIndex": 1,
+    "explanation": "Follow company protocol, keep safe and report via proper channels.",
+    "tags": [
+      "conflict_management"
+    ]
+  },
+  {
+    "prompt": "The SGSecure app allows you to…",
+    "choices": [
+      "Order food",
+      "Make 999 calls or alert the Police via SMS",
+      "Pay road tax",
+      "Message other drivers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Use the app to contact police and receive emergency alerts.",
+    "tags": [
+      "sgsecure_app"
+    ]
+  },
+  {
+    "prompt": "Recognising Tell‑Tale Indicators (TTIs) means watching for…",
+    "choices": [
+      "Normal luggage only",
+      "Appearance/behaviour/items that are Strange, Irregular, Abnormal or Unusual",
+      "Only loud passengers",
+      "Anyone with sunglasses"
+    ],
+    "correctIndex": 1,
+    "explanation": "TTIs are S.I.A.U. cues in appearance, behaviour or belongings.",
+    "tags": [
+      "customer_service_communication"
+    ]
+  },
+  {
+    "prompt": "The HOT protocol for unattended items stands for…",
+    "choices": [
+      "Heavy‑Odd‑Toxic",
+      "Hidden‑Obviously suspicious‑Typical",
+      "Handle‑Open‑Throw",
+      "Halt‑Observe‑Take"
+    ],
+    "correctIndex": 1,
+    "explanation": "HOT: Hidden? Obviously suspicious? Typical for the location?",
+    "tags": [
+      "sgsecure_hot"
+    ]
+  },
+  {
+    "prompt": "In a terrorist attack, the guidance is to…",
+    "choices": [
+      "Negotiate with attackers",
+      "Run, Hide, then Tell when safe",
+      "Record close‑up videos",
+      "Chase the attackers"
+    ],
+    "correctIndex": 1,
+    "explanation": "RUN to safety, HIDE out of sight, TELL police at 999/70999 when safe.",
+    "tags": [
+      "customer_service_communication"
+    ]
+  },
+  {
+    "prompt": "Basic bleeding control remembered as Press‑Tie‑Tell means…",
+    "choices": [
+      "Press wound, tie above if limb, tell responders",
+      "Press accelerator, tie shoelaces, tell friends",
+      "Press call button, tie seat belt, tell operator",
+      "None of these"
+    ],
+    "correctIndex": 0,
+    "explanation": "Press directly, tie a band 5 cm above for limbs if needed, then tell responders.",
+    "tags": [
+      "first_aid"
+    ]
+  },
+  {
+    "prompt": "Under the Protection from Harassment Act (POHA), private hire drivers are recognised as public service workers. The law provides up to…",
+    "choices": [
+      "$500 fine only",
+      "12 months’ jail or $5,000 fine or both for harassment of public service workers",
+      "Only warnings",
+      "Community service only"
+    ],
+    "correctIndex": 1,
+    "explanation": "Since 7 Jul 2021, PHC drivers are protected as public service workers under POHA.",
+    "tags": [
+      "POHA"
+    ]
+  },
+  {
+    "prompt": "If a passenger refuses to pay a taxi fare (for taxis), the listed process includes…",
+    "choices": [
+      "Argue until they pay",
+      "Obtain particulars, print receipt and lodge case with taxi company",
+      "Lock doors",
+      "Drive to police immediately without info"
+    ],
+    "correctIndex": 1,
+    "explanation": "Follow documented steps; avoid confrontation and report properly.",
+    "tags": [
+      "incident_reporting"
+    ]
+  },
+  {
+    "prompt": "When a passenger appears very sick (e.g., chest pain or fainting), a driver should…",
+    "choices": [
+      "Provide medical treatment unless trained",
+      "Move to a safe spot and call 995 or inform operator",
+      "Ignore and continue",
+      "Call a friend instead"
+    ],
+    "correctIndex": 1,
+    "explanation": "Stop safely and call 995; do not administer treatment unless trained.",
+    "tags": [
+      "medical_emergency"
+    ]
+  },
+  {
+    "prompt": "Regarding child seats in PHCs, the rule is…",
+    "choices": [
+      "PHCs are exempt",
+      "Passengers under 1.35 m must be in an approved child restraint/booster",
+      "Front seat only",
+      "Use adult belts only"
+    ],
+    "correctIndex": 1,
+    "explanation": "PHCs are not exempt; under‑1.35 m passengers need proper restraints.",
+    "tags": [
+      "child_restraints"
+    ]
+  },
+  {
+    "prompt": "When assisting a wheelchair user, you should…",
+    "choices": [
+      "Refuse unless paid extra",
+      "Assist confidently with consent and secure the wheelchair properly",
+      "Lift without asking",
+      "Force the chair into the cabin"
+    ],
+    "correctIndex": 1,
+    "explanation": "Seek consent, assist appropriately and secure equipment; check with the passenger when unsure.",
+    "tags": [
+      "assistance_mobility"
+    ]
+  },
+  {
+    "prompt": "For passengers on crutches, a good practice is to…",
+    "choices": [
+      "Rush them into the vehicle",
+      "Exercise care, seek consent to help, and place crutches safely",
+      "Ask them to stand during travel",
+      "Throw crutches into the boot"
+    ],
+    "correctIndex": 1,
+    "explanation": "Extra vigilance and safe stowage keep the passenger comfortable and safe.",
+    "tags": [
+      "assistance_mobility"
+    ]
+  },
+  {
+    "prompt": "If you suspect a passenger may be scouting a sensitive building and behaving oddly, you should…",
+    "choices": [
+      "Follow them after drop‑off",
+      "Note details and report to police/operator promptly",
+      "Confront them directly",
+      "Post online"
+    ],
+    "correctIndex": 1,
+    "explanation": "Do not trail suspects; report TTIs and details via official channels.",
+    "tags": [
+      "customer_service_communication"
+    ]
+  },
+  {
+    "prompt": "A respectful way to communicate with a hearing‑impaired passenger is to…",
+    "choices": [
+      "Shout",
+      "Use gestures or written communication",
+      "Ignore them",
+      "Turn up the radio"
+    ],
+    "correctIndex": 1,
+    "explanation": "Gestures/writing help ensure clear, respectful communication.",
+    "tags": [
+      "customer_service_communication"
+    ]
+  }
+]

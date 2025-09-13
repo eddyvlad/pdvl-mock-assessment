@@ -1,0 +1,2104 @@
+[
+  {
+    "prompt": "Which statement best describes a Private Hire Car (PHC) in Singapore?",
+    "choices": [
+      "A motor car that plies for hire on the road",
+      "A motor car hired via pre‑booking and does not ply for hire",
+      "Any vehicle used for goods delivery",
+      "A taxi with a meter only"
+    ],
+    "correctIndex": 1,
+    "explanation": "PHCs are hired via bookings and do not ply for hire or take street hails.",
+    "tags": [
+      "p2p_landscape"
+    ]
+  },
+  {
+    "prompt": "Which service type lets commuters flag an available vehicle from the roadside or a taxi stand?",
+    "choices": [
+      "Ride‑hail service",
+      "Freight‑hail service",
+      "Street‑hail service",
+      "Advance charter service"
+    ],
+    "correctIndex": 2,
+    "explanation": "Street‑hail applies to taxis only; PHCs cannot be street‑hailed.",
+    "tags": [
+      "p2p_landscape"
+    ]
+  },
+  {
+    "prompt": "Which of the following may pick up passengers at taxi stands and via street hail?",
+    "choices": [
+      "Private Hire Cars",
+      "Taxis",
+      "Both taxis and PHCs",
+      "Neither taxis nor PHCs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Taxis may pick up at taxi stands and via street hail. PHCs may not.",
+    "tags": [
+      "p2p_landscape"
+    ]
+  },
+  {
+    "prompt": "PHC fares for ride‑hail trips are typically…",
+    "choices": [
+      "Meter‑based only",
+      "Negotiated on the spot",
+      "Upfront flat fares (may vary with dynamic surge pricing)",
+      "Free during off‑peak"
+    ],
+    "correctIndex": 2,
+    "explanation": "Module 1 states PHC trips are upfront flat fares; these may be affected by dynamic surge pricing.",
+    "tags": [
+      "p2p_landscape"
+    ]
+  },
+  {
+    "prompt": "Taxi fares are generally determined by…",
+    "choices": [
+      "A fixed daily fee only",
+      "Upfront flat fare with no surcharges",
+      "Meter fares (with possible surcharges or upfront options for booked trips)",
+      "Driver’s discretion"
+    ],
+    "correctIndex": 2,
+    "explanation": "Taxis use meters; booked taxi trips may also have upfront options and surcharges like peak or midnight.",
+    "tags": [
+      "p2p_landscape"
+    ]
+  },
+  {
+    "prompt": "Which is true of cash handling differences?",
+    "choices": [
+      "PHC drivers must carry large cash floats",
+      "Taxi drivers never handle cash",
+      "Taxi drivers must be careful with cash on board",
+      "Neither handles cash"
+    ],
+    "correctIndex": 2,
+    "explanation": "Taxi drivers commonly handle cash; PHC trips are often cashless via apps.",
+    "tags": [
+      "p2p_landscape"
+    ]
+  },
+  {
+    "prompt": "Which device is standard equipment in taxis but not required for PHCs?",
+    "choices": [
+      "Taximeter and mobile data terminal",
+      "Phone mount",
+      "First‑aid kit",
+      "Tire pressure gauge"
+    ],
+    "correctIndex": 0,
+    "explanation": "Taxis have taximeters/MDTs for dispatch and fare calculation.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "In an emergency, how do taxi and PHC drivers typically get help?",
+    "choices": [
+      "Taxis: panic button to call centre; PHCs: call police/company via phone",
+      "Both only by dialing 995",
+      "Both must text 70999 only",
+      "Neither has a channel"
+    ],
+    "correctIndex": 0,
+    "explanation": "Taxis have a panic button linked to the operator; PHC drivers use phones to reach police/company.",
+    "tags": [
+      "p2p_landscape"
+    ]
+  },
+  {
+    "prompt": "Which is NOT an operating cost listed for P2P drivers?",
+    "choices": [
+      "ERP charges",
+      "Fuel",
+      "Vehicle rental or call levies",
+      "Personal shopping expenses to decorate the car"
+    ],
+    "correctIndex": 3,
+    "explanation": "Operating costs include rental, fuel, ERP, parking, call levies, accident excess—not personal décor.",
+    "tags": [
+      "operating_costs"
+    ]
+  },
+  {
+    "prompt": "A taxi ‘hirer’ refers to…",
+    "choices": [
+      "A driver who rents a taxi",
+      "The passenger",
+      "The taxi company",
+      "A driver who only shares the taxi"
+    ],
+    "correctIndex": 0,
+    "explanation": "Hirer = driver who rents the taxi. A relief driver shares with the hirer.",
+    "tags": [
+      "p2p_landscape"
+    ]
+  },
+  {
+    "prompt": "Which attribute is expected of a professional P2P driver?",
+    "choices": [
+      "Exploit passenger ignorance of routes",
+      "Treat safety and welfare of passengers as paramount",
+      "Refuse service by race or religion",
+      "Argue with passengers frequently"
+    ],
+    "correctIndex": 1,
+    "explanation": "Drivers should prioritize passenger safety and welfare and serve all regardless of race, language or religion.",
+    "tags": [
+      "professionalism_conduct"
+    ]
+  },
+  {
+    "prompt": "Life‑long learning in the PDVL context means…",
+    "choices": [
+      "Ignoring updates to rules",
+      "Upgrading, updating and adapting skills over time",
+      "Only learning at licence renewal",
+      "Taking courses only after offences"
+    ],
+    "correctIndex": 1,
+    "explanation": "Drivers are encouraged to continually upgrade, update and adapt learning.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Which behaviour aligns with the code of conduct?",
+    "choices": [
+      "Using a hand‑held phone while the vehicle is moving",
+      "Remaining law‑abiding and complying with LTA and Traffic Police rules",
+      "Leaving the vehicle dirty to save time",
+      "Refusing to assist any passenger with needs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Compliance with laws and safe, courteous behaviour is part of the conduct expected.",
+    "tags": [
+      "professionalism_conduct"
+    ]
+  },
+  {
+    "prompt": "What is a recommended weekly physical activity target for drivers?",
+    "choices": [
+      "60 minutes",
+      "150 minutes",
+      "300 minutes",
+      "None if they feel tired"
+    ],
+    "correctIndex": 1,
+    "explanation": "Aim for at least 150 minutes of physical activity per week.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Which is a common symptom of fatigue that can impair driving?",
+    "choices": [
+      "Improved focus",
+      "Nodding off and yawning",
+      "Faster reaction time",
+      "Increased awareness"
+    ],
+    "correctIndex": 1,
+    "explanation": "Fatigue presents as sleepiness, nodding off, yawning, reduced awareness and drifting.",
+    "tags": [
+      "health_wellness"
+    ]
+  },
+  {
+    "prompt": "A simple strategy to manage stress before/after shift is to…",
+    "choices": [
+      "Drink alcohol for sleep",
+      "Establish a relaxing bedtime routine",
+      "Watch thrillers late at night",
+      "Skip meals to save time"
+    ],
+    "correctIndex": 1,
+    "explanation": "A regular relaxing routine supports sleep quality and stress control.",
+    "tags": [
+      "health_wellness"
+    ]
+  },
+  {
+    "prompt": "During a long shift, a good break practice is…",
+    "choices": [
+      "10–15 minutes every ~2 hours of driving",
+      "One long break only at day end",
+      "No breaks unless exhausted",
+      "Breaks only when passengers complain"
+    ],
+    "correctIndex": 0,
+    "explanation": "Plan 10–15 minute breaks about every 2 hours; stop work when tired.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Which combination best supports healthy blood pressure?",
+    "choices": [
+      "Increase salt and alcohol",
+      "Reduce salt, be active, take prescribed meds",
+      "Avoid screenings",
+      "Smoke to relax"
+    ],
+    "correctIndex": 1,
+    "explanation": "Lifestyle adjustments plus adherence to medication and regular checks are recommended.",
+    "tags": [
+      "health_wellness"
+    ]
+  },
+  {
+    "prompt": "Which is a typical symptom of a possible heart attack?",
+    "choices": [
+      "Itchy skin",
+      "Prolonged crushing chest pain with possible radiation",
+      "Sneezing",
+      "Leg cramps only"
+    ],
+    "correctIndex": 1,
+    "explanation": "Crushing chest pain, shortness of breath, radiating pain, nausea and cold sweat are classic signs.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Which set is a classic diabetes symptom cluster?",
+    "choices": [
+      "Frequent urination, thirst, hunger",
+      "Hiccups, fever, rash",
+      "Hair loss, sore throat, cough",
+      "None of these"
+    ],
+    "correctIndex": 0,
+    "explanation": "Polyuria, polydipsia and polyphagia, along with fatigue and blurred vision, are listed symptoms.",
+    "tags": [
+      "health_wellness"
+    ]
+  },
+  {
+    "prompt": "For cholesterol management, which change is recommended?",
+    "choices": [
+      "Use trans fats for energy",
+      "Eliminate trans fats and reduce saturated fats",
+      "Avoid omega‑3 altogether",
+      "Stop all physical activity"
+    ],
+    "correctIndex": 1,
+    "explanation": "Eliminate trans fats, reduce saturated fat, eat heart‑healthy foods, be active.",
+    "tags": [
+      "health_wellness"
+    ]
+  },
+  {
+    "prompt": "Which statement about seat belts is correct?",
+    "choices": [
+      "Only front passengers must buckle up",
+      "All passengers should wear seat belts for safety",
+      "Seat belts are optional at night",
+      "Only drivers need belts"
+    ],
+    "correctIndex": 1,
+    "explanation": "Drivers should inform passengers to belt up for safety.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Under the Road Traffic Act, passengers under 1.35 m must…",
+    "choices": [
+      "Sit in front only",
+      "Use approved child restraints or booster seats",
+      "Be exempted in all vehicles",
+      "Share adult belts with caregiver"
+    ],
+    "correctIndex": 1,
+    "explanation": "Passengers under 1.35 m must be properly secured; taxis are exempted from the restraint requirement, PHCs are not.",
+    "tags": [
+      "child_restraints"
+    ]
+  },
+  {
+    "prompt": "Which statement correctly describes exemptions for child restraints?",
+    "choices": [
+      "PHCs are exempted; taxis are not",
+      "Both PHCs and taxis are exempted",
+      "Taxis are exempted; PHCs are not",
+      "Neither is exempted"
+    ],
+    "correctIndex": 2,
+    "explanation": "Taxis are exempted from the child‑restraint requirement; PHCs must comply.",
+    "tags": [
+      "child_restraints"
+    ]
+  },
+  {
+    "prompt": "Normal bus lane operating hours are typically…",
+    "choices": [
+      "Mon–Fri 7.30–9.30 a.m. and 5.00–8.00 p.m. (except PH)",
+      "Mon–Sun 9 p.m.–6 a.m.",
+      "Weekends only",
+      "Public holidays only"
+    ],
+    "correctIndex": 0,
+    "explanation": "Normal bus lanes operate Mon–Fri (except Public Holidays) during the stated peak periods.",
+    "tags": [
+      "road_rules_buslanes"
+    ]
+  },
+  {
+    "prompt": "Full‑day bus lane operating hours are…",
+    "choices": [
+      "Mon–Fri 7.30–11.00 p.m. only",
+      "Every day except Sundays and Public Holidays, 7.30 a.m.–11.00 p.m.",
+      "Sundays only",
+      "24/7"
+    ],
+    "correctIndex": 1,
+    "explanation": "Full‑day bus lanes operate daily except Sundays and Public Holidays from 7.30 a.m. to 11.00 p.m.",
+    "tags": [
+      "road_rules_buslanes"
+    ]
+  },
+  {
+    "prompt": "Engine‑idling while stationary (not due to traffic) may result in…",
+    "choices": [
+      "No consequence",
+      "Warning only",
+      "A composition fine (e.g., S$100)",
+      "Licence suspension immediately"
+    ],
+    "correctIndex": 2,
+    "explanation": "Drivers should not idle engines; a S$100 fine is stated in Module 1.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "During wet weather you should…",
+    "choices": [
+      "Drive over metal plates at normal speed",
+      "Adopt longer braking distance and avoid floodwaters",
+      "Use high beams always",
+      "Follow as closely as possible"
+    ],
+    "correctIndex": 1,
+    "explanation": "Steel plates are slippery; increase following distance and avoid floodwaters.",
+    "tags": [
+      "hazards_weather_visibility"
+    ]
+  },
+  {
+    "prompt": "The 2‑second rule helps drivers to…",
+    "choices": [
+      "Park faster",
+      "Maintain a safe following distance in normal conditions",
+      "Overtake more often",
+      "Use mobile phones safely"
+    ],
+    "correctIndex": 1,
+    "explanation": "Count two seconds behind a fixed object; double to four seconds in wet conditions.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "In heavy rain, the usual following‑distance rule should be…",
+    "choices": [
+      "Halved",
+      "Unchanged",
+      "Doubled to about four seconds",
+      "Tripled only for motorcycles"
+    ],
+    "correctIndex": 2,
+    "explanation": "Adopt the 4‑second rule in bad weather to allow for longer braking distances.",
+    "tags": [
+      "hazards_weather_visibility"
+    ]
+  },
+  {
+    "prompt": "Safe following distance guideline by car‑lengths is…",
+    "choices": [
+      "One car length per 10 km/h",
+      "One car length per 16 km/h",
+      "Two car lengths per 10 km/h",
+      "None of the above"
+    ],
+    "correctIndex": 1,
+    "explanation": "Module 1 suggests about one car length for every 16 km/h of speed.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "At ~48 km/h, an appropriate gap is about…",
+    "choices": [
+      "2 car lengths",
+      "3 car lengths",
+      "4 car lengths",
+      "5 car lengths"
+    ],
+    "correctIndex": 1,
+    "explanation": "Module 1 example: 48 km/h ≈ 3 car lengths.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "At ~64 km/h, an appropriate gap is about…",
+    "choices": [
+      "3 car lengths",
+      "4 car lengths",
+      "5 car lengths",
+      "6 car lengths"
+    ],
+    "correctIndex": 1,
+    "explanation": "Module 1 example: 64 km/h ≈ 4 car lengths.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "At ~80 km/h, an appropriate gap is about…",
+    "choices": [
+      "3 car lengths",
+      "4 car lengths",
+      "5 car lengths",
+      "6 car lengths"
+    ],
+    "correctIndex": 2,
+    "explanation": "Module 1 example: 80 km/h ≈ 5 car lengths.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Which action helps avoid a collision with the vehicle ahead?",
+    "choices": [
+      "Tailgate to discourage lane changes",
+      "Stay alert and look beyond the car ahead",
+      "Rely on horn to warn others",
+      "Use phone to keep awake"
+    ],
+    "correctIndex": 1,
+    "explanation": "Stay alert, look ahead, slow early, and do not tailgate.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "When overtaking, a key precaution is to…",
+    "choices": [
+      "Skip mirror checks to be quick",
+      "Signal and confirm blind spots are clear",
+      "Cut in sharply after passing",
+      "Turn left without checking"
+    ],
+    "correctIndex": 1,
+    "explanation": "Check mirrors and blind spots, signal, and only change lanes when safe.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "When sharing the road with cyclists you should…",
+    "choices": [
+      "Pass closely to finish overtaking quickly",
+      "Keep a safe lateral gap and be ready to slow down",
+      "Honk repeatedly",
+      "Make sharp turns near the kerb"
+    ],
+    "correctIndex": 1,
+    "explanation": "Give cyclists room, check blind spots when turning, and do not cut in sharply.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "If your vehicle stalls on the road, the first action is to…",
+    "choices": [
+      "Keep rolling in lane",
+      "Move to the road shoulder and switch on hazard lights",
+      "Abandon the vehicle",
+      "Continue slowly in the same lane"
+    ],
+    "correctIndex": 1,
+    "explanation": "Move to the shoulder, switch on hazards, and place a warning triangle 20 m behind.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "How far behind the vehicle should you place the breakdown‑warning triangle?",
+    "choices": [
+      "5 m",
+      "10 m",
+      "At least 20 m",
+      "50 m"
+    ],
+    "correctIndex": 2,
+    "explanation": "Place the warning triangle at least 20 metres behind the vehicle.",
+    "tags": [
+      "accidents_breakdowns"
+    ]
+  },
+  {
+    "prompt": "If the engine overheats, which step is correct?",
+    "choices": [
+      "Keep driving to cool it",
+      "Open the radiator cap immediately with bare hands",
+      "Stop safely, switch off, let it cool, then top up with cloth protection",
+      "Rev the engine to circulate coolant"
+    ],
+    "correctIndex": 2,
+    "explanation": "Stop, switch off, allow to cool; open cap with a cloth, top up water/coolant, and repair before driving.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "If you detect smoke from under the bonnet, you should…",
+    "choices": [
+      "Ignore and drive on",
+      "Stop, switch off, use a fire extinguisher and call 995",
+      "Open the bonnet fully over hot flames",
+      "Throw water onto electrics"
+    ],
+    "correctIndex": 1,
+    "explanation": "A sign of fire: stop, switch off, use an extinguisher if safe, and call SCDF at 995.",
+    "tags": [
+      "accidents_breakdowns"
+    ]
+  },
+  {
+    "prompt": "After a minor accident without injuries, you should…",
+    "choices": [
+      "Stay in lane to block traffic",
+      "Move vehicle to the left, switch on hazards, exchange particulars",
+      "Leave without exchanging particulars",
+      "Wait in the middle of the road"
+    ],
+    "correctIndex": 1,
+    "explanation": "Move left, turn on hazard lights, exchange particulars, take photos safely.",
+    "tags": [
+      "accidents_breakdowns"
+    ]
+  },
+  {
+    "prompt": "Which cases require a Traffic Accident Report within 24 hours (in person or online)?",
+    "choices": [
+      "Only if both parties agree",
+      "Only if towing is required",
+      "Government vehicle, foreign vehicle, damage to government property, pedestrian/cyclist involved, hit‑and‑run",
+      "Never needed"
+    ],
+    "correctIndex": 2,
+    "explanation": "Module 1 lists specific cases that mandate reporting within 24 hours.",
+    "tags": [
+      "accidents_breakdowns"
+    ]
+  },
+  {
+    "prompt": "For accidents with injuries, you should…",
+    "choices": [
+      "Pursue the offending vehicle first",
+      "Not move the vehicle unless necessary for safety",
+      "Argue with witnesses",
+      "Ignore calling authorities"
+    ],
+    "correctIndex": 1,
+    "explanation": "Call 999 (police) or 995 (ambulance). Don’t move the vehicle unless safety requires.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "A tyre blowout while driving is best handled by…",
+    "choices": [
+      "Hard braking immediately and sharp steering",
+      "Maintaining control, braking gently, signaling and moving left to stop",
+      "Accelerating to keep straight",
+      "Closing eyes and hoping for the best"
+    ],
+    "correctIndex": 1,
+    "explanation": "Brake intermittently/gently, signal and move left safely before stopping.",
+    "tags": [
+      "accidents_breakdowns"
+    ]
+  },
+  {
+    "prompt": "Which number reaches SCDF Emergency Ambulance?",
+    "choices": [
+      "999",
+      "70999",
+      "995",
+      "1800‑2550000"
+    ],
+    "correctIndex": 2,
+    "explanation": "SCDF emergency ambulance: 995. Police emergency: 999. Police SMS: 70999.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Under DIPS, using a hand‑held mobile device while the vehicle is in motion carries…",
+    "choices": [
+      "No demerit points",
+      "12 demerit points and heavy penalties",
+      "3 demerit points only",
+      "Only a warning for first offence"
+    ],
+    "correctIndex": 1,
+    "explanation": "Using mobile devices while driving carries 12 points and fines/imprisonment per offence.",
+    "tags": [
+      "DIPS_offences"
+    ]
+  },
+  {
+    "prompt": "A safer alternative when urgent communication is needed while driving is to…",
+    "choices": [
+      "Use a hand‑held phone quickly",
+      "Stop at a safe place or use hands‑free",
+      "Text at red lights",
+      "Balance the phone on the wheel"
+    ],
+    "correctIndex": 1,
+    "explanation": "Use hands‑free or pull over safely (hazards on) before calling.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "At work zones with repairs or pruning, the best practice is to…",
+    "choices": [
+      "Maintain speed",
+      "Watch for detours and drive slowly",
+      "Use horn to clear path",
+      "Overtake through the cones"
+    ],
+    "correctIndex": 1,
+    "explanation": "Slow down and follow detour signs; avoid hitting barricades.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "On expressways, drivers should…",
+    "choices": [
+      "Match the fastest car",
+      "Adjust speed to the posted limit and conditions",
+      "Use shoulder to bypass queues",
+      "Stop for photos"
+    ],
+    "correctIndex": 1,
+    "explanation": "Maintain safe speed in compliance with posted limits and conditions.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Which is a listed occupational risk for drivers?",
+    "choices": [
+      "Only sunburn",
+      "Stress‑related disorders and sleep deprivation",
+      "None—driving is risk‑free",
+      "Only communicable diseases"
+    ],
+    "correctIndex": 1,
+    "explanation": "Risks include stress, sleep deprivation, back pain, circulatory disease, diabetes and more.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "A useful habit to stay alert on shift is to…",
+    "choices": [
+      "Rely on energy drinks only",
+      "Plan simple stretches during breaks",
+      "Skip rest to do more jobs",
+      "Drive with windows closed at all times"
+    ],
+    "correctIndex": 1,
+    "explanation": "Plan short breaks and light stretching to stay alert; stop work if tired.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Within a 24‑month period, a motorist is suspended from driving upon accumulating…",
+    "choices": [
+      "12 demerit points",
+      "18 demerit points",
+      "24 demerit points",
+      "36 demerit points"
+    ],
+    "correctIndex": 2,
+    "explanation": "A driver can accumulate up to 24 points in 24 months before suspension. Previously suspended drivers have lower thresholds.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Previously suspended drivers may be suspended again if they accumulate…",
+    "choices": [
+      "12 points within 12 months",
+      "24 points within 24 months",
+      "6 points within 12 months",
+      "No limit after returning"
+    ],
+    "correctIndex": 0,
+    "explanation": "After a suspension, only 12 points within 12 months triggers another suspension.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Probationary drivers face revocation if they accumulate…",
+    "choices": [
+      "24 points in 24 months",
+      "12 points within 12 months",
+      "6 points anytime",
+      "No points at all"
+    ],
+    "correctIndex": 1,
+    "explanation": "Probationary drivers can only accumulate up to 12 points in 12 months.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Failing to conform to traffic light signals carries…",
+    "choices": [
+      "3 points and $150",
+      "6 points and $200",
+      "12 points and $400",
+      "Court only"
+    ],
+    "correctIndex": 2,
+    "explanation": "Module 1: 12 demerit points and a $400 composition fine for red‑light offences.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Exceeding the road speed limit by 21–30 km/h generally carries…",
+    "choices": [
+      "4 demerit points",
+      "6 demerit points",
+      "8 demerit points",
+      "12 demerit points"
+    ],
+    "correctIndex": 2,
+    "explanation": "Per DIPS table: 21–30 km/h over = 8 demerit points (higher within school zones).",
+    "tags": [
+      "DIPS_offences"
+    ]
+  },
+  {
+    "prompt": "Exceeding the vehicular/road speed limit by 31–40 km/h carries…",
+    "choices": [
+      "6 demerit points",
+      "8 demerit points",
+      "10 demerit points",
+      "12 demerit points"
+    ],
+    "correctIndex": 2,
+    "explanation": "31–40 km/h over = 10 demerit points (higher within school zones).",
+    "tags": [
+      "DIPS_offences"
+    ]
+  },
+  {
+    "prompt": "Exceeding the speed limit by 41–50 km/h carries…",
+    "choices": [
+      "6 demerit points",
+      "8 demerit points",
+      "10 demerit points",
+      "12 demerit points"
+    ],
+    "correctIndex": 3,
+    "explanation": "41–50 km/h over = 12 points; prosecution in court is likely as severity increases.",
+    "tags": [
+      "DIPS_offences"
+    ]
+  },
+  {
+    "prompt": "Exceeding the speed limit by 51–60 km/h results in…",
+    "choices": [
+      "12 points",
+      "18 points",
+      "24 points",
+      "No points but a warning"
+    ],
+    "correctIndex": 1,
+    "explanation": "51–60 km/h over = 18 demerit points and prosecution in court.",
+    "tags": [
+      "DIPS_offences"
+    ]
+  },
+  {
+    "prompt": "Exceeding by more than 60 km/h or reckless/dangerous driving carries…",
+    "choices": [
+      "12 points",
+      "18 points",
+      "24 points",
+      "No points"
+    ],
+    "correctIndex": 2,
+    "explanation": "The most severe speeding tier and reckless/dangerous driving = 24 points.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Within school or silver zones, many offences carry…",
+    "choices": [
+      "Fewer demerit points",
+      "Extra demerit points added",
+      "No demerit points",
+      "Only warnings"
+    ],
+    "correctIndex": 1,
+    "explanation": "Certain demerit points are increased within school/silver zones per the annexed table.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Which action reduces rear‑end collision risk from vehicles behind?",
+    "choices": [
+      "Brake abruptly without signalling",
+      "Signal early and slow down gradually",
+      "Ignore tailgaters",
+      "Accelerate sharply"
+    ],
+    "correctIndex": 1,
+    "explanation": "Signal intentions early and decelerate smoothly to avoid being hit from behind.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "A core defensive driving habit is to…",
+    "choices": [
+      "Watch only the car immediately ahead",
+      "Scan far ahead and to the sides",
+      "Rely on memory of the route only",
+      "Drive at the limit regardless of weather"
+    ],
+    "correctIndex": 1,
+    "explanation": "Scanning increases reaction time and hazard detection.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "When planning a route before departure you should…",
+    "choices": [
+      "Rely only on passengers",
+      "Use a street directory or navigation apps to check landmarks, expressways and hazards",
+      "Start driving and decide later",
+      "Disable GPS to avoid distraction"
+    ],
+    "correctIndex": 1,
+    "explanation": "Plan ahead using maps/apps to reduce uncertainty and avoid hazards.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Which statement about distractions is correct?",
+    "choices": [
+      "GPS must be placed where it blocks view for convenience",
+      "Phones should be kept away; ensure GPS does not block view",
+      "Reading texts briefly is safe",
+      "Calling while steering with one hand is safe"
+    ],
+    "correctIndex": 1,
+    "explanation": "Avoid distractions and mount devices so they don’t obstruct the driver’s view.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "A good practice to protect passengers alighting from the driver side is to…",
+    "choices": [
+      "Accelerate away quickly",
+      "Remind them to check for oncoming vehicles",
+      "Stop in bus lanes during operating hours",
+      "Let them alight in the middle lane"
+    ],
+    "correctIndex": 1,
+    "explanation": "Remind passengers to look for traffic if alighting from the driver side.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "If floodwaters are encountered on the road, drivers should…",
+    "choices": [
+      "Drive through quickly to splash water away",
+      "Avoid entering floodwaters and proceed only when safe",
+      "Stop in the fast lane to think",
+      "Accelerate to prevent stalling"
+    ],
+    "correctIndex": 1,
+    "explanation": "Avoid floodwaters; water may impair brakes and engine.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Work‑zone safety requires you to…",
+    "choices": [
+      "Ignore flaggers",
+      "Observe detour signs and reduce speed",
+      "Use the shoulder to overtake",
+      "Follow the vehicle closely"
+    ],
+    "correctIndex": 1,
+    "explanation": "Detours, barriers and workers require lower speed and extra caution.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Which action helps keep brakes effective after passing through floodwater?",
+    "choices": [
+      "Drive fast then stop hard",
+      "Pump the brakes gently while moving slowly",
+      "Switch off engine while rolling",
+      "Apply handbrake abruptly"
+    ],
+    "correctIndex": 1,
+    "explanation": "After emerging from water, pump brakes gently to help them dry while moving slowly.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "When avoiding road hazards, drivers should…",
+    "choices": [
+      "Make sudden swerves without checking",
+      "Scan, slow down and choose safe paths",
+      "Speed up to pass quickly",
+      "Follow the vehicle ahead blindly"
+    ],
+    "correctIndex": 1,
+    "explanation": "Anticipate hazards, reduce speed, and steer smoothly with proper checks.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Which scenario warrants stopping work immediately?",
+    "choices": [
+      "Feeling fresh",
+      "Feeling unwell or dangerously drowsy",
+      "Completing a break recently",
+      "Having many bookings queued"
+    ],
+    "correctIndex": 1,
+    "explanation": "Do not drive when unwell or fatigued; safety takes priority over bookings.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "A chronic back‑pain risk mitigation for drivers is to…",
+    "choices": [
+      "Avoid stretching",
+      "Use proper seating posture and take breaks",
+      "Drive longer to ‘get used to it’",
+      "Sit far from the wheel"
+    ],
+    "correctIndex": 1,
+    "explanation": "Ergonomics and breaks reduce musculoskeletal strain.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "To manage cholesterol levels, which food approach is recommended?",
+    "choices": [
+      "Use palm oil and ghee freely",
+      "Choose foods rich in omega‑3 and soluble fibre",
+      "Avoid fruits and vegetables",
+      "Use only deep‑fried options"
+    ],
+    "correctIndex": 1,
+    "explanation": "Increase omega‑3 intake and soluble fibre; reduce saturated/trans fats.",
+    "tags": [
+      "health_wellness"
+    ]
+  },
+  {
+    "prompt": "Regarding alcohol and driving, which statement is correct?",
+    "choices": [
+      "Small amounts always improve reaction time",
+      "Driving under influence can be charged even below the legal limit if control is impaired",
+      "It is legal if the trip is short",
+      "Only passengers are affected"
+    ],
+    "correctIndex": 1,
+    "explanation": "If alcohol impairs control, drivers can be charged even if below the limit.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "A practical way to reduce stress during a shift is to…",
+    "choices": [
+      "Drive aggressively to get ahead",
+      "Schedule short breaks and use deep breathing",
+      "Argue with other road users",
+      "Skip hydration to reduce stops"
+    ],
+    "correctIndex": 1,
+    "explanation": "Brief breaks and breathing techniques help reduce stress hormones.",
+    "tags": [
+      "health_wellness"
+    ]
+  },
+  {
+    "prompt": "For diabetes management, which statement is true?",
+    "choices": [
+      "Smoking improves blood flow",
+      "Regular check‑ups and an active lifestyle help control glucose",
+      "Alcohol helps control sugar",
+      "Skipping meals stabilises sugar"
+    ],
+    "correctIndex": 1,
+    "explanation": "Adopt activity, regular checks, healthy diet, and avoid smoking/alcohol excess.",
+    "tags": [
+      "health_wellness"
+    ]
+  },
+  {
+    "prompt": "Which item belongs in the ‘avoid’ list before bedtime to improve sleep?",
+    "choices": [
+      "Light reading",
+      "Caffeinated drinks late in the evening",
+      "A cool, dark, quiet room",
+      "Regular sleep schedule"
+    ],
+    "correctIndex": 1,
+    "explanation": "Avoid caffeine and overly stimulating activities before sleep.",
+    "tags": [
+      "health_wellness"
+    ]
+  },
+  {
+    "prompt": "A driver should maintain a cash float mainly to…",
+    "choices": [
+      "Pay speeding fines immediately",
+      "Provide change for passengers when cash is used",
+      "Tip other drivers",
+      "Buy snacks at stops"
+    ],
+    "correctIndex": 1,
+    "explanation": "Maintaining a small float supports smooth payment when cash is used.",
+    "tags": [
+      "p2p_landscape"
+    ]
+  },
+  {
+    "prompt": "When approaching a pedestrian crossing, a safe habit is to…",
+    "choices": [
+      "Speed up to clear it first",
+      "Slow down and be ready to stop",
+      "Use horn to warn pedestrians away",
+      "Focus only on lights ahead"
+    ],
+    "correctIndex": 1,
+    "explanation": "Be prepared to stop and allow uninterrupted passage to pedestrians.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Failing to give way to emergency vehicles results in…",
+    "choices": [
+      "No penalty",
+      "Minor verbal warning only",
+      "Demerit points under DIPS",
+      "Only a parking fine"
+    ],
+    "correctIndex": 2,
+    "explanation": "DIPS lists failing to give way to ambulances, fire engines or police as an offence.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Parking within a pedestrian crossing or zig‑zag line area…",
+    "choices": [
+      "Is allowed briefly",
+      "Attracts demerit points and fines",
+      "Is preferred for quick pick‑ups",
+      "Is only a warning"
+    ],
+    "correctIndex": 1,
+    "explanation": "Stopping or parking at zebra/zig‑zag areas is penalised.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Crossing double white lines is classified as…",
+    "choices": [
+      "Safe if done quickly",
+      "A traffic offence with demerit points",
+      "Only illegal at night",
+      "Always permitted for taxis"
+    ],
+    "correctIndex": 1,
+    "explanation": "Crossing double white lines attracts demerit points per DIPS.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Driving against the flow of traffic as indicated by signs is…",
+    "choices": [
+      "Permitted to save time",
+      "A serious offence with demerit points",
+      "Only a navigation error",
+      "Allowed for PHCs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Driving against flow is a DIPS offence.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Stopping on the carriageway of an expressway (without cause)…",
+    "choices": [
+      "Is a safe rest tactic",
+      "Is an offence carrying demerit points",
+      "Is recommended to check maps",
+      "Is permitted during rain"
+    ],
+    "correctIndex": 1,
+    "explanation": "Stopping on the carriageway is penalised; use shoulders only when necessary.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Which is a correct hazard‑avoidance technique?",
+    "choices": [
+      "Accelerate into standing water",
+      "Reduce speed before the hazard and steer smoothly",
+      "Brake hard midway through a turn",
+      "Use mobile while changing lanes"
+    ],
+    "correctIndex": 1,
+    "explanation": "Slow first, then steer smoothly; avoid sudden inputs.",
+    "tags": [
+      "hazards_weather_visibility"
+    ]
+  },
+  {
+    "prompt": "A core ‘don’t’ in defensive driving is…",
+    "choices": [
+      "Tailgating",
+      "Scanning far ahead",
+      "Maintaining buffer space",
+      "Signalling early"
+    ],
+    "correctIndex": 0,
+    "explanation": "Tailgating reduces reaction time and increases crash risk.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "To keep the vehicle road‑worthy, you should…",
+    "choices": [
+      "Skip maintenance to save cost",
+      "Send for routine checks and keep it clean",
+      "Only clean the exterior",
+      "Ignore unusual noises"
+    ],
+    "correctIndex": 1,
+    "explanation": "Routine maintenance and cleanliness are part of safe operations.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "When a passenger must alight where bus‑lane rules apply during operating hours, you should…",
+    "choices": [
+      "Stop in the bus lane anyway",
+      "Find a legal, safe nearby spot to stop",
+      "Let them alight at a junction",
+      "Ignore signs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Do not stop in bus lanes during operating hours; choose a safe alternative.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "In wet conditions, tyre‑road grip…",
+    "choices": [
+      "Improves dramatically",
+      "Decreases, requiring longer stopping distances",
+      "Never changes",
+      "Allows tighter cornering"
+    ],
+    "correctIndex": 1,
+    "explanation": "Wet roads reduce friction; increase following distance and reduce speed.",
+    "tags": [
+      "hazards_weather_visibility"
+    ]
+  },
+  {
+    "prompt": "A driver using a mounted mobile device as navigation should…",
+    "choices": [
+      "Interact extensively while moving",
+      "Ensure it does not obstruct view and set the route before moving off",
+      "Hold it in hand for better control",
+      "Text when traffic is light"
+    ],
+    "correctIndex": 1,
+    "explanation": "Mount properly, avoid obstruction, and minimise interaction while moving.",
+    "tags": [
+      "navigation_planning"
+    ]
+  },
+  {
+    "prompt": "If an accident involves a foreign vehicle or government property, you must…",
+    "choices": [
+      "Drive away to avoid queues",
+      "Report within 24 hours via the specified channels",
+      "Wait for the other party to report",
+      "Only inform your friends"
+    ],
+    "correctIndex": 1,
+    "explanation": "Certain cases mandate a Traffic Accident Report within 24 hours.",
+    "tags": [
+      "accidents_breakdowns"
+    ]
+  },
+  {
+    "prompt": "Which of the following helps prevent collisions with vehicles alongside when changing lanes?",
+    "choices": [
+      "Rely on mirrors only",
+      "Glance over the shoulder to check blind spots",
+      "Signal after moving",
+      "Assume others will give way"
+    ],
+    "correctIndex": 1,
+    "explanation": "Check mirrors, signal early, and check blind spots before moving.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "An alert road user habit is to…",
+    "choices": [
+      "Fixate on one spot",
+      "Keep attention on the road ahead with frequent mirror checks",
+      "Turn around to chat with passengers",
+      "Watch in‑car screens often"
+    ],
+    "correctIndex": 1,
+    "explanation": "Keep your eyes moving and avoid distractions.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "A key tip to avoid being rear‑ended is to…",
+    "choices": [
+      "Stop abruptly at the last moment",
+      "Brake gradually and signal early",
+      "Switch off brake lights",
+      "Change lanes without signal"
+    ],
+    "correctIndex": 1,
+    "explanation": "Smooth, predictable actions give following drivers time to react.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "If you feel giddy while driving, you should…",
+    "choices": [
+      "Ignore and continue",
+      "Stop safely and rest",
+      "Speed up to finish sooner",
+      "Turn up the radio"
+    ],
+    "correctIndex": 1,
+    "explanation": "Health first: stop safely and rest to prevent incidents.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "A good hydration practice for drivers is to…",
+    "choices": [
+      "Avoid water to reduce restroom stops",
+      "Maintain hydration to support alertness",
+      "Only drink sugary sodas",
+      "Rely on coffee only"
+    ],
+    "correctIndex": 1,
+    "explanation": "Hydration supports alertness and concentration.",
+    "tags": [
+      "health_wellness"
+    ]
+  },
+  {
+    "prompt": "To minimise glare and fatigue at night, you should…",
+    "choices": [
+      "Stare at bright lights",
+      "Use mirrors’ anti‑glare setting and reduce cabin lighting",
+      "Use high beams at all times",
+      "Remove sun visor"
+    ],
+    "correctIndex": 1,
+    "explanation": "Anti‑glare settings and controlled lighting reduce eye strain.",
+    "tags": [
+      "hazards_weather_visibility",
+      "health_wellness"
+    ]
+  },
+  {
+    "prompt": "ERP charges are part of…",
+    "choices": [
+      "Personal expenses only",
+      "Operating costs to consider in trip planning",
+      "Parking fines",
+      "Medical insurance"
+    ],
+    "correctIndex": 1,
+    "explanation": "ERP and parking are standard operating costs for drivers.",
+    "tags": [
+      "operating_costs"
+    ]
+  },
+  {
+    "prompt": "Call Levies in the operating environment refer to…",
+    "choices": [
+      "Charges for illegal hails",
+      "Fees that may be charged by operators for dispatched bookings",
+      "Government fines",
+      "Road tolls"
+    ],
+    "correctIndex": 1,
+    "explanation": "Call levies are booking/operator fees, separate from ERP or tolls.",
+    "tags": [
+      "operating_costs"
+    ]
+  },
+  {
+    "prompt": "A responsible action at the start of a shift is to…",
+    "choices": [
+      "Skip vehicle checks",
+      "Ensure the vehicle is clean and road‑worthy",
+      "Disable hazard lights",
+      "Remove the first‑aid kit"
+    ],
+    "correctIndex": 1,
+    "explanation": "Pre‑shift checks and cleanliness contribute to safety and service quality.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "If using the 2‑second rule, you start counting when…",
+    "choices": [
+      "You pass a moving car",
+      "The vehicle ahead passes a fixed roadside object",
+      "The light turns amber",
+      "Your speed changes"
+    ],
+    "correctIndex": 1,
+    "explanation": "Start counting as the vehicle ahead passes a stationary reference.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "You should avoid honking…",
+    "choices": [
+      "When necessary to warn",
+      "Unnecessarily, especially when stopped behind another vehicle",
+      "In emergencies",
+      "To alert a hazard"
+    ],
+    "correctIndex": 1,
+    "explanation": "Unnecessary horn use can startle others; reserve it for safety warnings.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "A driver’s health is whose responsibility first?",
+    "choices": [
+      "Operator only",
+      "Passenger",
+      "Driver",
+      "Government"
+    ],
+    "correctIndex": 2,
+    "explanation": "Our own health is our responsibility; plan to maintain it to drive safely.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Which is a correct first aid call for a severe vehicle fire?",
+    "choices": [
+      "1800‑2550000",
+      "995",
+      "70999",
+      "65470000"
+    ],
+    "correctIndex": 1,
+    "explanation": "SCDF Emergency Ambulance/Fire: 995. Police Emergency: 999.",
+    "tags": [
+      "accidents_breakdowns"
+    ]
+  },
+  {
+    "prompt": "Traffic Police general line (non‑emergency) listed in Module 1 is…",
+    "choices": [
+      "65470000",
+      "1800‑2550000",
+      "70999",
+      "995"
+    ],
+    "correctIndex": 0,
+    "explanation": "Traffic Police: 65470000 (non‑emergency).",
+    "tags": [
+      "emergency_contacts"
+    ]
+  },
+  {
+    "prompt": "Police (non‑emergency) hotline listed is…",
+    "choices": [
+      "1800‑2550000",
+      "65470000",
+      "70999",
+      "995"
+    ],
+    "correctIndex": 0,
+    "explanation": "Police (non‑emergency): 1800‑2550000.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Police emergency SMS number for when you cannot talk is…",
+    "choices": [
+      "70999",
+      "90999",
+      "995",
+      "65470000"
+    ],
+    "correctIndex": 0,
+    "explanation": "Police SMS for emergencies: 70999 (if you cannot speak).",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "When changing lane to turn left, you should…",
+    "choices": [
+      "Stay in the centre and turn late",
+      "Stay close to the left kerb and signal in time",
+      "Skip the signal to avoid confusion",
+      "Brake hard then turn sharply"
+    ],
+    "correctIndex": 1,
+    "explanation": "Stay close to the left kerb, signal early and turn smoothly.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "If you accidentally activate a panic/help button, you should…",
+    "choices": [
+      "Ignore it",
+      "Immediately call the operator to inform it’s a false alarm",
+      "Turn off the car to reset",
+      "Post on social media"
+    ],
+    "correctIndex": 1,
+    "explanation": "Inform the operator to deactivate the false alarm promptly.",
+    "tags": [
+      "p2p_landscape"
+    ]
+  },
+  {
+    "prompt": "For a safe takeover/handover when sharing a vehicle, you should…",
+    "choices": [
+      "Skip briefings",
+      "Ensure proper handover and share relevant information",
+      "Hide issues to avoid blame",
+      "Leave no fuel"
+    ],
+    "correctIndex": 1,
+    "explanation": "Proper handovers maintain safety and service continuity.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "A sign you are drifting out of lane is often linked to…",
+    "choices": [
+      "Peak alertness",
+      "Fatigue and reduced awareness",
+      "Better focus",
+      "Improved judgment"
+    ],
+    "correctIndex": 1,
+    "explanation": "Drifting and daydreaming are fatigue signs; stop and rest.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Which practice helps reduce cardiovascular risk?",
+    "choices": [
+      "Smoking occasionally to relax",
+      "Regular physical activity and balanced diet",
+      "Skimping on sleep",
+      "High‑fat trans‑rich diet"
+    ],
+    "correctIndex": 1,
+    "explanation": "Activity and diet improvements reduce cardiovascular risk.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "A driver who keeps using a hand‑held device while in motion risks…",
+    "choices": [
+      "Compliments",
+      "12 demerit points and prosecution for repeat offences",
+      "2 demerit points only",
+      "No action if careful"
+    ],
+    "correctIndex": 1,
+    "explanation": "Using mobile devices while driving carries 12 points and significant penalties.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "A key behaviour to avoid accidents at junctions is to…",
+    "choices": [
+      "Beat the amber light",
+      "Have sufficient distance to stop as lights change",
+      "Accelerate through red",
+      "Look only right"
+    ],
+    "correctIndex": 1,
+    "explanation": "Do not beat the light; prepare to stop safely as signals change.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Stopping within 9 m of a bus stop (without breakdown)…",
+    "choices": [
+      "Is allowed for quick pick‑ups",
+      "Is an offence that can be fined",
+      "Is recommended in peak hour",
+      "Is required for PHCs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Stopping within 9 m of a bus stop is penalised unless breakdown occurs.",
+    "tags": [
+      "accidents_breakdowns"
+    ]
+  },
+  {
+    "prompt": "For communicable disease hygiene, drivers should…",
+    "choices": [
+      "Ignore coughing passengers",
+      "Adopt good hygiene and cleanliness practices",
+      "Share items among passengers",
+      "Avoid cleaning the cabin"
+    ],
+    "correctIndex": 1,
+    "explanation": "Adopting hygiene standards helps reduce disease transmission risks.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "To cope with stress mid‑shift, which is better?",
+    "choices": [
+      "Deep breathing and short pause",
+      "Ruminating while driving",
+      "Engaging in heated arguments",
+      "Speeding to ‘feel better’"
+    ],
+    "correctIndex": 0,
+    "explanation": "Breathing techniques reduce stress hormones and improve focus.",
+    "tags": [
+      "health_wellness"
+    ]
+  },
+  {
+    "prompt": "When approaching a cyclist before turning, you should…",
+    "choices": [
+      "Turn sharply to squeeze in",
+      "Check mirrors and blind spots and give way if not safe",
+      "Assume the cyclist will stop",
+      "Honk and proceed"
+    ],
+    "correctIndex": 1,
+    "explanation": "Look for cyclists between you and the kerb; give way if necessary.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "If your GPS signal fails in a tunnel, you should…",
+    "choices": [
+      "Stop in the tunnel",
+      "Continue safely and re‑establish signal outside",
+      "Reverse to regain signal",
+      "Use phone in hand"
+    ],
+    "correctIndex": 1,
+    "explanation": "GPS can fail in tunnels; drive on safely until reception returns.",
+    "tags": [
+      "navigation_planning"
+    ]
+  },
+  {
+    "prompt": "One reason to avoid outdated maps on navigation apps is…",
+    "choices": [
+      "It improves adventure",
+      "It may misroute you and delay trips",
+      "It reduces distraction",
+      "It saves battery"
+    ],
+    "correctIndex": 1,
+    "explanation": "Keep maps updated to avoid errors and find safe, efficient routes.",
+    "tags": [
+      "navigation_planning"
+    ]
+  },
+  {
+    "prompt": "A driver who consistently maintains a 24‑month offence‑free record will…",
+    "choices": [
+      "Accumulate hidden points",
+      "Have all points and suspensions expunged",
+      "Be permanently marked",
+      "Be suspended anyway"
+    ],
+    "correctIndex": 1,
+    "explanation": "Points and suspensions are cleared after a 24‑month clean record.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Before starting a trip you should…",
+    "choices": [
+      "Skip greeting",
+      "Confirm the destination and any landmarks",
+      "Assume the passenger’s route",
+      "Start moving before seat belts"
+    ],
+    "correctIndex": 1,
+    "explanation": "Confirm destination details to avoid errors and ensure safety.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "During defensive driving, when overtaken you should…",
+    "choices": [
+      "Speed up to block",
+      "Maintain lane and let the vehicle pass safely",
+      "Swerve to the side suddenly",
+      "Honk continuously"
+    ],
+    "correctIndex": 1,
+    "explanation": "Keep calm and allow safe overtaking; avoid competitive behaviour.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "When reversing in carparks, a safer method is to…",
+    "choices": [
+      "Rely only on camera",
+      "Check mirrors and surroundings and reverse slowly",
+      "Look down at phone",
+      "Accelerate to finish quickly"
+    ],
+    "correctIndex": 1,
+    "explanation": "Use mirrors and camera together; go slowly and stay aware of pedestrians.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "If you sense chest pain while driving, the safest immediate action is to…",
+    "choices": [
+      "Ignore until arrival",
+      "Move to the side, hazards on, and seek help",
+      "Drive faster to reach home",
+      "Call a friend only"
+    ],
+    "correctIndex": 1,
+    "explanation": "Pull over safely, use hazards and call for help; chest pain may be an emergency.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "When loading luggage, a driver should…",
+    "choices": [
+      "Refuse to help even if needed",
+      "Assist if requested and if safe, then secure the load",
+      "Overload the cabin",
+      "Leave boot open while moving"
+    ],
+    "correctIndex": 1,
+    "explanation": "Assist passengers where appropriate and ensure loads are secure.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "A driver who is dehydrated is likely to experience…",
+    "choices": [
+      "Improved cognition",
+      "Headaches and reduced concentration",
+      "Enhanced reflexes",
+      "Perfect alertness"
+    ],
+    "correctIndex": 1,
+    "explanation": "Dehydration impairs concentration and can cause headaches.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "To reduce night‑time fatigue, you should…",
+    "choices": [
+      "Use bright screens near your eyes",
+      "Keep the cabin quietly lit and avoid heavy meals late",
+      "Drink excessive caffeine late",
+      "Skip breaks"
+    ],
+    "correctIndex": 1,
+    "explanation": "Avoid heavy late meals and bright screens; take short breaks.",
+    "tags": [
+      "hazards_weather_visibility",
+      "health_wellness"
+    ]
+  },
+  {
+    "prompt": "A good way to reduce salt intake is to…",
+    "choices": [
+      "Choose soups with lots of stock",
+      "Read labels and pick lower‑sodium options",
+      "Add extra soy sauce",
+      "Eat only processed snacks"
+    ],
+    "correctIndex": 1,
+    "explanation": "Reducing sodium helps manage blood pressure.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Which of the following is a sign of poor nutrition?",
+    "choices": [
+      "Frequent illness and low energy",
+      "Consistent high energy",
+      "Clear skin and strength",
+      "None of the above"
+    ],
+    "correctIndex": 0,
+    "explanation": "Poor diet can reduce immunity and energy.",
+    "tags": [
+      "health_wellness"
+    ]
+  },
+  {
+    "prompt": "Skipping meals during a shift usually…",
+    "choices": [
+      "Improves alertness",
+      "Worsens energy and concentration",
+      "Is recommended",
+      "Prevents fatigue"
+    ],
+    "correctIndex": 1,
+    "explanation": "Balanced, regular meals support stable energy and alertness.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "One benefit of regular walking for drivers is…",
+    "choices": [
+      "Higher blood pressure",
+      "Improved circulation and stress reduction",
+      "Less sleep quality",
+      "Increased cramps"
+    ],
+    "correctIndex": 1,
+    "explanation": "Light to moderate activity supports cardiovascular health and mood.",
+    "tags": [
+      "health_wellness"
+    ]
+  },
+  {
+    "prompt": "If an aggressive road user provokes you, best practice is to…",
+    "choices": [
+      "Retaliate to ‘teach a lesson’",
+      "Stay calm and avoid escalation",
+      "Chase after them",
+      "Brake‑check them"
+    ],
+    "correctIndex": 1,
+    "explanation": "De‑escalation keeps you and passengers safe.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "A driver who leaves the driver’s seat while conveying passengers without reasonable cause…",
+    "choices": [
+      "Is following procedure",
+      "May breach conduct rules",
+      "Should do so often",
+      "Is required by law"
+    ],
+    "correctIndex": 1,
+    "explanation": "Conduct rules require remaining in the seat unless there’s a reasonable cause.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Before moving off, a simple passenger safety reminder is…",
+    "choices": [
+      "Please lower your windows",
+      "Please fasten your seat belt",
+      "Please remove your mask",
+      "Please use your phone"
+    ],
+    "correctIndex": 1,
+    "explanation": "Remind passengers to belt up for their safety.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "A symptom cluster suggesting sleep deprivation includes…",
+    "choices": [
+      "Calmness and clarity",
+      "Irritability and lack of concentration",
+      "Stronger judgment",
+      "High energy"
+    ],
+    "correctIndex": 1,
+    "explanation": "Irritability, poor focus and drowsiness are common signs.",
+    "tags": [
+      "health_wellness"
+    ]
+  },
+  {
+    "prompt": "Which practice helps avoid collisions when being overtaken?",
+    "choices": [
+      "Move closer to the overtaking vehicle",
+      "Maintain lane position and speed",
+      "Speed up to block",
+      "Swerve unpredictably"
+    ],
+    "correctIndex": 1,
+    "explanation": "Hold your line and speed so the overtaking driver can pass safely.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "ERP stands for…",
+    "choices": [
+      "Electronic Road Pricing",
+      "Emergency Route Planning",
+      "Engine RPM",
+      "Expressway Road Patrol"
+    ],
+    "correctIndex": 0,
+    "explanation": "ERP = Electronic Road Pricing; charges may apply on some roads/gantries.",
+    "tags": [
+      "operating_costs"
+    ]
+  },
+  {
+    "prompt": "When stopping after a minor accident, you should place the warning triangle…",
+    "choices": [
+      "Anywhere near the bonnet",
+      "At least 20 m behind the vehicle",
+      "On the roof",
+      "No need if daytime"
+    ],
+    "correctIndex": 1,
+    "explanation": "Minimum 20 m behind improves early warning to approaching traffic.",
+    "tags": [
+      "accidents_breakdowns"
+    ]
+  },
+  {
+    "prompt": "A driver’s legal responsibility regarding passenger capacity is to…",
+    "choices": [
+      "Carry as many as fit",
+      "Not exceed the maximum number of passengers allowed",
+      "Ignore labels",
+      "Count children as zero"
+    ],
+    "correctIndex": 1,
+    "explanation": "Never exceed licensed capacity; safety and law require it.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "For better night vision, drivers should…",
+    "choices": [
+      "Keep windscreens dirty",
+      "Ensure windscreens are clean and free of smears",
+      "Use high beams in city streets",
+      "Ignore smudges"
+    ],
+    "correctIndex": 1,
+    "explanation": "Clean glass reduces glare and improves visibility.",
+    "tags": [
+      "hazards_weather_visibility"
+    ]
+  },
+  {
+    "prompt": "A quick pre‑trip posture check includes…",
+    "choices": [
+      "Seat too far for straight arms",
+      "Seat close enough for slight elbow bend and good pedal reach",
+      "Headrest removed",
+      "Back fully reclined"
+    ],
+    "correctIndex": 1,
+    "explanation": "Ergonomic posture helps reduce fatigue and improves control.",
+    "tags": [
+      "health_wellness"
+    ]
+  },
+  {
+    "prompt": "Which is the correct action when a small in‑car fire is noticed early?",
+    "choices": [
+      "Keep driving to ventilate",
+      "Stop, switch off, use extinguisher if safe, call 995",
+      "Pour water onto fuel",
+      "Open the bonnet fully into flames"
+    ],
+    "correctIndex": 1,
+    "explanation": "Use a suitable extinguisher if safe; call 995 and do not endanger yourself.",
+    "tags": [
+      "accidents_breakdowns"
+    ]
+  },
+  {
+    "prompt": "When planning breaks, which pairing is sound?",
+    "choices": [
+      "2 hours driving → 10–15 min break",
+      "4 hours driving → no break",
+      "Always drive until exhausted",
+      "Breaks only at destination"
+    ],
+    "correctIndex": 0,
+    "explanation": "Regular short breaks improve alertness and safety.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "A driver who is offence‑free for 12 months will…",
+    "choices": [
+      "Automatically lose all points immediately",
+      "See demerit points remain until a 12‑month offence‑free period is achieved",
+      "Face suspension",
+      "Gain bonus points"
+    ],
+    "correctIndex": 1,
+    "explanation": "Points remain until a 12‑month offence‑free period; a 24‑month clean slate expunges all points/suspensions.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "Composition fine for failing to conform to traffic light signals (light vehicles) is…",
+    "choices": [
+      "$150",
+      "$300",
+      "$400",
+      "$500"
+    ],
+    "correctIndex": 2,
+    "explanation": "Module 1 lists $400 with 12 demerit points for this offence.",
+    "tags": [
+      "DIPS_offences"
+    ]
+  },
+  {
+    "prompt": "Using a mobile device while driving (first offence) may result in…",
+    "choices": [
+      "$50 fine",
+      "Fine up to $1,000 or 6 months’ jail or both",
+      "Only a warning",
+      "Community service only"
+    ],
+    "correctIndex": 1,
+    "explanation": "Penalties escalate with repeat offences; demerit points also apply.",
+    "tags": [
+      "defensive_driving"
+    ]
+  },
+  {
+    "prompt": "A driver should place the GPS…",
+    "choices": [
+      "On the steering wheel",
+      "Where it does not obstruct view of the road",
+      "On the windscreen centre blocking the road",
+      "In their lap while driving"
+    ],
+    "correctIndex": 1,
+    "explanation": "Mount devices safely without blocking sight lines.",
+    "tags": [
+      "navigation_planning"
+    ]
+  },
+  {
+    "prompt": "A simple tactic to avoid collisions with vehicles behind is to…",
+    "choices": [
+      "Brake suddenly at the last moment",
+      "Signal intentions early and stop gradually",
+      "Turn off brake lights to reduce glare",
+      "Weave between lanes"
+    ],
+    "correctIndex": 1,
+    "explanation": "Predictable, gradual braking with early signals gives following drivers time to react.",
+    "tags": [
+      "defensive_driving"
+    ]
+  }
+]

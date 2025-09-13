@@ -1,0 +1,571 @@
+[
+  {
+    "prompt": "Find the Shortest Route or Most Direct Route from Sin Ming Auto Care to Leisure Park Kallang (1 Point)",
+    "choices": [
+      "Sin Ming Drive - Marymount Road -Ang Mo Kio Avenue 1-CTE - PIE-Sims Way - Mountbatten Road - Stadium Boulevard - Stadium Crescent - Stadium walk - Leisure Park Kallang",
+      "Sin Ming Drive - Upper Thomson road - PIE - Sims way- Mountbatten Road - Stadium Boulevard - Stadium Crescent - Stadium walk - Leisure Park Kallang",
+      "Sin Ming Drive - Sin Ming Avenue - Bishan Street 22 - Bishan Street 14 - Bishan Street 13 - Braddell Road - CTE-PIE- Sims way - Mountbatten Road - Stadium Boulevard - Stadium Crescent - Stadium Walk - Leisure Park Kallang"
+    ],
+    "correctIndex": 2,
+    "tags": [
+      "question_type_route",
+      "route_planning_shortest"
+    ]
+  },
+  {
+    "prompt": "Find the Shortest Route or most direct route from Genting Hotel Jurong to Singapore Flyer (1 Point)",
+    "choices": [
+      "Town Hall Link - Science Center Road - Jurong Town Hall Road - AYE - CTE- Merchant Road - Eu Tong Sen Street - Hill Street - Parliament Place - Saint Andrew's Road - Beach Road - Bras Basah Road - Raffles Boulevard - Raffles Avenue - Singapore Flyer",
+      "Town Hall Link - Science Center Road - Jurong Town Hall Road - AYE- CTE- Merchant Road - Eu Tong Sen Street - Hill Street - Victoria Street - Ophir Road - Republic Boulevard - Raffles Avenue - Singapore Flyer",
+      "Science Center Road - Jurong Town Hall Road - Jurong East Street 12 - Jurong Gateway Road - Boon Lay Way - Commonwealth Avenue West - Clementi Avenue 4 - Clementi Avenue 5 - Clementi Road - Ulu Pandan Road - Holland Road - Napier Road - Tanglin Road - Orchard Road - Bras Basah Road - Raffles Boulevard - Raffles Avenue - Singapore Flyer"
+    ],
+    "correctIndex": 2,
+    "tags": [
+      "question_type_route",
+      "route_planning_shortest"
+    ]
+  },
+  {
+    "prompt": "Find the Shortest Route or Most Direct Route from ITE College East to Republic Polytechnic (1 Point)",
+    "choices": [
+      "Upper Changi Road - Upper Changi Link - Upper Changi Road East - TPE - SLE - Woodlands Avenue 2- Woodlands Avenue 9 - Woodlands Drive 91 - Republic Crescent - Republic Polytechnic",
+      "Upper Changi Road – Simei Avenue - Tampines Avenue 5 - Tampines Avenue 10 - TPE- Punggol Road - SLE - Woodlands Avenue 12 - Woodlands Avenue 2 - Woodlands Avenue 9 - Woodlands Drive 91 - Republic Crescent - Republic Polytechnic",
+      "Upper Changi Road - Simei Avenue - PIE - CTE- SLE - Woodlands Avenue 2 - Woodlands Avenue 9 - Woodlands Drive 91 - Republic Crescent - Republic Polytechnic."
+    ],
+    "correctIndex": 1,
+    "tags": [
+      "question_type_route",
+      "route_planning_shortest"
+    ]
+  },
+  {
+    "prompt": "Find the Shortest Route or Most Direct Route from Holland Village to Safra Clubhouse (1 Point)",
+    "choices": [
+      "Lorong Mambong - Holland Road - Farrer Road - Adam Road - Lornie Highway - Lornie Road - Braddel Road - CTE- Ang Mo Kio Ave 3 - Yio Chu Kang Road - Buangkok Green - Sengkang East Road - Punggol way - Punggol Central - Punggol place - Sentul Crescent - Safra Clubhouse",
+      "Lorong Mambong - Holland Road - Sixth Avenue - Dunearn Road - Eng Neo Avenue - PIE - Upper Serangoon Road - Hougang Ave 10 - Punggol Road - Punggol Drive - Sentul Crescent Safra Clubhouse",
+      "Lorong Mambong - Holland Road - North Buona Vista Road - Holland Drive - North Buona Vista Road - Holland Road - Farrer Road - Adam Road - Lornie Highway - Lornie Road - Braddel Road - Croucher Road - Daisy Ave - Sommerville Road - Upper Serangoon Road - Hougang Ave 10 - Punggol Road - Punggol Drive - Sentul Crescent - Safra Clubhouse"
+    ],
+    "correctIndex": 2,
+    "tags": [
+      "question_type_route",
+      "route_planning_shortest"
+    ]
+  },
+  {
+    "prompt": "Find the Shortest Route or Most Direct Route from DBS Safra Punggol to 45411 Bus Stop (1 Point)",
+    "choices": [
+      "Sentul Crescent - Punggol Place - Punggol Central - Punggol Way - Sengkang East Road - TPE - SLE - BKE - KJE - Choa Chu Kang Drive - Choa Chu Kang Crescent - 45411 Bus Stop",
+      "Sentul Crescent - Punggol Walk - Punggol Crescent - Punggol Way - Sengkang East Road TPE - SLE - Mandai Road - Woodlands Road - Stagmont Ring - Choa Chu Kang North 6 - Choa Chu Kang Drive - Choa Chu Kang Crescent - 45411 Bus Stop",
+      "Sentul Crescent - Punggol Drive - TPE - KJE - Choa Chu Kang Drive - Choa Chu Kang Crescent - 45411 Bus Stop"
+    ],
+    "correctIndex": 1,
+    "tags": [
+      "question_type_route",
+      "route_planning_shortest"
+    ]
+  },
+  {
+    "prompt": "Find the Shortest Route or Most Direct Route from Woodlands Civic Center to The Clearwater (1 Point)",
+    "choices": [
+      "South Woodlands Drive - Woodlands Square - Woodlands Avenue 3 - BKE - PIE - Bedok North Avenue 3 - Bedok Reservoir Road - Bedok Reservoir View - The Clearwater",
+      "South Woodlands Drive - Woodlands Square - South Woodlands Way - Woodlands Avenue 5 - Woodlands Avenue 2 - Woodlands Avenue 1 - Woodlands Avenue 12 - SLE - CTE- PIE - Bedok North Avenue 3 - Bedok Reservoir Road - Bedok Reservoir View - The Clearwater",
+      "South Woodlands Drive - Woodlands Square - South Woodlands Way - Woodlands Avenue 5 - Woodlands Avenue 2 - Woodlands Avenue 1 - Woodlands Avenue 12 - SLE - Upper Thomson Road - Ang Mo Kio Avenue 1 - Lorong Chuan - Boundary Road - Upper Paya Lebar Road - Bartley Road East - Kaki Bukit Avenue 4 - Kaki Bukit Avenue 3 - Kaki Bukit Road 4 - Bedok Reservoir Road - Bedok Reservoir View - The Clearwater"
+    ],
+    "correctIndex": 2,
+    "tags": [
+      "question_type_route",
+      "route_planning_shortest"
+    ]
+  },
+  {
+    "prompt": "Find the Shortest Route or Most Direct Route from 294 Compassvale Crescent to Haw Par Villa (1 Point)",
+    "choices": [
+      "Compassvale Crescent - Compassvale Street - Sengkang East Road - Buangkok Green - Ang Mo Kio Avenue 5 - CTE - AYE - South Buona Vista Road - Pasir Panjang Road - Haw Par Villa",
+      "Compassvale Crescent - Compassvale Street - Compassvale Road - Sengkang East Avenue - Punggol Road - Hougang Avenue 10 - Hougang Central - Upper Serangoon Road - Serangoon Road - PIE -CTE- Cairnhill Road - Grange Road - Leonie Hill Road - River Valley Road - Delta Road- Alexandra Road - Henderson Road - Telok Blangah Road - Pasir Panjang Road - Haw Par Villa",
+      "Compassvale Crescent - Compassvale Street - Punggol Road - TPE - KPE - Sims Way - Geylang Road - Kallang Road - Victoria Street - Hill Street- New Bridge Road - Merchant Road - CTE - AYE- South Buona Vista Road -Pasir Panjang Road - Haw Par Villa."
+    ],
+    "correctIndex": 1,
+    "tags": [
+      "question_type_route",
+      "route_planning_shortest"
+    ]
+  },
+  {
+    "prompt": "Find the Shortest Route or Most Direct Route from Changi Airport Terminal 2 to Hotel Royal (1 Point)",
+    "choices": [
+      "T2 Basement Drive - T2 Link South - T2 Boulevard - Airport Boulevard - East Coast Parkway - PIE - Thomson Road - Newton Road - Hotel Royal",
+      "T2 Basement Drive - T2 Link South - T2 Boulevard - Airport Boulevard - East Coast Parkway - PIE - Changi South Avenue 3 - Changi Business Park Avenue 3 - Changi Business Park Central 2 - Changi Business Park Central 1 - Changi South Avenue 2 - Changi South Avenue 1 - Xilin Avenue - Upper Changi Road East - New Upper Changi Road - Changi Road Geylang Road - Kallang Road - Lavendar Street - Balestier Road - Moulmein Road - Thomson Road - Newton Road - Hotel Royal.",
+      "T2 Basement Drive - T2 Link South - T2 Boulevard - Airport Boulevard - ECP - Rochor Road Rochor Canal Road - Bukit Timah Road - Newton Circus - Newton Road - Hotel Royal"
+    ],
+    "correctIndex": 1,
+    "tags": [
+      "question_type_route",
+      "route_planning_shortest"
+    ]
+  },
+  {
+    "prompt": "Find the Shortest distance or most direct route from 12 Trengganu street Singapore going to IKEA (1 Point)",
+    "choices": [
+      "Temple Street - South Bridge Road - Maxwell Road - Straits Boulevard - MCE- KPE-Bartley Road East - Tampines Ave 10 - Tampines Link - Tampines North Drive 1 - Tampines North Drive 2 – IKEA",
+      "Temple Street - South Bridge Road - Neil Road - Kreta Ayer Road - Eu Tong Sen Street - Upper Cross Street - CTE-PIE- Bedok North Road - Tampines Ave 10 - Tampines Link - Tampines North Drive 1 - Tampines North Drive 2 - IKEA",
+      "Temple Street - South Bridge Road - Neil Road - Kreta Ayer Road- Eu Tong Sen Street - Hill Street - Victoria Street - Kallang Road - Sims Ave - Sims Way - KPE - Bartley Road East - Tampines Ave 10 - Tampines Link - Tampines North Drive 1 - Tampines North Drive 2 – IKEA"
+    ],
+    "correctIndex": 2,
+    "tags": [
+      "question_type_route",
+      "route_planning_shortest"
+    ]
+  },
+  {
+    "prompt": "Find the shortest Route or most direct route from Republic Polytechnic to Khoo Teck Puat Hospital (1 Point)",
+    "choices": [
+      "Republic Crescent - Woodlands Drive 91 - Woodlands Avenue 9 - Gambas Avenue - Sembawang Road - Yishun Avenue 5 - Yishun Central - Khoo Teck Puat hospital",
+      "Republic Crescent - Woodlands Drive 91 - Woodlands Avenue 9 - Gambas Avenue - Sembawang Road - Yishun Avenue 3 - Yishun Central - Khoo Teck Puat hospital"
+    ],
+    "correctIndex": 1,
+    "tags": [
+      "question_type_route",
+      "route_planning_shortest"
+    ]
+  },
+  {
+    "prompt": "Find the Shortest Route or Most direct Route from Nanyang Technological University to Singapore General Hospital (1 Point)",
+    "choices": [
+      "Nanyang Drive - Unnamed Road - Nanyang Drive - Lien Ying Chow Drive - Nanyang Crescent - Pioneer Road North - Jalan Ahmad Ibrahim - AYE - Lower Delta Road - Jalan Bukit Merah - College Road - Hospital Crescent - Third Hospital Avenue – SGH",
+      "Nanyang Drive - Unnamed Road - Nanyang Drive - Lien Ying Chow Drive - Nanyang Crescent - Pioneer Road North - International Road - Jalan Boon Lay - Jalan Tukang - Yung Ho Road - Jalan Ahmad Ibrahim - AYE - Alexandra Road - Jalan Bukit Merah - College Road - Hospital Crescent - Third Hospital Avenue – SGH"
+    ],
+    "correctIndex": 1,
+    "tags": [
+      "question_type_route",
+      "route_planning_shortest"
+    ]
+  },
+  {
+    "prompt": "Fine the Shortest Route or Most direct route from Singapore General Hospital Block 3 to Changi General Hospital (1 Point)",
+    "choices": [
+      "Hospital Crescent - College Road -Jalan Bukit Merah - CTE - PIE - Simei Avenue - Simei Street 3 – CGH",
+      "Third Hospital Avenue - Hospital Crescent -College Road - Jalan Bukit Merah - Kampong Bahru Road - Eu Tong Sen Street - Hill Street - Victoria Street - Kallang Road - Sims Avenue - Changi Road - New Upper Changi Road - Tanah Merah Kechil Avenue - Upper Changi Road Simei Avenue - Simei Street 3 – CGH",
+      "Third Hospital Avenue -Hospital Crescent -College Road - Jalan Bukit Merah - Kampong Bahru Road - Eu Tong Sen Street - Hill Street - Victoria Street – Ophir Road – Beach Road – Java Road Nicoll Highway – KPE – PIE - Simei Avenue - Simei Street 3 – CGH"
+    ],
+    "correctIndex": 1,
+    "tags": [
+      "question_type_route",
+      "route_planning_shortest"
+    ]
+  },
+  {
+    "prompt": "What is the shortest route from Singapore General Hospital to Ng Teng Fong General Hospital? (1 Point)",
+    "choices": [
+      "Hospital Drive - College Road - Jalan Bukit Merah - Lower Delta Road – Tiong Bahru Road Leng Kee Road – Commonwealth Avenue – Commonwealth Avenue West – Boon Lay Way Jurong East Street 21",
+      "Hospital Drive - College Road – Jalan Bukit Merah – Lower Delta Road – AYE – Jurong Town Hall Road – Jurong East Street 11 – Boon Lay Way – Jurong Gateway Road – Jurong East Street 21",
+      "College Road – Jalan Bukit Merah – Queensway – Portsdown Avenue – AYE – Jurong East Street 11 – Toh Guan Road – Jurong East Street 21"
+    ],
+    "correctIndex": 0,
+    "tags": [
+      "question_type_route",
+      "route_planning_shortest"
+    ]
+  },
+  {
+    "prompt": "What is the shortest route from Sentosa Island to VivoCity? (1 Point)",
+    "choices": [
+      "Sentosa – Allanbrooke Road – Artillery Avenue – Sentosa Gateway – VivoCity",
+      "Sentosa – Allanbrooke Road – Artillery Avenue – Sentosa Gateway – Telok Blangah Road – Harbourfront Walk – Vivocity –",
+      "Sentosa – Allanbrooke Road – Artillery Avenue – Sentosa Gateway – Telok Blangah Road – Alexandra Road – Depot Road – Henderson Road – Telok Blangah Way – Lower Delta Road - Keppel Road – VivoCity"
+    ],
+    "correctIndex": 0,
+    "tags": [
+      "question_type_route",
+      "route_planning_shortest"
+    ]
+  },
+  {
+    "prompt": "What is the shortest route between IMM and Novena Square?",
+    "choices": [
+      "IMM > Jurong East Street 21 > Toh Guan Road > PIE > Bukit Batok East Ave 3 > Toh Tuck Road > Jalan Jurong Kecil > Upper Bukit Timah Road > Dunearn Road > Chancery Lane > Jalan Pasiran > Gentle Road > Newton Road > Thomson Road > Novena Square",
+      "Toh Tuck Road > Jalan Jurong Kecil > Upper Bukit Timah Road > Dunearn Road > Chancery Lane > Jalan Pasiran > Gentle Road > Newton Road > Thomson Road > Novena Square",
+      "IMM > Jurong East Street 21 > Toh Guan Road > PIE > Bukit Batok East Ave 3 > Toh Tuck Road > Jalan Jurong Kecil > Upper Bukit Timah Road > Dunearn Road > Chancery Lane > Newton Road > Thomson Road > Novena Square",
+      "IMM > Jurong East Street 21 > Toh Guan Road > PIE > Bukit Batok East Ave 3 > Toh Tuck Road > Jalan Jurong Kecil > Upper Bukit Timah Road > Dunearn Road > Gilstead Road Evelyn Road > Newton Road > Thomson Road > Novena Square"
+    ],
+    "correctIndex": 1,
+    "tags": [
+      "question_type_route",
+      "route_planning_shortest"
+    ]
+  },
+  {
+    "prompt": "Which of the following landmarks are in the North? (1 Point)",
+    "choices": [
+      "Wild Wild Wet",
+      "The JTC Summit",
+      "Changi Prison",
+      "Sun Plaza"
+    ],
+    "correctIndex": 3,
+    "tags": [
+      "landmarks_region",
+      "question_type_region"
+    ]
+  },
+  {
+    "prompt": "Which of the following Landmarks are in the South? (1 Point)",
+    "choices": [
+      "Nex Shopping Mall",
+      "Concord Primary School",
+      "Bishan MRT",
+      "Gardens by the bay"
+    ],
+    "correctIndex": 3,
+    "tags": [
+      "landmarks_region",
+      "question_type_region"
+    ]
+  },
+  {
+    "prompt": "Which of the following landmarks are in the West? (1 Point)",
+    "choices": [
+      "Katong Shopping Centre",
+      "Nex",
+      "Singapore Discovery Centre",
+      "Junction 8"
+    ],
+    "correctIndex": 2,
+    "tags": [
+      "landmarks_region",
+      "question_type_region"
+    ]
+  },
+  {
+    "prompt": "Nearest Park to Concorde Primary School (1 Point)",
+    "choices": [
+      "Keat Hong Park",
+      "Tembusu Park",
+      "Yishun Neighbourhood Park",
+      "Choa Chu kang Park"
+    ],
+    "correctIndex": 1,
+    "tags": [
+      "nearest_facility",
+      "question_type_nearest"
+    ]
+  },
+  {
+    "prompt": "Nearest School to White Sands shopping mall (1 Point)",
+    "choices": [
+      "Meridian Secondary School",
+      "Pasir Ris Secondary School",
+      "Angsana Primary School",
+      "Nee Ann Secondary School"
+    ],
+    "correctIndex": 0,
+    "tags": [
+      "nearest_facility",
+      "question_type_nearest"
+    ]
+  },
+  {
+    "prompt": "Nearest Park to White Sands Shopping Mall (1 Point)",
+    "choices": [
+      "Pasir Ris Town Park",
+      "Pasir Ris Park",
+      "Tampines Eco Green Park",
+      "Sea Shell Park"
+    ],
+    "correctIndex": 0,
+    "tags": [
+      "nearest_facility",
+      "question_type_nearest"
+    ]
+  },
+  {
+    "prompt": "Nearest School to Science Centre Singapore (1 Point)",
+    "choices": [
+      "Yuhua Primary School",
+      "Jurong Secondary School",
+      "Fuhua Primary School",
+      "Crest Secondary School"
+    ],
+    "correctIndex": 2,
+    "tags": [
+      "nearest_facility",
+      "question_type_nearest"
+    ]
+  },
+  {
+    "prompt": "Nearest Taxi Stand to Hotel Calmo Chinatown (1 Point)",
+    "choices": [
+      "D20",
+      "D16",
+      "D18",
+      "D17"
+    ],
+    "correctIndex": 2,
+    "tags": [
+      "nearest_facility",
+      "question_type_nearest",
+      "taxi_stand_codes"
+    ]
+  },
+  {
+    "prompt": "Nearest Taxi Stand to Hotel 1888 Collection (1 Point)",
+    "choices": [
+      "D20",
+      "D06",
+      "D18",
+      "D15"
+    ],
+    "correctIndex": 2,
+    "tags": [
+      "nearest_facility",
+      "question_type_nearest",
+      "taxi_stand_codes"
+    ]
+  },
+  {
+    "prompt": "Nearest Park to Hotel Calmo Bugis (1 Point)",
+    "choices": [
+      "Marina Promenade Park",
+      "Kampong Glam Park",
+      "Farquhar Garden",
+      "Queen Elizabeth Walk"
+    ],
+    "correctIndex": 1,
+    "tags": [
+      "nearest_facility",
+      "question_type_nearest"
+    ]
+  },
+  {
+    "prompt": "What is the Park that is nearest to Northland Secondary School? (1 Point)",
+    "choices": [
+      "Yishun Park",
+      "Yishun Pond Park",
+      "Yishun Neighborhood Park",
+      "Kemuning Park"
+    ],
+    "correctIndex": 2,
+    "tags": [
+      "question_type_nearest"
+    ]
+  },
+  {
+    "prompt": "What is the nearest Hotel to Fernhill Cottage? (1 Point)",
+    "choices": [
+      "Shangri-la Singapore Hotel",
+      "Mercure Singapore on Stevens",
+      "Orchard Hotel Singapore",
+      "RELC International Hotel"
+    ],
+    "correctIndex": 3,
+    "tags": [
+      "nearest_facility",
+      "question_type_nearest"
+    ]
+  },
+  {
+    "prompt": "Nearest Taxi Stand to Hotel Mono (1 Point)",
+    "choices": [
+      "D16",
+      "D19",
+      "D21",
+      "D18"
+    ],
+    "correctIndex": 1,
+    "tags": [
+      "nearest_facility",
+      "question_type_nearest",
+      "taxi_stand_codes"
+    ]
+  },
+  {
+    "prompt": "What is the nearest taxi stand to Paragon Medical Center? (I point)",
+    "choices": [
+      "A01",
+      "A02",
+      "A04",
+      "A05"
+    ],
+    "correctIndex": 2,
+    "tags": [
+      "nearest_facility",
+      "question_type_nearest",
+      "taxi_stand_codes"
+    ]
+  },
+  {
+    "prompt": "The Taxi Stand at Orchard Central is (1 Point)",
+    "choices": [
+      "D10",
+      "A21",
+      "D12",
+      "A11"
+    ],
+    "correctIndex": 1,
+    "tags": [
+      "taxi_stand_codes"
+    ]
+  },
+  {
+    "prompt": "What is the taxi stand at Paragon Medical Center? (I point)",
+    "choices": [
+      "A01",
+      "A02",
+      "A04",
+      "A05"
+    ],
+    "correctIndex": 2,
+    "tags": [
+      "taxi_stand_codes"
+    ]
+  },
+  {
+    "prompt": "What is the Taxi Stand at Orange Tee Building?",
+    "choices": [
+      "F07 b F08",
+      "F09",
+      "F10"
+    ],
+    "correctIndex": 2,
+    "tags": [
+      "taxi_stand_codes"
+    ]
+  },
+  {
+    "prompt": "What is the taxi stand number on One Raffles Quay?",
+    "choices": [
+      "E18",
+      "E16",
+      "E17",
+      "E19"
+    ],
+    "correctIndex": 2,
+    "tags": [
+      "taxi_stand_codes"
+    ]
+  },
+  {
+    "prompt": "What is the taxi stand number on Marina Square?",
+    "choices": [
+      "C19",
+      "C20",
+      "C18",
+      "C22"
+    ],
+    "correctIndex": 3,
+    "tags": [
+      "taxi_stand_codes"
+    ]
+  },
+  {
+    "prompt": "In which situation can the web-based or mobile apps navigational tools fail?",
+    "choices": [
+      "Map data not being updated.",
+      "In road tunnels",
+      "Bad weather",
+      "All of the above"
+    ],
+    "correctIndex": 3,
+    "tags": [
+      "navigation_tools_concepts",
+      "question_type_concept"
+    ]
+  },
+  {
+    "prompt": "What is the disadvantage of using paper based navigational tool for route planning?",
+    "choices": [
+      "Locating start points and end points will be slow.",
+      "Passengers will have to wait a long time which the route is being obtained.",
+      "Only one route can be chosen.",
+      "All of the above"
+    ],
+    "correctIndex": 3,
+    "tags": [
+      "navigation_tools_concepts",
+      "question_type_concept",
+      "question_type_route"
+    ]
+  },
+  {
+    "prompt": "What should you do when the web- based or mobile apps navigational tools fail?",
+    "choices": [
+      "Slow down your car, give signal and move to road shoulder.",
+      "Stop and ask people for directions.",
+      "Make sure you switch on the hazard lights to ensure safety.",
+      "Landmark"
+    ],
+    "correctIndex": 3,
+    "tags": [
+      "navigation_tools_concepts",
+      "question_type_concept"
+    ]
+  },
+  {
+    "prompt": "In route planning, I should ______________________________.",
+    "choices": [
+      "Locate the start and end points using navigational tools.",
+      "Establish the start and end points.",
+      "Select the shortest distance between the start and end points",
+      "All of the above"
+    ],
+    "correctIndex": 3,
+    "tags": [
+      "navigation_tools_concepts",
+      "question_type_concept",
+      "question_type_route"
+    ]
+  },
+  {
+    "prompt": "Name the Highway or Expressway that is closest to Grassroots Heritage Centre?",
+    "choices": [
+      "Pan Island Expressway",
+      "West Coast Highway",
+      "Central Expressway",
+      "Tampines Expressway"
+    ],
+    "correctIndex": 1,
+    "tags": [
+      "expressways_roads"
+    ]
+  },
+  {
+    "prompt": "Name the nearest primary road to Japanese Cemetery",
+    "choices": [
+      "Ang Mo Kio Ave 5",
+      "Ang Mo Kio Ave 1",
+      "Yio Chu Kang Road",
+      "Buangkok Green"
+    ],
+    "correctIndex": 2,
+    "tags": [
+      "expressways_roads",
+      "question_type_nearest"
+    ]
+  },
+  {
+    "prompt": "Name the nearest ferry terminal that is closest to Labrador Secret Tunnels?",
+    "choices": [
+      "Pasir Panjang Ferry Terminal",
+      "Tanah Merah Ferry Terminal",
+      "Changi Ferry Terminal",
+      "Labrador Ferry Terminal"
+    ],
+    "correctIndex": 0,
+    "tags": [
+      "nearest_facility",
+      "question_type_nearest"
+    ]
+  },
+  {
+    "prompt": "Which of the below is not a web based or digital based navigation app:",
+    "choices": [
+      "One map",
+      "Singapore street directory (print)",
+      "Google Maps",
+      "Waze"
+    ],
+    "correctIndex": 1,
+    "tags": [
+      "navigation_tools_concepts"
+    ]
+  }
+]

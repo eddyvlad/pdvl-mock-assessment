@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/pdvl-question-pool.v3.schema.json",
+  "title": "PDVL Mock Assessment — Module Question Pool (v3)",
+  "description": "A module file is an array of question objects. Each question has 2–4 choices, a 0-based correctIndex, an optional explanation, and optional topic tags used for stratified sampling.",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "$ref": "#/$defs/question"
+  },
+  "$defs": {
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S",
+      "description": "Must contain at least one non-whitespace character."
+    },
+    "choice": {
+      "$ref": "#/$defs/nonEmptyString",
+      "description": "Display text for a single option."
+    },
+    "tag": {
+      "type": "string",
+      "description": "Lowercase snake_case tag used for topic balancing/filters.",
+      "minLength": 2,
+      "maxLength": 40,
+      "pattern": "^[a-z0-9_]+$"
+    },
+    "question": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "prompt",
+        "choices",
+        "correctIndex"
+      ],
+      "properties": {
+        "prompt": {
+          "$ref": "#/$defs/nonEmptyString",
+          "description": "The question text shown to the learner."
+        },
+        "choices": {
+          "type": "array",
+          "description": "2–4 answer options, displayed as A–D (labels adapt to count).",
+          "items": {
+            "$ref": "#/$defs/choice"
+          },
+          "minItems": 2,
+          "maxItems": 4,
+          "uniqueItems": true
+        },
+        "correctIndex": {
+          "type": "integer",
+          "description": "0-based index of the correct option (0=A, 1=B, 2=C, 3=D). NOTE: Must be < choices.length; some validators cannot express this cross-field rule, so enforce in code if needed.",
+          "minimum": 0,
+          "maximum": 3
+        },
+        "explanation": {
+          "description": "Optional rationale shown in review/results.",
+          "oneOf": [
+            {
+              "$ref": "#/$defs/nonEmptyString"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "tags": {
+          "type": "array",
+          "description": "Topic tags used for stratified sampling/balancing (see docs/taxonomy.md).",
+          "items": {
+            "$ref": "#/$defs/tag"
+          },
+          "minItems": 1,
+          "maxItems": 5,
+          "uniqueItems": true
+        }
+      }
+    }
+  },
+  "examples": [
+    [
+      {
+        "prompt": "Which statement best describes a Private Hire Car (PHC) in Singapore?",
+        "choices": [
+          "Ply for hire on roads",
+          "Hired via pre-booking; not street-hail",
+          "Goods-only vehicle",
+          "Metered taxi"
+        ],
+        "correctIndex": 1,
+        "explanation": "PHCs are pre-booked and cannot be street-hailed.",
+        "tags": [
+          "p2p_landscape"
+        ]
+      }
+    ]
+  ]
+}
