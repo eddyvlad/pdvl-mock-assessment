@@ -100,6 +100,53 @@
     }
 }
 
+/* Manual theme overrides */
+[data-theme='light'] {
+    @theme {
+        --color-background: var(--color-brand-white);
+        --color-foreground: var(--color-brand-gray-900);
+        --color-muted: var(--color-brand-gray-100);
+        --color-muted-foreground: var(--color-brand-gray-600);
+        --color-card: var(--color-brand-white);
+        --color-card-foreground: var(--color-brand-gray-900);
+        --color-popover: var(--color-brand-white);
+        --color-popover-foreground: var(--color-brand-gray-900);
+        --color-border: var(--color-brand-gray-200);
+        --color-input: var(--color-brand-gray-200);
+        --color-primary: var(--color-brand-blue-600);
+        --color-primary-foreground: var(--color-brand-white);
+        --color-secondary: var(--color-brand-gray-100);
+        --color-secondary-foreground: var(--color-brand-gray-900);
+        --color-accent: var(--color-brand-gray-100);
+        --color-accent-foreground: var(--color-brand-gray-900);
+        --color-destructive: #ef4444;
+        --color-destructive-foreground: var(--color-brand-white);
+        --color-ring: var(--color-brand-blue-600);
+    }
+}
+
+[data-theme='dark'] {
+    @theme {
+        --color-background: var(--color-brand-dark);
+        --color-foreground: var(--color-brand-gray-100);
+        --color-muted: var(--color-brand-gray-900);
+        --color-muted-foreground: var(--color-brand-gray-400);
+        --color-card: var(--color-brand-gray-950);
+        --color-card-foreground: var(--color-brand-gray-100);
+        --color-popover: var(--color-brand-gray-950);
+        --color-popover-foreground: var(--color-brand-gray-100);
+        --color-border: var(--color-brand-gray-800);
+        --color-input: var(--color-brand-gray-800);
+        --color-primary: var(--color-brand-blue-500);
+        --color-primary-foreground: var(--color-brand-white);
+        --color-secondary: var(--color-brand-gray-800);
+        --color-secondary-foreground: var(--color-brand-gray-100);
+        --color-accent: var(--color-brand-gray-800);
+        --color-accent-foreground: var(--color-brand-gray-100);
+        --color-ring: var(--color-brand-blue-500);
+    }
+}
+
 /* Base Styles */
 :root {
     --primary-gradient: linear-gradient(135deg, var(--color-brand-blue-600) 0%, var(--color-brand-cyan-500) 100%);
@@ -229,7 +276,7 @@ a.active {
 }
 
 /* Component Utilities */
-@utility btn-primary {
+@utility btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -237,13 +284,17 @@ a.active {
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
     font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+@utility btn-primary {
+    @apply btn;
     color: var(--color-primary-foreground);
     background: linear-gradient(135deg, var(--color-brand-blue-600) 0%, var(--color-brand-cyan-500) 100%);
     box-shadow: var(--shadow);
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
     border: none;
-    text-decoration: none;
 
     &:hover {
         background: linear-gradient(135deg, var(--color-brand-blue-500) 0%, var(--color-brand-cyan-400) 100%);
@@ -258,19 +309,10 @@ a.active {
 }
 
 @utility btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: var(--radius);
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-    font-weight: 500;
+    @apply btn;
     color: var(--color-foreground);
     background-color: var(--color-secondary);
     border: 1px solid var(--color-border);
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-    text-decoration: none;
 
     &:hover {
         background-color: var(--color-accent);
@@ -283,19 +325,10 @@ a.active {
 }
 
 @utility btn-ghost {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: var(--radius);
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-    font-weight: 500;
+    @apply btn;
     color: var(--color-muted-foreground);
     background-color: transparent;
     border: none;
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-    text-decoration: none;
 
     &:hover {
         background-color: var(--color-accent);
@@ -447,7 +480,6 @@ a.active {
 }
 
 .pdvl-landing li {
-    @apply border p-4 rounded-md bg-brand-gray-700;
     margin: 0.5rem 0;
 }
 

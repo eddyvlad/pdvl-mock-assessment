@@ -110,9 +110,9 @@ export default function AssessmentClient({ paper, moduleKey, seed, questions, mi
 
   const answered = answers.filter((a) => a !== null).length;
 
-  return (
-    <div className="pdvl-assessment">
-      <div className="pdvl-status">
+    return (
+      <div className="pdvl-assessment space-y-4">
+        <div className="pdvl-status">
         <span>Time: {grace > 0 ? `Starts in ${grace}` : `${timeLeft}s`}</span>
         <span>
           {answered}/{total}
@@ -127,16 +127,16 @@ export default function AssessmentClient({ paper, moduleKey, seed, questions, mi
           handleSubmit();
         }}
       >
-        {questions.map((q, qi) => (
-          <fieldset key={qi} data-q={qi} className="pdvl-question">
-            <legend className="font-bold text-primary">{q.prompt}</legend>
-            {q.choices.map((c, ci) => {
-              const id = `q${qi}-${ci}`;
-              return (
-                <div key={id} className="pdvl-choice">
-                  <input
-                    type="radio"
-                    id={id}
+          {questions.map((q, qi) => (
+            <fieldset key={qi} data-q={qi} className="pdvl-question card p-4 space-y-2">
+              <legend className="font-bold text-primary mb-2">{q.prompt}</legend>
+              {q.choices.map((c, ci) => {
+                const id = `q${qi}-${ci}`;
+                return (
+                  <div key={id} className="pdvl-choice flex items-center gap-2">
+                    <input
+                      type="radio"
+                      id={id}
                     name={`q${qi}`}
                     value={ci}
                     checked={answers[qi] === ci}
@@ -148,9 +148,9 @@ export default function AssessmentClient({ paper, moduleKey, seed, questions, mi
             })}
           </fieldset>
         ))}
-        <button type="submit" className="pdvl-submit btn-primary">Submit</button>
-      </form>
-    </div>
-  );
+          <button type="submit" className="pdvl-submit btn btn-primary">Submit</button>
+        </form>
+      </div>
+    );
 }
 
