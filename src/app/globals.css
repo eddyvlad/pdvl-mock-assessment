@@ -77,6 +77,7 @@
         --color-accent: var(--color-brand-gray-100);
         --color-accent-foreground: var(--color-brand-gray-900);
         --color-ring: var(--color-brand-blue-600);
+        --tw-prose-body: var(--color-brand-gray-900);
     }
 }
 
@@ -100,6 +101,7 @@
         --color-accent: var(--color-brand-gray-800);
         --color-accent-foreground: var(--color-brand-gray-100);
         --color-ring: var(--color-brand-blue-500);
+        --tw-prose-body: var(--color-brand-gray-300);
     }
 }
 
@@ -144,6 +146,7 @@
             --color-accent: var(--color-brand-gray-800);
             --color-accent-foreground: var(--color-brand-gray-100);
             --color-ring: var(--color-brand-blue-500);
+            --tw-prose-body: var(--color-brand-gray-300);
         }
     }
 }
@@ -216,7 +219,7 @@ a {
 }
 
 .prose {
-    @apply prose-strong:text-accent-foreground
+    @apply prose-strong:text-accent-foreground;
 }
 
 /* Custom Scrollbar */
