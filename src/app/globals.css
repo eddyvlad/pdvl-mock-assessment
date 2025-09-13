@@ -78,7 +78,7 @@
     --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark), [data-theme='dark'] {
     @theme {
         --color-background: var(--color-brand-dark);
         --color-foreground: var(--color-brand-gray-100);
@@ -100,7 +100,7 @@
     }
 }
 
-/* Manual theme overrides */
+/* Manual theme override for forcing light mode */
 [data-theme='light'] {
     @theme {
         --color-background: var(--color-brand-white);
@@ -122,28 +122,6 @@
         --color-destructive: #ef4444;
         --color-destructive-foreground: var(--color-brand-white);
         --color-ring: var(--color-brand-blue-600);
-    }
-}
-
-[data-theme='dark'] {
-    @theme {
-        --color-background: var(--color-brand-dark);
-        --color-foreground: var(--color-brand-gray-100);
-        --color-muted: var(--color-brand-gray-900);
-        --color-muted-foreground: var(--color-brand-gray-400);
-        --color-card: var(--color-brand-gray-950);
-        --color-card-foreground: var(--color-brand-gray-100);
-        --color-popover: var(--color-brand-gray-950);
-        --color-popover-foreground: var(--color-brand-gray-100);
-        --color-border: var(--color-brand-gray-800);
-        --color-input: var(--color-brand-gray-800);
-        --color-primary: var(--color-brand-blue-500);
-        --color-primary-foreground: var(--color-brand-white);
-        --color-secondary: var(--color-brand-gray-800);
-        --color-secondary-foreground: var(--color-brand-gray-100);
-        --color-accent: var(--color-brand-gray-800);
-        --color-accent-foreground: var(--color-brand-gray-100);
-        --color-ring: var(--color-brand-blue-500);
     }
 }
 

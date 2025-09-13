@@ -3,13 +3,14 @@
 import { useEffect, useState } from "react";
 import { Monitor, Moon, Sun } from "lucide-react";
 
- type Theme = "system" | "light" | "dark";
+type Theme = "system" | "light" | "dark";
+const STORAGE_KEY = "theme";
 
 export default function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>("system");
 
   useEffect(() => {
-    const stored = localStorage.getItem("pdvl:theme") as Theme | null;
+    const stored = localStorage.getItem(STORAGE_KEY) as Theme | null;
     if (stored) setTheme(stored);
   }, []);
 
@@ -20,7 +21,7 @@ export default function ThemeToggle() {
     } else {
       root.setAttribute("data-theme", theme);
     }
-    localStorage.setItem("pdvl:theme", theme);
+    localStorage.setItem(STORAGE_KEY, theme);
   }, [theme]);
 
   return (
