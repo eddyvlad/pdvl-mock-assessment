@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
+@plugin '@tailwindcss/typography';
+
 @theme {
     /* Color Palette */
-    --color-brand-black: #000000;
+    --color-brand-dark: #121212;
     --color-brand-white: #ffffff;
     --color-brand-gray-50: #fafafa;
     --color-brand-gray-100: #f4f4f5;
@@ -78,7 +80,7 @@
 
 @media (prefers-color-scheme: dark) {
     @theme {
-        --color-background: var(--color-brand-black);
+        --color-background: var(--color-brand-dark);
         --color-foreground: var(--color-brand-gray-100);
         --color-muted: var(--color-brand-gray-900);
         --color-muted-foreground: var(--color-brand-gray-400);
@@ -114,6 +116,53 @@ body {
     font-feature-settings: "rlig" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    @apply font-serif mb-4 text-primary;
+}
+
+h1 {
+    @apply text-4xl;
+}
+
+h2 {
+    @apply text-3xl;
+}
+
+h3 {
+    @apply text-2xl;
+}
+
+h4 {
+    @apply text-xl;
+}
+
+h5 {
+    @apply text-lg;
+}
+
+h6 {
+    @apply text-base;
+}
+
+a {
+    @apply
+    rounded-sm
+    py-1
+    border-b-2 border-transparent
+    hover:underline
+    focus-visible:outline-hidden
+    focus-visible:ring-2
+    focus-visible:ring-offset-2
+    focus-visible:ring-offset-background
+    transition-colors
+    duration-150
+    ease-in-out;
+}
+
+a.active {
+    @apply border-b-2 rounded-none focus-visible:rounded-sm hover:no-underline;
 }
 
 /* Custom Scrollbar */
@@ -398,6 +447,7 @@ body {
 }
 
 .pdvl-landing li {
+    @apply border p-4 rounded-md bg-brand-gray-700;
     margin: 0.5rem 0;
 }
 

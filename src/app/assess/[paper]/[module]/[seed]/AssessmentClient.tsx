@@ -129,7 +129,7 @@ export default function AssessmentClient({ paper, moduleKey, seed, questions, mi
       >
         {questions.map((q, qi) => (
           <fieldset key={qi} data-q={qi} className="pdvl-question">
-            <legend>{q.prompt}</legend>
+            <legend className="font-bold text-primary">{q.prompt}</legend>
             {q.choices.map((c, ci) => {
               const id = `q${qi}-${ci}`;
               return (
@@ -148,7 +148,7 @@ export default function AssessmentClient({ paper, moduleKey, seed, questions, mi
             })}
           </fieldset>
         ))}
-        <button type="submit" className="pdvl-submit">Submit</button>
+        <button type="submit" className="pdvl-submit btn-primary">Submit</button>
       </form>
     </div>
   );
