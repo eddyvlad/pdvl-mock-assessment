@@ -1210,7 +1210,7 @@
     ]
   },
   {
-    "prompt": "Are decals transferable between PHC vehicles? (check #1)",
+    "prompt": "Are decals transferable between PHC vehicles?",
     "choices": [
       "Yes, freely",
       "Only within same fleet",
@@ -1224,7 +1224,7 @@
     ]
   },
   {
-    "prompt": "Stopping restrictions on certain roads generally apply between… (check #2)",
+    "prompt": "Stopping restrictions on certain roads generally apply between…",
     "choices": [
       "7:30 a.m.–8:00 p.m.",
       "6:30 a.m.–7:00 p.m.",
@@ -1238,7 +1238,7 @@
     ]
   },
   {
-    "prompt": "When do stopping restrictions not apply on the listed roads? (check #3)",
+    "prompt": "When do stopping restrictions not apply on the listed roads?",
     "choices": [
       "Sundays and public holidays",
       "Fridays only",
@@ -1252,7 +1252,7 @@
     ]
   },
   {
-    "prompt": "Who may access IVRD footage from a PSV? (check #4)",
+    "prompt": "Who may access IVRD footage from a PSV?",
     "choices": [
       "Any passenger",
       "Only the operator",
@@ -1266,7 +1266,7 @@
     ]
   },
   {
-    "prompt": "How many identical decals must be displayed on a PHC? (check #5)",
+    "prompt": "How many identical decals must be displayed on a PHC?",
     "choices": [
       "One",
       "Two",
@@ -1280,7 +1280,7 @@
     ]
   },
   {
-    "prompt": "Taxi inspection interval is… (check #6)",
+    "prompt": "Taxi inspection interval is…",
     "choices": [
       "3 months",
       "6 months",
@@ -1294,7 +1294,7 @@
     ]
   },
   {
-    "prompt": "PHC inspection interval is… (check #7)",
+    "prompt": "PHC inspection interval is…",
     "choices": [
       "3 months",
       "6 months",
@@ -1308,7 +1308,7 @@
     ]
   },
   {
-    "prompt": "What should you do if a decal is damaged? (check #8)",
+    "prompt": "What should you do if a decal is damaged?",
     "choices": [
       "Ignore",
       "Replace at an AIC within 3 calendar days",
@@ -1322,7 +1322,7 @@
     ]
   },
   {
-    "prompt": "What must be displayed in vehicles with inward‑facing IVRDs? (check #9)",
+    "prompt": "What must be displayed in vehicles with inward‑facing IVRDs?",
     "choices": [
       "Nothing",
       "Prominent notices informing passengers",
@@ -1336,7 +1336,7 @@
     ]
   },
   {
-    "prompt": "What is the VLPS revocation threshold within 24 months? (check #10)",
+    "prompt": "What is the VLPS revocation threshold within 24 months?",
     "choices": [
       ">15 points",
       ">18 points",
@@ -1350,21 +1350,161 @@
     ]
   },
   {
-    "prompt": "Are decals transferable between PHC vehicles? (check #11)",
+    "prompt": "When a passenger requests a specific route that is lawful and safe, what should a PDVL holder do?",
     "choices": [
-      "Yes, freely",
-      "Only within same fleet",
-      "Only with operator approval",
-      "No, they are not transferable"
+      "Politely decline and use the driver’s preferred route",
+      "Follow the passenger’s requested route",
+      "Only follow if it goes on an expressway",
+      "Charge an extra fee before agreeing"
     ],
-    "correctIndex": 3,
-    "explanation": "Decals are not transferrable across vehicles.",
+    "correctIndex": 1,
+    "explanation": "Drivers should take the shortest/direct route unless the passenger requests another lawful, safe route—then follow the passenger’s instruction.",
+    "tags": [
+      "conduct"
+    ]
+  },
+  {
+    "prompt": "When a passenger asks for a specific route that is lawful and safe, what should a PDVL holder do?",
+    "choices": [
+      "Politely decline and use the driver’s preferred route",
+      "Follow the passenger’s requested route",
+      "Only follow if it goes on an expressway",
+      "Charge an extra fee before agreeing"
+    ],
+    "correctIndex": 1,
+    "explanation": "Drivers should take the shortest/direct route unless the passenger requests another lawful, safe route—then follow the passenger’s instruction.",
+    "tags": [
+      "conduct"
+    ]
+  },
+  {
+    "prompt": "Who grants a vocational licence that allows you to drive a PSV?",
+    "choices": [
+      "The vehicle owner",
+      "Your ride‑hail operator",
+      "The Registrar (LTA)",
+      "Traffic Police only"
+    ],
+    "correctIndex": 2,
+    "explanation": "A vocational licence is granted by the Registrar (Land Transport Authority).",
     "tags": [
       "VL_eligibility_obligations"
     ]
   },
   {
-    "prompt": "Stopping restrictions on certain roads generally apply between… (check #12)",
+    "prompt": "Within how many days must you update the Registrar after changing your residential address?",
+    "choices": [
+      "3 days",
+      "5 days",
+      "7 days",
+      "14 days"
+    ],
+    "correctIndex": 2,
+    "explanation": "Update your address within 7 days via the specified channel.",
+    "tags": [
+      "VL_eligibility_obligations"
+    ]
+  },
+  {
+    "prompt": "A driver wants to install a dash‑mounted television in a PHC. What is required?",
+    "choices": [
+      "Nothing—TVs are always allowed",
+      "Only operator approval",
+      "Prior written permission from the Registrar",
+      "Approval from passengers"
+    ],
+    "correctIndex": 2,
+    "explanation": "Television/recording equipment generally require prior written permission.",
+    "tags": [
+      "equipment_permissions"
+    ]
+  },
+  {
+    "prompt": "A driver wants to install a dash‑mounted television in a PHC. Which is required?",
+    "choices": [
+      "Nothing—TVs are always allowed",
+      "Only operator approval",
+      "Prior written permission from the Registrar",
+      "Approval from passengers"
+    ],
+    "correctIndex": 2,
+    "explanation": "Television/recording equipment generally require prior written permission.",
+    "tags": [
+      "equipment_permissions"
+    ]
+  },
+  {
+    "prompt": "For inward‑facing video recording devices (IVRDs) that capture passengers, which is required?",
+    "choices": [
+      "Hide the device so it is not obvious",
+      "Obtain consent from every passenger individually",
+      "Prominent notices informing passengers of recording",
+      "Disable recording during the day"
+    ],
+    "correctIndex": 2,
+    "explanation": "Prominent notices are required under PDPA‑aligned guidance.",
+    "tags": [
+      "IVRD_PDPA"
+    ]
+  },
+  {
+    "prompt": "Who is allowed to access IVRD footage collected inside a PSV?",
+    "choices": [
+      "Any passenger upon request",
+      "Only the driver",
+      "Authorised LTA staff or persons with Registrar’s permission",
+      "Everyone in the fleet"
+    ],
+    "correctIndex": 2,
+    "explanation": "Access is restricted to authorised persons for privacy/safety.",
+    "tags": [
+      "IVRD_PDPA"
+    ]
+  },
+  {
+    "prompt": "A PDVL holder stops 5 metres from a bus stop to alight a passenger. This is…",
+    "choices": [
+      "Allowed during off‑peak only",
+      "Not allowed; keep at least 9 metres clear unless permitted",
+      "Always allowed with hazard lights",
+      "Allowed if the passenger requests"
+    ],
+    "correctIndex": 1,
+    "explanation": "Maintain at least 9 m clearance from bus stops unless specific permissions apply.",
+    "tags": [
+      "stopping_restrictions"
+    ]
+  },
+  {
+    "prompt": "A vocational licence holder stops 5 metres from a bus stop to alight a passenger. This is…",
+    "choices": [
+      "Allowed during off‑peak only",
+      "Not allowed; keep at least 9 metres clear unless permitted",
+      "Always allowed with hazard lights",
+      "Allowed if the passenger requests"
+    ],
+    "correctIndex": 1,
+    "explanation": "Maintain at least 9 m clearance from bus stops unless specific permissions apply.",
+    "tags": [
+      "stopping_restrictions"
+    ]
+  },
+  {
+    "prompt": "A PHC owner finds a decal is peeling and illegible. What should be done?",
+    "choices": [
+      "Ignore until next inspection",
+      "Replace it at an Authorised Inspection Centre within 3 calendar days",
+      "Tape it down and continue",
+      "Remove both decals temporarily"
+    ],
+    "correctIndex": 1,
+    "explanation": "Damaged/illegible decals must be replaced at an AIC within 3 calendar days.",
+    "tags": [
+      "decals"
+    ]
+  },
+  {
+    "prompt": "Stopping restrictions on certain roads generally apply between...",
     "choices": [
       "7:30 a.m.–8:00 p.m.",
       "6:30 a.m.–7:00 p.m.",
@@ -1378,7 +1518,428 @@
     ]
   },
   {
-    "prompt": "When do stopping restrictions not apply on the listed roads? (check #13)",
+    "prompt": "A PHC owner finds a decal is peeling and illegible. Which should be done?",
+    "choices": [
+      "Ignore until next inspection",
+      "Replace it at an Authorised Inspection Centre within 3 calendar days",
+      "Tape it down and continue",
+      "Remove both decals temporarily"
+    ],
+    "correctIndex": 1,
+    "explanation": "Damaged/illegible decals must be replaced at an AIC within 3 calendar days.",
+    "tags": [
+      "decals"
+    ]
+  },
+  {
+    "prompt": "How many identical tamper‑evident decals must a PHC display and where?",
+    "choices": [
+      "One, anywhere on the windscreen",
+      "Two — front top‑right and rear top‑left (as viewed from outside)",
+      "Three, on both sides and rear",
+      "Two — both on the rear windscreen"
+    ],
+    "correctIndex": 1,
+    "explanation": "Two identical decals: front top‑right and rear top‑left positions.",
+    "tags": [
+      "decals"
+    ]
+  },
+  {
+    "prompt": "A driver finds a bag containing $1,200 under the seat after a trip. The correct action is to…",
+    "choices": [
+      "Keep it for 24 hours then decide",
+      "Announce it on social media first",
+      "Deposit the money with a police officer or the Registrar and obtain a receipt",
+      "Hand it to the nearest shop"
+    ],
+    "correctIndex": 2,
+    "explanation": "Money exceeding $1,000 must be deposited with authorities; obtain a receipt.",
+    "tags": [
+      "found_property"
+    ]
+  },
+  {
+    "prompt": "Installing unauthorised inward‑facing IVRDs can attract how many VLPS points?",
+    "choices": [
+      "12 points",
+      "15 points",
+      "18 points",
+      "21 points"
+    ],
+    "correctIndex": 3,
+    "explanation": "Unauthorised A/V recorders can attract 21 demerit points under VLPS schedules.",
+    "tags": [
+      "VLPS",
+      "equipment_permissions"
+    ]
+  },
+  {
+    "prompt": "Under VLPS, accumulating more than 20 demerit points within 24 months leads to…",
+    "choices": [
+      "A written warning",
+      "Suspension only",
+      "Revocation of the vocational licence",
+      "No action"
+    ],
+    "correctIndex": 2,
+    "explanation": "More than 20 points in 24 months results in revocation.",
+    "tags": [
+      "VLPS"
+    ]
+  },
+  {
+    "prompt": "A ride‑hail operator recorded three relevant offences in the last 12 months. LTA may…",
+    "choices": [
+      "Do nothing until a fourth offence",
+      "Issue a general suspension order on the operator",
+      "Fine all drivers automatically",
+      "Suspend the entire taxi industry"
+    ],
+    "correctIndex": 1,
+    "explanation": "Three relevant offences can trigger a general suspension order.",
+    "tags": [
+      "operators_enforcement"
+    ]
+  },
+  {
+    "prompt": "A PDVL holder considers carrying a parcel while the sender travels in another car. The rule is…",
+    "choices": [
+      "Allowed for parcels under 10 kg",
+      "Allowed if within CBD",
+      "Do not carry unaccompanied goods unless authorised",
+      "Allowed if the passenger pays double"
+    ],
+    "correctIndex": 2,
+    "explanation": "Unaccompanied goods require prior approval; otherwise do not carry.",
+    "tags": [
+      "VL_eligibility_obligations"
+    ]
+  },
+  {
+    "prompt": "A vocational licence holder considers carrying a parcel while the sender travels in another car. The rule is…",
+    "choices": [
+      "Allowed for parcels under 10 kg",
+      "Allowed if within CBD",
+      "Do not carry unaccompanied goods unless authorised",
+      "Allowed if the passenger pays double"
+    ],
+    "correctIndex": 2,
+    "explanation": "Unaccompanied goods require prior approval; otherwise do not carry.",
+    "tags": [
+      "VL_eligibility_obligations"
+    ]
+  },
+  {
+    "prompt": "A PDVL holder is thinking about carrying a parcel while the sender travels in another car. The rule is…",
+    "choices": [
+      "Allowed for parcels under 10 kg",
+      "Allowed if within CBD",
+      "Do not carry unaccompanied goods unless authorised",
+      "Allowed if the passenger pays double"
+    ],
+    "correctIndex": 2,
+    "explanation": "Unaccompanied goods require prior approval; otherwise do not carry.",
+    "tags": [
+      "VL_eligibility_obligations"
+    ]
+  },
+  {
+    "prompt": "Periodic inspection intervals are typically…",
+    "choices": [
+      "Taxi: every 6 months; PHC: every 12 months",
+      "Taxi: every 12 months; PHC: every 6 months",
+      "Both every 3 months",
+      "Both every 24 months"
+    ],
+    "correctIndex": 0,
+    "explanation": "Taxis: ≥ once every 6 months; PHCs: ≥ once every 12 months.",
+    "tags": [
+      "inspections"
+    ]
+  },
+  {
+    "prompt": "Which exterior display is prohibited for PHCs?",
+    "choices": [
+      "Company name",
+      "Inspection stickers",
+      "Fares for hiring the vehicle",
+      "Vehicle number plate"
+    ],
+    "correctIndex": 2,
+    "explanation": "PHCs must not display hiring fares on the exterior of the vehicle.",
+    "tags": [
+      "service_definitions"
+    ]
+  },
+  {
+    "prompt": "Which one exterior display is prohibited for PHCs?",
+    "choices": [
+      "Company name",
+      "Inspection stickers",
+      "Fares for hiring the vehicle",
+      "Vehicle number plate"
+    ],
+    "correctIndex": 2,
+    "explanation": "PHCs must not display hiring fares on the exterior of the vehicle.",
+    "tags": [
+      "service_definitions"
+    ]
+  },
+  {
+    "prompt": "Who may examine your PSV for compliance when required?",
+    "choices": [
+      "Only your passengers",
+      "Only your fleet manager",
+      "The Registrar or an authorised officer",
+      "Only Traffic Police"
+    ],
+    "correctIndex": 2,
+    "explanation": "Provide the vehicle for examination when directed by the Registrar/authorised officer.",
+    "tags": [
+      "VL_eligibility_obligations"
+    ]
+  },
+  {
+    "prompt": "Which of the following statements about CPHC is true?",
+    "choices": [
+      "It may ply for hire on roads",
+      "It operates under pre‑booked services and cannot accept street hails",
+      "It must use a taximeter",
+      "It can operate public bus routes"
+    ],
+    "correctIndex": 1,
+    "explanation": "Chauffeured Private Hire Cars operate on pre‑booked services; no street hail.",
+    "tags": [
+      "service_definitions"
+    ]
+  },
+  {
+    "prompt": "Which one of the following statements about CPHC is true?",
+    "choices": [
+      "It may ply for hire on roads",
+      "It operates under pre‑booked services and cannot accept street hails",
+      "It must use a taximeter",
+      "It can operate public bus routes"
+    ],
+    "correctIndex": 1,
+    "explanation": "Chauffeured Private Hire Cars operate on pre‑booked services; no street hail.",
+    "tags": [
+      "service_definitions"
+    ]
+  },
+  {
+    "prompt": "Which conduct best meets regulatory expectations during a dispute with a rider?",
+    "choices": [
+      "Argue loudly to establish control",
+      "Remain civil and orderly; avoid harassment",
+      "Film and upload immediately",
+      "Stop the car in a live lane to debate"
+    ],
+    "correctIndex": 1,
+    "explanation": "Maintain civil and orderly conduct; harassment is prohibited.",
+    "tags": [
+      "conduct"
+    ]
+  },
+  {
+    "prompt": "Which one conduct best meets regulatory expectations during a dispute with a rider?",
+    "choices": [
+      "Argue loudly to establish control",
+      "Remain civil and orderly; avoid harassment",
+      "Film and upload immediately",
+      "Stop the car in a live lane to debate"
+    ],
+    "correctIndex": 1,
+    "explanation": "Maintain civil and orderly conduct; harassment is prohibited.",
+    "tags": [
+      "conduct"
+    ]
+  },
+  {
+    "prompt": "When are PHC stopping restrictions on certain designated roads generally not in force?",
+    "choices": [
+      "Weekdays",
+      "Saturdays only",
+      "Sundays and Public Holidays",
+      "Only during school holidays"
+    ],
+    "correctIndex": 2,
+    "explanation": "Restrictions do not apply on Sundays and Public Holidays.",
+    "tags": [
+      "stopping_restrictions"
+    ]
+  },
+  {
+    "prompt": "What should a driver do before moving off as a safety reminder?",
+    "choices": [
+      "Request advance payment",
+      "Remind passengers to fasten seat belts and that smoking is prohibited",
+      "Ask for a tip",
+      "Tell passengers to sit quietly"
+    ],
+    "correctIndex": 1,
+    "explanation": "Remind about seat belts and no smoking as part of safe conduct.",
+    "tags": [
+      "conduct"
+    ]
+  },
+  {
+    "prompt": "Which should a driver do before moving off as a safety reminder?",
+    "choices": [
+      "Request advance payment",
+      "Remind passengers to fasten seat belts and that smoking is prohibited",
+      "Ask for a tip",
+      "Tell passengers to sit quietly"
+    ],
+    "correctIndex": 1,
+    "explanation": "Remind about seat belts and no smoking as part of safe conduct.",
+    "tags": [
+      "conduct"
+    ]
+  },
+  {
+    "prompt": "A PDVL holder considers altering the vocational licence card after it cracks. The correct action is…",
+    "choices": [
+      "Tape and laminate it yourself",
+      "Apply for a proper replacement; do not alter or deface the document",
+      "Use a photocopy permanently",
+      "Stop displaying any ID"
+    ],
+    "correctIndex": 1,
+    "explanation": "Do not alter/deface official identification; apply for replacement.",
+    "tags": [
+      "VL_eligibility_obligations"
+    ]
+  },
+  {
+    "prompt": "A vocational licence holder considers altering the vocational licence card after it cracks. The correct action is…",
+    "choices": [
+      "Tape and laminate it yourself",
+      "Apply for a proper replacement; do not alter or deface the document",
+      "Use a photocopy permanently",
+      "Stop displaying any ID"
+    ],
+    "correctIndex": 1,
+    "explanation": "Do not alter/deface official identification; apply for replacement.",
+    "tags": [
+      "VL_eligibility_obligations"
+    ]
+  },
+  {
+    "prompt": "A PDVL holder is thinking about altering the vocational licence card after it cracks. The correct action is…",
+    "choices": [
+      "Tape and laminate it yourself",
+      "Apply for a proper replacement; do not alter or deface the document",
+      "Use a photocopy permanently",
+      "Stop displaying any ID"
+    ],
+    "correctIndex": 1,
+    "explanation": "Do not alter/deface official identification; apply for replacement.",
+    "tags": [
+      "VL_eligibility_obligations"
+    ]
+  },
+  {
+    "prompt": "Which permission is NOT required for a standard dashboard radio receiver (non‑recording)?",
+    "choices": [
+      "Prior written permission from Registrar",
+      "Police authorisation",
+      "Passenger consent",
+      "No additional permission is typically required"
+    ],
+    "correctIndex": 3,
+    "explanation": "A standard radio receiver is allowed; recording/TV devices need permission.",
+    "tags": [
+      "equipment_permissions"
+    ]
+  },
+  {
+    "prompt": "Which one permission is NOT required for a standard dashboard radio receiver (non‑recording)?",
+    "choices": [
+      "Prior written permission from Registrar",
+      "Police authorisation",
+      "Passenger consent",
+      "No additional permission is typically required"
+    ],
+    "correctIndex": 3,
+    "explanation": "A standard radio receiver is allowed; recording/TV devices need permission.",
+    "tags": [
+      "equipment_permissions"
+    ]
+  },
+  {
+    "prompt": "A passenger insists on alighting at a no‑stopping zone on a designated road during restricted hours. The driver should…",
+    "choices": [
+      "Comply immediately",
+      "Explain the restriction and stop only where permitted and safe",
+      "Stop briefly with hazard lights",
+      "Let the passenger open the door while moving"
+    ],
+    "correctIndex": 1,
+    "explanation": "Comply with stopping restrictions and alight passengers only at permitted, safe locations.",
+    "tags": [
+      "stopping_restrictions"
+    ]
+  },
+  {
+    "prompt": "After a 24‑month clean record with no violations, VLPS points and suspensions are…",
+    "choices": [
+      "Converted into fines",
+      "Cleared",
+      "Kept for 5 years",
+      "Converted to warnings"
+    ],
+    "correctIndex": 1,
+    "explanation": "A 24‑month clean record clears prior points/suspensions.",
+    "tags": [
+      "VLPS"
+    ]
+  },
+  {
+    "prompt": "What is the VLPS revocation threshold within 24 months?",
+    "choices": [
+      ">15 points",
+      ">18 points",
+      ">20 points",
+      ">25 points"
+    ],
+    "correctIndex": 2,
+    "explanation": "More than 20 points → revocation.",
+    "tags": [
+      "VLPS"
+    ]
+  },
+  {
+    "prompt": "Are decals transferable between PHC vehicles?",
+    "choices": [
+      "Yes, freely",
+      "Only within same fleet",
+      "Only with operator approval",
+      "No, they are not transferable"
+    ],
+    "correctIndex": 3,
+    "explanation": "Decals are not transferrable across vehicles.",
+    "tags": [
+      "VL_eligibility_obligations"
+    ]
+  },
+  {
+    "prompt": "Stopping restrictions on certain roads generally apply between…",
+    "choices": [
+      "7:30 a.m.–8:00 p.m.",
+      "6:30 a.m.–7:00 p.m.",
+      "9:30 a.m.–6:00 p.m.",
+      "8:30 a.m.–9:00 p.m."
+    ],
+    "correctIndex": 0,
+    "explanation": "Typical restriction window is 7:30 a.m.–8:00 p.m. unless stated.",
+    "tags": [
+      "stopping_restrictions"
+    ]
+  },
+  {
+    "prompt": "When do stopping restrictions not apply on the listed roads?",
     "choices": [
       "Sundays and public holidays",
       "Fridays only",
@@ -1392,7 +1953,7 @@
     ]
   },
   {
-    "prompt": "Who may access IVRD footage from a PSV? (check #14)",
+    "prompt": "Who may access IVRD footage from a PSV?",
     "choices": [
       "Any passenger",
       "Only the operator",
@@ -1406,7 +1967,7 @@
     ]
   },
   {
-    "prompt": "How many identical decals must be displayed on a PHC? (check #15)",
+    "prompt": "How many identical decals must be displayed on a PHC?",
     "choices": [
       "One",
       "Two",
@@ -1420,7 +1981,7 @@
     ]
   },
   {
-    "prompt": "Taxi inspection interval is… (check #16)",
+    "prompt": "Taxi inspection interval is…",
     "choices": [
       "3 months",
       "6 months",
@@ -1434,7 +1995,7 @@
     ]
   },
   {
-    "prompt": "PHC inspection interval is… (check #17)",
+    "prompt": "PHC inspection interval is…",
     "choices": [
       "3 months",
       "6 months",
@@ -1448,7 +2009,7 @@
     ]
   },
   {
-    "prompt": "What should you do if a decal is damaged? (check #18)",
+    "prompt": "What should you do if a decal is damaged?",
     "choices": [
       "Ignore",
       "Replace at an AIC within 3 calendar days",
@@ -1462,7 +2023,7 @@
     ]
   },
   {
-    "prompt": "What must be displayed in vehicles with inward‑facing IVRDs? (check #19)",
+    "prompt": "What must be displayed in vehicles with inward‑facing IVRDs?",
     "choices": [
       "Nothing",
       "Prominent notices informing passengers",
@@ -1476,7 +2037,7 @@
     ]
   },
   {
-    "prompt": "What is the VLPS revocation threshold within 24 months? (check #20)",
+    "prompt": "What is the VLPS revocation threshold within 24 months?",
     "choices": [
       ">15 points",
       ">18 points",
@@ -1490,7 +2051,7 @@
     ]
   },
   {
-    "prompt": "Are decals transferable between PHC vehicles? (check #21)",
+    "prompt": "Are decals transferable between PHC vehicles?",
     "choices": [
       "Yes, freely",
       "Only within same fleet",
@@ -1504,7 +2065,7 @@
     ]
   },
   {
-    "prompt": "Stopping restrictions on certain roads generally apply between... (check #22)",
+    "prompt": "Stopping restrictions on certain roads generally apply between…",
     "choices": [
       "7:30 a.m.–8:00 p.m.",
       "6:30 a.m.–7:00 p.m.",
@@ -1518,7 +2079,7 @@
     ]
   },
   {
-    "prompt": "When do stopping restrictions not apply on the listed roads? (check #23)",
+    "prompt": "When do stopping restrictions not apply on the listed roads?",
     "choices": [
       "Sundays and public holidays",
       "Fridays only",
@@ -1532,567 +2093,7 @@
     ]
   },
   {
-    "prompt": "Who may access IVRD footage from a PSV? (check #24)",
-    "choices": [
-      "Any passenger",
-      "Only the operator",
-      "Authorised LTA staff or with Registrar’s permission",
-      "All drivers in the fleet"
-    ],
-    "correctIndex": 2,
-    "explanation": "Access is restricted to authorised persons.",
-    "tags": [
-      "IVRD_PDPA"
-    ]
-  },
-  {
-    "prompt": "How many identical decals must be displayed on a PHC? (check #25)",
-    "choices": [
-      "One",
-      "Two",
-      "Three",
-      "Four"
-    ],
-    "correctIndex": 1,
-    "explanation": "Two identical decals are required.",
-    "tags": [
-      "VL_eligibility_obligations"
-    ]
-  },
-  {
-    "prompt": "Taxi inspection interval is… (check #26)",
-    "choices": [
-      "3 months",
-      "6 months",
-      "12 months",
-      "24 months"
-    ],
-    "correctIndex": 1,
-    "explanation": "Taxis: every 6 months.",
-    "tags": [
-      "inspections"
-    ]
-  },
-  {
-    "prompt": "PHC inspection interval is… (check #27)",
-    "choices": [
-      "3 months",
-      "6 months",
-      "12 months",
-      "24 months"
-    ],
-    "correctIndex": 2,
-    "explanation": "PHCs: every 12 months.",
-    "tags": [
-      "inspections"
-    ]
-  },
-  {
-    "prompt": "What should you do if a decal is damaged? (check #28)",
-    "choices": [
-      "Ignore",
-      "Replace at an AIC within 3 calendar days",
-      "Sand it down",
-      "Cover with sticker"
-    ],
-    "correctIndex": 1,
-    "explanation": "Damaged decals must be replaced promptly at an AIC.",
-    "tags": [
-      "decals"
-    ]
-  },
-  {
-    "prompt": "What must be displayed in vehicles with inward‑facing IVRDs? (check #29)",
-    "choices": [
-      "Nothing",
-      "Prominent notices informing passengers",
-      "Only a small sticker",
-      "Operator logo"
-    ],
-    "correctIndex": 1,
-    "explanation": "Notices are required under PDPA‑aligned guidelines.",
-    "tags": [
-      "VL_eligibility_obligations"
-    ]
-  },
-  {
-    "prompt": "What is the VLPS revocation threshold within 24 months? (check #30)",
-    "choices": [
-      ">15 points",
-      ">18 points",
-      ">20 points",
-      ">25 points"
-    ],
-    "correctIndex": 2,
-    "explanation": "More than 20 points → revocation.",
-    "tags": [
-      "VLPS"
-    ]
-  },
-  {
-    "prompt": "Are decals transferable between PHC vehicles? (check #31)",
-    "choices": [
-      "Yes, freely",
-      "Only within same fleet",
-      "Only with operator approval",
-      "No, they are not transferable"
-    ],
-    "correctIndex": 3,
-    "explanation": "Decals are not transferrable across vehicles.",
-    "tags": [
-      "VL_eligibility_obligations"
-    ]
-  },
-  {
-    "prompt": "Stopping restrictions on certain roads generally apply between… (check #32)",
-    "choices": [
-      "7:30 a.m.–8:00 p.m.",
-      "6:30 a.m.–7:00 p.m.",
-      "9:30 a.m.–6:00 p.m.",
-      "8:30 a.m.–9:00 p.m."
-    ],
-    "correctIndex": 0,
-    "explanation": "Typical restriction window is 7:30 a.m.–8:00 p.m. unless stated.",
-    "tags": [
-      "stopping_restrictions"
-    ]
-  },
-  {
-    "prompt": "When do stopping restrictions not apply on the listed roads? (check #33)",
-    "choices": [
-      "Sundays and public holidays",
-      "Fridays only",
-      "Weekdays",
-      "Saturdays only"
-    ],
-    "correctIndex": 0,
-    "explanation": "Sundays/Public Holidays are exempt.",
-    "tags": [
-      "stopping_restrictions"
-    ]
-  },
-  {
-    "prompt": "Who may access IVRD footage from a PSV? (check #34)",
-    "choices": [
-      "Any passenger",
-      "Only the operator",
-      "Authorised LTA staff or with Registrar’s permission",
-      "All drivers in the fleet"
-    ],
-    "correctIndex": 2,
-    "explanation": "Access is restricted to authorised persons.",
-    "tags": [
-      "IVRD_PDPA"
-    ]
-  },
-  {
-    "prompt": "How many identical decals must be displayed on a PHC? (check #35)",
-    "choices": [
-      "One",
-      "Two",
-      "Three",
-      "Four"
-    ],
-    "correctIndex": 1,
-    "explanation": "Two identical decals are required.",
-    "tags": [
-      "VL_eligibility_obligations"
-    ]
-  },
-  {
-    "prompt": "Taxi inspection interval is… (check #36)",
-    "choices": [
-      "3 months",
-      "6 months",
-      "12 months",
-      "24 months"
-    ],
-    "correctIndex": 1,
-    "explanation": "Taxis: every 6 months.",
-    "tags": [
-      "inspections"
-    ]
-  },
-  {
-    "prompt": "PHC inspection interval is… (check #37)",
-    "choices": [
-      "3 months",
-      "6 months",
-      "12 months",
-      "24 months"
-    ],
-    "correctIndex": 2,
-    "explanation": "PHCs: every 12 months.",
-    "tags": [
-      "inspections"
-    ]
-  },
-  {
-    "prompt": "What should you do if a decal is damaged? (check #38)",
-    "choices": [
-      "Ignore",
-      "Replace at an AIC within 3 calendar days",
-      "Sand it down",
-      "Cover with sticker"
-    ],
-    "correctIndex": 1,
-    "explanation": "Damaged decals must be replaced promptly at an AIC.",
-    "tags": [
-      "decals"
-    ]
-  },
-  {
-    "prompt": "What must be displayed in vehicles with inward‑facing IVRDs? (check #39)",
-    "choices": [
-      "Nothing",
-      "Prominent notices informing passengers",
-      "Only a small sticker",
-      "Operator logo"
-    ],
-    "correctIndex": 1,
-    "explanation": "Notices are required under PDPA‑aligned guidelines.",
-    "tags": [
-      "VL_eligibility_obligations"
-    ]
-  },
-  {
-    "prompt": "What is the VLPS revocation threshold within 24 months? (check #40)",
-    "choices": [
-      ">15 points",
-      ">18 points",
-      ">20 points",
-      ">25 points"
-    ],
-    "correctIndex": 2,
-    "explanation": "More than 20 points → revocation.",
-    "tags": [
-      "VLPS"
-    ]
-  },
-  {
-    "prompt": "Are decals transferable between PHC vehicles? (check #41)",
-    "choices": [
-      "Yes, freely",
-      "Only within same fleet",
-      "Only with operator approval",
-      "No, they are not transferable"
-    ],
-    "correctIndex": 3,
-    "explanation": "Decals are not transferrable across vehicles.",
-    "tags": [
-      "VL_eligibility_obligations"
-    ]
-  },
-  {
-    "prompt": "Stopping restrictions on certain roads generally apply between… (check #42)",
-    "choices": [
-      "7:30 a.m.–8:00 p.m.",
-      "6:30 a.m.–7:00 p.m.",
-      "9:30 a.m.–6:00 p.m.",
-      "8:30 a.m.–9:00 p.m."
-    ],
-    "correctIndex": 0,
-    "explanation": "Typical restriction window is 7:30 a.m.–8:00 p.m. unless stated.",
-    "tags": [
-      "stopping_restrictions"
-    ]
-  },
-  {
-    "prompt": "When do stopping restrictions not apply on the listed roads? (check #43)",
-    "choices": [
-      "Sundays and public holidays",
-      "Fridays only",
-      "Weekdays",
-      "Saturdays only"
-    ],
-    "correctIndex": 0,
-    "explanation": "Sundays/Public Holidays are exempt.",
-    "tags": [
-      "stopping_restrictions"
-    ]
-  },
-  {
-    "prompt": "Who may access IVRD footage from a PSV? (check #44)",
-    "choices": [
-      "Any passenger",
-      "Only the operator",
-      "Authorised LTA staff or with Registrar’s permission",
-      "All drivers in the fleet"
-    ],
-    "correctIndex": 2,
-    "explanation": "Access is restricted to authorised persons.",
-    "tags": [
-      "IVRD_PDPA"
-    ]
-  },
-  {
-    "prompt": "How many identical decals must be displayed on a PHC? (check #45)",
-    "choices": [
-      "One",
-      "Two",
-      "Three",
-      "Four"
-    ],
-    "correctIndex": 1,
-    "explanation": "Two identical decals are required.",
-    "tags": [
-      "VL_eligibility_obligations"
-    ]
-  },
-  {
-    "prompt": "Taxi inspection interval is… (check #46)",
-    "choices": [
-      "3 months",
-      "6 months",
-      "12 months",
-      "24 months"
-    ],
-    "correctIndex": 1,
-    "explanation": "Taxis: every 6 months.",
-    "tags": [
-      "inspections"
-    ]
-  },
-  {
-    "prompt": "PHC inspection interval is… (check #47)",
-    "choices": [
-      "3 months",
-      "6 months",
-      "12 months",
-      "24 months"
-    ],
-    "correctIndex": 2,
-    "explanation": "PHCs: every 12 months.",
-    "tags": [
-      "inspections"
-    ]
-  },
-  {
-    "prompt": "What should you do if a decal is damaged? (check #48)",
-    "choices": [
-      "Ignore",
-      "Replace at an AIC within 3 calendar days",
-      "Sand it down",
-      "Cover with sticker"
-    ],
-    "correctIndex": 1,
-    "explanation": "Damaged decals must be replaced promptly at an AIC.",
-    "tags": [
-      "decals"
-    ]
-  },
-  {
-    "prompt": "What must be displayed in vehicles with inward‑facing IVRDs? (check #49)",
-    "choices": [
-      "Nothing",
-      "Prominent notices informing passengers",
-      "Only a small sticker",
-      "Operator logo"
-    ],
-    "correctIndex": 1,
-    "explanation": "Notices are required under PDPA‑aligned guidelines.",
-    "tags": [
-      "VL_eligibility_obligations"
-    ]
-  },
-  {
-    "prompt": "What is the VLPS revocation threshold within 24 months? (check #50)",
-    "choices": [
-      ">15 points",
-      ">18 points",
-      ">20 points",
-      ">25 points"
-    ],
-    "correctIndex": 2,
-    "explanation": "More than 20 points → revocation.",
-    "tags": [
-      "VLPS"
-    ]
-  },
-  {
-    "prompt": "Are decals transferable between PHC vehicles? (check #51)",
-    "choices": [
-      "Yes, freely",
-      "Only within same fleet",
-      "Only with operator approval",
-      "No, they are not transferable"
-    ],
-    "correctIndex": 3,
-    "explanation": "Decals are not transferrable across vehicles.",
-    "tags": [
-      "VL_eligibility_obligations"
-    ]
-  },
-  {
-    "prompt": "Stopping restrictions on certain roads generally apply between… (check #52)",
-    "choices": [
-      "7:30 a.m.–8:00 p.m.",
-      "6:30 a.m.–7:00 p.m.",
-      "9:30 a.m.–6:00 p.m.",
-      "8:30 a.m.–9:00 p.m."
-    ],
-    "correctIndex": 0,
-    "explanation": "Typical restriction window is 7:30 a.m.–8:00 p.m. unless stated.",
-    "tags": [
-      "stopping_restrictions"
-    ]
-  },
-  {
-    "prompt": "When do stopping restrictions not apply on the listed roads? (check #53)",
-    "choices": [
-      "Sundays and public holidays",
-      "Fridays only",
-      "Weekdays",
-      "Saturdays only"
-    ],
-    "correctIndex": 0,
-    "explanation": "Sundays/Public Holidays are exempt.",
-    "tags": [
-      "stopping_restrictions"
-    ]
-  },
-  {
-    "prompt": "Who may access IVRD footage from a PSV? (check #54)",
-    "choices": [
-      "Any passenger",
-      "Only the operator",
-      "Authorised LTA staff or with Registrar’s permission",
-      "All drivers in the fleet"
-    ],
-    "correctIndex": 2,
-    "explanation": "Access is restricted to authorised persons.",
-    "tags": [
-      "IVRD_PDPA"
-    ]
-  },
-  {
-    "prompt": "How many identical decals must be displayed on a PHC? (check #55)",
-    "choices": [
-      "One",
-      "Two",
-      "Three",
-      "Four"
-    ],
-    "correctIndex": 1,
-    "explanation": "Two identical decals are required.",
-    "tags": [
-      "VL_eligibility_obligations"
-    ]
-  },
-  {
-    "prompt": "Taxi inspection interval is… (check #56)",
-    "choices": [
-      "3 months",
-      "6 months",
-      "12 months",
-      "24 months"
-    ],
-    "correctIndex": 1,
-    "explanation": "Taxis: every 6 months.",
-    "tags": [
-      "inspections"
-    ]
-  },
-  {
-    "prompt": "PHC inspection interval is… (check #57)",
-    "choices": [
-      "3 months",
-      "6 months",
-      "12 months",
-      "24 months"
-    ],
-    "correctIndex": 2,
-    "explanation": "PHCs: every 12 months.",
-    "tags": [
-      "inspections"
-    ]
-  },
-  {
-    "prompt": "What should you do if a decal is damaged? (check #58)",
-    "choices": [
-      "Ignore",
-      "Replace at an AIC within 3 calendar days",
-      "Sand it down",
-      "Cover with sticker"
-    ],
-    "correctIndex": 1,
-    "explanation": "Damaged decals must be replaced promptly at an AIC.",
-    "tags": [
-      "decals"
-    ]
-  },
-  {
-    "prompt": "What must be displayed in vehicles with inward‑facing IVRDs? (check #59)",
-    "choices": [
-      "Nothing",
-      "Prominent notices informing passengers",
-      "Only a small sticker",
-      "Operator logo"
-    ],
-    "correctIndex": 1,
-    "explanation": "Notices are required under PDPA‑aligned guidelines.",
-    "tags": [
-      "VL_eligibility_obligations"
-    ]
-  },
-  {
-    "prompt": "What is the VLPS revocation threshold within 24 months? (check #60)",
-    "choices": [
-      ">15 points",
-      ">18 points",
-      ">20 points",
-      ">25 points"
-    ],
-    "correctIndex": 2,
-    "explanation": "More than 20 points → revocation.",
-    "tags": [
-      "VLPS"
-    ]
-  },
-  {
-    "prompt": "Are decals transferable between PHC vehicles? (check #61)",
-    "choices": [
-      "Yes, freely",
-      "Only within same fleet",
-      "Only with operator approval",
-      "No, they are not transferable"
-    ],
-    "correctIndex": 3,
-    "explanation": "Decals are not transferrable across vehicles.",
-    "tags": [
-      "VL_eligibility_obligations"
-    ]
-  },
-  {
-    "prompt": "Stopping restrictions on certain roads generally apply between… (check #62)",
-    "choices": [
-      "7:30 a.m.–8:00 p.m.",
-      "6:30 a.m.–7:00 p.m.",
-      "9:30 a.m.–6:00 p.m.",
-      "8:30 a.m.–9:00 p.m."
-    ],
-    "correctIndex": 0,
-    "explanation": "Typical restriction window is 7:30 a.m.–8:00 p.m. unless stated.",
-    "tags": [
-      "stopping_restrictions"
-    ]
-  },
-  {
-    "prompt": "When do stopping restrictions not apply on the listed roads? (check #63)",
-    "choices": [
-      "Sundays and public holidays",
-      "Fridays only",
-      "Weekdays",
-      "Saturdays only"
-    ],
-    "correctIndex": 0,
-    "explanation": "Sundays/Public Holidays are exempt.",
-    "tags": [
-      "stopping_restrictions"
-    ]
-  },
-  {
-    "prompt": "Who may access IVRD footage from a PSV? (check #64)",
+    "prompt": "Who may access IVRD footage from a PSV?",
     "choices": [
       "Any passenger",
       "Only the operator",
