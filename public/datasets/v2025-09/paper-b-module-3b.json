@@ -549,7 +549,7 @@
     ]
   },
   {
-    "prompt": "On designated roads, PHC stopping restrictions generally apply between…",
+    "prompt": "On designated roads, PHC stopping restrictions generally apply between...",
     "choices": [
       "6:30 a.m. – 7:00 p.m.",
       "7:30 a.m. – 8:00 p.m.",
@@ -1504,7 +1504,7 @@
     ]
   },
   {
-    "prompt": "Stopping restrictions on certain roads generally apply between… (check #22)",
+    "prompt": "Stopping restrictions on certain roads generally apply between... (check #22)",
     "choices": [
       "7:30 a.m.–8:00 p.m.",
       "6:30 a.m.–7:00 p.m.",

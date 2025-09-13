@@ -35,6 +35,10 @@ export default async function Page({
   const rng = getModuleRng(seed, module);
   const cfg = MODULE_CONFIG[paper][module];
   const questions = sampleQuestions(pool, cfg.count, rng);
-  return <ResultsClient paper={paper} moduleKey={module} seed={seed} questions={questions} />;
+  return (
+    <div className="prose dark:prose-invert mx-auto max-w-prose m-6">
+      <ResultsClient paper={paper} moduleKey={module} seed={seed} questions={questions} />
+    </div>
+  );
 }
 
