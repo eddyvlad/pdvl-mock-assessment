@@ -15,6 +15,7 @@ See [AGENT.MD](./AGENT.md) for full product and behavior specifications.
 - `npm run dev` – start the development server.
 - `npm run lint` – run ESLint.
 - `npm test` – run Jest tests.
+- `npm run typecheck` – run TypeScript type checks.
 - `npm run build` – create a production build.
 
 ## Notes

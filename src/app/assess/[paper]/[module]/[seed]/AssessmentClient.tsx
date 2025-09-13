@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { intervalToDuration } from 'date-fns';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import type { Question } from '@/lib/questions';
 
 interface Props {
@@ -25,15 +26,23 @@ export default function AssessmentClient({paper, moduleKey, seed, questions, min
     if (stored) {
       try {
         const obj = JSON.parse(stored);
-        if (Array.isArray(obj.answers)) {
-          setAnswers(obj.answers);
-        }
-        if (typeof obj.start === 'number') {
-          const elapsed = Math.floor((Date.now() - obj.start) / 1000);
-          const remaining = minutes * 60 - elapsed;
-          setTimeLeft(remaining > 0 ? remaining : 0);
-          if (remaining <= 0) {
-            handleSubmit();
+        if (obj.end) {
+          const freshAnswers = Array(total).fill(null);
+          setAnswers(freshAnswers);
+          const fresh = {start: Date.now(), answers: freshAnswers};
+          localStorage.setItem(key, JSON.stringify(fresh));
+          setTimeLeft(minutes * 60);
+        } else {
+          if (Array.isArray(obj.answers)) {
+            setAnswers(obj.answers);
+          }
+          if (typeof obj.start === 'number') {
+            const elapsed = Math.floor((Date.now() - obj.start) / 1000);
+            const remaining = minutes * 60 - elapsed;
+            setTimeLeft(remaining > 0 ? remaining : 0);
+            if (remaining <= 0) {
+              handleSubmit();
+            }
           }
         }
       } catch {
@@ -109,11 +118,15 @@ export default function AssessmentClient({paper, moduleKey, seed, questions, min
   }
 
   const answered = answers.filter((a) => a !== null).length;
+  function formatTime(seconds: number) {
+    const {minutes = 0, seconds: secs = 0} = intervalToDuration({start: 0, end: seconds * 1000});
+    return `${String(minutes).padStart(2, '0')} mins ${String(secs).padStart(2, '0')} seconds`;
+  }
 
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
-        <span>Time: {grace > 0 ? `Starts in ${grace}` : `${timeLeft}s`}</span>
+        <span>Time: {grace > 0 ? `Starts in ${grace}` : formatTime(timeLeft)}</span>
         <span>
           {answered}/{total}
         </span>
