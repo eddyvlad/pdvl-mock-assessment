@@ -1,11 +1,16 @@
 great callouts. here’s a clean repo layout plan + an AGENT.md that opens with “what this project is,” not “go build X.”
+
 # AGENT.md
 
 ## Project overview
 
-**PDVL Mock Assessments** is an ongoing web project providing **timed, shareable practice exams** for Singapore’s **Private Hire Car Driver’s Vocational Licence (PDVL)** course. The app generates deterministic, seed-based quizzes so that the same URL always reproduces the same question set and option order. Learners can practice modules individually, and Paper A computes a combined score across Modules 1 and 2 using a shared seed.
+**PDVL Mock Assessments** is an ongoing web project providing **timed, shareable practice exams** for Singapore’s *
+*Private Hire Car Driver’s Vocational Licence (PDVL)** course. The app generates deterministic, seed-based quizzes so
+that the same URL always reproduces the same question set and option order. Learners can practice modules individually,
+and Paper A computes a combined score across Modules 1 and 2 using a shared seed.
 
-This document is the living contract for how the app behaves, how data is organized, and what constraints other agents must respect during development.
+This document is the living contract for how the app behaves, how data is organized, and what constraints other agents
+must respect during development.
 
 ## Current scope (what this app does)
 
@@ -17,7 +22,8 @@ This document is the living contract for how the app behaves, how data is organi
     * **Paper C** (pass ≥ **30**): Module 4B — 15 Qs, 15 min (2–4 choices per question)
 * **All questions** have exactly one correct answer.
 * **Deterministic seeding** (Mulberry32 + base62 seed in URL) for reproducible selection and choice order.
-* **All questions on one page** per module, with a **3-second grace** countdown, persistent timer, and auto-submit on expiry.
+* **All questions on one page** per module, with a **3-second grace** countdown, persistent timer, and auto-submit on
+  expiry.
 * **Paper A chaining:** M1 must be completed before M2; M2 reuses M1’s seed to compute the paper’s combined pass/fail.
 
 ## Data layout & versioning
@@ -50,6 +56,7 @@ This document is the living contract for how the app behaves, how data is organi
     * C-4B: 42  (draw 15)
 
 ### Data format
+
 - Question schema: `schema/pdvl-question.schema.json`
     - `choices`: 2–4 strings
     - `correctIndex`: 0-based
@@ -57,6 +64,7 @@ This document is the living contract for how the app behaves, how data is organi
     - `tags`: string[] used for topic balancing (see `docs/taxonomy.md`)
 
 ### Datasets
+
 - Resolved by `DATASET_VERSION` (see `.env`). Example:
     - `public/datasets/v2025-09/paper-a-module-1.json`
     - ...
@@ -93,7 +101,8 @@ This document is the living contract for how the app behaves, how data is organi
 
 ## Results & review
 
-* Show: score, pass/fail (paper-level where applicable), elapsed time, per-question correctness, correct answer, user’s answer, and **explanations** (when present).
+* Show: score, pass/fail (paper-level where applicable), elapsed time, per-question correctness, correct answer, user’s
+  answer, and **explanations** (when present).
 * Actions: **Retake same seed**, **New seed**.
 * No PDF export required.
 
@@ -137,13 +146,18 @@ This document is the living contract for how the app behaves, how data is organi
 * Keep bundles small; cache static datasets if desired.
 
 great callouts. here’s a clean repo layout plan + an AGENT.md that opens with “what this project is,” not “go build X.”
+
 # AGENT.md
 
 ## Project overview
 
-**PDVL Mock Assessments** is an ongoing web project providing **timed, shareable practice exams** for Singapore’s **Private Hire Car Driver’s Vocational Licence (PDVL)** course. The app generates deterministic, seed-based quizzes so that the same URL always reproduces the same question set and option order. Learners can practice modules individually, and Paper A computes a combined score across Modules 1 and 2 using a shared seed.
+**PDVL Mock Assessments** is an ongoing web project providing **timed, shareable practice exams** for Singapore’s *
+*Private Hire Car Driver’s Vocational Licence (PDVL)** course. The app generates deterministic, seed-based quizzes so
+that the same URL always reproduces the same question set and option order. Learners can practice modules individually,
+and Paper A computes a combined score across Modules 1 and 2 using a shared seed.
 
-This document is the living contract for how the app behaves, how data is organized, and what constraints other agents must respect during development.
+This document is the living contract for how the app behaves, how data is organized, and what constraints other agents
+must respect during development.
 
 ## Current scope (what this app does)
 
@@ -155,7 +169,8 @@ This document is the living contract for how the app behaves, how data is organi
     * **Paper C** (pass ≥ **30**): Module 4B — 15 Qs, 15 min (2–4 choices per question)
 * **All questions** have exactly one correct answer.
 * **Deterministic seeding** (Mulberry32 + base62 seed in URL) for reproducible selection and choice order.
-* **All questions on one page** per module, with a **3-second grace** countdown, persistent timer, and auto-submit on expiry.
+* **All questions on one page** per module, with a **3-second grace** countdown, persistent timer, and auto-submit on
+  expiry.
 * **Paper A chaining:** M1 must be completed before M2; M2 reuses M1’s seed to compute the paper’s combined pass/fail.
 
 ## Data layout & versioning
@@ -188,6 +203,7 @@ This document is the living contract for how the app behaves, how data is organi
     * C-4B: 42  (draw 15)
 
 ### Data format
+
 - Question schema: `schema/pdvl-question.schema.json`
     - `choices`: 2–4 strings
     - `correctIndex`: 0-based
@@ -195,6 +211,7 @@ This document is the living contract for how the app behaves, how data is organi
     - `tags`: string[] used for topic balancing (see `docs/taxonomy.md`)
 
 ### Datasets
+
 - Resolved by `DATASET_VERSION` (see `.env`). Example:
     - `public/datasets/v2025-09/paper-a-module-1.json`
     - ...
@@ -231,7 +248,8 @@ This document is the living contract for how the app behaves, how data is organi
 
 ## Results & review
 
-* Show: score, pass/fail (paper-level where applicable), elapsed time, per-question correctness, correct answer, user’s answer, and **explanations** (when present).
+* Show: score, pass/fail (paper-level where applicable), elapsed time, per-question correctness, correct answer, user’s
+  answer, and **explanations** (when present).
 * Actions: **Retake same seed**, **New seed**.
 * No PDF export required.
 
@@ -295,20 +313,26 @@ This document is the living contract for how the app behaves, how data is organi
 
 ## Testing Instructions
 
+Run the following commands in the project root directory in order to test the project:
+
+- **Linting**: `npm run lint`
+- **Run Typecheck**: `npm run typecheck`
 - **Run All Tests**: `npm test`
 - **Run Specific Tests**: `npm run test -- --verbose [--testNamePattern <pattern> | --runTestsByPath <path/to/test>]`
-- **Linting**: `npm run lint`
 - **Build Project**: `npm run build` (checks for build errors)
 
 ## Code Conventions
 
 - **File Naming**: Use `kebab-case` for file names and `PascalCase` for component names.
-- **Imports**: Organize imports alphabetically and group them by type (e.g., third-party, local components, local utilities).
+- **Imports**: Organize imports alphabetically and group them by type (e.g., third-party, local components, local
+  utilities).
 - **Error Handling**: Implement robust error handling for API calls and user interactions.
 - **Accessibility**: Prioritize accessibility in all UI components.
 
 ## AI Agent Specific Instructions
 
 - **Listing Files**: When listing files, use the `ls -al` command so that hidden files are also listed.
-- **Human-in-the-Loop**: If implementing agentic features with human-in-the-loop, ensure clear prompts and approval mechanisms for user interaction.
-- **Documentation**: When implementing new features or making significant changes, update relevant documentation (e.g., `README.md`, component-level comments).
+- **Human-in-the-Loop**: If implementing agentic features with human-in-the-loop, ensure clear prompts and approval
+  mechanisms for user interaction.
+- **Documentation**: When implementing new features or making significant changes, update relevant documentation (e.g.,
+  `README.md`, component-level comments).
