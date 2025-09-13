@@ -383,9 +383,18 @@ body {
 }
 
 /* PDVL custom styles */
+.pdvl-landing {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
 .pdvl-landing ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .pdvl-landing li {

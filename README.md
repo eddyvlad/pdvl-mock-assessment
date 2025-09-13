@@ -19,3 +19,4 @@ A lightweight Next.js app for practicing PDVL modules. See [AGENT.MD](./AGENT.MD
 
 - Question choices use native radio inputs with proper labels for accessibility.
 - Styling relies on `src/app/globals.css`; custom rules are minimal and prefixed with `.pdvl-`.
+- Landing page module picker is centered using `.pdvl-landing` styles.
