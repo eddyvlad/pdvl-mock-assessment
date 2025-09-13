@@ -381,3 +381,40 @@ body {
             linear-gradient(90deg, color-mix(in srgb, var(--color-foreground) 5%, transparent) 1px, transparent 1px);
     background-size: 20px 20px;
 }
+
+/* PDVL custom styles */
+.pdvl-landing ul {
+    list-style: none;
+    padding: 0;
+}
+
+.pdvl-landing li {
+    margin: 0.5rem 0;
+}
+
+.pdvl-assessment {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.pdvl-status {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.pdvl-question {
+    margin-bottom: 1rem;
+}
+
+.pdvl-choice label {
+    margin-left: 0.25rem;
+}
+
+.pdvl-submit {
+    margin-top: 1rem;
+}
+
+.pdvl-review {
+    margin-bottom: 1rem;
+}
