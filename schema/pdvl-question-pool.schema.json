@@ -32,7 +32,9 @@
       "required": [
         "prompt",
         "choices",
-        "correctIndex"
+        "correctIndex",
+        "tags",
+        "difficulty"
       ],
       "properties": {
         "prompt": {
@@ -75,6 +77,15 @@
           "minItems": 1,
           "maxItems": 5,
           "uniqueItems": true
+        },
+        "difficulty": {
+          "type": "string",
+          "description": "Relative difficulty of the question, used for paper balancing.",
+          "enum": [
+            "easy",
+            "medium",
+            "hard"
+          ]
         }
       }
     }
@@ -93,7 +104,8 @@
         "explanation": "PHCs are pre-booked and cannot be street-hailed.",
         "tags": [
           "p2p_landscape"
-        ]
+        ],
+        "difficulty": "medium"
       }
     ]
   ]

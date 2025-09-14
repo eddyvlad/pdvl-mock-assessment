@@ -11,7 +11,8 @@
     "explanation": "A simple greeting sets a professional tone and builds rapport.",
     "tags": [
       "customer_service_communication"
-    ]
+    ],
+    "difficulty": "easy"
   },
   {
     "prompt": "After passengers are seated, a key first step is to…",
@@ -25,7 +26,8 @@
     "explanation": "Confirming destination avoids misunderstandings and wrong routes.",
     "tags": [
       "customer_service_communication"
-    ]
+    ],
+    "difficulty": "easy"
   },
   {
     "prompt": "If a passenger proposes a different route, you should…",
@@ -39,7 +41,8 @@
     "explanation": "Acknowledge and confirm their preference if safe and legal.",
     "tags": [
       "customer_service_communication"
-    ]
+    ],
+    "difficulty": "easy"
   },
   {
     "prompt": "When you could not hear what the passenger said, the recommended script is…",
@@ -53,7 +56,8 @@
     "explanation": "Use polite, clear requests to clarify.",
     "tags": [
       "customer_service_communication"
-    ]
+    ],
+    "difficulty": "easy"
   },
   {
     "prompt": "When starting a ride‑hail trip, a driver should…",
@@ -67,7 +71,8 @@
     "explanation": "Informing about GPS use sets expectations and reassures accuracy.",
     "tags": [
       "customer_service_communication"
-    ]
+    ],
+    "difficulty": "easy"
   },
   {
     "prompt": "If a passenger asks to alight at an unsafe spot (e.g., at a junction or bus lane during operating hours), you should…",
@@ -81,7 +86,8 @@
     "explanation": "Politely explain restrictions and propose a safe alternative.",
     "tags": [
       "safe_stopping"
-    ]
+    ],
+    "difficulty": "hard"
   },
   {
     "prompt": "Before moving off, a standard safety reminder is…",
@@ -95,7 +101,8 @@
     "explanation": "Seat belts protect passengers and are required by law.",
     "tags": [
       "customer_service_communication"
-    ]
+    ],
+    "difficulty": "easy"
   },
   {
     "prompt": "When assisting with heavy luggage or strollers, you should…",
@@ -109,7 +116,8 @@
     "explanation": "Offer help respectfully and secure items properly.",
     "tags": [
       "assistance_mobility"
-    ]
+    ],
+    "difficulty": "easy"
   },
   {
     "prompt": "A key customer service principle is to…",
@@ -123,7 +131,8 @@
     "explanation": "Professionalism includes safe driving and courteous conduct.",
     "tags": [
       "customer_service_communication"
-    ]
+    ],
+    "difficulty": "easy"
   },
   {
     "prompt": "Which topic should drivers avoid to respect a passenger’s comfort zone?",
@@ -137,7 +146,8 @@
     "explanation": "Avoid sensitive topics that may make passengers uncomfortable.",
     "tags": [
       "professionalism_boundaries"
-    ]
+    ],
+    "difficulty": "easy"
   },
   {
     "prompt": "A technique to de‑escalate an argument is to…",
@@ -151,7 +161,8 @@
     "explanation": "Pause, breathe and address the core issue calmly.",
     "tags": [
       "conflict_management"
-    ]
+    ],
+    "difficulty": "medium"
   },
   {
     "prompt": "If a passenger becomes abusive or threatening, you should…",
@@ -165,7 +176,8 @@
     "explanation": "Follow company protocol, keep safe and report via proper channels.",
     "tags": [
       "conflict_management"
-    ]
+    ],
+    "difficulty": "medium"
   },
   {
     "prompt": "The SGSecure app allows you to…",
@@ -179,7 +191,8 @@
     "explanation": "Use the app to contact police and receive emergency alerts.",
     "tags": [
       "sgsecure_app"
-    ]
+    ],
+    "difficulty": "easy"
   },
   {
     "prompt": "Recognising Tell‑Tale Indicators (TTIs) means watching for…",
@@ -193,7 +206,8 @@
     "explanation": "TTIs are S.I.A.U. cues in appearance, behaviour or belongings.",
     "tags": [
       "customer_service_communication"
-    ]
+    ],
+    "difficulty": "easy"
   },
   {
     "prompt": "The HOT protocol for unattended items stands for…",
@@ -207,7 +221,8 @@
     "explanation": "HOT: Hidden? Obviously suspicious? Typical for the location?",
     "tags": [
       "sgsecure_hot"
-    ]
+    ],
+    "difficulty": "easy"
   },
   {
     "prompt": "In a terrorist attack, the guidance is to…",
@@ -221,7 +236,8 @@
     "explanation": "RUN to safety, HIDE out of sight, TELL police at 999/70999 when safe.",
     "tags": [
       "customer_service_communication"
-    ]
+    ],
+    "difficulty": "easy"
   },
   {
     "prompt": "Basic bleeding control remembered as Press‑Tie‑Tell means…",
@@ -235,7 +251,8 @@
     "explanation": "Press directly, tie a band 5 cm above for limbs if needed, then tell responders.",
     "tags": [
       "first_aid"
-    ]
+    ],
+    "difficulty": "easy"
   },
   {
     "prompt": "Under the Protection from Harassment Act (POHA), private hire drivers are recognised as public service workers. The law provides up to…",
@@ -249,7 +266,8 @@
     "explanation": "Since 7 Jul 2021, PHC drivers are protected as public service workers under POHA.",
     "tags": [
       "POHA"
-    ]
+    ],
+    "difficulty": "medium"
   },
   {
     "prompt": "If a passenger refuses to pay a taxi fare (for taxis), the listed process includes…",
@@ -263,7 +281,8 @@
     "explanation": "Follow documented steps; avoid confrontation and report properly.",
     "tags": [
       "incident_reporting"
-    ]
+    ],
+    "difficulty": "medium"
   },
   {
     "prompt": "When a passenger appears very sick (e.g., chest pain or fainting), a driver should…",
@@ -277,7 +296,8 @@
     "explanation": "Stop safely and call 995; do not administer treatment unless trained.",
     "tags": [
       "medical_emergency"
-    ]
+    ],
+    "difficulty": "medium"
   },
   {
     "prompt": "Regarding child seats in PHCs, the rule is…",
@@ -291,7 +311,8 @@
     "explanation": "PHCs are not exempt; under‑1.35 m passengers need proper restraints.",
     "tags": [
       "child_restraints"
-    ]
+    ],
+    "difficulty": "medium"
   },
   {
     "prompt": "When assisting a wheelchair user, you should…",
@@ -305,7 +326,8 @@
     "explanation": "Seek consent, assist appropriately and secure equipment; check with the passenger when unsure.",
     "tags": [
       "assistance_mobility"
-    ]
+    ],
+    "difficulty": "easy"
   },
   {
     "prompt": "For passengers on crutches, a good practice is to…",
@@ -319,7 +341,8 @@
     "explanation": "Extra vigilance and safe stowage keep the passenger comfortable and safe.",
     "tags": [
       "assistance_mobility"
-    ]
+    ],
+    "difficulty": "easy"
   },
   {
     "prompt": "If you suspect a passenger may be scouting a sensitive building and behaving oddly, you should…",
@@ -333,7 +356,8 @@
     "explanation": "Do not trail suspects; report TTIs and details via official channels.",
     "tags": [
       "customer_service_communication"
-    ]
+    ],
+    "difficulty": "easy"
   },
   {
     "prompt": "A respectful way to communicate with a hearing‑impaired passenger is to…",
@@ -347,6 +371,39 @@
     "explanation": "Gestures/writing help ensure clear, respectful communication.",
     "tags": [
       "customer_service_communication"
-    ]
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "prompt": "A passenger insists on alighting at a bus stop during operating hours because they are late. What is the best action?",
+    "choices": [
+      "Stop briefly with hazard lights on",
+      "Refuse, explain the restriction, and propose a safe nearby alternative",
+      "Allow it if the passenger accepts responsibility",
+      "Drive past the area without comment"
+    ],
+    "correctIndex": 1,
+    "explanation": "Do not stop at prohibited locations; communicate calmly and suggest a safe alternative.",
+    "tags": [
+      "safe_stopping",
+      "customer_service_communication"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "prompt": "Mid-ride, a passenger requests a route that adds 15 km without any valid reason. What is most correct?",
+    "choices": [
+      "Follow their request silently and charge more",
+      "Explain and take the shortest/direct route unless there is reasonable cause otherwise",
+      "Cancel the trip immediately",
+      "Ignore the request and continue on the driver’s preferred route"
+    ],
+    "correctIndex": 1,
+    "explanation": "Drivers should use the shortest/direct route unless there is a reasonable cause or a lawful, safe passenger request.",
+    "tags": [
+      "conduct",
+      "route_selection"
+    ],
+    "difficulty": "hard"
   }
 ]
