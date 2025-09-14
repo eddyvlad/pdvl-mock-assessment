@@ -42,7 +42,7 @@ export default async function Page({
 
   return (
     <>
-      <div className="prose dark:prose-invert mx-auto max-w-prose m-6">
+      <div className="prose dark:prose-invert mx-auto max-w-prose p-4">
         <div className="flex items-center justify-between mb-4">
           <h1 className="mb-0">Paper {paperName}</h1>
           <h2 className="mt-0">Module {moduleTitle}</h2>

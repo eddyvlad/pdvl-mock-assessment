@@ -80,7 +80,7 @@ export default function ResultsClient({paper, moduleKey, seed, questions}: Props
           New seed
         </Link>
       </p>
-      <ol className="space-y-2">
+      <ol className="space-y-2 list-inside !p-0">
         {questions.map((q, i) => {
           const user = answers[i];
           const isCorrect = user !== undefined && user !== null && user === q.correctIndex;
