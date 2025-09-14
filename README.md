@@ -2,7 +2,7 @@
 
 A lightweight Next.js app for practicing PDVL modules. 
 
-See [AGENT.MD](./AGENT.md) for full product and behavior specifications.
+See [AGENTS.md](./AGENTS.md) for full product and behavior specifications.
 
 ## Setup
 
