@@ -55,63 +55,91 @@ export default function ResultsClient({paper, moduleKey, seed, questions}: Props
   let passMark = 0;
   if (paper === 'a') passMark = 30;
   if (paper === 'b') passMark = 22;
-  if (paper === 'c') passMark = 30;
+  if (paper === 'c') passMark = 12;
   if (!combined && passMark > questions.length) passMark = questions.length;
 
+  let nextModule = null;
+  if (paper === 'a' && moduleKey === 'm1') {
+    nextModule = {
+      paper: 'a',
+      moduleName: 'Module 2',
+      moduleKey: 'm2',
+      seed,
+    };
+  }
+
   return (
-    <div className="pdvl-results space-y-4">
-      <h1>Result</h1>
-      <p>
-        Score: {combined ? `${combined.score}/${combined.total}` : `${score}/${questions.length}`} —
-        {(combined ? combined.score >= passMark : score >= passMark) ? 'Pass' : 'Fail'}
-      </p>
-      {paper === 'a' && moduleKey === 'm1' && (
+    <div className="space-y-8">
+      <header className="flex flex-row justify-between flex-wrap items-center gap-4 *:!m-0">
+        <h1>Result</h1>
         <p>
-          <Link className="btn btn-primary" href={`/assess/a/m2/${seed}`}>
-            Proceed to Module 2
+          Score: {combined ? `${combined.score}/${combined.total}` : `${score}/${questions.length}`} —
+          {(combined ? combined.score >= passMark : score >= passMark) ? 'Pass' : 'Fail'}
+        </p>
+        <p className="flex gap-2">
+          <Link className="btn btn-secondary" href={`/assess/${paper}/${moduleKey}/${seed}`}>
+            Retake
+          </Link>
+          <Link className="btn btn-ghost" href={`/assess/${paper}/${moduleKey}/${generateSeed()}`}>
+            New seed
+          </Link>
+        </p>
+      </header>
+      {nextModule && (
+        <p className="text-right">
+          <Link className="btn btn-primary"
+                href={`/assess/${nextModule.paper}/${nextModule.moduleKey}/${nextModule.seed}`}>
+            Proceed to {nextModule.moduleName}
           </Link>
         </p>
       )}
-      <p className="flex gap-2 flex-wrap">
-        <Link className="btn btn-secondary" href={`/assess/${paper}/${moduleKey}/${seed}`}>
-          Retake
-        </Link>
-        <Link className="btn btn-ghost" href={`/assess/${paper}/${moduleKey}/${generateSeed()}`}>
-          New seed
-        </Link>
-      </p>
       <ol className="space-y-2 list-inside !p-0">
         {questions.map((q, i) => {
           const user = answers[i];
-          const isCorrect = user !== undefined && user !== null && user === q.correctIndex;
-          const userAnswer = q.choices[user];
           return (
             <li key={i} className="card !py-4 !px-6 shadow-2xl">
               <p className="font-semibold text-primary mt-0">{q.prompt}</p>
               <ol type="a">
                 {q.choices.map((c, ci) => {
                   const id = `q${i}-${ci}`;
-                  const isCorrect = ci === q.correctIndex;
+                  const isCorrectAnswer = ci === q.correctIndex;
+                  const isUserAnswer = user !== undefined && user !== null && ci === user;
                   return (
-                    <li key={id} className={clsx({'text-green-500': isCorrect})}>
-                      {c}
+                    <li key={id}>
+                      <span className={clsx({
+                        'text-green-500': isCorrectAnswer,
+                        'text-red-500': !isCorrectAnswer && isUserAnswer,
+                      })}>{c}</span>
+                      {isUserAnswer && (
+                        <span className={clsx('ml-2 text-xs whitespace-nowrap border rounded px-2 py-1', {
+                          '!border-green-500 text-green-500': isCorrectAnswer,
+                          '!border-red-500 text-red-500': !isCorrectAnswer,
+                        })}>
+                          Your Answer
+                        </span>
+                      )}
                     </li>
                   );
                 })}
               </ol>
-              <p className={clsx({
-                'text-green-500': isCorrect,
-                'text-red-500': !isCorrect,
-              })}>
-                <strong>Your answer:</strong> {
-                user === null ? 'Not answered' : userAnswer
-              }
-              </p>
+              {(user === null) && (
+                <p className="text-red-500 italic text-sm">
+                  You did not answer this question.
+                </p>
+              )}
               {q.explanation && <p className="text-muted-foreground italic text-sm">{q.explanation}</p>}
             </li>
           );
         })}
       </ol>
+      {nextModule && (
+        <p className="text-right">
+          <Link className="btn btn-primary"
+                href={`/assess/${nextModule.paper}/${nextModule.moduleKey}/${nextModule.seed}`}>
+            Proceed to {nextModule.moduleName}
+          </Link>
+        </p>
+      )}
     </div>
   );
 }

@@ -74,10 +74,9 @@
         --color-primary-foreground: var(--color-brand-white);
         --color-secondary: var(--color-brand-gray-100);
         --color-secondary-foreground: var(--color-brand-gray-900);
-        --color-accent: var(--color-brand-gray-100);
+        --color-accent: var(--color-brand-blue-300);
         --color-accent-foreground: var(--color-brand-gray-900);
         --color-ring: var(--color-brand-blue-600);
-        --tw-prose-body: var(--color-brand-gray-900);
     }
 }
 
@@ -98,10 +97,9 @@
         --color-primary-foreground: var(--color-brand-white);
         --color-secondary: var(--color-brand-gray-800);
         --color-secondary-foreground: var(--color-brand-gray-100);
-        --color-accent: var(--color-brand-gray-800);
+        --color-accent: var(--color-brand-blue-800);
         --color-accent-foreground: var(--color-brand-gray-100);
         --color-ring: var(--color-brand-blue-500);
-        --tw-prose-body: var(--color-brand-gray-300);
     }
 }
 
@@ -123,7 +121,7 @@
             --color-primary-foreground: var(--color-brand-white);
             --color-secondary: var(--color-brand-gray-100);
             --color-secondary-foreground: var(--color-brand-gray-900);
-            --color-accent: var(--color-brand-gray-100);
+            --color-accent: var(--color-brand-blue-300);
             --color-accent-foreground: var(--color-brand-gray-900);
             --color-ring: var(--color-brand-blue-600);
         }
@@ -143,10 +141,9 @@
             --color-primary-foreground: var(--color-brand-white);
             --color-secondary: var(--color-brand-gray-800);
             --color-secondary-foreground: var(--color-brand-gray-100);
-            --color-accent: var(--color-brand-gray-800);
+            --color-accent: var(--color-brand-blue-800);
             --color-accent-foreground: var(--color-brand-gray-100);
             --color-ring: var(--color-brand-blue-500);
-            --tw-prose-body: var(--color-brand-gray-300);
         }
     }
 }
@@ -219,7 +216,15 @@ a {
 }
 
 .prose {
-    @apply prose-strong:text-accent-foreground;
+    @apply
+    text-foreground
+    prose-strong:text-accent-foreground
+}
+
+@media (prefers-color-scheme: dark) {
+    .prose {
+        @apply prose-invert;
+    }
 }
 
 /* Custom Scrollbar */
@@ -325,7 +330,7 @@ a {
     border: 1px solid var(--color-border);
 
     &:hover {
-        background-color: var(--color-accent);
+        background-color: var(--color-accent) !important;
     }
 
     &:focus {
