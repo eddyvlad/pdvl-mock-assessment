@@ -1,12 +1,12 @@
-import { headers } from "next/headers";
-import { notFound, redirect } from "next/navigation";
+import { headers } from 'next/headers';
+import { notFound, redirect } from 'next/navigation';
 
-import ResultsClient from "./ResultsClient";
+import ResultsClient from './ResultsClient';
 
-import { MODULE_CONFIG } from "@/lib/config";
-import { datasetPath } from "@/lib/dataset";
-import { getModuleRng, Question, sampleQuestions } from "@/lib/questions";
-import { generateSeed, isValidSeed } from "@/lib/seed";
+import { MODULE_CONFIG } from '@/lib/config';
+import { datasetPath } from '@/lib/dataset';
+import { getModuleRng, Question, sampleQuestions } from '@/lib/questions';
+import { generateSeed, isValidSeed } from '@/lib/seed';
 
 interface Params {
   paper: string;
@@ -14,30 +14,34 @@ interface Params {
   seed: string;
 }
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<Params>;
-}) {
-  const { paper, module, seed } = await params;
+export default async function Page({params}: { params: Promise<Params> }) {
+  const {paper, module, seed} = await params;
   if (!MODULE_CONFIG[paper]?.[module]) {
     notFound();
   }
   if (!isValidSeed(seed)) {
     redirect(`/assess/${paper}/${module}/${generateSeed()}`);
   }
-    const host = (await headers()).get("host") ?? "localhost:3000";
-  const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
+
+  const host = (await headers()).get('host') ?? 'localhost:3000';
+  const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
   const url = `${protocol}://${host}${datasetPath(paper, module)}`;
   const res = await fetch(url);
   if (!res.ok) notFound();
   const pool = (await res.json()) as Question[];
   const rng = getModuleRng(seed, module);
-  const cfg = MODULE_CONFIG[paper][module];
-  const questions = sampleQuestions(pool, cfg.count, rng);
+  const moduleConfig = MODULE_CONFIG[paper][module];
+  const questions = sampleQuestions(pool, moduleConfig.count, rng);
+  const paperName = paper.toUpperCase();
+  const moduleTitle = moduleConfig.label;
+
   return (
-    <div className="prose dark:prose-invert mx-auto max-w-prose p-4 pb-8">
-      <ResultsClient paper={paper} moduleKey={module} seed={seed} questions={questions} />
+    <div className="prose dark:prose-invert mx-auto max-w-prose p-4 pb-10">
+      <div className="flex items-center justify-between mb-4">
+        <h1 className="mb-0">Paper {paperName}</h1>
+        <h2 className="mt-0">Module {moduleTitle}</h2>
+      </div>
+      <ResultsClient paper={paper} moduleKey={module} seed={seed} questions={questions}/>
     </div>
   );
 }

@@ -68,13 +68,21 @@ export default function ResultsClient({paper, moduleKey, seed, questions}: Props
     };
   }
 
+  const userPassed = combined ? combined.score >= passMark : score >= passMark;
+
   return (
     <div className="space-y-8">
       <header className="flex flex-row justify-between flex-wrap items-center gap-4 *:!m-0">
-        <h1>Result</h1>
         <p>
-          Score: {combined ? `${combined.score}/${combined.total}` : `${score}/${questions.length}`} —
-          {(combined ? combined.score >= passMark : score >= passMark) ? 'Pass' : 'Fail'}
+          <span className={clsx({
+            'text-green-500': userPassed,
+            'text-red-500': !userPassed,
+          })}>
+            {userPassed ? 'Pass' : 'Fail'}
+          </span>
+        </p>
+        <p>
+          Score: {combined ? `${combined.score}/${combined.total}` : `${score}/${questions.length}`}
         </p>
         <p className="flex gap-2">
           <Link className="btn btn-secondary" href={`/assess/${paper}/${moduleKey}/${seed}`}>
@@ -97,7 +105,7 @@ export default function ResultsClient({paper, moduleKey, seed, questions}: Props
         {questions.map((q, i) => {
           const user = answers[i];
           return (
-            <li key={i} className="card !py-4 !px-6 shadow-2xl">
+            <li key={i} className="card !py-4 !px-6">
               <p className="font-semibold text-primary mt-0">{q.prompt}</p>
               <ol type="a">
                 {q.choices.map((c, ci) => {

@@ -8,7 +8,7 @@ export default function NavBar() {
         <img src="/logo.svg" alt="Logo" className="h-8 w-8"/>
       </Link>
       <div className="text-foreground font-bold text-xl ml-2">
-        PDVL Mock Assessments
+        PDVL Practice Tests
       </div>
       <div className="ml-auto text-sm">
         by <Link href="https://eddyhidayat.com" target="_blank" className="font-bold underline">eddyhidayat.com</Link>

@@ -14,18 +14,16 @@ interface Params {
   seed: string;
 }
 
-export default async function Page({
-                                     params,
-                                   }: {
-  params: Promise<Params>;
-}) {
+export default async function Page({params}: { params: Promise<Params> }) {
   const {paper, module, seed} = await params;
   if (!MODULE_CONFIG[paper]?.[module]) {
     notFound();
   }
+
   if (!isValidSeed(seed)) {
     redirect(`/assess/${paper}/${module}/${generateSeed()}`);
   }
+
   const host = (await headers()).get('host') ?? 'localhost:3000';
   const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
   const url = `${protocol}://${host}${datasetPath(paper, module)}`;
@@ -34,15 +32,15 @@ export default async function Page({
     notFound();
   }
   const pool = (await res.json()) as Question[];
-  const cfg = MODULE_CONFIG[paper][module];
+  const moduleConfig = MODULE_CONFIG[paper][module];
   const rng = getModuleRng(seed, module);
-  const questions = sampleQuestions(pool, cfg.count, rng);
+  const questions = sampleQuestions(pool, moduleConfig.count, rng);
   const paperName = paper.toUpperCase();
-  const moduleTitle = module.charAt(0).toUpperCase() === 'M' ? module.slice(1) : module.toUpperCase();
+  const moduleTitle = moduleConfig.label;
 
   return (
     <>
-      <div className="prose dark:prose-invert mx-auto max-w-prose p-4 pb-8">
+      <div className="prose dark:prose-invert mx-auto max-w-prose p-4 pb-10">
         <div className="flex items-center justify-between mb-4">
           <h1 className="mb-0">Paper {paperName}</h1>
           <h2 className="mt-0">Module {moduleTitle}</h2>
@@ -52,7 +50,7 @@ export default async function Page({
           moduleKey={module}
           seed={seed}
           questions={questions}
-          minutes={cfg.minutes}
+          minutes={moduleConfig.minutes}
         />
       </div>
     </>

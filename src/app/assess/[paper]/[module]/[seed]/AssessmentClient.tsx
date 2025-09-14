@@ -141,7 +141,7 @@ export default function AssessmentClient({paper, moduleKey, seed, questions, min
         }}
       >
         {questions.map((q, qi) => (
-          <fieldset key={qi} data-q={qi} className="card !py-4 !px-6 mb-4 shadow">
+          <fieldset key={qi} data-q={qi} className="card !py-4 !px-6 mb-4">
             <legend className="font-bold mb-2">Q{qi + 1}</legend>
             <p className="font-bold text-primary mb-2 mt-0">{q.prompt}</p>
             <ol type="a" className="!pl-4">

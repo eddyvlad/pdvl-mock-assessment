@@ -7,11 +7,11 @@ export default function Home() {
   const seedB = generateSeed();
   const seedC = generateSeed();
   return (
-    <main className="p-8 prose dark:prose-invert mx-auto max-w-prose">
-      <h1 className="mb-6">PDVL Mock Assessments</h1>
+    <main className="p-4 pb-10 prose dark:prose-invert mx-auto max-w-prose">
+      <h1 className="mb-6">Timed mock papers</h1>
       <p>Practice with timed mock papers, module-based MCQs, and clear explanations aligned to the PDVL syllabus (Modules 1–4B). Built for private-hire drivers. References to taxis are for comparison only.</p>
       <ul className="space-y-6 list-none not-prose">
-        <li className="text-left card py-4 px-6 shadow-lg">
+        <li className="text-left card py-4 px-6">
           <h2 className="font-bold">Paper A</h2>
           <p className="text-sm text-muted-foreground mb-4">Paper A is a 2-module paper that covers the following
             topics:</p>
@@ -40,7 +40,7 @@ export default function Home() {
             </Link>
           </p>
         </li>
-        <li className="text-left card py-4 px-6 shadow-lg">
+        <li className="text-left card py-4 px-6">
           <h2 className="font-bold">Paper B</h2>
           <h3 className="!mb-0">Module 3B</h3>
           <p className="mb-4">Comply With Rules And Regulations For Private Hire Car Driver’s Vocational Licence Holders</p>
@@ -57,7 +57,7 @@ export default function Home() {
             </Link>
           </p>
         </li>
-        <li className="text-left card py-4 px-6 shadow-lg">
+        <li className="text-left card py-4 px-6">
           <h2 className="font-bold">Paper C</h2>
           <h3 className="!mb-0">Module 4B</h3>
           <p className="mb-4">Apply Principles Of Route Planning Using Digital Navigational Tools</p>
