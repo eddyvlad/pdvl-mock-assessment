@@ -1,11 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { generateSeed } from '@/lib/seed';
-import type { Question } from '@/lib/questions';
-import { MODULE_CONFIG } from '@/lib/config';
 import clsx from 'clsx';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+
+import { MODULE_CONFIG } from '@/lib/config';
+import type { Question } from '@/lib/questions';
+import { canPassPaperA, paperAStatusAfterModule1 } from '@/lib/score';
+import { generateSeed } from '@/lib/seed';
 
 interface Props {
   paper: string;
@@ -36,7 +38,7 @@ export default function ResultsClient({paper, moduleKey, seed, questions}: Props
     }
   }, [paper, moduleKey, seed]);
 
-  let combined: { total: number; score: number } | null = null;
+  let combined: { total: number; score: number; m1Score: number } | null = null;
   if (paper === 'a' && moduleKey === 'm2') {
     const key = `pdvl:a-m1:${seed}`;
     const stored = localStorage.getItem(key);
@@ -44,7 +46,11 @@ export default function ResultsClient({paper, moduleKey, seed, questions}: Props
       try {
         const obj = JSON.parse(stored);
         if (typeof obj.score === 'number') {
-          combined = {total: MODULE_CONFIG.a.m1.count + MODULE_CONFIG.a.m2.count, score: obj.score + score};
+          combined = {
+            total: MODULE_CONFIG.a.m1.count + MODULE_CONFIG.a.m2.count,
+            score: obj.score + score,
+            m1Score: obj.score,
+          };
         }
       } catch {
         // ignore
@@ -68,17 +74,26 @@ export default function ResultsClient({paper, moduleKey, seed, questions}: Props
     };
   }
 
-  const userPassed = combined ? combined.score >= passMark : score >= passMark;
+  let userPassed: boolean | null;
+  if (paper === 'a' && moduleKey === 'm1') {
+    userPassed = paperAStatusAfterModule1(score);
+  } else if (paper === 'a' && combined) {
+    userPassed = canPassPaperA(combined.m1Score, score);
+  } else if (combined) {
+    userPassed = combined.score >= passMark;
+  } else {
+    userPassed = score >= passMark;
+  }
 
   return (
     <div className="space-y-8">
       <header className="flex flex-row justify-between flex-wrap items-center gap-4 *:!m-0">
         <p>
           <span className={clsx({
-            'text-green-500': userPassed,
-            'text-red-500': !userPassed,
+            'text-green-500': userPassed === true,
+            'text-red-500': userPassed === false,
           })}>
-            {userPassed ? 'Pass' : 'Fail'}
+            {userPassed === null ? 'Pending' : userPassed ? 'Pass' : 'Fail'}
           </span>
         </p>
         <p>
