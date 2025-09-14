@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 import { MODULE_CONFIG } from '@/lib/config';
 import type { Question } from '@/lib/questions';
-import { canPassPaperA } from '@/lib/score';
+import { canPassPaperA, paperAStatusAfterModule1 } from '@/lib/score';
 import { generateSeed } from '@/lib/seed';
 
 interface Props {
@@ -74,21 +74,26 @@ export default function ResultsClient({paper, moduleKey, seed, questions}: Props
     };
   }
 
-  const userPassed = paper === 'a' && combined
-    ? canPassPaperA(combined.m1Score, score)
-    : combined
-      ? combined.score >= passMark
-      : score >= passMark;
+  let userPassed: boolean | null;
+  if (paper === 'a' && moduleKey === 'm1') {
+    userPassed = paperAStatusAfterModule1(score);
+  } else if (paper === 'a' && combined) {
+    userPassed = canPassPaperA(combined.m1Score, score);
+  } else if (combined) {
+    userPassed = combined.score >= passMark;
+  } else {
+    userPassed = score >= passMark;
+  }
 
   return (
     <div className="space-y-8">
       <header className="flex flex-row justify-between flex-wrap items-center gap-4 *:!m-0">
         <p>
           <span className={clsx({
-            'text-green-500': userPassed,
-            'text-red-500': !userPassed,
+            'text-green-500': userPassed === true,
+            'text-red-500': userPassed === false,
           })}>
-            {userPassed ? 'Pass' : 'Fail'}
+            {userPassed === null ? 'Pending' : userPassed ? 'Pass' : 'Fail'}
           </span>
         </p>
         <p>

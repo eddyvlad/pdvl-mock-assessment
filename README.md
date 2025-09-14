@@ -6,7 +6,7 @@ See [AGENT.MD](./AGENT.md) for full product and behavior specifications.
 
 ## Passing Criteria
 
-Paper A combines Module 1 (30 questions) and Module 2 (5 questions). A minimum of 30 correct answers is required to pass the paper. For example, scoring 24 in Module 1 makes passing impossible, while scoring 25 means Module 2 must be answered perfectly.
+Paper A combines Module 1 (30 questions) and Module 2 (5 questions). A minimum of 30 correct answers is required to pass the paper. For example, scoring 24 in Module 1 makes passing impossible, while scoring 25 means Module 2 must be answered perfectly. Module 1 results display "Pending" if your score still allows a pass after Module 2.
 
 ## Setup
 
