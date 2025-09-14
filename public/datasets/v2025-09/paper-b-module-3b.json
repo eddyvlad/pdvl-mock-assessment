@@ -352,7 +352,7 @@
     ]
   },
   {
-    "prompt": "A Chauffeured Private Hire Car (CPHC) does NOT…",
+    "prompt": "A PHC does NOT...",
     "choices": [
       "Operate under pre‑booked services",
       "Carry passengers for reward",
@@ -534,7 +534,7 @@
     ]
   },
   {
-    "prompt": "Which class codes of vehicles require tamper‑evident decals for CPHC?",
+    "prompt": "Which class codes of vehicles require tamper‑evident decals for PHC?",
     "choices": [
       "A10/A11/A16/A17",
       "B10/B11/B16/B17",
@@ -1701,7 +1701,7 @@
     ]
   },
   {
-    "prompt": "Which of the following statements about CPHC is true?",
+    "prompt": "Which of the following statements about PHC is true?",
     "choices": [
       "It may ply for hire on roads",
       "It operates under pre‑booked services and cannot accept street hails",
@@ -1715,7 +1715,7 @@
     ]
   },
   {
-    "prompt": "Which one of the following statements about CPHC is true?",
+    "prompt": "Which one of the following statements about PHC is true?",
     "choices": [
       "It may ply for hire on roads",
       "It operates under pre‑booked services and cannot accept street hails",
