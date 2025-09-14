@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-import { MODULE_CONFIG } from '@/lib/config';
+import { CONFIG } from '@/lib/config';
 import type { Question } from '@/lib/questions';
 import { canPassPaperA, paperAStatusAfterModule1 } from '@/lib/score';
 import { generateSeed } from '@/lib/seed';
@@ -47,7 +47,7 @@ export default function ResultsClient({paper, moduleKey, seed, questions}: Props
         const obj = JSON.parse(stored);
         if (typeof obj.score === 'number') {
           combined = {
-            total: MODULE_CONFIG.a.m1.count + MODULE_CONFIG.a.m2.count,
+            total: CONFIG.a.modules.m1.count + CONFIG.a.modules.m2.count,
             score: obj.score + score,
             m1Score: obj.score,
           };
@@ -58,17 +58,15 @@ export default function ResultsClient({paper, moduleKey, seed, questions}: Props
     }
   }
 
-  let passMark = 0;
-  if (paper === 'a') passMark = 30;
-  if (paper === 'b') passMark = 22;
-  if (paper === 'c') passMark = 12;
+  let passMark = CONFIG[paper]?.passMark ?? 0;
+  // If only a single module is being assessed in isolation (no combined), cap passMark at question count
   if (!combined && passMark > questions.length) passMark = questions.length;
 
   let nextModule = null;
   if (paper === 'a' && moduleKey === 'm1') {
     nextModule = {
       paper: 'a',
-      moduleName: 'Module 2',
+      moduleName: `Module ${CONFIG.a.modules.m2.label}`,
       moduleKey: 'm2',
       seed,
     };

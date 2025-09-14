@@ -3,7 +3,7 @@ import { notFound, redirect } from 'next/navigation';
 
 import ResultsClient from './ResultsClient';
 
-import { MODULE_CONFIG } from '@/lib/config';
+import { CONFIG } from '@/lib/config';
 import { datasetPath } from '@/lib/dataset';
 import { getModuleRng, Question, sampleQuestions } from '@/lib/questions';
 import { generateSeed, isValidSeed } from '@/lib/seed';
@@ -16,7 +16,7 @@ interface Params {
 
 export default async function Page({params}: { params: Promise<Params> }) {
   const {paper, module, seed} = await params;
-  if (!MODULE_CONFIG[paper]?.[module]) {
+  if (!CONFIG[paper]?.modules?.[module]) {
     notFound();
   }
   if (!isValidSeed(seed)) {
@@ -30,15 +30,15 @@ export default async function Page({params}: { params: Promise<Params> }) {
   if (!res.ok) notFound();
   const pool = (await res.json()) as Question[];
   const rng = getModuleRng(seed, module);
-  const moduleConfig = MODULE_CONFIG[paper][module];
+  const moduleConfig = CONFIG[paper].modules[module];
   const questions = sampleQuestions(pool, moduleConfig.count, rng);
-  const paperName = paper.toUpperCase();
+  const paperName = CONFIG[paper].name;
   const moduleTitle = moduleConfig.label;
 
   return (
     <div className="prose dark:prose-invert mx-auto max-w-prose p-4 pb-10">
       <div className="flex items-center justify-between mb-4">
-        <h1 className="mb-0">Paper {paperName}</h1>
+        <h1 className="mb-0">{paperName}</h1>
         <h2 className="mt-0">Module {moduleTitle}</h2>
       </div>
       <ResultsClient paper={paper} moduleKey={module} seed={seed} questions={questions}/>
