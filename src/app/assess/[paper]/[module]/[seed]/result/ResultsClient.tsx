@@ -1,11 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { generateSeed } from '@/lib/seed';
-import type { Question } from '@/lib/questions';
-import { MODULE_CONFIG } from '@/lib/config';
 import clsx from 'clsx';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+
+import { MODULE_CONFIG } from '@/lib/config';
+import type { Question } from '@/lib/questions';
+import { canPassPaperA } from '@/lib/score';
+import { generateSeed } from '@/lib/seed';
 
 interface Props {
   paper: string;
@@ -36,7 +38,7 @@ export default function ResultsClient({paper, moduleKey, seed, questions}: Props
     }
   }, [paper, moduleKey, seed]);
 
-  let combined: { total: number; score: number } | null = null;
+  let combined: { total: number; score: number; m1Score: number } | null = null;
   if (paper === 'a' && moduleKey === 'm2') {
     const key = `pdvl:a-m1:${seed}`;
     const stored = localStorage.getItem(key);
@@ -44,7 +46,11 @@ export default function ResultsClient({paper, moduleKey, seed, questions}: Props
       try {
         const obj = JSON.parse(stored);
         if (typeof obj.score === 'number') {
-          combined = {total: MODULE_CONFIG.a.m1.count + MODULE_CONFIG.a.m2.count, score: obj.score + score};
+          combined = {
+            total: MODULE_CONFIG.a.m1.count + MODULE_CONFIG.a.m2.count,
+            score: obj.score + score,
+            m1Score: obj.score,
+          };
         }
       } catch {
         // ignore
@@ -68,7 +74,11 @@ export default function ResultsClient({paper, moduleKey, seed, questions}: Props
     };
   }
 
-  const userPassed = combined ? combined.score >= passMark : score >= passMark;
+  const userPassed = paper === 'a' && combined
+    ? canPassPaperA(combined.m1Score, score)
+    : combined
+      ? combined.score >= passMark
+      : score >= passMark;
 
   return (
     <div className="space-y-8">
