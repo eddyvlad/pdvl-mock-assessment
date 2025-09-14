@@ -58,7 +58,7 @@ export default function Home() {
           </p>
         </li>
         <li className="text-left card py-4 px-6 shadow-lg">
-          <h2 className="font-bold">Paper 4B</h2>
+          <h2 className="font-bold">Paper C</h2>
           <h3 className="!mb-0">Module 4B</h3>
           <p className="mb-4">Apply Principles Of Route Planning Using Digital Navigational Tools</p>
           <p className="text-sm text-muted-foreground mb-4">
