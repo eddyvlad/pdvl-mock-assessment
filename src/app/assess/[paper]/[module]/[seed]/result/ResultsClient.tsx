@@ -2,7 +2,7 @@
 
 import clsx from 'clsx';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useSyncExternalStore } from 'react';
 
 import { CONFIG } from '@/lib/config';
 import type { Question } from '@/lib/questions';
@@ -16,46 +16,71 @@ interface Props {
   questions: Question[];
 }
 
-export default function ResultsClient({paper, moduleKey, seed, questions}: Props) {
-  const [answers, setAnswers] = useState<number[]>([]);
-  const [score, setScore] = useState(0);
+type StoredResult = {
+  answers: number[];
+  score: number;
+};
 
-  useEffect(() => {
-    const key = `pdvl:${paper}-${moduleKey}:${seed}`;
-    const stored = localStorage.getItem(key);
-    if (stored) {
-      try {
-        const obj = JSON.parse(stored);
-        if (Array.isArray(obj.answers)) {
-          setAnswers(obj.answers);
-        }
-        if (typeof obj.score === 'number') {
-          setScore(obj.score);
-        }
-      } catch {
-        // ignore
-      }
-    }
-  }, [paper, moduleKey, seed]);
+const EMPTY_RESULT: StoredResult = {
+  answers: [],
+  score: 0,
+};
+
+function readStoredResult(storageKey: string): StoredResult {
+  if (typeof window === 'undefined') {
+    return EMPTY_RESULT;
+  }
+
+  const stored = localStorage.getItem(storageKey);
+  if (!stored) {
+    return EMPTY_RESULT;
+  }
+
+  try {
+    const parsed = JSON.parse(stored);
+
+    return {
+      answers: Array.isArray(parsed.answers) ? parsed.answers : [],
+      score: typeof parsed.score === 'number' ? parsed.score : 0,
+    };
+  } catch {
+    return EMPTY_RESULT;
+  }
+}
+
+function subscribeToStorage(onStoreChange: () => void) {
+  if (typeof window === 'undefined') {
+    return () => undefined;
+  }
+
+  const handleStorage = () => onStoreChange();
+  window.addEventListener('storage', handleStorage);
+
+  return () => {
+    window.removeEventListener('storage', handleStorage);
+  };
+}
+
+export default function ResultsClient({paper, moduleKey, seed, questions}: Props) {
+  const resultKey = `pdvl:${paper}-${moduleKey}:${seed}`;
+  const { answers, score } = useSyncExternalStore(
+    subscribeToStorage,
+    () => readStoredResult(resultKey),
+    () => EMPTY_RESULT,
+  );
+  const module1Result = useSyncExternalStore(
+    subscribeToStorage,
+    () => readStoredResult(`pdvl:a-m1:${seed}`),
+    () => EMPTY_RESULT,
+  );
 
   let combined: { total: number; score: number; m1Score: number } | null = null;
   if (paper === 'a' && moduleKey === 'm2') {
-    const key = `pdvl:a-m1:${seed}`;
-    const stored = localStorage.getItem(key);
-    if (stored) {
-      try {
-        const obj = JSON.parse(stored);
-        if (typeof obj.score === 'number') {
-          combined = {
-            total: CONFIG.a.modules.m1.count + CONFIG.a.modules.m2.count,
-            score: obj.score + score,
-            m1Score: obj.score,
-          };
-        }
-      } catch {
-        // ignore
-      }
-    }
+    combined = {
+      total: CONFIG.a.modules.m1.count + CONFIG.a.modules.m2.count,
+      score: module1Result.score + score,
+      m1Score: module1Result.score,
+    };
   }
 
   let passMark = CONFIG[paper]?.passMark ?? 0;
@@ -164,4 +189,3 @@ export default function ResultsClient({paper, moduleKey, seed, questions}: Props
     </div>
   );
 }
-

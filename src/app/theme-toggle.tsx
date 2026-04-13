@@ -1,6 +1,6 @@
 'use client';
 
-import { ComponentProps, ComponentType, useEffect, useState } from 'react';
+import { ComponentProps, ComponentType, useEffect, useSyncExternalStore } from 'react';
 import { Monitor, Moon, Sun } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -13,13 +13,38 @@ type ThemeItem = {
   value: Theme;
 }
 
-export default function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>('system');
+function readStoredTheme(): Theme {
+  if (typeof window === 'undefined') {
+    return 'system';
+  }
 
-  useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY) as Theme | null;
-    if (stored) setTheme(stored);
-  }, []);
+  const stored = localStorage.getItem(STORAGE_KEY);
+  return stored === 'light' || stored === 'dark' || stored === 'system' ? stored : 'system';
+}
+
+function subscribeToTheme(onStoreChange: () => void) {
+  if (typeof window === 'undefined') {
+    return () => undefined;
+  }
+
+  const handleStorage = (event: StorageEvent) => {
+    if (event.key === null || event.key === STORAGE_KEY) {
+      onStoreChange();
+    }
+  };
+  const handleThemeChange = () => onStoreChange();
+
+  window.addEventListener('storage', handleStorage);
+  window.addEventListener('pdvl-theme-change', handleThemeChange);
+
+  return () => {
+    window.removeEventListener('storage', handleStorage);
+    window.removeEventListener('pdvl-theme-change', handleThemeChange);
+  };
+}
+
+export default function ThemeToggle() {
+  const theme = useSyncExternalStore(subscribeToTheme, readStoredTheme, () => 'system');
 
   useEffect(() => {
     const root = document.documentElement;
@@ -30,6 +55,11 @@ export default function ThemeToggle() {
     }
     localStorage.setItem(STORAGE_KEY, theme);
   }, [theme]);
+
+  const setTheme = (value: Theme) => {
+    localStorage.setItem(STORAGE_KEY, value);
+    window.dispatchEvent(new Event('pdvl-theme-change'));
+  };
 
   const themes: ThemeItem[] = [
     {
@@ -66,4 +96,3 @@ export default function ThemeToggle() {
     </div>
   );
 }
-
