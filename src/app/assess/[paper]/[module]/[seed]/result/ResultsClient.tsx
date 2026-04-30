@@ -6,6 +6,7 @@ import { useSyncExternalStore } from 'react';
 
 import { CONFIG } from '@/lib/config';
 import type { Question } from '@/lib/questions';
+import { parseStoredResult } from '@/lib/result-storage';
 import { canPassPaperA, paperAStatusAfterModule1 } from '@/lib/score';
 import { generateSeed } from '@/lib/seed';
 
@@ -14,38 +15,6 @@ interface Props {
   moduleKey: string;
   seed: string;
   questions: Question[];
-}
-
-type StoredResult = {
-  answers: number[];
-  score: number;
-};
-
-const EMPTY_RESULT: StoredResult = {
-  answers: [],
-  score: 0,
-};
-
-function readStoredResult(storageKey: string): StoredResult {
-  if (typeof window === 'undefined') {
-    return EMPTY_RESULT;
-  }
-
-  const stored = localStorage.getItem(storageKey);
-  if (!stored) {
-    return EMPTY_RESULT;
-  }
-
-  try {
-    const parsed = JSON.parse(stored);
-
-    return {
-      answers: Array.isArray(parsed.answers) ? parsed.answers : [],
-      score: typeof parsed.score === 'number' ? parsed.score : 0,
-    };
-  } catch {
-    return EMPTY_RESULT;
-  }
 }
 
 function subscribeToStorage(onStoreChange: () => void) {
@@ -63,16 +32,18 @@ function subscribeToStorage(onStoreChange: () => void) {
 
 export default function ResultsClient({paper, moduleKey, seed, questions}: Props) {
   const resultKey = `pdvl:${paper}-${moduleKey}:${seed}`;
-  const { answers, score } = useSyncExternalStore(
+  const resultRaw = useSyncExternalStore(
     subscribeToStorage,
-    () => readStoredResult(resultKey),
-    () => EMPTY_RESULT,
+    () => localStorage.getItem(resultKey),
+    () => null,
   );
-  const module1Result = useSyncExternalStore(
+  const module1ResultRaw = useSyncExternalStore(
     subscribeToStorage,
-    () => readStoredResult(`pdvl:a-m1:${seed}`),
-    () => EMPTY_RESULT,
+    () => localStorage.getItem(`pdvl:a-m1:${seed}`),
+    () => null,
   );
+  const { answers, score } = parseStoredResult(resultRaw);
+  const module1Result = parseStoredResult(module1ResultRaw);
 
   let combined: { total: number; score: number; m1Score: number } | null = null;
   if (paper === 'a' && moduleKey === 'm2') {
