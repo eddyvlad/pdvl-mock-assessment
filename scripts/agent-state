@@ -1,0 +1,244 @@
+#!/usr/bin/env node
+
+import { execFileSync } from "node:child_process";
+import fs from "node:fs";
+import path from "node:path";
+import { DatabaseSync } from "node:sqlite";
+
+const VERSION = "1.0.0";
+
+function printUsage() {
+  console.log(`Usage: scripts/agent-state <command> [options]
+
+Commands:
+  issue reserve    Atomically reserve and return the next sequential issue number
+
+Options:
+  --version, -v    Print the agent-state version
+`);
+}
+
+function getGitDirectories() {
+  try {
+    const gitCommonDirRaw = execFileSync(
+      "git",
+      ["rev-parse", "--git-common-dir"],
+      {
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "pipe"],
+      },
+    ).trim();
+
+    const toplevelRaw = execFileSync("git", ["rev-parse", "--show-toplevel"], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "pipe"],
+    }).trim();
+
+    const gitCommonDir = path.resolve(process.cwd(), gitCommonDirRaw);
+    const repoRoot = path.resolve(toplevelRaw);
+
+    return { gitCommonDir, repoRoot };
+  } catch (err) {
+    throw new Error(
+      `Failed to determine Git repository directories. Ensure you are running inside a Git repository.\nDetails: ${err.message}`,
+    );
+  }
+}
+
+function scanTasksForHighestIssue(repoRoot) {
+  const tasksDir = path.join(repoRoot, "tasks");
+  if (!fs.existsSync(tasksDir)) {
+    return 0;
+  }
+
+  let highestIssueNumber = 0;
+
+  function scanDir(dir) {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name);
+
+      if (entry.isDirectory()) {
+        scanDir(fullPath);
+      } else if (entry.isFile()) {
+        if (!entry.name.endsWith(".md")) {
+          continue;
+        }
+
+        // Ignore common non-issue markdown files
+        const baseNameWithoutExt = entry.name.slice(0, -3);
+        if (
+          /^(readme|index|template|instructions)$/i.test(baseNameWithoutExt)
+        ) {
+          continue;
+        }
+
+        // Match format: {ISSUE_TYPE}-{padded_issue_number}[-{slug}].md
+        // Example: ISSUE-034-configure-ai-tier-provider-and-reasoning-defaults.md
+        const validIssuePattern = /^([A-Za-z0-9_]+)-(\d+)(?:-(.+))?\.md$/;
+        const match = entry.name.match(validIssuePattern);
+
+        if (match) {
+          const issueNum = parseInt(match[2], 10);
+          if (issueNum > highestIssueNumber) {
+            highestIssueNumber = issueNum;
+          }
+        } else {
+          // Check if filename looks like an issue/task file but has a malformed number segment
+          const malformedPattern = /^([A-Za-z0-9_]+)-(.+)\.md$/;
+          const malformedMatch = entry.name.match(malformedPattern);
+          if (malformedMatch) {
+            const prefix = malformedMatch[1].toUpperCase();
+            if (
+              prefix === "ISSUE" ||
+              prefix === "TASK" ||
+              prefix === "BUG" ||
+              prefix === "FEAT" ||
+              prefix === "RESEARCH" ||
+              prefix === "SPIKE" ||
+              prefix === "RFC"
+            ) {
+              throw new Error(
+                `Malformed issue filename found at "${fullPath}". Expected format: {TYPE}-{NUMBER}-{slug}.md`,
+              );
+            }
+          }
+        }
+      }
+    }
+  }
+
+  scanDir(tasksDir);
+  return highestIssueNumber;
+}
+
+function reserveIssueNumber() {
+  const { gitCommonDir, repoRoot } = getGitDirectories();
+
+  const highestRepoIssue = scanTasksForHighestIssue(repoRoot);
+
+  const stateDir = path.join(gitCommonDir, "agent");
+  fs.mkdirSync(stateDir, { recursive: true });
+
+  const dbPath = path.join(stateDir, "state.sqlite");
+
+  // Retry loop to handle concurrent processes cleanly
+  const maxRetries = 50;
+  const baseDelayMs = 10;
+
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    let db;
+    try {
+      db = new DatabaseSync(dbPath);
+      db.exec("PRAGMA busy_timeout = 5000;");
+      db.exec("PRAGMA journal_mode = WAL;");
+
+      db.exec(`
+        CREATE TABLE IF NOT EXISTS issue_sequences (
+          name TEXT PRIMARY KEY,
+          last_allocated_number INTEGER NOT NULL
+        );
+      `);
+
+      db.exec("BEGIN IMMEDIATE;");
+
+      let allocatedNumber;
+      try {
+        const getStmt = db.prepare(
+          "SELECT last_allocated_number FROM issue_sequences WHERE name = ?",
+        );
+        const row = getStmt.get("issue");
+        const lastAllocated = row ? row.last_allocated_number : 0;
+
+        allocatedNumber = Math.max(highestRepoIssue + 1, lastAllocated + 1);
+
+        const upsertStmt = db.prepare(`
+          INSERT INTO issue_sequences (name, last_allocated_number)
+          VALUES (?, ?)
+          ON CONFLICT(name) DO UPDATE SET last_allocated_number = excluded.last_allocated_number;
+        `);
+        upsertStmt.run("issue", allocatedNumber);
+
+        db.exec("COMMIT;");
+      } catch (txErr) {
+        try {
+          db.exec("ROLLBACK;");
+        } catch {
+          // Ignore rollback errors if transaction was not open
+        }
+        throw txErr;
+      }
+
+      const paddedNumber = String(allocatedNumber).padStart(
+        Math.max(3, String(allocatedNumber).length),
+        "0",
+      );
+      return paddedNumber;
+    } catch (err) {
+      const isLocked =
+        err.message?.includes("locked") ||
+        err.message?.includes("busy") ||
+        err.code === "ERR_SQLITE_ERROR";
+
+      if (isLocked && attempt < maxRetries - 1) {
+        const jitter = Math.floor(Math.random() * 20);
+        const delay = baseDelayMs * Math.min(attempt + 1, 10) + jitter;
+        // Synchronous sleep using Atomics.wait
+        const sharedBuffer = new Int32Array(new SharedArrayBuffer(4));
+        Atomics.wait(sharedBuffer, 0, 0, delay);
+        continue;
+      }
+      throw err;
+    } finally {
+      if (db) {
+        try {
+          db.close();
+        } catch {
+          // Ignore close error
+        }
+      }
+    }
+  }
+}
+
+function main() {
+  const args = process.argv.slice(2);
+
+  if (
+    args.length === 1 &&
+    (args[0] === "--version" || args[0] === "-v" || args[0] === "version")
+  ) {
+    process.stdout.write(`agent-state v${VERSION}\n`);
+    process.exit(0);
+  }
+
+  if (
+    args.length === 0 ||
+    args[0] === "--help" ||
+    args[0] === "-h" ||
+    args[0] === "help"
+  ) {
+    printUsage();
+    process.exit(args.length === 0 ? 1 : 0);
+  }
+
+  const [category, action] = args;
+
+  if (category === "issue" && action === "reserve") {
+    try {
+      const issueNumber = reserveIssueNumber();
+      process.stdout.write(`${issueNumber}\n`);
+      process.exit(0);
+    } catch (err) {
+      console.error(`agent-state error: ${err.message}`);
+      process.exit(1);
+    }
+  } else {
+    console.error(`Unknown command: ${args.join(" ")}`);
+    printUsage();
+    process.exit(1);
+  }
+}
+
+main();
