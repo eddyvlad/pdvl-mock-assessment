@@ -75,3 +75,11 @@ Compose one vertically scrolling page with clearly labelled landing, assessment,
 - Radio groups use fieldsets and legends, controls have labels, focus is visible, and primary targets are at least 44px high. Keyboard navigation works for native controls and local links.
 - Open the file directly from disk, inspect both viewport sizes and keyboard focus, and check source/network activity for scripts and remote dependencies. Record the outcome and any limitations in completion notes.
 - Produce a focused Conventional Commit for this mockup when this backlog task is implemented. Completion of the mockup does not approve a product rebrand.
+
+## Completion notes
+
+- Implemented the standalone mockup at `docs/brand/mockups/roadcraft-field-manual.html`.
+- Source checks confirm one HTML file with one embedded style block, no JavaScript, external URLs, images, frameworks, build references, or application imports. Required landing, assessment, warning, results, accessibility, and foundation states are present.
+- Checked text pairings meet the 4.5:1 target. The minimum checked ratio is 5.26:1 for brick on the warning surface.
+- Direct browser rendering was attempted, but the connected browser rejected `file://` navigation under its URL policy. Source-level and contrast validation passed; viewport rendering remains the only unverified check.
+- No application source, route, dataset, dependency, or shared style was changed.
