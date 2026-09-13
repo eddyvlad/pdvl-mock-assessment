@@ -289,6 +289,21 @@ a {
     padding-block: clamp(2rem, 5vw, 4.5rem);
 }
 
+.site-footer {
+    width: min(100% - 2rem, 72rem);
+    margin-inline: auto;
+    padding-block: 1rem 1.5rem;
+    color: var(--muted-foreground);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-align: right;
+    text-transform: uppercase;
+
+    & p {
+        margin: 0;
+    }
+}
+
 .eyebrow {
     color: var(--accent);
     font-size: 0.75rem;

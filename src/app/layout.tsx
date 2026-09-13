@@ -3,6 +3,7 @@ import './globals.css';
 import ThemeToggle from './theme-toggle';
 import NavBar from '@/components/nav-bar';
 import { GoogleAnalytics } from '@next/third-parties/google';
+import { APP_VERSION } from '@/lib/app-version';
 import { homepageDescription, homepageTitle, siteUrl } from '@/lib/site-metadata';
 import { ReactNode } from 'react';
 
@@ -32,6 +33,9 @@ export default function RootLayout({children}: { children: ReactNode }) {
     <body>
     <NavBar/>
     {children}
+    <footer className="site-footer" aria-label="Application information">
+      <p>v{APP_VERSION}</p>
+    </footer>
     <ThemeToggle/>
     </body>
     {googleAnalyticsId && <GoogleAnalytics gaId={googleAnalyticsId}/>}
