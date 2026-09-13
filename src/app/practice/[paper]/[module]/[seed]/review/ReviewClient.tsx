@@ -264,7 +264,7 @@ export default function ReviewClient({ paper, moduleKey, seed, questions, attemp
                 <div className="flex items-start gap-3">
                   <span className="font-mono text-sm font-bold text-accent">{String(index + 1).padStart(2, '0')}</span>
                   <div>
-                    <h2 className="mb-2 font-sans text-base font-bold tracking-normal">{question.prompt}</h2>
+                    <h2 className="review-question-heading mb-2">{question.prompt}</h2>
                     <p className={clsx('m-0 text-sm', isAnswered ? 'text-muted-foreground' : 'font-bold text-danger')}>
                       {isAnswered ? `Selected: ${String.fromCharCode(65 + Number(answer))}. ${question.choices[Number(answer)]}` : 'No answer selected'}
                     </p>
