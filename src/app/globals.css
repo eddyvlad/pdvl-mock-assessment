@@ -392,6 +392,16 @@ a {
         transform: translateY(-1px);
     }
 
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.55;
+        transform: none;
+    }
+
+    &:disabled:hover {
+        transform: none;
+    }
+
     &:active {
         transform: translateY(0);
     }
@@ -421,6 +431,15 @@ a {
     &:hover {
         border-color: var(--accent);
         background: color-mix(in srgb, var(--secondary) 78%, var(--accent));
+    }
+
+    &:disabled,
+    &:disabled:hover {
+        border-color: var(--border);
+        background: color-mix(in srgb, var(--secondary) 65%, var(--background));
+        color: var(--muted-foreground);
+        opacity: 1;
+        transform: none;
     }
 }
 
