@@ -299,6 +299,10 @@ a {
     }
 }
 
+#papers {
+    scroll-margin-top: 5.5rem;
+}
+
 .site-footer {
     width: min(100% - 2rem, 72rem);
     margin-inline: auto;
