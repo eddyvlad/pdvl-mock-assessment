@@ -1,12 +1,24 @@
 # PDVL Mock Assessments
 
-A lightweight Next.js app for practicing PDVL modules.
+Steady Signal is a lightweight Next.js app for timed PDVL mock tests and practice exams in Singapore. It covers Papers A, B, and C with deterministic, shareable question sets, guided question navigation, answer review, and explanations after submission.
 
 See [AGENTS.md](./AGENTS.md) for full product and behavior specifications.
 
+## How it works
+
+The homepage lets learners choose a paper and start a seeded practice attempt. A six-character base62 seed determines the selected questions and choice order, so the same practice URL reproduces the same set. Attempts are saved in the browser while in progress and move through these routes:
+
+- `/practice/:paper/:module/:seed` for the guided assessment.
+- `/practice/:paper/:module/:seed/review` for checking answers before submission.
+- `/practice/:paper/:module/:seed/result` for the score and detailed review.
+
+There is no account or application database. The question pools are versioned static assets, and Google Analytics is optional.
+
 ## Passing Criteria
 
-Paper A combines Module 1 (30 questions) and Module 2 (5 questions). A minimum of 30 correct answers is required to pass the paper. For example, scoring 24 in Module 1 makes passing impossible, while scoring 25 means Module 2 must be answered perfectly. Module 1 results display "Pending" if your score still allows a pass after Module 2.
+Paper A combines Module 1 (30 questions, 35 minutes) and Module 2 (5 questions, 10 minutes). A minimum of 30 correct answers is required to pass the paper. For example, scoring 24 in Module 1 makes passing impossible, while scoring 25 means Module 2 must be answered perfectly. Module 1 results display "Pending" if your score still allows a pass after Module 2.
+
+Paper B contains 25 questions in 30 minutes and requires 22 correct answers. Paper C contains 15 questions in 15 minutes and requires 12 correct answers.
 
 ## Setup
 
@@ -17,11 +29,11 @@ Paper A combines Module 1 (30 questions) and Module 2 (5 questions). A minimum o
 
 ## Development
 
-- `npm run dev` – start the development server.
-- `npm run lint` – run ESLint.
-- `npm test` – run Jest tests.
-- `npm run typecheck` – run TypeScript type checks.
-- `npm run build` – create a production build.
+- `npm run dev`: start the development server.
+- `npm run lint`: run ESLint.
+- `npm test`: run Jest tests.
+- `npm run typecheck`: run TypeScript type checks.
+- `npm run build`: create a production build.
 
 The repository-local agent-state allocator is validated separately with
 `node scripts/agent-state.test.mjs`. Reserve a task number immediately before
@@ -53,3 +65,4 @@ scoped to this repository and is not a committed application dependency.
 
 - Question choices use native radio inputs with proper labels for accessibility.
 - A theme toggle in the bottom-right lets you switch between system, dark, and light modes; your selection persists in local storage.
+- Homepage title and description are defined in `src/lib/site-metadata.ts` and reused for the canonical and Open Graph metadata.

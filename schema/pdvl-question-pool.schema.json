@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://example.com/schemas/pdvl-question-pool.v3.schema.json",
   "title": "PDVL Mock Assessment — Module Question Pool (v3)",
-  "description": "A module file is an array of question objects. Each question has 2–4 choices, a 0-based correctIndex, an optional explanation, and optional topic tags used for stratified sampling.",
+  "description": "A module file is an array of question objects. Each question has 2–4 choices, a 0-based correctIndex, an optional explanation, optional lowercase snake_case topic tags used for result signals, and a relative difficulty value.",
   "type": "array",
   "minItems": 1,
   "items": {
@@ -21,7 +21,7 @@
     },
     "tag": {
       "type": "string",
-      "description": "Lowercase snake_case tag used for topic balancing/filters.",
+      "description": "Lowercase snake_case tag used for result topic signals.",
       "minLength": 2,
       "maxLength": 40,
       "pattern": "^[a-z0-9_]+$"
@@ -33,7 +33,6 @@
         "prompt",
         "choices",
         "correctIndex",
-        "tags",
         "difficulty"
       ],
       "properties": {
@@ -80,7 +79,7 @@
         },
         "difficulty": {
           "type": "string",
-          "description": "Relative difficulty of the question, used for paper balancing.",
+          "description": "Relative difficulty of the question in the dataset.",
           "enum": [
             "easy",
             "medium",

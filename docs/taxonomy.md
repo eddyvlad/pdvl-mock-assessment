@@ -1,5 +1,7 @@
 # PDVL Question Tag Taxonomy
 
+This vocabulary reflects the tags currently used by the `v2025-09` question pools. Tags are optional metadata and must use lowercase snake_case when present. They are used for topic signals on results pages; question sampling remains uniform.
+
 ## M1 tags
 - `p2p_landscape`
 - `professionalism_conduct`
@@ -8,39 +10,36 @@
 - `road_rules_buslanes`
 - `accidents_breakdowns`
 - `emergency_contacts`
-- `DIPS_offences`
+- `dips_offences`
 - `hazards_weather_visibility`
-- `vehicle_maintenance`
 - `child_restraints`
 - `navigation_planning`
 - `operating_costs`
-- `seat_belts`
+- `idling_rule`
+- `passenger_safety`
 
 ## M2 tags
 - `customer_service_communication`
 - `safe_stopping`
-- `seat_belts`
 - `assistance_mobility`
 - `professionalism_boundaries`
 - `conflict_management`
 - `incident_reporting`
 - `sgsecure_app`
-- `sgsecure_tti`
 - `sgsecure_hot`
-- `sgsecure_run_hide_tell`
 - `first_aid`
-- `POHA`
+- `poha`
 - `child_restraints`
 - `medical_emergency`
-- `navigation_expectations`
+- `route_selection`
 
 ## M3B tags
-- `VL_eligibility_obligations`
-- `PSV_rules_owner_duties`
+- `vl_eligibility_obligations`
+- `psv_rules_owner_duties`
 - `inspections`
 - `equipment_permissions`
-- `IVRD_PDPA`
-- `VLPS`
+- `ivrd_pdpa`
+- `vlps`
 - `conduct`
 - `decals`
 - `stopping_restrictions`
@@ -55,6 +54,8 @@
 - `taxi_stand_codes`
 - `navigation_tools_concepts`
 - `expressways_roads`
+- `safe_stopping`
+- `route_planning`
 - `question_type_route`
 - `question_type_nearest`
 - `question_type_region`

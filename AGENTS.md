@@ -2,8 +2,8 @@
 
 ## Project overview
 
-**PDVL Mock Assessments** is an ongoing web project providing **timed, shareable practice exams** for Singapore’s *
-*Private Hire Car Driver’s Vocational Licence (PDVL)** course. The app generates deterministic, seed-based quizzes so
+**PDVL Mock Assessments** is an ongoing web project providing **timed, shareable practice exams** for Singapore's
+**Private Hire Car Driver's Vocational Licence (PDVL)** course. The app generates deterministic, seed-based quizzes so
 that the same URL always reproduces the same question set and option order. Learners can practice modules individually,
 and Paper A computes a combined score across Modules 1 and 2 using a shared seed.
 
@@ -17,11 +17,11 @@ must respect during development.
         * Module 1: 30 Qs, 35 min
         * Module 2: 5 Qs, 10 min
     * **Paper B** (pass ≥ **22**): Module 3B — 25 Qs, 30 min
-    * **Paper C** (pass ≥ **30**): Module 4B — 15 Qs, 15 min (2–4 choices per question)
+    * **Paper C** (pass ≥ **12**): Module 4B, 15 Qs, 15 min (2–4 choices per question)
 * **All questions** have exactly one correct answer.
 * **Deterministic seeding** (Mulberry32 + base62 seed in URL) for reproducible selection and choice order.
-* **All questions on one page** per module, with a **3-second grace** countdown, persistent timer, and auto-submit on
-  expiry.
+* **Guided questions** show one question at a time, followed by a review step and results page. Each attempt has a
+  **3-second grace** countdown, persistent timer, and auto-submit on expiry.
 * **Paper A chaining:** M1 must be completed before M2; M2 reuses M1’s seed to compute the paper’s combined pass/fail.
 
 ## Data layout & versioning
@@ -30,10 +30,10 @@ must respect during development.
 
   ```
   public/datasets/v2025-09/
-    paper-a-module-1.json   # pool 150 → draw 30
-    paper-a-module-2.json   # pool 25  → draw 5
-    paper-b-module-3b.json  # pool 150 → draw 25
-    paper-c-module-4b.json  # pool 42  → draw 15
+    paper-a-module-1.json   # pool 152 → draw 30
+    paper-a-module-2.json   # pool 27  → draw 5
+    paper-b-module-3b.json  # pool 153 → draw 25
+    paper-c-module-4b.json  # pool 44  → draw 15
   ```
 * **Schema** (authoritative, build-time only): `schema/pdvl-question-pool.schema.json`
 * **Versioning:** Keep older versions under `public/datasets/<VERSION>/...` so old seeded links remain valid.
@@ -46,34 +46,38 @@ must respect during development.
     * `choices: string[]` (length **2–4** for Module 4B; 4 for others)
     * `correctIndex: number` (0-based)
     * `explanation?: string`
-    * `tags?: string[]` (optional; used for topic balancing)
+    * `tags?: string[]` (optional; lowercase snake_case topic metadata for result signals)
+    * `difficulty: "easy" | "medium" | "hard"` (required by the pool schema)
 * Pools per module:
-    * A-M1: 150 (draw 30)
-    * A-M2: 25  (draw 5)
-    * B-3B: 150 (draw 25)
-    * C-4B: 42  (draw 15)
+    * A-M1: 152 (draw 30)
+    * A-M2: 27  (draw 5)
+    * B-3B: 153 (draw 25)
+    * C-4B: 44  (draw 15)
 
 ### Data format
 
-- Question schema: `schema/pdvl-question.schema.json`
+- Question schema: `schema/pdvl-question-pool.schema.json`
     - `choices`: 2–4 strings
     - `correctIndex`: 0-based
     - `explanation`: optional but preferred
-    - `tags`: string[] used for topic balancing (see `docs/taxonomy.md`)
+    - `tags`: optional lowercase snake_case strings used for result topic signals (see `docs/taxonomy.md`)
+    - `difficulty`: one of `easy`, `medium`, or `hard`
 
 ### Datasets
 
 - Resolved by `DATASET_VERSION` (see `.env`). Example:
     - `public/datasets/v2025-09/paper-a-module-1.json`
     - ...
-- When sampling, honor `tags` weights if provided by the page route or default config.
+- Sampling is currently uniform and does not use tag weights. Tags are retained for result topic signals and future
+  balancing work.
 
 ## Routing & seeding
 
-* Route shape: `/assess/:paper/:module/:seed`
+* Practice route shape: `/practice/:paper/:module/:seed`
     * `:paper` ∈ `{a,b,c}`
     * `:module` ∈ `{m1,m2,3b,4b}`
     * `:seed` = **base62**, fixed length **6**
+* Review and result routes append `/review` and `/result` to the practice route.
 * If `:seed` is missing, generate a valid seed and **redirect** to the canonical URL.
 * **Randomization rules:**
     * PRNG: **Mulberry32** with the 6-char seed.
@@ -85,8 +89,8 @@ must respect during development.
 ## Paper A chaining & pass logic
 
 * Users must complete **A-M1** before **A-M2**.
-* A-M1 result view includes **Proceed to Module 2** that links to `/assess/a/m2/:seed` with the **same seed**.
-* A-M2 checks that A-M1 (same seed) exists in `localStorage`; otherwise, redirect to A-M1.
+* A-M1 result view includes **Proceed to Module 2** that links to `/practice/a/m2/:seed` with the **same seed**.
+* A-M2 checks that a submitted A-M1 v2 attempt with the same seed exists in `localStorage`; otherwise, redirect to A-M1.
 * **Paper A score = M1\_correct + M2\_correct**; pass if **≥ 30**. Show module subtotals and combined total.
 
 ## Timer, submission, and persistence
@@ -94,33 +98,37 @@ must respect during development.
 * 3-second **grace** when page loads, then countdown starts.
 * **Auto-submit** on expiry; unanswered = incorrect.
 * Manual submit allowed; **warn** if unanswered remain.
-* Persist in `localStorage` under `pdvl:{paper}-{module}:{seed}` with `start`, `end`, `answers[]`.
-* On reload, restore state; if time expired while closed, treat as expired and route to results.
+* Persist v2 attempts in `localStorage` under `pdvl:v2:attempt:{attemptId}`. Store the latest active attempt ID under
+  `pdvl:v2:active-session`.
+* Each attempt stores `startedAt`, `expiresAt`, `updatedAt`, `currentQuestion`, `answers[]`, and its submission state.
+* On reload, restore a resumable in-progress attempt. If its expiry has passed, auto-submit it and route to results.
 
 ## Results & review
 
-* Show: score, pass/fail (paper-level where applicable), elapsed time, per-question correctness, correct answer, user’s
-  answer, and **explanations** (when present).
-* Actions: **Retake same seed**, **New seed**.
+* Show: score, pass/fail (paper-level where applicable), threshold, completion information, per-question correctness,
+  correct answer, learner's answer, and **explanations** (when present).
+* Show a review step before submission with answered status, selected-answer summaries, and jump-to-question actions.
+* Actions: **Retake same seed**, **New seed**, and **Proceed to Module 2** for Paper A where applicable.
 * No PDF export required.
 
 ## Landing page
 
-* Title/description: maintained in `docs/copy.md` (final copy TBD).
-* Module picker grouped by Paper (A/B/C) with “#Qs • time • paper pass mark”.
-* No “continue last session” entry point on landing.
+* Homepage title and description: maintained in `src/lib/site-metadata.ts` and used by the homepage metadata.
+* Module picker grouped by Paper (A/B/C) with question count, time, paper pass mark, and module descriptions.
+* A continue-session panel appears when a valid unfinished v2 attempt exists in the browser.
 
-## Topic balancing
+## Topic metadata
 
-* If `tags` are present in a pool, prefer **even coverage** across tags (simple stratified sampling).
-* If `tags` are absent, use **uniform** random sampling.
+* `tags` are optional lowercase snake_case metadata used to aggregate topic signals on results pages.
+* Current question sampling is uniform. Do not describe the application as tag-balanced unless a separate sampling
+  implementation is added.
 
 ## Accessibility & UX
 
-* Adaptive choice labels (A–B, A–C, A–D).
-* Keyboard shortcuts: `1–4` / `A–D` to select; `Enter` to submit.
+* Adaptive choice labels from A through D based on the number of choices.
+* Keyboard shortcuts: `1–4` / `A–D` to select an answer.
 * Progress bar (answered / total).
-* High-contrast toggle and large-text mode.
+* System, light, and dark theme selection with a persisted preference.
 * Mobile-first layout with large tap targets.
 
 ## Analytics
@@ -140,7 +148,7 @@ must respect during development.
 
 ## Non-functional notes
 
-* Client-only; fetches static JSON; GA is the only third-party.
+* No application database or account system; question pools are static JSON assets and GA is the only third-party.
 * Keep bundles small; cache static datasets if desired.
 
 ## Definition of Done (for changes in this repo)
@@ -150,14 +158,14 @@ must respect during development.
 * Timer, grace, auto-submit, persistence, and restore behave as specified.
 * Explanations render on results; keyboard shortcuts & adaptive labels work.
 * Error states are friendly; GA events fire when configured.
-* Topic balancing honored when `tags` exist; otherwise uniform.
+* Topic signals render when `tags` exist; sampling remains uniform unless balancing is implemented explicitly.
 * Versioned dataset paths supported, with old links still valid where files remain hosted.
 
 ## Dev Environment Tips
 
 - **Package Manager**: We use `npm` as our package manager.
-- **Running the Dev Server**: To start the development server, run `npm dev`.
-- **Installing Dependencies**: Install project dependencies with `npm i`.
+- **Running the Dev Server**: To start the development server, run `npm run dev`.
+- **Installing Dependencies**: Install project dependencies with `npm install`.
 - **Styling**: Apply styles using Tailwind CSS classes.
 - **Icons**: Use `lucide` for icons.
 - **Environment Variables**: If environment variable needs to be modified or added, add to `.env.example`.

@@ -1,6 +1,6 @@
 {
   "name": "pdvl-mock-assessment",
-  "description": "Deterministic, seeded mock assessments for Singapore PDVL (Modules 1, 2, 3B, 4B). Timed, tag-balanced, shareable by URL.",
+  "description": "Deterministic, seeded mock assessments for Singapore PDVL (Modules 1, 2, 3B, 4B). Timed and shareable by URL.",
   "version": "0.1.0",
   "private": true,
   "scripts": {
