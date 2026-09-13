@@ -183,6 +183,10 @@ a {
         text-decoration: none;
     }
 
+    &.btn-primary:hover {
+        color: var(--primary-foreground);
+    }
+
     &.active {
         border-bottom-color: currentColor;
         border-radius: 0.2rem;
