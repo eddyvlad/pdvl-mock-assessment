@@ -193,7 +193,7 @@ export default function ReviewClient({ paper, moduleKey, seed, questions, attemp
                   {isAnswered ? 'Answered' : 'Needs answer'}
                 </span>
               </div>
-              <button className="btn btn-ghost mt-4 gap-2 px-0" type="button" onClick={() => router.push(`${basePath}?attempt=${encodeURIComponent(attempt.attemptId)}&question=${index}`)}>
+              <button className="btn btn-ghost mt-4 gap-2" type="button" onClick={() => router.push(`${basePath}?attempt=${encodeURIComponent(attempt.attemptId)}&question=${index}`)}>
                 Edit answer <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </button>
             </li>
