@@ -53,7 +53,6 @@ export default function ThemeToggle() {
     } else {
       root.setAttribute('data-theme', theme);
     }
-    localStorage.setItem(STORAGE_KEY, theme);
   }, [theme]);
 
   const setTheme = (value: Theme) => {
