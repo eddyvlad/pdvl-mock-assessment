@@ -271,10 +271,16 @@ a {
     border-radius: 0.65rem;
     background: var(--primary);
     color: var(--primary-foreground);
-    font-family: var(--font-serif);
-    font-size: 1.25rem;
-    font-weight: 700;
-    line-height: 1;
+    padding: 0.3rem;
+}
+
+.brand-logo {
+    display: block;
+    height: 100%;
+    width: 100%;
+    background: currentColor;
+    mask: url('/steady-signal-logo.svg') center / contain no-repeat;
+    -webkit-mask: url('/steady-signal-logo.svg') center / contain no-repeat;
 }
 
 .page-shell {
