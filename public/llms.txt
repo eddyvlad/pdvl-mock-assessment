@@ -1,0 +1,24 @@
+# Steady Signal PDVL Mock Tests
+
+> Steady Signal provides timed practice exams for Singapore's Private Hire Car Driver's Vocational Licence (PDVL), covering Papers A, B, and C with reproducible question sets and answer explanations.
+
+Steady Signal is a practice resource for learners preparing for the Singapore PDVL course. Each assessment is selected from a versioned question pool. A six-character base62 seed in the URL determines the questions and choice order, so the same link reproduces the same attempt set.
+
+Assessment routes use the format `/practice/:paper/:module/:seed`.
+
+## Homepage
+
+- [Steady Signal homepage](/): Choose a PDVL mock paper and start a timed practice attempt.
+
+## Practice papers
+
+- **Paper A:** Two-part paper covering Module 1, on-the-road safety practices, and Module 2, passenger engagement and handling. It contains 35 questions across 45 minutes and requires 30 correct answers to pass.
+- **Paper B:** Module 3B covering rules and regulations for PDVL holders. It contains 25 questions across 30 minutes and requires 22 correct answers to pass.
+- **Paper C:** Module 4B covering route planning with digital navigational tools. It contains 15 questions across 15 minutes and requires 12 correct answers to pass.
+
+## Assessment behavior
+
+- Paper A must be completed in order: Module 1 followed by Module 2.
+- Paper A uses the same seed across both modules and calculates a combined score.
+- Each assessment has a grace countdown, a persistent timer, manual submission, and automatic submission when time expires.
+- Results include per-question correctness, the correct answer, the submitted answer, and explanations when available.
