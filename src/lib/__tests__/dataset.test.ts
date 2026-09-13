@@ -85,4 +85,16 @@ test("Paper C prompts and choices use clean learner-facing copy", () => {
   expect(pool.every(({ prompt }) => !prompt.includes("Fine the"))).toBe(true);
   expect(pool.every(({ prompt }) => !prompt.includes("(I point)") && !prompt.includes("(1 Point)"))).toBe(true);
   expect(pool.every(({ prompt }) => !prompt.includes("web- based") && !prompt.includes("web based") && !prompt.includes("digital based"))).toBe(true);
+  expect(pool.every(({ choices }) => choices.every((choice) => !/^[A-D]\s*[-—:]\s/.test(choice)))).toBe(true);
+
+  const shortestRouteQuestion = pool.find(({ prompt }) => prompt.startsWith("OneMap proposes three routes"));
+  expect(shortestRouteQuestion).toMatchObject({
+    correctIndex: 2,
+    choices: [
+      "fastest by time",
+      "commonly used expressway route",
+      "shortest by distance though not fastest",
+      "Any of A/B/C is acceptable",
+    ],
+  });
 });

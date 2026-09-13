@@ -613,9 +613,9 @@
   {
     "prompt": "OneMap proposes three routes: A (21.3 km, 31 min, fastest), B (23.7 km, 32 min), C (21.0 km, 33 min). The exam asks for the shortest route by distance. Which do you choose?",
     "choices": [
-      "A — fastest by time",
-      "B — commonly used expressway route",
-      "C — shortest by distance though not fastest",
+      "fastest by time",
+      "commonly used expressway route",
+      "shortest by distance though not fastest",
       "Any of A/B/C is acceptable"
     ],
     "correctIndex": 2,
