@@ -22,7 +22,7 @@ Choice text should contain only the answer content. The interface should render 
 
 ## Actual behaviour
 
-The third choice is stored as `C — shortest by distance though not fastest`, while the UI labels that choice according to its shuffled position. In the tested set the result displays `B. C — shortest by distance though not fastest`, which looks like two conflicting answer labels and can make the correct answer ambiguous.
+The third choice is stored with a leading `C` and dash before `shortest by distance though not fastest`, while the UI labels that choice according to its shuffled position. In the tested set the result displays a rendered `B` followed by the dataset's `C` and dash, which looks like two conflicting answer labels and can make the correct answer ambiguous.
 
 ## UX and visual observations
 
