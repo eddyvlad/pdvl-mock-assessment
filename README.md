@@ -6,8 +6,9 @@ See [AGENTS.md](./AGENTS.md) for full product and behavior specifications.
 
 ## How it works
 
-The homepage lets learners choose a paper and start a seeded practice attempt. A six-character base62 seed determines the selected questions and choice order, so the same practice URL reproduces the same set. Attempts are saved in the browser while in progress and move through these routes:
+The homepage lets learners choose a paper and start a seeded practice attempt. A six-character base62 seed determines the selected questions and choice order, so the same practice URL reproduces the same set. Attempts are saved in the browser while in progress, and a bare seeded practice URL resumes the active matching attempt when one exists. Move through these routes:
 
+- `/practice/:paper/:module` to generate a new seed and redirect to the canonical practice route.
 - `/practice/:paper/:module/:seed` for the guided assessment.
 - `/practice/:paper/:module/:seed/review` for checking answers before submission.
 - `/practice/:paper/:module/:seed/result` for the score and detailed review.
