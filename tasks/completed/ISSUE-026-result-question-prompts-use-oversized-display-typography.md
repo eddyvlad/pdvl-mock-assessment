@@ -62,5 +62,6 @@ Low
 - Added a scoped result question heading rule with the intended sans-serif, 16px, 700 weight, and 28px line height treatment.
 - Applied the rule to detailed-review question prompts without changing heading semantics or result content.
 - Browser-tested the result prompt at 390px wide. Computed styles were Trebuchet MS, 16px, and 28px line height.
+- Added scoped anywhere-wrapping so long underscore-only prompts remain inside result cards at 320px.
 - No browser console errors were reported.
-- Commit: `9037f7a fix(results): compact question prompt headings`
+- Commits: `9037f7a fix(results): compact question prompt headings`, `0d6d370 fix(results): wrap long question prompts`
