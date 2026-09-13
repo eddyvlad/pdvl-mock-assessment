@@ -105,3 +105,12 @@ This task owns the new practice routes, guided assessment state, v2 attempt pers
 - Keyboard, focus, native form, high-contrast, large-text, reduced-motion, mobile, and desktop checks pass.
 - Add unit and integration tests for the state transitions, v2 storage, continuation, timer expiry, review submission, Paper A chaining, score results, tagged and untagged topics, and clean-break handling of old records.
 - Run `npm run lint`, `npm run typecheck`, `npm test`, and `npm run build` before completion. Produce one focused Conventional Commit for this task.
+
+## Completion notes
+
+- Replaced the old all-questions `/assess` route family with `/practice/:paper/:module/:seed`, its `/review` step, and its `/result` view. The old route files were removed without redirects, and the production route manifest exposes only the new family.
+- Added guided one-question navigation with native radio controls, 1-4 and A-D shortcuts, persisted current question state, a three-second grace period, and expiry-based timing that continues through the review screen.
+- Added v2 attempt creation, answer and navigation persistence, manual review confirmation, automatic expiry submission, Paper A Module 2 gating, combined Paper A scoring, retake and new-seed actions, guarded analytics calls, and a friendly question-load error state.
+- Added result summaries with score, threshold, completion mode, learner and correct answers, explanations, and tag-based topic signals. Untagged question sets show a plain module review cue instead.
+- Browser smoke checks passed for the landing page, guided Paper B flow, answer selection, next-question navigation, continue-session panel, `/assess` returning 404, and the 375px viewport with no horizontal overflow. The responsive viewport was restored after testing.
+- Validation passed: `npm run lint`, `npm run typecheck`, `npm test -- --runInBand`, `npm run build`, and `git diff --check`.
