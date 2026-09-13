@@ -80,3 +80,12 @@ This task changes the landing page and session-entry UI plus the small read-only
 - Existing paper configuration values remain the source of truth. No question, scoring, analytics, or error-handling contract changes.
 - Add tests for paper-card content, Paper A sequencing, no-active-session state, expired or completed active-session state, and selection of the most recently updated unfinished record.
 - Run `npm run lint`, `npm run typecheck`, `npm test`, and `npm run build` before completion. Produce one focused Conventional Commit for this task.
+
+## Completion notes
+
+- Rebuilt the landing page around distinct Paper A, B, and C cards with large letter markers, paper subjects, module detail, question and duration metadata, pass marks, and bottom-aligned actions.
+- Added the Steady Signal introduction and a direct "How it works" explanation so the guided flow is clear before a learner starts.
+- Added `src/lib/attempt-storage.ts` for the version 2 attempt contract and active-session pointer. The landing page only considers the active v2 record when it is unfinished and has future expiry.
+- Legacy `pdvl:{paper}-{module}:{seed}` records are not read by the new helper. Submitted and expired v2 records are also excluded from the continue panel.
+- Added a separate "New paper" action that clears the active pointer only after confirmation. Existing attempt records remain available for the future results route.
+- Validation passed: `npm run lint`, `npm run typecheck`, `npm test -- --runInBand`, `npm run build`, and `git diff --check`.
