@@ -142,7 +142,7 @@ export default function ReviewClient({ paper, moduleKey, seed, questions, attemp
       elapsed: Math.max(0, Math.floor((Date.now() - current.startedAt) / 1000)),
       auto: mode === 'auto',
     });
-    router.replace(`${basePath}/result?attempt=${encodeURIComponent(current.attemptId)}`);
+    router.replace(`${basePath}/result?attempt=${encodeURIComponent(current.attemptId)}`, { scroll: true });
   }, [basePath, moduleKey, paper, questions, router, seed]);
 
   useEffect(() => {
@@ -158,7 +158,7 @@ export default function ReviewClient({ paper, moduleKey, seed, questions, attemp
       return;
     }
     if (stored.status === 'submitted') {
-      router.replace(`${basePath}/result?attempt=${encodeURIComponent(stored.attemptId)}`);
+      router.replace(`${basePath}/result?attempt=${encodeURIComponent(stored.attemptId)}`, { scroll: true });
       return;
     }
 

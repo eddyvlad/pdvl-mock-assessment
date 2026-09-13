@@ -82,7 +82,7 @@ export default function PracticeClient({
       elapsed: Math.max(0, Math.floor((Date.now() - record.startedAt) / 1000)),
       auto: mode === 'auto',
     });
-    router.replace(`${basePath}/result?attempt=${encodeURIComponent(record.attemptId)}`);
+    router.replace(`${basePath}/result?attempt=${encodeURIComponent(record.attemptId)}`, { scroll: true });
   }, [basePath, moduleKey, paper, questions, router, seed, total]);
 
   const patchAttempt = useCallback((patch: Partial<AttemptRecordV2>) => {
@@ -139,7 +139,7 @@ export default function PracticeClient({
       stored = null;
     }
     if (stored?.status === 'submitted') {
-      router.replace(`${basePath}/result?attempt=${encodeURIComponent(stored.attemptId)}`);
+      router.replace(`${basePath}/result?attempt=${encodeURIComponent(stored.attemptId)}`, { scroll: true });
       return;
     }
     if (stored && stored.status === 'in-progress' && isResumableAttempt(stored)) {
