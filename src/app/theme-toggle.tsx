@@ -79,7 +79,7 @@ export default function ThemeToggle() {
   ];
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 flex flex-row gap-1 rounded-full border border-border bg-card/95 p-1 shadow-lg backdrop-blur-sm">
+    <div className="theme-toggle flex flex-row gap-1 rounded-full border border-border bg-card/95 p-1 shadow-lg backdrop-blur-sm">
       {themes.map(({ariaLabel, icon: Icon, value}) => (
         <button
           key={value}

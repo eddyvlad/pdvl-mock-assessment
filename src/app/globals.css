@@ -304,6 +304,21 @@ a {
     }
 }
 
+.theme-toggle {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 50;
+}
+
+@media (max-width: 640px) {
+    .theme-toggle {
+        position: static;
+        width: max-content;
+        margin: 1rem 1rem calc(1rem + env(safe-area-inset-bottom)) auto;
+    }
+}
+
 .eyebrow {
     color: var(--accent);
     font-size: 0.75rem;
