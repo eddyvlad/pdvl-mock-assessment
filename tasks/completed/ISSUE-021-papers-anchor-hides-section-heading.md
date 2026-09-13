@@ -52,3 +52,10 @@ The browser scrolls the `#papers` section to the top of the viewport without acc
 ## Severity
 
 Low
+
+## Completion notes
+
+Implemented on 2026-09-14:
+
+- Added scroll margin to the Papers anchor so the section label and heading clear the sticky navigation.
+- Browser-verified anchor positioning at 1280, 768, 390, and 320 pixel widths.

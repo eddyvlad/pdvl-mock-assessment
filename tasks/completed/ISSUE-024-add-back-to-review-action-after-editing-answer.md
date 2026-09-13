@@ -59,3 +59,10 @@ After entering a practice question from the review page, the learner should see 
 ## Severity
 
 Medium
+
+## Completion notes
+
+Implemented on 2026-09-14:
+
+- Added an internal review return marker and a visible Back to review action on edited practice questions.
+- Browser-verified answer persistence, return navigation, reload behavior, and the absence of the action on ordinary practice starts.

@@ -54,3 +54,10 @@ The dialog remains open after Escape. This was reproduced in a fresh browser tab
 ## Severity
 
 Medium
+
+## Completion notes
+
+Implemented on 2026-09-14:
+
+- Added explicit Escape handling to the submit and discard native dialogs while retaining backdrop dismissal, cancel actions, and focus restoration.
+- Browser-verified both dialogs close without submitting or discarding the active session.

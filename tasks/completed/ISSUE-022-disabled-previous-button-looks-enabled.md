@@ -54,3 +54,10 @@ The question 1 button is marked `[disabled]` in the accessibility tree, but it l
 ## Severity
 
 Low
+
+## Completion notes
+
+Implemented on 2026-09-14:
+
+- Added muted disabled styling, a not-allowed cursor, and no hover lift to shared button states, with dedicated secondary-button colors.
+- Browser-verified the first-question Previous control remains semantically disabled and visually distinct.

@@ -54,3 +54,10 @@ At 1280 by 720, the toolbar is positioned at approximately x=1130, y=658, width=
 ## Severity
 
 Medium
+
+## Completion notes
+
+Implemented on 2026-09-14:
+
+- Added desktop and tablet bottom clearance below the landing page paper cards so the fixed theme toolbar does not cover actions.
+- Browser-verified Paper CTA visibility at desktop and tablet sizes, with mobile theme controls remaining in normal flow.

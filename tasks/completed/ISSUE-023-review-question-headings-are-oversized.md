@@ -56,3 +56,10 @@ The question prompts render at approximately 44px with the Georgia display font 
 ## Severity
 
 Medium
+
+## Completion notes
+
+Implemented on 2026-09-14:
+
+- Added compact sans-serif typography for review question prompts while preserving heading semantics and the main review heading hierarchy.
+- Browser-verified the prompt size, wrapping, and review-card presentation on the current build.

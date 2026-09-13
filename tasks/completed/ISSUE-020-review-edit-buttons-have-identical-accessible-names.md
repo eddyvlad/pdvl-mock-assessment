@@ -54,3 +54,10 @@ In `src/app/practice/[paper]/[module]/[seed]/review/ReviewClient.tsx`, the quest
 ## Severity
 
 Medium
+
+## Completion notes
+
+Implemented on 2026-09-14:
+
+- Added question-numbered accessible names to each review-card Edit answer control without changing its visible label or target behavior.
+- Browser-verified the review accessibility tree exposes distinct names for the edit controls.
