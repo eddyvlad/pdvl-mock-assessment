@@ -47,3 +47,11 @@ Use the following approved wording:
 ## Scope boundaries
 
 This task covers visible landing-page copy and the small layout adjustments needed to accommodate it. Search metadata and indexing controls belong to the companion SEO foundations task. No new dependencies, API changes, or storage migrations are required. Search ranking and Google's exact excerpt are observations, not acceptance criteria.
+
+## Completion notes
+
+- Updated the landing page eyebrow to "Singapore PDVL · practice test" and the main heading to "PDVL mock tests for steady exam preparation."
+- Added the approved visible description covering Singapore's Private Hire Car Driver's Vocational Licence, timed mock tests for Papers A, B and C, answer review, and explanations.
+- Renamed the paper selector heading to "Choose your PDVL mock exam" and retained the Steady Signal slogan in the How it works panel.
+- Preserved the existing paper configuration, active-session panel, and user-authored card layout adjustment.
+- Rendered HTML inspection confirmed the copy is present on the homepage. Lint, typecheck, tests, build, and diff checks passed.

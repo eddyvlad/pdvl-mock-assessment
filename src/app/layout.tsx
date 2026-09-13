@@ -3,16 +3,16 @@ import './globals.css';
 import ThemeToggle from './theme-toggle';
 import NavBar from '@/components/nav-bar';
 import { GoogleAnalytics } from '@next/third-parties/google';
+import { homepageDescription, homepageTitle, siteUrl } from '@/lib/site-metadata';
 import { ReactNode } from 'react';
 
-const host = process.env.HOST ?? 'http://localhost:3000';
 export const metadata: Metadata = {
-  metadataBase: new URL(host),
-  title: 'Steady Signal | PDVL Practice Tests',
-  description: 'Clear, timed practice for Singapore\'s PDVL course.',
+  metadataBase: siteUrl,
+  title: homepageTitle,
+  description: homepageDescription,
   openGraph: {
-    title: 'Steady Signal | PDVL Practice Tests',
-    description: 'Clear, timed practice for Singapore\'s PDVL course.',
+    title: homepageTitle,
+    description: homepageDescription,
     locale: 'en_SG',
     url: '/',
     images: [{
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
       width: 1200,
       height: 630,
       alt: 'Steady Signal PDVL Practice Tests',
-    }]
+    }],
   }
 };
 

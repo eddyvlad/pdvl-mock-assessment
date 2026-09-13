@@ -60,3 +60,11 @@ Search Console account changes, deployment, and external submissions are outside
 - [Google title links](https://developers.google.com/search/docs/appearance/title-link): descriptive titles and visible headings help communicate page purpose.
 - [Google noindex guidance](https://developers.google.com/search/docs/crawling-indexing/block-indexing): pages must remain crawlable for the directive to be seen.
 - [Google sitemap guidance](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap): publish canonical URLs in the sitemap.
+
+## Completion notes
+
+- Centralized the configured site origin and approved homepage title and description in `src/lib/site-metadata.ts`.
+- Added homepage canonical and Open Graph metadata, plus generated `/sitemap.xml` and `/robots.txt` routes.
+- Added inherited `noindex, follow` metadata to the `/practice` route subtree. Practice, review, result, and query-string URLs remain crawlable and shareable.
+- Documented the production `HOST` requirement and post-deployment Google Search Console checks in the README.
+- Rendered HTML inspection confirmed homepage metadata, practice-route robots directives, the single-entry sitemap, and the robots sitemap reference. Lint, typecheck, tests, build, and diff checks passed.

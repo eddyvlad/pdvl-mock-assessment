@@ -1,8 +1,23 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { ArrowRight, BookOpen, CheckCircle2, Clock3, Layers3 } from 'lucide-react';
 import ActiveSessionPanel from '@/components/active-session-panel';
 import { CONFIG } from '@/lib/config';
 import { generateSeed } from '@/lib/seed';
+import { homepageDescription, homepageTitle } from '@/lib/site-metadata';
+
+export const metadata: Metadata = {
+  title: homepageTitle,
+  description: homepageDescription,
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: homepageTitle,
+    description: homepageDescription,
+    url: '/',
+  },
+};
 
 const PAPER_DETAILS = {
   a: {
@@ -60,7 +75,7 @@ function PaperCard({ paperKey, seed }: { paperKey: PaperKey; seed: string }) {
         <p className="m-0 text-sm leading-6 text-muted-foreground">{details.description}</p>
       </div>
 
-      <div className="space-y-3 border-y border-border py-4">
+      <div className="flex-1 space-y-3 border-y border-border py-4">
         {modules.map(([moduleKey, module]) => (
           <div key={moduleKey} className="flex items-start gap-3">
             <Layers3 className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
@@ -107,15 +122,16 @@ export default function Home() {
     <main className="page-shell">
       <header className="mb-14 grid gap-8 lg:grid-cols-[1.35fr_0.65fr] lg:items-end">
         <div className="max-w-3xl">
-          <p className="eyebrow mb-4">Singapore PDVL · practice desk</p>
-          <h1 className="mb-6 max-w-2xl">Keep your thinking steady under pressure.</h1>
+          <p className="eyebrow mb-4">Singapore PDVL · practice test</p>
+          <h1 className="mb-6 max-w-2xl">PDVL mock tests for steady exam preparation.</h1>
           <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
-            Timed mock papers, one clear question at a time, with explanations that show where to focus next.
+            Prepare for Singapore&apos;s Private Hire Car Driver&apos;s Vocational Licence (PDVL) with timed mock tests for Papers A, B and C. Practise one question at a time, review your answers, and learn from explanations after submitting.
           </p>
         </div>
         <div className="border-l-4 border-accent bg-muted p-5 text-sm leading-6">
           <p className="eyebrow mb-2">How it works</p>
           <p className="m-0">Choose a paper, work through the guided questions, then review the complete attempt before submitting.</p>
+          <p className="mt-3 mb-0 font-bold text-foreground">Keep your thinking steady under pressure.</p>
         </div>
       </header>
 
@@ -124,8 +140,8 @@ export default function Home() {
       <section id="papers" aria-labelledby="papers-heading">
         <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="eyebrow mb-2">Choose your practice</p>
-            <h2 id="papers-heading" className="mb-0">Timed mock papers</h2>
+            <p className="eyebrow mb-2">Practice papers</p>
+            <h2 id="papers-heading" className="mb-0">Choose your PDVL mock exam</h2>
           </div>
           <p className="m-0 max-w-sm text-sm leading-6 text-muted-foreground">Every link creates a reproducible question set. You can share it or retake the same set later.</p>
         </div>
