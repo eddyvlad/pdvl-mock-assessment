@@ -7,6 +7,7 @@ import {
   listAttempts,
   parseAttemptRecord,
   readActiveAttempt,
+  removeAttempt,
   writeAttempt,
 } from '../attempt-storage';
 
@@ -68,6 +69,22 @@ describe('attempt storage v2', () => {
     storage.removeItem(ACTIVE_SESSION_KEY);
 
     expect(getLatestResumableAttempt(1_000, storage)).toBeNull();
+  });
+
+  it('deletes the targeted v2 attempt and its active pointer without touching another attempt', () => {
+    const storage = createStorage();
+    const target = attempt({ attemptId: 'target' });
+    const other = attempt({ attemptId: 'other', updatedAt: 200 });
+    writeAttempt(target, storage);
+    writeAttempt(other, storage);
+    storage.setItem(ACTIVE_SESSION_KEY, target.attemptId);
+
+    removeAttempt(target.attemptId, storage);
+
+    expect(storage.getItem('pdvl:v2:attempt:target')).toBeNull();
+    expect(storage.getItem(ACTIVE_SESSION_KEY)).toBeNull();
+    expect(readActiveAttempt(storage)).toBeNull();
+    expect(storage.getItem('pdvl:v2:attempt:other')).not.toBeNull();
   });
 
   it('does not treat submitted records as resumable', () => {

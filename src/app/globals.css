@@ -23,6 +23,7 @@
     --color-ring: var(--ring);
     --color-success: var(--success);
     --color-danger: var(--danger);
+    --color-danger-foreground: var(--danger-foreground);
     --color-brand-ivory: #faf6ef;
     --color-brand-white: #fffdf9;
     --color-brand-olive: #283c32;
@@ -63,6 +64,7 @@
     --ring: #a24632;
     --success: #467057;
     --danger: #a24632;
+    --danger-foreground: #faf6ef;
     --shadow-color: 40 60 50;
 }
 
@@ -88,6 +90,7 @@
     --ring: #d6f45b;
     --success: #b9df9d;
     --danger: #ff9b85;
+    --danger-foreground: #101719;
     --shadow-color: 0 0 0;
 }
 
@@ -114,6 +117,7 @@
         --ring: #d6f45b;
         --success: #b9df9d;
         --danger: #ff9b85;
+        --danger-foreground: #101719;
         --shadow-color: 0 0 0;
     }
 }
@@ -191,6 +195,56 @@ a {
 
     & :where(strong):not(:where([class~="not-prose"] *)) {
         color: var(--primary);
+    }
+}
+
+.steady-dialog {
+    width: min(calc(100vw - 2rem), 32rem);
+    max-height: calc(100vh - 2rem);
+    margin: auto;
+    overflow: auto;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--danger);
+    border-radius: 0.75rem;
+    background: var(--card);
+    color: var(--card-foreground);
+    box-shadow: 0 24px 60px rgb(var(--shadow-color) / 0.24);
+    padding: 0;
+
+    &::backdrop {
+        background: rgb(16 23 25 / 0.72);
+    }
+}
+
+.steady-dialog-panel {
+    padding: 1.5rem;
+}
+
+.steady-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    border-top: 1px solid var(--border);
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+}
+
+@media (max-width: 480px) {
+    .steady-dialog {
+        width: calc(100vw - 1.5rem);
+    }
+
+    .steady-dialog-panel {
+        padding: 1.25rem;
+    }
+
+    .steady-dialog-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+
+        & .btn {
+            width: 100%;
+        }
     }
 }
 
@@ -317,6 +371,16 @@ a {
     &:hover {
         border-color: var(--accent);
         background: color-mix(in srgb, var(--secondary) 78%, var(--accent));
+    }
+}
+
+@utility btn-danger {
+    @apply btn;
+    background: var(--danger);
+    color: var(--danger-foreground);
+
+    &:hover {
+        background: color-mix(in srgb, var(--danger) 84%, var(--foreground));
     }
 }
 

@@ -95,6 +95,18 @@ export function removeActiveSession(storage: AttemptStorage | null = getBrowserS
   dispatchAttemptChange();
 }
 
+export function removeAttempt(attemptId: string, storage: AttemptStorage | null = getBrowserStorage()) {
+  if (!storage) {
+    return;
+  }
+
+  storage.removeItem(getAttemptStorageKey(attemptId));
+  if (storage.getItem(ACTIVE_SESSION_KEY) === attemptId) {
+    storage.removeItem(ACTIVE_SESSION_KEY);
+  }
+  dispatchAttemptChange();
+}
+
 export function readActiveAttempt(storage: AttemptStorage | null = getBrowserStorage()) {
   const attemptId = storage?.getItem(ACTIVE_SESSION_KEY);
   return attemptId ? readAttempt(attemptId, storage) : null;
