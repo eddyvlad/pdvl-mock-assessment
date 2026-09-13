@@ -72,3 +72,17 @@ test("v2025-09 pools match the question data contract", () => {
     });
   });
 });
+
+test("Paper C prompts and choices use clean learner-facing copy", () => {
+  const pool = JSON.parse(
+    readFileSync(join(DATASET_DIRECTORY, "paper-c-module-4b.json"), "utf8")
+  ) as Array<{
+    prompt: string;
+    choices: string[];
+    correctIndex: number;
+  }>;
+
+  expect(pool.every(({ prompt }) => !prompt.includes("Fine the"))).toBe(true);
+  expect(pool.every(({ prompt }) => !prompt.includes("(I point)") && !prompt.includes("(1 Point)"))).toBe(true);
+  expect(pool.every(({ prompt }) => !prompt.includes("web- based") && !prompt.includes("web based") && !prompt.includes("digital based"))).toBe(true);
+});
