@@ -119,7 +119,7 @@ export default function Home() {
   };
 
   return (
-    <main className="page-shell">
+    <main className="page-shell landing-page">
       <header className="mb-14 grid gap-8 lg:grid-cols-[1.35fr_0.65fr] lg:items-end">
         <div className="max-w-3xl">
           <p className="eyebrow mb-4">Singapore PDVL · practice test</p>
