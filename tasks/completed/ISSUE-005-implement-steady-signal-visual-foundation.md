@@ -74,3 +74,11 @@ This task changes shared styling and shell components only. It does not redesign
 - Existing application behavior and data contracts remain unchanged.
 - Run `npm run lint`, `npm run typecheck`, `npm test`, and `npm run build` before completion. Include the responsive and theme checks in completion notes.
 - Produce one focused Conventional Commit for this task.
+
+## Completion notes
+
+- Replaced the previous blue and cyan token system and gradient utilities with Steady Study light tokens and Night Signal dark tokens.
+- Restyled the shared header as Steady Signal, retained the existing theme storage and system, light, and dark choices, and added pressed states to the theme controls.
+- Added shared shell, metadata, button, card, focus, reduced-motion, and responsive width treatments for the following landing and practice work.
+- The responsive rules use a fluid readable shell with a 320px minimum document width and no fixed-width content dependencies. The theme mapping was checked for both explicit theme attributes and system preference handling.
+- Validation passed: `npm run lint`, `npm run typecheck`, `npm test -- --runInBand`, and `npm run build`.

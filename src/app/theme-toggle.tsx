@@ -80,13 +80,14 @@ export default function ThemeToggle() {
   ];
 
   return (
-    <div className="fixed bottom-1 right-1 flex flex-row gap-2 bg-background/50 backdrop-blur-sm rounded-lg shadow-lg z-50">
+    <div className="fixed bottom-4 right-4 z-50 flex flex-row gap-1 rounded-full border border-border bg-card/95 p-1 shadow-lg backdrop-blur-sm">
       {themes.map(({ariaLabel, icon: Icon, value}) => (
         <button
           key={value}
           aria-label={ariaLabel}
-          className={clsx('btn btn-ghost p-2 rounded-full', {
-            'text-primary': theme === value,
+          aria-pressed={theme === value}
+          className={clsx('btn btn-ghost h-9 min-h-0 w-9 rounded-full p-2', {
+            'bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground': theme === value,
           })}
           onClick={() => setTheme(value)}
         >
