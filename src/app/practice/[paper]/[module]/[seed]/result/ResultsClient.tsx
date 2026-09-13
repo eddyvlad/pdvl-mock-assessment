@@ -39,6 +39,10 @@ export default function ResultsClient({ paper, moduleKey, seed, questions, attem
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, []);
+
+  useEffect(() => {
     if (!attemptId) {
       setAttemptError('missing');
       return;
@@ -239,7 +243,7 @@ export default function ResultsClient({ paper, moduleKey, seed, questions, attem
                 <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
                   <div className="flex items-start gap-3">
                     <span className="font-mono text-sm font-bold text-accent">{String(index + 1).padStart(2, '0')}</span>
-                    <h3 className="m-0 max-w-3xl font-sans text-base font-bold leading-7 tracking-normal">{question.prompt}</h3>
+                    <h3 className="result-question-heading m-0 max-w-3xl">{question.prompt}</h3>
                   </div>
                   <span className={clsx('text-xs font-bold uppercase tracking-wide', correct ? 'text-success' : 'text-danger')}>
                     {correct ? 'Correct' : 'Incorrect'}
