@@ -97,6 +97,7 @@ export default function ResultsClient({ paper, moduleKey, seed, questions, attem
     ? getLatestAttempt((candidate) => candidate.paper === 'a' && candidate.module === 'm1' && candidate.seed === seed && candidate.status === 'submitted')
     : null;
   const combinedScore = previousModule ? (previousModule.score ?? 0) + moduleScore : null;
+  const isPaperASecondModule = paper === 'a' && moduleKey === 'm2';
   const paperPass = paper === 'a' && moduleKey === 'm2'
     ? (combinedScore ?? moduleScore) >= modulePassMark
     : paper !== 'a' && moduleScore >= modulePassMark;
@@ -123,11 +124,28 @@ export default function ResultsClient({ paper, moduleKey, seed, questions, attem
           </span>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-3">
-          <div className="bg-muted p-4">
-            <p className="meta-label mb-2">{paper === 'a' && moduleKey === 'm2' ? 'Combined score' : 'Score'}</p>
-            <p className="m-0 font-mono text-3xl font-bold text-primary">{combinedScore ?? moduleScore}/{paper === 'a' && moduleKey === 'm2' ? (CONFIG.a.modules.m1.count + CONFIG.a.modules.m2.count) : questions.length}</p>
+        {isPaperASecondModule && (
+          <div className="mb-4 grid gap-4 sm:grid-cols-3" aria-label="Paper A score breakdown">
+            <div className="bg-muted p-4">
+              <p className="meta-label mb-2">Module 1 subtotal</p>
+              <p className="m-0 font-mono text-3xl font-bold text-primary">{previousModule?.score ?? 0}/{CONFIG.a.modules.m1.count}</p>
+            </div>
+            <div className="bg-muted p-4">
+              <p className="meta-label mb-2">Module 2 subtotal</p>
+              <p className="m-0 font-mono text-3xl font-bold text-primary">{moduleScore}/{CONFIG.a.modules.m2.count}</p>
+            </div>
+            <div className="bg-muted p-4">
+              <p className="meta-label mb-2">Combined score</p>
+              <p className="m-0 font-mono text-3xl font-bold text-primary">{combinedScore ?? moduleScore}/{CONFIG.a.modules.m1.count + CONFIG.a.modules.m2.count}</p>
+            </div>
           </div>
+        )}
+
+        <div className="grid gap-4 sm:grid-cols-3">
+          {!isPaperASecondModule && <div className="bg-muted p-4">
+            <p className="meta-label mb-2">Score</p>
+            <p className="m-0 font-mono text-3xl font-bold text-primary">{moduleScore}/{questions.length}</p>
+          </div>}
           <div className="bg-muted p-4">
             <p className="meta-label mb-2">Required</p>
             <p className="m-0 font-mono text-3xl font-bold text-primary">{modulePassMark} correct</p>
