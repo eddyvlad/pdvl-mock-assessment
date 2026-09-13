@@ -4,6 +4,7 @@
 import clsx from 'clsx';
 import { ArrowLeft, ArrowRight, Check, Clock3, ListChecks } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import {
   createAttemptRecord,
@@ -29,6 +30,7 @@ interface Props {
   minutes: number;
   attemptId?: string;
   questionIndex?: number;
+  returnToReview?: boolean;
 }
 
 function formatTime(seconds: number) {
@@ -45,6 +47,7 @@ export default function PracticeClient({
   minutes,
   attemptId,
   questionIndex,
+  returnToReview,
 }: Props) {
   const router = useRouter();
   const total = questions.length;
@@ -335,9 +338,16 @@ export default function PracticeClient({
         </fieldset>
 
         <div className="mt-8 flex flex-wrap justify-between gap-3 border-t border-border pt-5">
-          <button className="btn btn-secondary gap-2" type="button" disabled={currentQuestion === 0} onClick={() => goToQuestion(currentQuestion - 1)}>
-            <ArrowLeft className="h-4 w-4" aria-hidden="true" /> Previous
-          </button>
+          <div className="flex flex-wrap gap-3">
+            <button className="btn btn-secondary gap-2" type="button" disabled={currentQuestion === 0} onClick={() => goToQuestion(currentQuestion - 1)}>
+              <ArrowLeft className="h-4 w-4" aria-hidden="true" /> Previous
+            </button>
+            {returnToReview ? (
+              <Link className="btn btn-secondary gap-2" href={`${basePath}/review?attempt=${encodeURIComponent(attempt.attemptId)}`}>
+                <ArrowLeft className="h-4 w-4" aria-hidden="true" /> Back to review
+              </Link>
+            ) : null}
+          </div>
           <button className="btn btn-primary gap-2" type="button" onClick={() => {
             if (currentQuestion === total - 1) {
               router.push(`${basePath}/review?attempt=${encodeURIComponent(attempt.attemptId)}`);

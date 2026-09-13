@@ -275,7 +275,7 @@ export default function ReviewClient({ paper, moduleKey, seed, questions, attemp
                   {isAnswered ? 'Answered' : 'Needs answer'}
                 </span>
               </div>
-              <button className="btn btn-ghost mt-4 gap-2" type="button" aria-label={`Edit answer for question ${String(index + 1).padStart(2, '0')}`} onClick={() => router.push(`${basePath}?attempt=${encodeURIComponent(attempt.attemptId)}&question=${index}`)}>
+              <button className="btn btn-ghost mt-4 gap-2" type="button" aria-label={`Edit answer for question ${String(index + 1).padStart(2, '0')}`} onClick={() => router.push(`${basePath}?attempt=${encodeURIComponent(attempt.attemptId)}&question=${index}&return=review`)}>
                 Edit answer <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </button>
             </li>

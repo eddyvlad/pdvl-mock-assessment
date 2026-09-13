@@ -41,6 +41,7 @@ export default async function Page({
 
   const query = await searchParams;
   const questionValue = getStringParam(query.question);
+  const returnValue = getStringParam(query.return);
   const parsedQuestion = questionValue === undefined ? undefined : Number(questionValue);
 
   return (
@@ -52,6 +53,7 @@ export default async function Page({
       minutes={moduleConfig.minutes}
       attemptId={getStringParam(query.attempt)}
       questionIndex={Number.isInteger(parsedQuestion) ? parsedQuestion : undefined}
+      returnToReview={returnValue === 'review'}
     />
   );
 }
