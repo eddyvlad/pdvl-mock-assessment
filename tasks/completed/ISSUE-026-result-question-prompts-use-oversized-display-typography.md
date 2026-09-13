@@ -56,3 +56,11 @@ The result-card prompts render with the Georgia display font at approximately 28
 ## Severity
 
 Low
+
+## Completion notes
+
+- Added a scoped result question heading rule with the intended sans-serif, 16px, 700 weight, and 28px line height treatment.
+- Applied the rule to detailed-review question prompts without changing heading semantics or result content.
+- Browser-tested the result prompt at 390px wide. Computed styles were Trebuchet MS, 16px, and 28px line height.
+- No browser console errors were reported.
+- Commit: `9037f7a fix(results): compact question prompt headings`

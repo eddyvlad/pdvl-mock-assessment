@@ -58,3 +58,11 @@ The `finishAttempt` callbacks in `src/app/practice/[paper]/[module]/[seed]/Pract
 ## Severity
 
 Medium
+
+## Completion notes
+
+- Added explicit scroll restoration to result navigations from practice and review, including stored submitted-attempt redirects.
+- Added a result-view mount reset so direct result entries also open at the summary.
+- Browser-tested a completed Paper C review submitted from the bottom of the review page at 1280 by 720. The result opened at `scrollY: 0` with the summary visible.
+- No browser console errors were reported. Existing `Back to top` behavior remains unchanged.
+- Commit: `6a4934d fix(navigation): reset scroll on result routes`
