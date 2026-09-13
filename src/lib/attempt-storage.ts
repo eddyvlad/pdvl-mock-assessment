@@ -22,6 +22,8 @@ export interface AttemptRecordV2 {
   score?: number;
 }
 
+export type AttemptContext = Pick<AttemptRecordV2, 'paper' | 'module' | 'seed'>;
+
 export type AttemptStorage = Pick<Storage, 'getItem' | 'setItem' | 'removeItem' | 'key' | 'length'>;
 
 function getBrowserStorage(): AttemptStorage | null {
@@ -135,6 +137,10 @@ export function listAttempts(storage: AttemptStorage | null = getBrowserStorage(
 
 export function isResumableAttempt(record: AttemptRecordV2 | null, now = Date.now()) {
   return record?.status === 'in-progress' && record.expiresAt > now;
+}
+
+export function matchesAttemptContext(record: AttemptRecordV2 | null, context: AttemptContext) {
+  return Boolean(record && record.paper === context.paper && record.module === context.module && record.seed === context.seed);
 }
 
 export function getLatestResumableAttempt(

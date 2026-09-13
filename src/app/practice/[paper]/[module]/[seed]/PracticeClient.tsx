@@ -8,7 +8,9 @@ import { useRouter } from 'next/navigation';
 import {
   createAttemptRecord,
   getLatestAttempt,
+  getLatestResumableAttempt,
   isResumableAttempt,
+  matchesAttemptContext,
   readAttempt,
   removeActiveSession,
   type AttemptRecordV2,
@@ -52,6 +54,7 @@ export default function PracticeClient({
   const attemptRef = useRef<AttemptRecordV2 | null>(null);
   const submittingRef = useRef(false);
   const [attempt, setAttempt] = useState<AttemptRecordV2 | null>(null);
+  const [attemptError, setAttemptError] = useState(false);
   const [grace, setGrace] = useState(3);
   const [timeLeft, setTimeLeft] = useState(minutes * 60);
 
@@ -123,7 +126,19 @@ export default function PracticeClient({
       }
     }
 
-    const stored = attemptId ? readAttempt(attemptId) : null;
+    const context = { paper, module: moduleKey, seed };
+    let stored = attemptId ? readAttempt(attemptId) : getLatestResumableAttempt();
+    if (attemptId && (!stored || !matchesAttemptContext(stored, context))) {
+      setAttemptError(true);
+      return;
+    }
+    if (!attemptId && stored && !matchesAttemptContext(stored, context)) {
+      stored = null;
+    }
+    if (stored?.status === 'submitted') {
+      router.replace(`${basePath}/result?attempt=${encodeURIComponent(stored.attemptId)}`);
+      return;
+    }
     if (stored && stored.status === 'in-progress' && isResumableAttempt(stored)) {
       const savedQuestion = Number.isInteger(questionIndex) && questionIndex !== undefined && questionIndex >= 0 && questionIndex < total
         ? questionIndex
@@ -160,7 +175,7 @@ export default function PracticeClient({
       minutes,
       version: 2,
     });
-  }, [attemptId, finishAttempt, minutes, moduleKey, paper, questionIndex, router, seed, total]);
+  }, [attemptId, basePath, finishAttempt, minutes, moduleKey, paper, questionIndex, router, seed, total]);
 
   useEffect(() => {
     if (!attempt || attempt.status !== 'in-progress') {
@@ -216,6 +231,22 @@ export default function PracticeClient({
       patchAttempt({ currentQuestion: index });
     }
   };
+
+  if (attemptError) {
+    return (
+      <main className="page-shell">
+        <div className="card mx-auto max-w-xl border-danger">
+          <p className="eyebrow mb-3">Practice unavailable</p>
+          <h1 className="mb-4 text-4xl">This practice attempt does not belong to this question set.</h1>
+          <p className="mb-6 leading-7 text-muted-foreground">Open the matching practice link or start a new attempt from the landing page.</p>
+          <div className="flex flex-wrap gap-3">
+            <button className="btn btn-primary" type="button" onClick={() => router.replace(basePath)}>Open this practice set</button>
+            <button className="btn btn-secondary" type="button" onClick={() => router.replace('/')}>Back to landing</button>
+          </div>
+        </div>
+      </main>
+    );
+  }
 
   if (!attempt) {
     return (

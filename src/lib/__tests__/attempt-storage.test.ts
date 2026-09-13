@@ -5,6 +5,7 @@ import {
   createAttemptRecord,
   getLatestResumableAttempt,
   listAttempts,
+  matchesAttemptContext,
   parseAttemptRecord,
   readActiveAttempt,
   removeAttempt,
@@ -94,6 +95,15 @@ describe('attempt storage v2', () => {
     expect(getLatestResumableAttempt(1_000, storage)).toBeNull();
     expect(readActiveAttempt(storage)?.attemptId).toBe('submitted');
     expect(storage.getItem(ACTIVE_SESSION_KEY)).toBe('submitted');
+  });
+
+  it('matches an attempt only when its paper, module, and seed match the route', () => {
+    const record = attempt({ paper: 'a', module: 'm1', seed: 'abc123' });
+
+    expect(matchesAttemptContext(record, { paper: 'a', module: 'm1', seed: 'abc123' })).toBe(true);
+    expect(matchesAttemptContext(record, { paper: 'a', module: 'm1', seed: 'ABC123' })).toBe(false);
+    expect(matchesAttemptContext(record, { paper: 'a', module: 'm2', seed: 'abc123' })).toBe(false);
+    expect(matchesAttemptContext(null, { paper: 'a', module: 'm1', seed: 'abc123' })).toBe(false);
   });
 
   it('rejects malformed records', () => {
