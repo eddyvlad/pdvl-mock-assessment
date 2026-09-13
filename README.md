@@ -13,6 +13,8 @@ The homepage lets learners choose a paper and start a seeded practice attempt. A
 - `/practice/:paper/:module/:seed/review` for checking answers before submission.
 - `/practice/:paper/:module/:seed/result` for the score and detailed review.
 
+Attempt IDs are checked against the paper, module, and seed in the URL. A mismatched or unavailable attempt link shows a recovery state instead of applying answers to a different question set.
+
 There is no account or application database. The question pools are versioned static assets, and Google Analytics is optional.
 
 ## Passing Criteria

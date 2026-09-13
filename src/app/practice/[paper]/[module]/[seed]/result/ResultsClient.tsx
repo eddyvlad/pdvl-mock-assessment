@@ -6,7 +6,7 @@ import { ArrowRight, ArrowUp, CheckCircle2, ClipboardCheck, Home, RotateCcw, Sha
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { getLatestAttempt, readAttempt, type AttemptRecordV2 } from '@/lib/attempt-storage';
+import { getLatestAttempt, matchesAttemptContext, readAttempt, type AttemptRecordV2 } from '@/lib/attempt-storage';
 import { trackAssessmentEvent } from '@/lib/analytics';
 import { CONFIG } from '@/lib/config';
 import { calculateScore, getTopicStats } from '@/lib/practice-scoring';
@@ -35,30 +35,44 @@ export default function ResultsClient({ paper, moduleKey, seed, questions, attem
   const router = useRouter();
   const basePath = `/practice/${paper}/${moduleKey}/${seed}`;
   const [attempt, setAttempt] = useState<AttemptRecordV2 | null>(null);
+  const [attemptError, setAttemptError] = useState<'missing' | 'mismatch' | 'paper-a-chain' | null>(null);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (!attemptId) {
+      setAttemptError('missing');
       return;
     }
 
     const stored = readAttempt(attemptId);
-    if (stored?.status === 'submitted') {
-      setAttempt(stored);
-      const score = stored.score ?? calculateScore(stored.answers, questions);
-      const previousModule = paper === 'a' && moduleKey === 'm2'
-        ? getLatestAttempt((candidate) => candidate.paper === 'a' && candidate.module === 'm1' && candidate.seed === seed && candidate.status === 'submitted')
-        : null;
-      const combinedScore = previousModule ? (previousModule.score ?? 0) + score : score;
-      trackAssessmentEvent('view_result', {
-        paper,
-        module: moduleKey,
-        seed,
-        score,
-        total: questions.length,
-        pass: paper === 'a' && moduleKey === 'm1' ? false : combinedScore >= (CONFIG[paper]?.passMark ?? 0),
-      });
+    if (!stored || stored.status !== 'submitted') {
+      setAttemptError('missing');
+      return;
     }
+    if (!matchesAttemptContext(stored, { paper, module: moduleKey, seed })) {
+      setAttemptError('mismatch');
+      return;
+    }
+
+    const score = stored.score ?? calculateScore(stored.answers, questions);
+    const previousModule = paper === 'a' && moduleKey === 'm2'
+      ? getLatestAttempt((candidate) => candidate.paper === 'a' && candidate.module === 'm1' && candidate.seed === seed && candidate.status === 'submitted')
+      : null;
+    if (paper === 'a' && moduleKey === 'm2' && !previousModule) {
+      setAttemptError('paper-a-chain');
+      return;
+    }
+
+    const combinedScore = previousModule ? (previousModule.score ?? 0) + score : score;
+    setAttempt(stored);
+    trackAssessmentEvent('view_result', {
+      paper,
+      module: moduleKey,
+      seed,
+      score,
+      total: questions.length,
+      pass: paper === 'a' && moduleKey === 'm1' ? false : combinedScore >= (CONFIG[paper]?.passMark ?? 0),
+    });
   }, [attemptId, moduleKey, paper, questions, seed]);
 
   async function copyLink() {
@@ -81,9 +95,24 @@ export default function ResultsClient({ paper, moduleKey, seed, questions, attem
     return (
       <div className="card mx-auto max-w-xl border-danger">
         <p className="eyebrow mb-3">Result unavailable</p>
-        <h1 className="mb-4 text-4xl">Open a completed attempt to see its result.</h1>
-        <p className="mb-6 leading-7 text-muted-foreground">This result link does not include a completed v2 attempt.</p>
-        <Link className="btn btn-primary" href="/">Back to landing</Link>
+        <h1 className="mb-4 text-4xl">
+          {attemptError === 'mismatch'
+            ? 'This attempt does not belong to this question set.'
+            : attemptError === 'paper-a-chain'
+              ? 'The Paper A Module 1 result is not available.'
+              : 'Open a completed attempt to see its result.'}
+        </h1>
+        <p className="mb-6 leading-7 text-muted-foreground">
+          {attemptError === 'mismatch'
+            ? 'Open the matching result link or return to the landing page.'
+            : attemptError === 'paper-a-chain'
+              ? 'Complete Module 1 before opening the combined Module 2 result.'
+              : 'This result link does not include a completed v2 attempt.'}
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <Link className="btn btn-primary" href={basePath}>Return to practice</Link>
+          <Link className="btn btn-secondary" href="/">Back to landing</Link>
+        </div>
       </div>
     );
   }

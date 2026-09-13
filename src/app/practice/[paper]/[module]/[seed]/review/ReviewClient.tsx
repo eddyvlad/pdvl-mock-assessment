@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import {
+  matchesAttemptContext,
   readAttempt,
   removeActiveSession,
   type AttemptRecordV2,
@@ -37,6 +38,7 @@ export default function ReviewClient({ paper, moduleKey, seed, questions, attemp
   const attemptRef = useRef<AttemptRecordV2 | null>(null);
   const submittingRef = useRef(false);
   const [attempt, setAttempt] = useState<AttemptRecordV2 | null>(null);
+  const [attemptError, setAttemptError] = useState(false);
   const [loading, setLoading] = useState(true);
   const [timeLeft, setTimeLeft] = useState(0);
 
@@ -73,7 +75,8 @@ export default function ReviewClient({ paper, moduleKey, seed, questions, attemp
     }
 
     const stored = readAttempt(attemptId);
-    if (!stored) {
+    if (!stored || !matchesAttemptContext(stored, { paper, module: moduleKey, seed })) {
+      setAttemptError(true);
       setLoading(false);
       return;
     }
@@ -84,7 +87,7 @@ export default function ReviewClient({ paper, moduleKey, seed, questions, attemp
 
     setAttempt(stored);
     setLoading(false);
-  }, [attemptId, basePath, router]);
+  }, [attemptId, basePath, moduleKey, paper, router, seed]);
 
   useEffect(() => {
     if (!attempt || attempt.status !== 'in-progress') {
@@ -131,8 +134,8 @@ export default function ReviewClient({ paper, moduleKey, seed, questions, attemp
     return (
       <div className="card border-danger">
         <p className="eyebrow mb-3">Review unavailable</p>
-        <h1 className="mb-4 text-4xl">This practice attempt is no longer available.</h1>
-        <p className="mb-6 leading-7 text-muted-foreground">Start a new practice set from the landing page to continue.</p>
+        <h1 className="mb-4 text-4xl">{attemptError ? 'This practice attempt does not belong to this question set.' : 'This practice attempt is no longer available.'}</h1>
+        <p className="mb-6 leading-7 text-muted-foreground">{attemptError ? 'Open the matching practice link or start a new attempt from the landing page.' : 'Start a new practice set from the landing page to continue.'}</p>
         <div className="flex flex-wrap gap-3">
           <Link className="btn btn-primary" href={basePath}>Return to practice</Link>
           <Link className="btn btn-secondary" href="/">Back to landing</Link>
