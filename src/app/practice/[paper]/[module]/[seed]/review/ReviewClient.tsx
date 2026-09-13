@@ -4,7 +4,7 @@
 import clsx from 'clsx';
 import { ArrowLeft, ArrowRight, CheckCircle2, CircleAlert, Clock3, Send } from 'lucide-react';
 import Link from 'next/link';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, type RefObject } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   matchesAttemptContext,
@@ -32,6 +32,74 @@ function formatTime(seconds: number) {
   return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
 }
 
+function SubmitAttemptDialog({
+  unanswered,
+  open,
+  onClose,
+  onConfirm,
+  triggerRef,
+}: {
+  unanswered: number;
+  open: boolean;
+  onClose: () => void;
+  onConfirm: () => void;
+  triggerRef: RefObject<HTMLButtonElement | null>;
+}) {
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const wasOpenRef = useRef(false);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) {
+      return;
+    }
+
+    if (open && !dialog.open) {
+      dialog.showModal();
+      wasOpenRef.current = true;
+      dialog.querySelector<HTMLButtonElement>('[data-dialog-cancel]')?.focus();
+    } else if (!open && dialog.open) {
+      dialog.close();
+      if (wasOpenRef.current) {
+        triggerRef.current?.focus();
+        wasOpenRef.current = false;
+      }
+    }
+  }, [open, triggerRef]);
+
+  return (
+    <dialog
+      ref={dialogRef}
+      id="submit-attempt-dialog"
+      className="steady-dialog"
+      aria-modal="true"
+      aria-labelledby="submit-attempt-title"
+      aria-describedby="submit-attempt-description"
+      onCancel={(event) => {
+        event.preventDefault();
+        onClose();
+      }}
+      onClick={(event) => {
+        if (event.target === event.currentTarget) {
+          onClose();
+        }
+      }}
+    >
+      <div className="steady-dialog-panel">
+        <p className="eyebrow mb-3">Before you submit</p>
+        <h2 id="submit-attempt-title" className="mb-3 text-3xl">Submit this attempt?</h2>
+        <p id="submit-attempt-description" className="m-0 leading-7 text-muted-foreground">
+          {unanswered} question{unanswered === 1 ? '' : 's'} unanswered. Unanswered questions will count as incorrect.
+        </p>
+        <div className="steady-dialog-actions">
+          <button className="btn btn-secondary" type="button" data-dialog-cancel onClick={onClose}>Keep reviewing</button>
+          <button className="btn btn-primary gap-2" type="button" onClick={onConfirm}>Submit attempt <Send className="h-4 w-4" aria-hidden="true" /></button>
+        </div>
+      </div>
+    </dialog>
+  );
+}
+
 export default function ReviewClient({ paper, moduleKey, seed, questions, attemptId }: Props) {
   const router = useRouter();
   const basePath = `/practice/${paper}/${moduleKey}/${seed}`;
@@ -41,6 +109,9 @@ export default function ReviewClient({ paper, moduleKey, seed, questions, attemp
   const [attemptError, setAttemptError] = useState(false);
   const [loading, setLoading] = useState(true);
   const [timeLeft, setTimeLeft] = useState(0);
+  const [isSubmitDialogOpen, setIsSubmitDialogOpen] = useState(false);
+  const [unansweredCount, setUnansweredCount] = useState(0);
+  const submitTriggerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     attemptRef.current = attempt;
@@ -119,7 +190,9 @@ export default function ReviewClient({ paper, moduleKey, seed, questions, attemp
     }
 
     const unanswered = current.answers.length - countAnswered(current.answers);
-    if (unanswered > 0 && !window.confirm(`${unanswered} question${unanswered === 1 ? '' : 's'} unanswered. Submit this attempt?`)) {
+    if (unanswered > 0) {
+      setUnansweredCount(unanswered);
+      setIsSubmitDialogOpen(true);
       return;
     }
 
@@ -208,10 +281,28 @@ export default function ReviewClient({ paper, moduleKey, seed, questions, attemp
         <button className="btn btn-secondary gap-2" type="button" onClick={() => router.push(`${basePath}?attempt=${encodeURIComponent(attempt.attemptId)}`)}>
           <ArrowLeft className="h-4 w-4" aria-hidden="true" /> Back to questions
         </button>
-        <button className="btn btn-primary gap-2" type="button" onClick={submit}>
+        <button
+          ref={submitTriggerRef}
+          className="btn btn-primary gap-2"
+          type="button"
+          aria-haspopup="dialog"
+          aria-expanded={isSubmitDialogOpen}
+          aria-controls="submit-attempt-dialog"
+          onClick={submit}
+        >
           Submit attempt <Send className="h-4 w-4" aria-hidden="true" />
         </button>
       </div>
+      <SubmitAttemptDialog
+        unanswered={unansweredCount}
+        open={isSubmitDialogOpen}
+        onClose={() => setIsSubmitDialogOpen(false)}
+        onConfirm={() => {
+          setIsSubmitDialogOpen(false);
+          finishAttempt('manual');
+        }}
+        triggerRef={submitTriggerRef}
+      />
     </section>
   );
 }
