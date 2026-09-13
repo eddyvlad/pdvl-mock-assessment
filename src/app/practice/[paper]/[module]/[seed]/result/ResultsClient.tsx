@@ -27,6 +27,10 @@ function formatDuration(seconds: number) {
   return `${minutes} min ${remainingSeconds} sec`;
 }
 
+function formatTopicTag(tag: string) {
+  return tag.replaceAll('_', ' ');
+}
+
 export default function ResultsClient({ paper, moduleKey, seed, questions, attemptId, newSeed }: Props) {
   const router = useRouter();
   const basePath = `/practice/${paper}/${moduleKey}/${seed}`;
@@ -157,7 +161,7 @@ export default function ResultsClient({ paper, moduleKey, seed, questions, attem
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {topicStats.map((topic) => (
               <div key={topic.tag} className="border border-border bg-card p-4">
-                <p className="m-0 font-bold">{topic.tag}</p>
+                <p className="m-0 font-bold">{formatTopicTag(topic.tag)}</p>
                 <p className="m-0 font-mono text-sm text-muted-foreground">{topic.correct}/{topic.total} correct</p>
               </div>
             ))}
