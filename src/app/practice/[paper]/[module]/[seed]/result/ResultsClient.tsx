@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 
 import clsx from 'clsx';
-import { ArrowRight, CheckCircle2, ClipboardCheck, Home, RotateCcw, Share2, XCircle } from 'lucide-react';
+import { ArrowRight, ArrowUp, CheckCircle2, ClipboardCheck, Home, RotateCcw, Share2, XCircle } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -70,6 +70,11 @@ export default function ResultsClient({ paper, moduleKey, seed, questions, attem
       setCopied(false);
     }
     trackAssessmentEvent('copy_link', { paper, module: moduleKey, seed });
+  }
+
+  function scrollToTop() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
   }
 
   if (!attempt) {
@@ -209,6 +214,12 @@ export default function ResultsClient({ paper, moduleKey, seed, questions, attem
           })}
         </ol>
       </section>
+
+      <div className="flex justify-end border-t border-border pt-6">
+        <button className="btn btn-secondary gap-2" type="button" onClick={scrollToTop}>
+          <ArrowUp className="h-4 w-4" aria-hidden="true" /> Back to top
+        </button>
+      </div>
     </section>
   );
 }
