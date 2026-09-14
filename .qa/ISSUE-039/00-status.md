@@ -3,13 +3,14 @@
 ## Checkpoint
 
 - Last updated: 2026-09-15
-- Lifecycle task: [ISSUE-039](../../tasks/in-progress/ISSUE-039-production-readiness-qa.md)
+- Lifecycle task: [ISSUE-039](../../tasks/completed/ISSUE-039-production-readiness-qa.md)
 - Overall verdict: GO WITH KNOWN RISKS
-- Current phase: remediation complete, regression QA complete, finalization pending
+- Current phase: remediation complete, regression QA complete, finalization complete
 - Dev server: stopped after development and production smoke checks
 - Browser: Chrome extension became available during the run; interactive checks completed at 390x844 and supporting
   checks at 320x640. The initially unavailable in-app browser is recorded as a tooling limitation.
 - Repository state at initialization: clean and synchronized with origin
+- Repository state at completion: clean and synchronized with origin after the final QA checkpoint commit
 
 ## QA area status
 
@@ -50,5 +51,4 @@ production follow-up and is not part of the release gate.
 
 ## Next exact work
 
-1. Move ISSUE-039 through review to completed with the final verdict, accepted risks, and validation limits.
-2. Commit the final QA evidence, push the branch, and verify the worktree and remote branch are synchronized.
+No release-gate work remains in this QA run. ISSUE-045 is the accepted post-production CI follow-up.
