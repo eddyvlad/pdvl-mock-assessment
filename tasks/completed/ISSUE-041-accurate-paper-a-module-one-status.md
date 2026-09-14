@@ -55,3 +55,14 @@ Should fix before production. This is a false learner-facing outcome for a score
 
 Verify Paper A Module 1 scores 24, 25, and 30, the Module 2 transition, Paper A Module 2 combined results, and standalone
 Paper B and C results. Run lint, typecheck, tests, build, and `git diff --check`.
+
+## Completion notes
+
+- Reused `paperAStatusAfterModule1` and added a pure presentation mapping for `Not passed`, `Pending`, and `Threshold
+secured`.
+- Paper A Module 1 results now explain when Module 2 cannot recover the paper, can still recover it, or is optional after
+  the threshold is secured. Module 2 navigation and combined scoring remain unchanged.
+- Added boundary assertions for 24, 25, and 30. Browser verification of the 24/30 scenario rendered
+  `Paper A pass is no longer possible.` and `Not passed`; the existing Paper A chaining and combined-result checks also
+  remain green.
+- Verified with 39 passing tests, lint, typecheck, production build, and `git diff --check`.

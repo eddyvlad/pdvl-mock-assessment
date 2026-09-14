@@ -11,6 +11,7 @@ import { type AttemptRecordV2, getLatestAttempt, matchesAttemptContext, readAtte
 import { CONFIG } from "@/lib/config";
 import { calculateScore, getTopicStats } from "@/lib/practice-scoring";
 import type { Question } from "@/lib/questions";
+import { paperAStatusAfterModule1, paperAStatusPresentation } from "@/lib/score";
 import { formatTopicLabel } from "@/lib/topic-label";
 
 interface Props {
@@ -149,11 +150,13 @@ export default function ResultsClient({ paper, moduleKey, seed, questions, attem
       : null;
   const combinedScore = previousModule ? (previousModule.score ?? 0) + moduleScore : null;
   const isPaperASecondModule = paper === "a" && moduleKey === "m2";
+  const isPaperAFirstModule = paper === "a" && moduleKey === "m1";
+  const paperAStatus = isPaperAFirstModule ? paperAStatusAfterModule1(moduleScore) : null;
+  const paperAStatusDisplay = paperAStatusPresentation(paperAStatus);
   const paperPass =
     paper === "a" && moduleKey === "m2"
       ? (combinedScore ?? moduleScore) >= modulePassMark
       : paper !== "a" && moduleScore >= modulePassMark;
-  const isPaperAFirstModule = paper === "a" && moduleKey === "m1";
   const topicStats = getTopicStats(attempt.answers, questions);
   const elapsed = attempt.submittedAt ? Math.max(0, Math.floor((attempt.submittedAt - attempt.startedAt) / 1000)) : 0;
 
@@ -166,11 +169,11 @@ export default function ResultsClient({ paper, moduleKey, seed, questions, attem
               {paperName} · Module {moduleName}
             </p>
             <h1 id="result-heading" className="mb-3 text-4xl sm:text-6xl">
-              {isPaperAFirstModule ? "Module complete." : paperPass ? "You passed." : "Keep practising."}
+              {isPaperAFirstModule ? paperAStatusDisplay.heading : paperPass ? "You passed." : "Keep practising."}
             </h1>
             <p className="m-0 max-w-2xl leading-7 text-muted-foreground">
               {isPaperAFirstModule
-                ? "Module 2 still contributes to your final Paper A result."
+                ? paperAStatusDisplay.description
                 : paperPass
                   ? "Your score is at or above the configured paper threshold."
                   : "Review the explanations, then use a fresh attempt to test the topics again."}
@@ -180,20 +183,30 @@ export default function ResultsClient({ paper, moduleKey, seed, questions, attem
             className={clsx(
               "inline-flex items-center gap-2 border px-4 py-2 text-sm font-bold",
               isPaperAFirstModule
-                ? "border-accent text-accent"
+                ? paperAStatusDisplay.tone === "success"
+                  ? "border-success text-success"
+                  : paperAStatusDisplay.tone === "danger"
+                    ? "border-danger text-danger"
+                    : "border-accent text-accent"
                 : paperPass
                   ? "border-success text-success"
                   : "border-danger text-danger",
             )}
           >
             {isPaperAFirstModule ? (
-              <ClipboardCheck className="h-4 w-4" aria-hidden="true" />
+              paperAStatusDisplay.tone === "success" ? (
+                <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
+              ) : paperAStatusDisplay.tone === "danger" ? (
+                <XCircle className="h-4 w-4" aria-hidden="true" />
+              ) : (
+                <ClipboardCheck className="h-4 w-4" aria-hidden="true" />
+              )
             ) : paperPass ? (
               <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
             ) : (
               <XCircle className="h-4 w-4" aria-hidden="true" />
             )}
-            {isPaperAFirstModule ? "Paper A in progress" : paperPass ? "Pass" : "Not passed"}
+            {isPaperAFirstModule ? paperAStatusDisplay.badge : paperPass ? "Pass" : "Not passed"}
           </span>
         </div>
 
