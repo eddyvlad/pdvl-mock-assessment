@@ -55,6 +55,7 @@ export default async function Page({
       attemptId={getStringParam(query.attempt)}
       questionIndex={Number.isInteger(parsedQuestion) ? parsedQuestion : undefined}
       returnToReview={returnValue === 'review'}
+      showDevTools={process.env.NODE_ENV === 'development'}
     />
   );
 }

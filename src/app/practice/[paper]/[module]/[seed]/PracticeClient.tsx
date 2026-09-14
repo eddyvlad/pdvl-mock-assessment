@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight, Check, Clock3, ListChecks } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import DevScenarioPanel from '@/components/dev-scenario-panel';
 import {
   createAttemptRecord,
   getLatestAttempt,
@@ -19,6 +20,7 @@ import {
 } from '@/lib/attempt-storage';
 import { trackAssessmentEvent } from '@/lib/analytics';
 import { CONFIG } from '@/lib/config';
+import { buildScenarioAnswers, type DevScenario } from '@/lib/dev-scenarios';
 import { calculateScore, countAnswered, submitAttemptRecord } from '@/lib/practice-scoring';
 import type { Question } from '@/lib/questions';
 
@@ -31,6 +33,7 @@ interface Props {
   attemptId?: string;
   questionIndex?: number;
   returnToReview?: boolean;
+  showDevTools: boolean;
 }
 
 function formatTime(seconds: number) {
@@ -48,6 +51,7 @@ export default function PracticeClient({
   attemptId,
   questionIndex,
   returnToReview,
+  showDevTools,
 }: Props) {
   const router = useRouter();
   const total = questions.length;
@@ -63,6 +67,8 @@ export default function PracticeClient({
   const [attemptError, setAttemptError] = useState(false);
   const [grace, setGrace] = useState(3);
   const [timeLeft, setTimeLeft] = useState(minutes * 60);
+  const [previousModuleScore, setPreviousModuleScore] = useState<number | undefined>();
+  const isDevelopment = process.env.NODE_ENV === 'development';
   const initializationKey = `${paper}/${moduleKey}/${seed}/${attemptId ?? ''}/${questionIndex ?? ''}`;
 
   const finishAttempt = useCallback((record: AttemptRecordV2, mode: 'manual' | 'auto') => {
@@ -131,6 +137,7 @@ export default function PracticeClient({
         router.replace(`/practice/a/m1/${seed}`);
         return;
       }
+      setPreviousModuleScore(previous.score);
     }
 
     if (initializedRouteRef.current === initializationKey) {
@@ -262,6 +269,19 @@ export default function PracticeClient({
     }
   };
 
+  const scenarioContext = { paper, module: moduleKey, previousModuleScore };
+  const scenarioPlans = {
+    'all-correct': buildScenarioAnswers(questions, 'all-correct', scenarioContext),
+    'pass-with-incorrect': buildScenarioAnswers(questions, 'pass-with-incorrect', scenarioContext),
+    fail: buildScenarioAnswers(questions, 'fail', scenarioContext),
+  };
+  const applyScenario = (scenario: DevScenario) => {
+    const plan = scenarioPlans[scenario];
+    if (!plan.disabledReason) {
+      patchAttempt({ answers: plan.answers });
+    }
+  };
+
   if (attemptError) {
     return (
       <main className="page-shell">
@@ -312,6 +332,8 @@ export default function PracticeClient({
           </p>
         </div>
       </header>
+
+      {isDevelopment && showDevTools && <DevScenarioPanel plans={scenarioPlans} onApply={applyScenario} />}
 
       <div className="mb-8 grid gap-3 sm:grid-cols-[1fr_auto] sm:items-center">
         <div>
