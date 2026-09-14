@@ -11,6 +11,7 @@ import { trackAssessmentEvent } from '@/lib/analytics';
 import { CONFIG } from '@/lib/config';
 import { calculateScore, getTopicStats } from '@/lib/practice-scoring';
 import type { Question } from '@/lib/questions';
+import { formatTopicLabel } from '@/lib/topic-label';
 
 interface Props {
   paper: string;
@@ -25,10 +26,6 @@ function formatDuration(seconds: number) {
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
   return `${minutes} min ${remainingSeconds} sec`;
-}
-
-function formatTopicTag(tag: string) {
-  return tag.replaceAll('_', ' ');
 }
 
 export default function ResultsClient({ paper, moduleKey, seed, questions, attemptId, newSeed }: Props) {
@@ -217,7 +214,7 @@ export default function ResultsClient({ paper, moduleKey, seed, questions, attem
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {topicStats.map((topic) => (
               <div key={topic.tag} className="border border-border bg-card p-4">
-                <p className="m-0 font-bold">{formatTopicTag(topic.tag)}</p>
+                <p className="m-0 font-bold">{formatTopicLabel(topic.tag)}</p>
                 <p className="m-0 font-mono text-sm text-muted-foreground">{topic.correct}/{topic.total} correct</p>
               </div>
             ))}

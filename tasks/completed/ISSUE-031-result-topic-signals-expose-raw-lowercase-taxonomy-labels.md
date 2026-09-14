@@ -58,3 +58,10 @@ The result cards show raw lowercase labels such as `decals`, `equipment permissi
 ## Severity
 
 Low
+
+## Completion notes
+
+- Added the pure `formatTopicLabel` helper for readable title-cased topic labels with preserved PDVL taxonomy acronyms and SGSecure branding.
+- Updated results rendering to format only the learner-facing label, leaving raw tags, topic aggregation, counts, ordering, and score calculations unchanged.
+- Added unit coverage for title casing, acronym preservation, branding, and input immutability.
+- `npm run lint`, `npm run typecheck`, and `npm test -- --runInBand` pass with 27 tests.
