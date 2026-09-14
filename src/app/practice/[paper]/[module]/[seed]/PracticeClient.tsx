@@ -55,11 +55,13 @@ export default function PracticeClient({
   const paperName = CONFIG[paper]?.name ?? `Paper ${paper.toUpperCase()}`;
   const moduleName = CONFIG[paper]?.modules[moduleKey]?.label ?? moduleKey.toUpperCase();
   const attemptRef = useRef<AttemptRecordV2 | null>(null);
+  const initializedRouteRef = useRef<string | null>(null);
   const submittingRef = useRef(false);
   const [attempt, setAttempt] = useState<AttemptRecordV2 | null>(null);
   const [attemptError, setAttemptError] = useState(false);
   const [grace, setGrace] = useState(3);
   const [timeLeft, setTimeLeft] = useState(minutes * 60);
+  const initializationKey = `${paper}/${moduleKey}/${seed}/${attemptId ?? ''}/${questionIndex ?? ''}`;
 
   const finishAttempt = useCallback((record: AttemptRecordV2, mode: 'manual' | 'auto') => {
     if (submittingRef.current || record.status === 'submitted') {
@@ -129,6 +131,11 @@ export default function PracticeClient({
       }
     }
 
+    if (initializedRouteRef.current === initializationKey) {
+      return;
+    }
+    initializedRouteRef.current = initializationKey;
+
     const context = { paper, module: moduleKey, seed };
     let stored = attemptId ? readAttempt(attemptId) : getLatestResumableAttempt();
     if (attemptId && (!stored || !matchesAttemptContext(stored, context))) {
@@ -178,7 +185,7 @@ export default function PracticeClient({
       minutes,
       version: 2,
     });
-  }, [attemptId, basePath, finishAttempt, minutes, moduleKey, paper, questionIndex, router, seed, total]);
+  }, [attemptId, basePath, finishAttempt, initializationKey, minutes, moduleKey, paper, questionIndex, router, seed, total]);
 
   useEffect(() => {
     if (!attempt || attempt.status !== 'in-progress') {

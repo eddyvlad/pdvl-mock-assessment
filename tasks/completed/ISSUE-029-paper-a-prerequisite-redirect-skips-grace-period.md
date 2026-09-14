@@ -62,3 +62,10 @@ The Paper A guard in the `useEffect` in `src/app/practice/[paper]/[module]/[seed
 ## Severity
 
 Medium
+
+## Completion notes
+
+- Added a route identity key and idempotent initialization guard so a Paper A Module 2 prerequisite redirect mounts Module 1 as a fresh attempt instead of replaying the resumable-attempt branch.
+- Preserved the same seed and verified the redirected route visibly shows `Get ready` and `Starts in 3`.
+- Verified a reload of the saved in-progress attempt resumes with `Time remaining` and does not add another grace period.
+- `npm run lint`, `npm run typecheck`, and `npm test -- --runInBand` pass.

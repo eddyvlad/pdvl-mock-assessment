@@ -46,6 +46,7 @@ export default async function Page({
 
   return (
     <PracticeClient
+      key={`${paper}-${module}-${seed}`}
       paper={paper}
       moduleKey={module}
       seed={seed}
