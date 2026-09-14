@@ -9,6 +9,7 @@ import { type RefObject, useCallback, useEffect, useRef, useState } from "react"
 import { trackAssessmentEvent } from "@/lib/analytics";
 import {
   type AttemptRecordV2,
+  getBrowserStorage,
   matchesAttemptContext,
   readAttempt,
   removeActiveSession,
@@ -118,7 +119,7 @@ export default function ReviewClient({ paper, moduleKey, seed, questions, attemp
   const attemptRef = useRef<AttemptRecordV2 | null>(null);
   const submittingRef = useRef(false);
   const [attempt, setAttempt] = useState<AttemptRecordV2 | null>(null);
-  const [attemptError, setAttemptError] = useState(false);
+  const [attemptError, setAttemptError] = useState<"mismatch" | "storage" | null>(null);
   const [loading, setLoading] = useState(true);
   const [timeLeft, setTimeLeft] = useState(0);
   const [isSubmitDialogOpen, setIsSubmitDialogOpen] = useState(false);
@@ -138,7 +139,10 @@ export default function ReviewClient({ paper, moduleKey, seed, questions, attemp
 
       submittingRef.current = true;
       const finalRecord = submitAttemptRecord(current, questions, mode);
-      writeAttempt(finalRecord);
+      if (!writeAttempt(finalRecord)) {
+        setAttemptError("storage");
+        return;
+      }
       removeActiveSession();
       trackAssessmentEvent("assessment_submit", {
         paper,
@@ -160,9 +164,20 @@ export default function ReviewClient({ paper, moduleKey, seed, questions, attemp
       return;
     }
 
-    const stored = readAttempt(attemptId);
+    const storage = getBrowserStorage();
+    if (!storage) {
+      setAttemptError("storage");
+      setLoading(false);
+      return;
+    }
+
+    const validationContext = {
+      questionCount: questions.length,
+      choiceCounts: questions.map((question) => question.choices.length),
+    };
+    const stored = readAttempt(attemptId, storage, validationContext);
     if (!stored || !matchesAttemptContext(stored, { paper, module: moduleKey, seed })) {
-      setAttemptError(true);
+      setAttemptError("mismatch");
       setLoading(false);
       return;
     }
@@ -173,10 +188,10 @@ export default function ReviewClient({ paper, moduleKey, seed, questions, attemp
 
     setAttempt(stored);
     setLoading(false);
-  }, [attemptId, basePath, moduleKey, paper, router, seed]);
+  }, [attemptId, basePath, moduleKey, paper, questions, router, seed]);
 
   useEffect(() => {
-    if (attempt?.status !== "in-progress") {
+    if (attemptError || attempt?.status !== "in-progress") {
       return;
     }
 
@@ -196,7 +211,7 @@ export default function ReviewClient({ paper, moduleKey, seed, questions, attemp
     updateTime();
     const timer = window.setInterval(updateTime, 1_000);
     return () => window.clearInterval(timer);
-  }, [attempt, finishAttempt]);
+  }, [attempt, attemptError, finishAttempt]);
 
   function submit() {
     const current = attemptRef.current;
@@ -218,17 +233,38 @@ export default function ReviewClient({ paper, moduleKey, seed, questions, attemp
     return <p className="text-muted-foreground">Loading your saved answers...</p>;
   }
 
+  if (attemptError === "storage") {
+    return (
+      <div className="card border-danger">
+        <p className="eyebrow mb-3">Review unavailable</p>
+        <h1 className="mb-4 text-4xl">Browser storage is unavailable.</h1>
+        <p className="mb-6 leading-7 text-muted-foreground">
+          Enable cookies or site storage for this site, then try again. Your answers cannot be saved until browser
+          storage is available.
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <button className="btn btn-primary" type="button" onClick={() => window.location.reload()}>
+            Try again
+          </button>
+          <Link className="btn btn-secondary" href="/">
+            Back to landing
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
   if (!attempt) {
     return (
       <div className="card border-danger">
         <p className="eyebrow mb-3">Review unavailable</p>
         <h1 className="mb-4 text-4xl">
-          {attemptError
+          {attemptError === "mismatch"
             ? "This practice attempt does not belong to this question set."
             : "This practice attempt is no longer available."}
         </h1>
         <p className="mb-6 leading-7 text-muted-foreground">
-          {attemptError
+          {attemptError === "mismatch"
             ? "Open the matching practice link or start a new attempt from the landing page."
             : "Start a new practice set from the landing page to continue."}
         </p>

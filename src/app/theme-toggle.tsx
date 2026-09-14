@@ -6,6 +6,7 @@ import { type ComponentProps, type ComponentType, useEffect, useSyncExternalStor
 
 type Theme = "system" | "light" | "dark";
 const STORAGE_KEY = "theme";
+let transientTheme: Theme | null = null;
 
 type ThemeItem = {
   ariaLabel: string;
@@ -18,8 +19,12 @@ function readStoredTheme(): Theme {
     return "system";
   }
 
-  const stored = localStorage.getItem(STORAGE_KEY);
-  return stored === "light" || stored === "dark" || stored === "system" ? stored : "system";
+  try {
+    const stored = window.localStorage.getItem(STORAGE_KEY);
+    return stored === "light" || stored === "dark" || stored === "system" ? stored : "system";
+  } catch {
+    return transientTheme ?? "system";
+  }
 }
 
 function subscribeToTheme(onStoreChange: () => void) {
@@ -56,7 +61,12 @@ export default function ThemeToggle() {
   }, [theme]);
 
   const setTheme = (value: Theme) => {
-    localStorage.setItem(STORAGE_KEY, value);
+    try {
+      window.localStorage.setItem(STORAGE_KEY, value);
+      transientTheme = null;
+    } catch {
+      transientTheme = value;
+    }
     window.dispatchEvent(new Event("pdvl-theme-change"));
   };
 

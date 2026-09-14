@@ -51,3 +51,14 @@ availability failures directly affect assessment continuity and scoring trust.
 Use fake storage implementations to exercise valid, mismatched, malformed, expired, quota, and security-error cases.
 Browser-test reload/resume and auto-expiry recovery where practical. Run lint, typecheck, all tests, build, and
 `git diff --check`.
+
+## Completion notes
+
+- Added fail-closed v2 record validation for timestamps, question positions, answer ranges, array lengths, and
+  submission metadata while keeping the v2 keys and score compatibility intact.
+- Preserved expired active attempts so the practice route can auto-submit them once after reload or navigation.
+- Added safe browser-storage handling across practice, review, results, and theme persistence with clear recovery
+  states for blocked or full storage.
+- Verified Paper A chaining, deterministic question handling, scoring, and analytics call sites remain unchanged.
+- Verification: `npm test -- --runInBand src/lib/__tests__/attempt-storage.test.ts` (13 tests), `npm run lint`,
+  `npm run typecheck`, and `npm run build` all pass. The test run reports only the existing Watchman recrawl warning.

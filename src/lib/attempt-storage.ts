@@ -23,20 +23,36 @@ export interface AttemptRecordV2 {
 }
 
 export type AttemptContext = Pick<AttemptRecordV2, "paper" | "module" | "seed">;
+export interface AttemptValidationContext {
+  questionCount?: number;
+  choiceCounts?: readonly number[];
+}
 
 export type AttemptStorage = Pick<Storage, "getItem" | "setItem" | "removeItem" | "key" | "length">;
 
-function getBrowserStorage(): AttemptStorage | null {
+const MAX_CHOICES = 4;
+
+export function getBrowserStorage(): AttemptStorage | null {
   if (typeof window === "undefined") {
     return null;
   }
 
-  return window.localStorage;
+  try {
+    const storage = window.localStorage;
+    storage.getItem(ACTIVE_SESSION_KEY);
+    return storage;
+  } catch {
+    return null;
+  }
 }
 
 function dispatchAttemptChange() {
-  if (typeof window !== "undefined") {
-    window.dispatchEvent(new Event("pdvl-attempt-change"));
+  try {
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new Event("pdvl-attempt-change"));
+    }
+  } catch {
+    // Storage updates should not fail just because the change notification is unavailable.
   }
 }
 
@@ -44,27 +60,79 @@ export function getAttemptStorageKey(attemptId: string) {
   return `${ATTEMPT_KEY_PREFIX}${attemptId}`;
 }
 
-export function parseAttemptRecord(value: string | null): AttemptRecordV2 | null {
+function isFiniteNonNegative(value: unknown): value is number {
+  return typeof value === "number" && Number.isFinite(value) && value >= 0;
+}
+
+function hasOwn(record: object, key: string) {
+  return Object.hasOwn(record, key);
+}
+
+export function parseAttemptRecord(
+  value: string | null,
+  context: AttemptValidationContext = {},
+): AttemptRecordV2 | null {
   if (!value) {
     return null;
   }
 
   try {
     const parsed = JSON.parse(value) as Partial<AttemptRecordV2>;
+    const answers = parsed.answers;
+    const currentQuestion = parsed.currentQuestion;
     if (
       parsed.version !== ATTEMPT_VERSION ||
       typeof parsed.attemptId !== "string" ||
+      parsed.attemptId.length === 0 ||
       typeof parsed.paper !== "string" ||
+      parsed.paper.length === 0 ||
       typeof parsed.module !== "string" ||
+      parsed.module.length === 0 ||
       typeof parsed.seed !== "string" ||
-      typeof parsed.startedAt !== "number" ||
-      typeof parsed.expiresAt !== "number" ||
-      typeof parsed.updatedAt !== "number" ||
-      typeof parsed.currentQuestion !== "number" ||
-      !Array.isArray(parsed.answers) ||
-      !parsed.answers.every((answer) => answer === null || Number.isInteger(answer)) ||
+      parsed.seed.length === 0 ||
+      !isFiniteNonNegative(parsed.startedAt) ||
+      !isFiniteNonNegative(parsed.expiresAt) ||
+      !isFiniteNonNegative(parsed.updatedAt) ||
+      typeof currentQuestion !== "number" ||
+      !Number.isInteger(currentQuestion) ||
+      currentQuestion < 0 ||
+      !Array.isArray(answers) ||
+      answers.length === 0 ||
+      !answers.every((answer) => answer === null || Number.isInteger(answer)) ||
+      currentQuestion >= answers.length ||
+      (context.questionCount !== undefined &&
+        (!Number.isInteger(context.questionCount) ||
+          context.questionCount <= 0 ||
+          answers.length !== context.questionCount)) ||
+      (context.choiceCounts !== undefined &&
+        (context.choiceCounts.length !== answers.length ||
+          !context.choiceCounts.every(
+            (choiceCount) => Number.isInteger(choiceCount) && choiceCount >= 2 && choiceCount <= MAX_CHOICES,
+          ))) ||
+      !answers.every((answer, index) => {
+        if (answer === null) {
+          return true;
+        }
+
+        const choiceCount = context.choiceCounts?.[index] ?? MAX_CHOICES;
+        return answer >= 0 && answer < choiceCount;
+      }) ||
       (parsed.status !== "in-progress" && parsed.status !== "submitted")
     ) {
+      return null;
+    }
+
+    if (parsed.status === "submitted") {
+      // Keep score optional for older v2 records; results can calculate it from the saved answers.
+      if (
+        !isFiniteNonNegative(parsed.submittedAt) ||
+        (parsed.submissionMode !== "manual" && parsed.submissionMode !== "auto") ||
+        (parsed.score !== undefined &&
+          (!Number.isInteger(parsed.score) || parsed.score < 0 || parsed.score > answers.length))
+      ) {
+        return null;
+      }
+    } else if (hasOwn(parsed, "submittedAt") || hasOwn(parsed, "submissionMode") || hasOwn(parsed, "score")) {
       return null;
     }
 
@@ -74,65 +142,106 @@ export function parseAttemptRecord(value: string | null): AttemptRecordV2 | null
   }
 }
 
-export function readAttempt(attemptId: string, storage: AttemptStorage | null = getBrowserStorage()) {
-  return parseAttemptRecord(storage?.getItem(getAttemptStorageKey(attemptId)) ?? null);
+function readStorageItem(storage: AttemptStorage | null, key: string) {
+  if (!storage) {
+    return null;
+  }
+
+  try {
+    return storage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
+export function readAttempt(
+  attemptId: string,
+  storage: AttemptStorage | null = getBrowserStorage(),
+  context: AttemptValidationContext = {},
+) {
+  return parseAttemptRecord(readStorageItem(storage, getAttemptStorageKey(attemptId)), context);
 }
 
 export function writeAttempt(record: AttemptRecordV2, storage: AttemptStorage | null = getBrowserStorage()) {
   if (!storage) {
-    return;
+    return false;
   }
 
-  storage.setItem(getAttemptStorageKey(record.attemptId), JSON.stringify(record));
-  storage.setItem(ACTIVE_SESSION_KEY, record.attemptId);
-  dispatchAttemptChange();
+  try {
+    storage.setItem(getAttemptStorageKey(record.attemptId), JSON.stringify(record));
+    storage.setItem(ACTIVE_SESSION_KEY, record.attemptId);
+    dispatchAttemptChange();
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 export function removeActiveSession(storage: AttemptStorage | null = getBrowserStorage()) {
   if (!storage) {
-    return;
+    return false;
   }
 
-  storage.removeItem(ACTIVE_SESSION_KEY);
-  dispatchAttemptChange();
+  try {
+    storage.removeItem(ACTIVE_SESSION_KEY);
+    dispatchAttemptChange();
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 export function removeAttempt(attemptId: string, storage: AttemptStorage | null = getBrowserStorage()) {
   if (!storage) {
-    return;
+    return false;
   }
 
-  storage.removeItem(getAttemptStorageKey(attemptId));
-  if (storage.getItem(ACTIVE_SESSION_KEY) === attemptId) {
-    storage.removeItem(ACTIVE_SESSION_KEY);
+  try {
+    storage.removeItem(getAttemptStorageKey(attemptId));
+    if (storage.getItem(ACTIVE_SESSION_KEY) === attemptId) {
+      storage.removeItem(ACTIVE_SESSION_KEY);
+    }
+    dispatchAttemptChange();
+    return true;
+  } catch {
+    return false;
   }
-  dispatchAttemptChange();
 }
 
-export function readActiveAttempt(storage: AttemptStorage | null = getBrowserStorage()) {
-  const attemptId = storage?.getItem(ACTIVE_SESSION_KEY);
-  return attemptId ? readAttempt(attemptId, storage) : null;
+export function readActiveAttempt(
+  storage: AttemptStorage | null = getBrowserStorage(),
+  context: AttemptValidationContext = {},
+) {
+  const attemptId = readStorageItem(storage, ACTIVE_SESSION_KEY);
+  return attemptId ? readAttempt(attemptId, storage, context) : null;
 }
 
-export function listAttempts(storage: AttemptStorage | null = getBrowserStorage()) {
+export function listAttempts(
+  storage: AttemptStorage | null = getBrowserStorage(),
+  context: AttemptValidationContext = {},
+) {
   if (!storage) {
     return [];
   }
 
-  const attempts: AttemptRecordV2[] = [];
-  for (let index = 0; index < storage.length; index += 1) {
-    const key = storage.key(index);
-    if (!key?.startsWith(ATTEMPT_KEY_PREFIX)) {
-      continue;
+  try {
+    const attempts: AttemptRecordV2[] = [];
+    for (let index = 0; index < storage.length; index += 1) {
+      const key = storage.key(index);
+      if (!key?.startsWith(ATTEMPT_KEY_PREFIX)) {
+        continue;
+      }
+
+      const attempt = parseAttemptRecord(storage.getItem(key), context);
+      if (attempt) {
+        attempts.push(attempt);
+      }
     }
 
-    const attempt = parseAttemptRecord(storage.getItem(key));
-    if (attempt) {
-      attempts.push(attempt);
-    }
+    return attempts;
+  } catch {
+    return [];
   }
-
-  return attempts;
 }
 
 export function isResumableAttempt(record: AttemptRecordV2 | null, now = Date.now()) {
@@ -145,17 +254,22 @@ export function matchesAttemptContext(record: AttemptRecordV2 | null, context: A
   );
 }
 
-export function getLatestResumableAttempt(now = Date.now(), storage: AttemptStorage | null = getBrowserStorage()) {
-  const activeAttempt = readActiveAttempt(storage);
+export function getLatestResumableAttempt(
+  now = Date.now(),
+  storage: AttemptStorage | null = getBrowserStorage(),
+  context: AttemptValidationContext = {},
+) {
+  const activeAttempt = readActiveAttempt(storage, context);
   return isResumableAttempt(activeAttempt, now) ? activeAttempt : null;
 }
 
 export function getLatestAttempt(
   matcher: (attempt: AttemptRecordV2) => boolean,
   storage: AttemptStorage | null = getBrowserStorage(),
+  context: AttemptValidationContext = {},
 ) {
   return (
-    listAttempts(storage)
+    listAttempts(storage, context)
       .filter(matcher)
       .sort((left, right) => right.updatedAt - left.updatedAt)[0] ?? null
   );

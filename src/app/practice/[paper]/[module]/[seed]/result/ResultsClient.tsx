@@ -7,7 +7,13 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { trackAssessmentEvent } from "@/lib/analytics";
-import { type AttemptRecordV2, getLatestAttempt, matchesAttemptContext, readAttempt } from "@/lib/attempt-storage";
+import {
+  type AttemptRecordV2,
+  getBrowserStorage,
+  getLatestAttempt,
+  matchesAttemptContext,
+  readAttempt,
+} from "@/lib/attempt-storage";
 import { CONFIG } from "@/lib/config";
 import { calculateScore, getTopicStats } from "@/lib/practice-scoring";
 import type { Question } from "@/lib/questions";
@@ -23,6 +29,11 @@ interface Props {
   newSeed: string;
 }
 
+const PAPER_A_MODULE_1_VALIDATION_CONTEXT = {
+  questionCount: CONFIG.a.modules.m1.count,
+  choiceCounts: Array.from({ length: CONFIG.a.modules.m1.count }, () => 4),
+};
+
 function formatDuration(seconds: number) {
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
@@ -33,7 +44,7 @@ export default function ResultsClient({ paper, moduleKey, seed, questions, attem
   const router = useRouter();
   const basePath = `/practice/${paper}/${moduleKey}/${seed}`;
   const [attempt, setAttempt] = useState<AttemptRecordV2 | null>(null);
-  const [attemptError, setAttemptError] = useState<"missing" | "mismatch" | "paper-a-chain" | null>(null);
+  const [attemptError, setAttemptError] = useState<"missing" | "mismatch" | "paper-a-chain" | "storage" | null>(null);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -46,7 +57,17 @@ export default function ResultsClient({ paper, moduleKey, seed, questions, attem
       return;
     }
 
-    const stored = readAttempt(attemptId);
+    const storage = getBrowserStorage();
+    if (!storage) {
+      setAttemptError("storage");
+      return;
+    }
+
+    const validationContext = {
+      questionCount: questions.length,
+      choiceCounts: questions.map((question) => question.choices.length),
+    };
+    const stored = readAttempt(attemptId, storage, validationContext);
     if (stored?.status !== "submitted") {
       setAttemptError("missing");
       return;
@@ -65,6 +86,8 @@ export default function ResultsClient({ paper, moduleKey, seed, questions, attem
               candidate.module === "m1" &&
               candidate.seed === seed &&
               candidate.status === "submitted",
+            storage,
+            PAPER_A_MODULE_1_VALIDATION_CONTEXT,
           )
         : null;
     if (paper === "a" && moduleKey === "m2" && !previousModule) {
@@ -108,23 +131,33 @@ export default function ResultsClient({ paper, moduleKey, seed, questions, attem
       <div className="card mx-auto max-w-xl border-danger">
         <p className="eyebrow mb-3">Result unavailable</p>
         <h1 className="mb-4 text-4xl">
-          {attemptError === "mismatch"
-            ? "This attempt does not belong to this question set."
-            : attemptError === "paper-a-chain"
-              ? "The Paper A Module 1 result is not available."
-              : "Open a completed attempt to see its result."}
+          {attemptError === "storage"
+            ? "Browser storage is unavailable."
+            : attemptError === "mismatch"
+              ? "This attempt does not belong to this question set."
+              : attemptError === "paper-a-chain"
+                ? "The Paper A Module 1 result is not available."
+                : "Open a completed attempt to see its result."}
         </h1>
         <p className="mb-6 leading-7 text-muted-foreground">
-          {attemptError === "mismatch"
-            ? "Open the matching result link or return to the landing page."
-            : attemptError === "paper-a-chain"
-              ? "Complete Module 1 before opening the combined Module 2 result."
-              : "This result link does not include a completed v2 attempt."}
+          {attemptError === "storage"
+            ? "Enable cookies or site storage for this site, then try again. Your completed attempt cannot be read until browser storage is available."
+            : attemptError === "mismatch"
+              ? "Open the matching result link or return to the landing page."
+              : attemptError === "paper-a-chain"
+                ? "Complete Module 1 before opening the combined Module 2 result."
+                : "This result link does not include a completed v2 attempt."}
         </p>
         <div className="flex flex-wrap gap-3">
-          <Link className="btn btn-primary" href={basePath}>
-            Return to practice
-          </Link>
+          {attemptError === "storage" ? (
+            <button className="btn btn-primary" type="button" onClick={() => window.location.reload()}>
+              Try again
+            </button>
+          ) : (
+            <Link className="btn btn-primary" href={basePath}>
+              Return to practice
+            </Link>
+          )}
           <Link className="btn btn-secondary" href="/">
             Back to landing
           </Link>
@@ -146,6 +179,8 @@ export default function ResultsClient({ paper, moduleKey, seed, questions, attem
             candidate.module === "m1" &&
             candidate.seed === seed &&
             candidate.status === "submitted",
+          getBrowserStorage(),
+          PAPER_A_MODULE_1_VALIDATION_CONTEXT,
         )
       : null;
   const combinedScore = previousModule ? (previousModule.score ?? 0) + moduleScore : null;

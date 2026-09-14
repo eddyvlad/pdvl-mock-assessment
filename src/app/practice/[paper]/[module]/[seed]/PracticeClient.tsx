@@ -10,10 +10,11 @@ import { trackAssessmentEvent } from "@/lib/analytics";
 import {
   type AttemptRecordV2,
   createAttemptRecord,
+  getBrowserStorage,
   getLatestAttempt,
-  getLatestResumableAttempt,
   isResumableAttempt,
   matchesAttemptContext,
+  readActiveAttempt,
   readAttempt,
   removeActiveSession,
   writeAttempt,
@@ -34,6 +35,11 @@ interface Props {
   returnToReview?: boolean;
   showDevTools: boolean;
 }
+
+const PAPER_A_MODULE_1_VALIDATION_CONTEXT = {
+  questionCount: CONFIG.a.modules.m1.count,
+  choiceCounts: Array.from({ length: CONFIG.a.modules.m1.count }, () => 4),
+};
 
 function formatTime(seconds: number) {
   const minutes = Math.floor(seconds / 60);
@@ -63,7 +69,7 @@ export default function PracticeClient({
   const questionHeadingRef = useRef<HTMLHeadingElement>(null);
   const submittingRef = useRef(false);
   const [attempt, setAttempt] = useState<AttemptRecordV2 | null>(null);
-  const [attemptError, setAttemptError] = useState(false);
+  const [attemptError, setAttemptError] = useState<"mismatch" | "storage" | null>(null);
   const [grace, setGrace] = useState(3);
   const [timeLeft, setTimeLeft] = useState(minutes * 60);
   const [previousModuleScore, setPreviousModuleScore] = useState<number | undefined>();
@@ -78,7 +84,10 @@ export default function PracticeClient({
 
       submittingRef.current = true;
       const finalRecord = submitAttemptRecord(record, questions, mode);
-      writeAttempt(finalRecord);
+      if (!writeAttempt(finalRecord)) {
+        setAttemptError("storage");
+        return;
+      }
       removeActiveSession();
       attemptRef.current = finalRecord;
       setAttempt(finalRecord);
@@ -104,9 +113,12 @@ export default function PracticeClient({
     }
 
     const updated = { ...current, ...patch, updatedAt: Date.now() };
+    if (!writeAttempt(updated)) {
+      setAttemptError("storage");
+      return null;
+    }
     attemptRef.current = updated;
     setAttempt(updated);
-    writeAttempt(updated);
     return updated;
   }, []);
 
@@ -120,7 +132,10 @@ export default function PracticeClient({
       const previousChoice = current.answers[index];
       const answers = [...current.answers];
       answers[index] = choice;
-      patchAttempt({ answers, currentQuestion: index });
+      const updated = patchAttempt({ answers, currentQuestion: index });
+      if (!updated) {
+        return;
+      }
       trackAssessmentEvent("answer_select", {
         i: index,
         choice,
@@ -131,6 +146,17 @@ export default function PracticeClient({
   );
 
   useEffect(() => {
+    if (initializedRouteRef.current === initializationKey) {
+      return;
+    }
+    initializedRouteRef.current = initializationKey;
+
+    const storage = getBrowserStorage();
+    if (!storage) {
+      setAttemptError("storage");
+      return;
+    }
+
     if (paper === "a" && moduleKey === "m2") {
       const previous = getLatestAttempt(
         (candidate) =>
@@ -138,6 +164,8 @@ export default function PracticeClient({
           candidate.module === "m1" &&
           candidate.seed === seed &&
           candidate.status === "submitted",
+        storage,
+        PAPER_A_MODULE_1_VALIDATION_CONTEXT,
       );
       if (!previous) {
         router.replace(`/practice/a/m1/${seed}`);
@@ -146,15 +174,16 @@ export default function PracticeClient({
       setPreviousModuleScore(previous.score);
     }
 
-    if (initializedRouteRef.current === initializationKey) {
-      return;
-    }
-    initializedRouteRef.current = initializationKey;
-
     const context = { paper, module: moduleKey, seed };
-    let stored = attemptId ? readAttempt(attemptId) : getLatestResumableAttempt();
+    const validationContext = {
+      questionCount: total,
+      choiceCounts: questions.map((question) => question.choices.length),
+    };
+    let stored = attemptId
+      ? readAttempt(attemptId, storage, validationContext)
+      : readActiveAttempt(storage, validationContext);
     if (attemptId && (!stored || !matchesAttemptContext(stored, context))) {
-      setAttemptError(true);
+      setAttemptError("mismatch");
       return;
     }
     if (!attemptId && stored && !matchesAttemptContext(stored, context)) {
@@ -178,7 +207,10 @@ export default function PracticeClient({
               updatedAt: Date.now(),
             };
       if (restored !== stored) {
-        writeAttempt(restored);
+        if (!writeAttempt(restored)) {
+          setAttemptError("storage");
+          return;
+        }
       }
       attemptRef.current = restored;
       setAttempt(restored);
@@ -199,7 +231,10 @@ export default function PracticeClient({
       total,
       minutes,
     });
-    writeAttempt(fresh);
+    if (!writeAttempt(fresh)) {
+      setAttemptError("storage");
+      return;
+    }
     attemptRef.current = fresh;
     setAttempt(fresh);
     setGrace(3);
@@ -221,13 +256,14 @@ export default function PracticeClient({
     moduleKey,
     paper,
     questionIndex,
+    questions,
     router,
     seed,
     total,
   ]);
 
   useEffect(() => {
-    if (attempt?.status !== "in-progress") {
+    if (attemptError || attempt?.status !== "in-progress") {
       return;
     }
 
@@ -252,10 +288,14 @@ export default function PracticeClient({
     updateTime();
     const timer = window.setInterval(updateTime, 1_000);
     return () => window.clearInterval(timer);
-  }, [attempt, finishAttempt, grace]);
+  }, [attempt, attemptError, finishAttempt, grace]);
 
   useEffect(() => {
     const handleKey = (event: KeyboardEvent) => {
+      if (attemptError) {
+        return;
+      }
+
       const current = attemptRef.current;
       if (current?.status !== "in-progress") {
         return;
@@ -282,7 +322,7 @@ export default function PracticeClient({
 
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [questions, updateAnswer]);
+  }, [attemptError, questions, updateAnswer]);
 
   useEffect(() => {
     const nextQuestion = attempt?.currentQuestion;
@@ -322,18 +362,32 @@ export default function PracticeClient({
   };
 
   if (attemptError) {
+    const storageUnavailable = attemptError === "storage";
+
     return (
       <main className="page-shell">
         <div className="card mx-auto max-w-xl border-danger">
           <p className="eyebrow mb-3">Practice unavailable</p>
-          <h1 className="mb-4 text-4xl">This practice attempt does not belong to this question set.</h1>
+          <h1 className="mb-4 text-4xl">
+            {storageUnavailable
+              ? "Browser storage is unavailable."
+              : "This practice attempt does not belong to this question set."}
+          </h1>
           <p className="mb-6 leading-7 text-muted-foreground">
-            Open the matching practice link or start a new attempt from the landing page.
+            {storageUnavailable
+              ? "Enable cookies or site storage for this site, then try again. Your attempt cannot be saved until browser storage is available."
+              : "Open the matching practice link or start a new attempt from the landing page."}
           </p>
           <div className="flex flex-wrap gap-3">
-            <button className="btn btn-primary" type="button" onClick={() => router.replace(basePath)}>
-              Open this practice set
-            </button>
+            {storageUnavailable ? (
+              <button className="btn btn-primary" type="button" onClick={() => window.location.reload()}>
+                Try again
+              </button>
+            ) : (
+              <button className="btn btn-primary" type="button" onClick={() => router.replace(basePath)}>
+                Open this practice set
+              </button>
+            )}
             <button className="btn btn-secondary" type="button" onClick={() => router.replace("/")}>
               Back to landing
             </button>

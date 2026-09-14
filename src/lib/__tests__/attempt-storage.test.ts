@@ -8,27 +8,40 @@ import {
   matchesAttemptContext,
   parseAttemptRecord,
   readActiveAttempt,
+  readAttempt,
   removeAttempt,
   writeAttempt,
 } from "../attempt-storage";
 
-function createStorage(initial: Record<string, string> = {}): AttemptStorage {
+type StorageFailure = "getItem" | "setItem" | "removeItem";
+
+function createStorage(initial: Record<string, string> = {}, failure?: StorageFailure): AttemptStorage {
   const values = new Map(Object.entries(initial));
+  const fail = (method: StorageFailure) => {
+    if (failure === method) {
+      const error = new Error(`${method} failed`);
+      error.name = method === "setItem" ? "QuotaExceededError" : "SecurityError";
+      throw error;
+    }
+  };
 
   return {
     get length() {
       return values.size;
     },
     getItem(key) {
+      fail("getItem");
       return values.get(key) ?? null;
     },
     key(index) {
       return Array.from(values.keys())[index] ?? null;
     },
     removeItem(key) {
+      fail("removeItem");
       values.delete(key);
     },
     setItem(key, value) {
+      fail("setItem");
       values.set(key, value);
     },
   };
@@ -46,6 +59,10 @@ function attempt(overrides: Partial<AttemptRecordV2> = {}): AttemptRecordV2 {
     }),
     ...overrides,
   };
+}
+
+function serializedAttempt(overrides: Record<string, unknown> = {}) {
+  return JSON.stringify({ ...attempt(), ...overrides });
 }
 
 describe("attempt storage v2", () => {
@@ -104,7 +121,16 @@ describe("attempt storage v2", () => {
 
   it("does not treat submitted records as resumable", () => {
     const storage = createStorage();
-    writeAttempt(attempt({ attemptId: "submitted", status: "submitted", updatedAt: 500 }), storage);
+    writeAttempt(
+      attempt({
+        attemptId: "submitted",
+        status: "submitted",
+        updatedAt: 1_500,
+        submittedAt: 1_500,
+        submissionMode: "manual",
+      }),
+      storage,
+    );
 
     expect(getLatestResumableAttempt(1_000, storage)).toBeNull();
     expect(readActiveAttempt(storage)?.attemptId).toBe("submitted");
@@ -141,5 +167,79 @@ describe("attempt storage v2", () => {
   it("rejects malformed records", () => {
     expect(parseAttemptRecord('{"version":1}')).toBeNull();
     expect(parseAttemptRecord("not json")).toBeNull();
+  });
+
+  it("accepts valid in-progress and legacy-compatible submitted records", () => {
+    const context = { questionCount: 2, choiceCounts: [4, 4] };
+    const submitted = attempt({
+      status: "submitted",
+      submittedAt: 2_000,
+      submissionMode: "auto",
+    });
+
+    expect(parseAttemptRecord(JSON.stringify(attempt()), context)).not.toBeNull();
+    expect(parseAttemptRecord(JSON.stringify(submitted), context)).toEqual(submitted);
+  });
+
+  it("rejects non-finite or negative timestamps", () => {
+    expect(parseAttemptRecord(serializedAttempt({ startedAt: Number.POSITIVE_INFINITY }))).toBeNull();
+    expect(parseAttemptRecord(serializedAttempt({ expiresAt: Number.NaN }))).toBeNull();
+    expect(parseAttemptRecord(serializedAttempt({ updatedAt: -1 }))).toBeNull();
+  });
+
+  it("requires consistent submission metadata and score ranges", () => {
+    expect(parseAttemptRecord(serializedAttempt({ status: "submitted" }))).toBeNull();
+    expect(
+      parseAttemptRecord(serializedAttempt({ status: "submitted", submittedAt: 2_000, submissionMode: "unknown" })),
+    ).toBeNull();
+    expect(parseAttemptRecord(serializedAttempt({ submittedAt: 2_000 }))).toBeNull();
+    expect(parseAttemptRecord(serializedAttempt({ score: 1 }))).toBeNull();
+    expect(
+      parseAttemptRecord(
+        serializedAttempt({ status: "submitted", submittedAt: 2_000, submissionMode: "manual", score: 3 }),
+      ),
+    ).toBeNull();
+  });
+
+  it("rejects invalid question positions and answer ranges", () => {
+    expect(parseAttemptRecord(serializedAttempt({ currentQuestion: -1 }))).toBeNull();
+    expect(parseAttemptRecord(serializedAttempt({ currentQuestion: 2 }))).toBeNull();
+    expect(parseAttemptRecord(serializedAttempt({ answers: [null, -1] }))).toBeNull();
+    expect(parseAttemptRecord(serializedAttempt({ answers: [null, 4] }))).toBeNull();
+    expect(
+      parseAttemptRecord(serializedAttempt({ answers: [2, null] }), {
+        questionCount: 2,
+        choiceCounts: [2, 4],
+      }),
+    ).toBeNull();
+    expect(
+      parseAttemptRecord(serializedAttempt({ answers: [null] }), {
+        questionCount: 2,
+        choiceCounts: [4, 4],
+      }),
+    ).toBeNull();
+    expect(
+      parseAttemptRecord(serializedAttempt({ answers: [1, null] }), {
+        questionCount: 2,
+        choiceCounts: [2, 4],
+      }),
+    ).not.toBeNull();
+  });
+
+  it("exposes an expired active attempt for one-time expiry recovery", () => {
+    const storage = createStorage();
+    const expired = attempt({ attemptId: "expired-active", expiresAt: 999, updatedAt: 900 });
+    writeAttempt(expired, storage);
+
+    expect(readActiveAttempt(storage)?.attemptId).toBe(expired.attemptId);
+    expect(getLatestResumableAttempt(1_000, storage)).toBeNull();
+  });
+
+  it("fails closed when browser storage reads or writes throw", () => {
+    expect(() => readAttempt("blocked", createStorage({}, "getItem"))).not.toThrow();
+    expect(readAttempt("blocked", createStorage({}, "getItem"))).toBeNull();
+    expect(() => readActiveAttempt(createStorage({}, "getItem"))).not.toThrow();
+    expect(writeAttempt(attempt(), createStorage({}, "setItem"))).toBe(false);
+    expect(() => removeAttempt("attempt", createStorage({}, "removeItem"))).not.toThrow();
   });
 });
