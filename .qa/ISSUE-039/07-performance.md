@@ -17,4 +17,5 @@ listeners, mobile layout cost, production build diagnostics, and any material al
   is expected; production cache headers should be confirmed on the hosting platform.
 - Unresolved questions: no production CDN or real-device performance trace was available, and no performance budget is
   documented.
-- Remediation and verification: no performance task created from this pass.
+- Remediation and verification: complete. ISSUE-040 through ISSUE-044 introduced no material performance regression;
+  the production build and browser regression remained within the observed baseline.

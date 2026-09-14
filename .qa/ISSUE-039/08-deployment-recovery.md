@@ -8,13 +8,14 @@ and the ability to resume or safely abandon browser-local attempts after failure
 
 ## Investigation state
 
-- Status: NO-GO finding recorded
+- Status: verified locally, with hosting limits
 - Tested or inspected: clean install, webpack production build, `next start` on HTTP port 3001, canonical route smoke,
   environment examples, robots and sitemap, direct invalid-route handling, and browser-local recovery actions.
-- Evidence: `HOST=http://localhost:3001 npm run start -- -p 3001` served `/` with 200 but rendered the friendly dataset load
-  error for `/practice/b/3b/000000`; the source hard-codes HTTPS when `NODE_ENV` is not development. Missing-seed routes
-  return 307 redirects and invalid paper/module routes return 404. Robots, sitemap, and noindex metadata render.
-- Confirmed findings: production start cannot serve practice content over the documented HTTP origin. This is the release
-  gate tracked in [ISSUE-040](../../tasks/backlog/ISSUE-040-production-dataset-fetch-protocol.md).
+- Evidence: after ISSUE-040, a fresh `next start` on port 3101 returned 200 and question content for the representative
+  practice route and 200 for the dataset asset. After ISSUE-043, all three responses carried the configured security
+  headers and no `X-Powered-By`. Missing-seed routes still return 307 redirects and invalid paper/module routes return 404. Robots, sitemap, and noindex metadata render.
+- Confirmed findings: no locally reproducible deployment blocker remains. The upstream hosting proxy, rollback controls,
+  and backup or recovery procedures are not available in this repository.
 - Unresolved questions: HTTPS termination and hosting-specific rollback controls require deployment access.
-- Remediation and verification: protocol remediation and a repeat production start smoke are pending.
+- Remediation and verification: complete locally. Hosting-specific rollback and disaster recovery remain accepted
+  validation limits for this run.

@@ -8,17 +8,21 @@ defaults, and repository exposure of credentials or machine-local artifacts.
 
 ## Investigation state
 
-- Status: initial pass complete, hardening required
+- Status: verified after remediation, with privacy and hosting limits
 - Tested or inspected: tracked-file secret patterns, environment ignore rules, analytics integration and guards, React
   rendering boundaries, route validation, dependency audits, response headers, storage trust boundaries, and third-party
   links.
 - Evidence: no credential-like patterns or tracked local environment files were found; React renders dataset strings as
   text; route segments validate against `CONFIG` and seed format; Google Analytics is optional and guarded by a configured
   measurement ID; both npm audits found 0 vulnerabilities.
-- Confirmed findings: no application-owned security response headers are configured, and `X-Powered-By: Next.js` is
-  exposed. See [ISSUE-043](../../tasks/backlog/ISSUE-043-add-production-security-headers.md). A privacy notice or consent
-  policy is not defined, which requires an owner or legal decision before enabling analytics for public use. The safe
-  example-value aspect is tracked in [ISSUE-044](../../tasks/backlog/ISSUE-044-make-optional-analytics-configuration-safe.md).
+- Confirmed findings from the initial pass were resolved by [ISSUE-043](../../tasks/completed/ISSUE-043-add-production-security-headers.md)
+  and [ISSUE-044](../../tasks/completed/ISSUE-044-make-optional-analytics-configuration-safe.md). The production
+  response now includes `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, and
+  `X-Frame-Options: DENY`, while `X-Powered-By` is absent. `.env.example` leaves analytics disabled until a real ID is
+  supplied, and the existing runtime guards and event payloads are unchanged.
+- Accepted product risk: a privacy notice or consent policy is not defined. This is an owner or legal decision before
+  enabling analytics for public traffic, not an application defect discovered in this run.
 - Unresolved questions: hosting-level headers, analytics consent requirements, and the final public origin cannot be
   validated locally.
-- Remediation and verification: security header and analytics configuration tasks pending.
+- Remediation and verification: complete locally. Upstream hosting policy and analytics consent requirements remain
+  unvalidated.

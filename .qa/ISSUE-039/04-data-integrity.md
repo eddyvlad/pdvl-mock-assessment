@@ -8,16 +8,16 @@ mismatched records; and topic metadata presentation.
 
 ## Investigation state
 
-- Status: initial pass complete, remediation required
+- Status: verified after remediation
 - Tested or inspected: all v2025-09 pools, schema contract assertions, Paper C copy checks, deterministic sampling unit
   tests, correct answer indexes, scenario helper targets, attempt parsing and matching tests, browser persistence and
   Paper A score chaining.
 - Evidence: pools are 152, 27, 153, and 44; every question has valid non-empty choices, difficulty, and an in-range
-  `correctIndex`; 31 unit tests pass; browser checks preserved selected answers, current question, seed, grace, and
+  `correctIndex`; 46 unit tests pass; browser checks preserved selected answers, current question, seed, grace, and
   Paper A `35/35` combined scoring.
-- Confirmed findings: `parseAttemptRecord` accepts inconsistent or non-finite fields and does not validate answer-array
-  shape; bare practice ignores expired active records; browser storage exceptions are uncaught. See
-  [ISSUE-042](../../tasks/backlog/ISSUE-042-harden-attempt-storage-recovery.md).
+- Confirmed findings from the initial pass were resolved by [ISSUE-042](../../tasks/completed/ISSUE-042-harden-attempt-storage-recovery.md),
+  which validates v2 record shape and keeps expired active records available for auto-submit recovery.
 - Unresolved questions: malformed records were not injected into browser storage because browser instructions prohibit
   direct storage inspection or mutation; fake-storage unit coverage is the planned verification.
-- Remediation and verification: pending delegation and focused storage tests.
+- Remediation and verification: complete. Storage tests cover malformed fields, context validation, expiry, quota, and
+  security-error paths. Paper A same-seed chaining and combined scoring were rechecked in the browser.

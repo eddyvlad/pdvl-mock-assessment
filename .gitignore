@@ -45,3 +45,4 @@ next-env.d.ts
 .agents/mcp_config.json
 .agents/scratchpad/
 .codex/config.toml
+.playwright-mcp/
