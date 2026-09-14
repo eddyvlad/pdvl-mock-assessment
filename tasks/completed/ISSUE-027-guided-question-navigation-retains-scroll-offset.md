@@ -64,3 +64,10 @@ The page retains the scroll offset from the previous question. In the tested Pap
 ## Severity
 
 Medium
+
+## Completion notes
+
+- Added a stable question heading ref with `tabIndex={-1}` and a navigation-change effect that scrolls the new prompt below the sticky navigation before moving focus without a second scroll.
+- Added `scroll-margin-top` to the practice question heading so keyboard and pointer navigation retain the question context at mobile widths.
+- Verified at 390 by 844 that the new heading receives focus, begins at 88px below the viewport top, and remains clear of the 73px navigation bar without horizontal overflow.
+- `npm run lint`, `npm run typecheck`, and `npm test -- --runInBand` pass.

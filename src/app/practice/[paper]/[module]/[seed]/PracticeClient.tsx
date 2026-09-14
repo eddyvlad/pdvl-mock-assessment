@@ -56,6 +56,8 @@ export default function PracticeClient({
   const moduleName = CONFIG[paper]?.modules[moduleKey]?.label ?? moduleKey.toUpperCase();
   const attemptRef = useRef<AttemptRecordV2 | null>(null);
   const initializedRouteRef = useRef<string | null>(null);
+  const previousQuestionRef = useRef<number | null>(null);
+  const questionHeadingRef = useRef<HTMLHeadingElement>(null);
   const submittingRef = useRef(false);
   const [attempt, setAttempt] = useState<AttemptRecordV2 | null>(null);
   const [attemptError, setAttemptError] = useState(false);
@@ -236,6 +238,24 @@ export default function PracticeClient({
     return () => window.removeEventListener('keydown', handleKey);
   }, [questions, updateAnswer]);
 
+  useEffect(() => {
+    const nextQuestion = attempt?.currentQuestion;
+    const previousQuestion = previousQuestionRef.current;
+    previousQuestionRef.current = nextQuestion ?? null;
+
+    if (nextQuestion === undefined || previousQuestion === null || previousQuestion === nextQuestion) {
+      return;
+    }
+
+    const heading = questionHeadingRef.current;
+    if (!heading) {
+      return;
+    }
+
+    heading.scrollIntoView({ block: 'start', behavior: 'auto' });
+    heading.focus({ preventScroll: true });
+  }, [attempt?.currentQuestion]);
+
   const goToQuestion = (index: number) => {
     if (index >= 0 && index < total) {
       patchAttempt({ currentQuestion: index });
@@ -310,7 +330,7 @@ export default function PracticeClient({
         <div className="mb-8 flex items-start justify-between gap-4">
           <div>
             <p className="eyebrow mb-3">Question {currentQuestion + 1}</p>
-            <h2 id={`question-${currentQuestion}`} className="practice-question-heading mb-0 max-w-3xl font-sans text-2xl font-bold leading-8 tracking-normal sm:text-3xl">{question.prompt}</h2>
+            <h2 ref={questionHeadingRef} id={`question-${currentQuestion}`} tabIndex={-1} className="practice-question-heading mb-0 max-w-3xl font-sans text-2xl font-bold leading-8 tracking-normal sm:text-3xl">{question.prompt}</h2>
           </div>
           <span className="hidden shrink-0 font-mono text-sm text-muted-foreground sm:inline">{String(currentQuestion + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}</span>
         </div>

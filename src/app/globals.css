@@ -192,6 +192,7 @@ h3 {
     font-weight: 700;
     letter-spacing: normal;
     overflow-wrap: anywhere;
+    scroll-margin-top: 5.5rem;
 }
 
 a {
