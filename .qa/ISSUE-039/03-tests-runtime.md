@@ -8,9 +8,16 @@ critical workflows.
 
 ## Investigation state
 
-- Status: pending
-- Tested or inspected: not yet
-- Evidence: none yet
-- Confirmed findings: none yet
-- Unresolved questions: none recorded yet
-- Remediation and verification: not applicable yet
+- Status: initial pass complete
+- Tested or inspected: clean install, outdated dependency scan, production and development builds, lint, typecheck,
+  Jest tests, coverage, development-server startup, production-server startup, route requests, browser console logs, and
+  production bundle inspection.
+- Evidence: `npm ci` passed; `npm outdated --json` returned `{}`; `npm audit --omit=dev` and `npm audit` found 0
+  vulnerabilities; lint, typecheck, 31 tests, and `npm run build` passed. The webpack production build generated the
+  expected static and dynamic routes, and development scenario labels were absent from `.next/server` and `.next/static`.
+  Jest coverage was 80.09% statements, 74.19% branches, and 83.63% functions.
+- Confirmed findings: pages and client components have no automated Jest coverage, and no tracked CI quality gate exists.
+  This is recorded as acceptable post-production follow-up in [ISSUE-045](../../tasks/backlog/ISSUE-045-add-ci-quality-gates.md).
+- Unresolved questions: a dedicated browser test harness is not installed; the current manual browser evidence is not a
+  substitute for repeatable end-to-end CI coverage.
+- Remediation and verification: automated baseline is green; CI follow-up is not release-blocking.

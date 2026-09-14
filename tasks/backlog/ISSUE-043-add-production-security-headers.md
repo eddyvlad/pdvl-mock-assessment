@@ -1,0 +1,41 @@
+---
+id: ISSUE-043
+title: Add baseline production security headers
+type: chore
+depends_on: []
+---
+
+# Add baseline production security headers
+
+Area: Production HTTP hardening
+
+## Finding
+
+The local production and development responses expose `X-Powered-By: Next.js` and do not set application-owned
+security headers such as `X-Content-Type-Options`, `Referrer-Policy`, or a frame-embedding policy. There is no tracked
+Next configuration defining a deliberate header baseline. The application has no authenticated or server-data flow, but
+these defaults leave avoidable browser hardening to the hosting platform.
+
+## Expected behaviour
+
+Production responses should carry a documented, compatible baseline for this static/client-side assessment application,
+including protection against MIME sniffing, unnecessary referrer leakage, and unwanted framing. The configuration must
+not block required Next.js assets or the optional Google Analytics integration. Framework disclosure should be disabled
+where supported.
+
+## Scope
+
+- Add or update the tracked Next.js configuration with the selected headers and concise comments or README notes.
+- Preserve `next build --webpack`, route behaviour, static dataset delivery, analytics guards, and existing metadata.
+- Do not introduce a broad Content Security Policy without verifying all required scripts and documenting its policy.
+- Add a focused response-header verification or configuration test where practical.
+
+## Severity
+
+Should fix before production. No exploit was reproduced in this unauthenticated app, but the missing baseline is a
+preventable deployment hardening gap.
+
+## Verification
+
+Run lint, typecheck, tests, build, and a production-server header smoke check for `/`, `/practice`, and a dataset asset.
+Confirm the optional analytics path still renders when configured and that no required asset is blocked.
