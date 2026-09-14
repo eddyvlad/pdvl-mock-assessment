@@ -1,7 +1,7 @@
 ---
 id: ISSUE-029
 title: Paper A prerequisite redirect skips the practice grace period
-type: task
+type: bug
 depends_on: []
 ---
 

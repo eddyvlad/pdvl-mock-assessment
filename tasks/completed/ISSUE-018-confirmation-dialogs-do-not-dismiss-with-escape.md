@@ -1,7 +1,7 @@
 ---
 id: ISSUE-018
 title: Styled confirmation dialogs do not dismiss when Escape is pressed
-type: task
+type: bug
 depends_on: []
 ---
 

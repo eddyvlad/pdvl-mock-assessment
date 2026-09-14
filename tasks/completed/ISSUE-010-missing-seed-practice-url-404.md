@@ -1,7 +1,7 @@
 ---
 id: ISSUE-010
 title: Missing-seed practice URLs return a 404
-type: task
+type: bug
 depends_on: []
 ---
 

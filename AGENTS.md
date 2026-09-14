@@ -228,6 +228,21 @@ Run the following commands in the project root directory in order to test the pr
   ---
   ```
 
+  `type` must be one of `bug`, `feature`, `enhancement`, `chore`, `refactor`, `test`, `docs`, `content`, `design`, or
+  `research`. Use one primary type per task:
+
+  - `bug`: existing behaviour violates the expected behaviour;
+  - `feature`: adds a new user or developer capability;
+  - `enhancement`: improves an existing capability or user experience;
+  - `chore`: covers maintenance, dependencies, configuration, or tooling;
+  - `refactor`: restructures internals without intended behaviour changes;
+  - `test`: adds or improves test coverage, fixtures, QA tooling, or validation infrastructure;
+  - `docs`: changes documentation only;
+  - `content`: changes copy, question wording, datasets, or educational material;
+  - `design`: covers visual design exploration or UI-system work;
+  - `research`: investigates a question or technical spike without an immediate implementation.
+
+  Use the task's area and body for cross-cutting concerns such as accessibility, mobile, performance, or analytics.
   Keep the frontmatter minimal beyond these required fields. The parent lifecycle directory is authoritative for status;
   do not duplicate it in frontmatter without a real consumer.
 - Make each task self-contained enough for handoff. Do not silently expand its scope. Every task must produce at least one

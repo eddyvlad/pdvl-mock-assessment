@@ -1,7 +1,7 @@
 ---
 id: ISSUE-030
 title: Question prompts use inconsistent and oversized typography
-type: task
+type: design
 depends_on: []
 ---
 

@@ -1,7 +1,7 @@
 ---
 id: ISSUE-014
 title: Paper A combined results omit the Module 1 and Module 2 subtotals
-type: task
+type: bug
 depends_on: []
 ---
 

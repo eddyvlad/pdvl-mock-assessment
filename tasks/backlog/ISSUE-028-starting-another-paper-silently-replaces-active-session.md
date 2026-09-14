@@ -1,7 +1,7 @@
 ---
 id: ISSUE-028
 title: Starting another paper silently replaces the active unfinished session
-type: task
+type: bug
 depends_on: []
 ---
 

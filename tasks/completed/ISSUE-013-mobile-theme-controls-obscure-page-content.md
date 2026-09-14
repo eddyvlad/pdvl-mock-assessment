@@ -1,7 +1,7 @@
 ---
 id: ISSUE-013
 title: Fixed theme controls obscure content on narrow screens
-type: task
+type: bug
 depends_on: []
 ---
 

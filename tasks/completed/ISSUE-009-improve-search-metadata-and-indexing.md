@@ -1,7 +1,7 @@
 ---
 id: ISSUE-009
 title: Improve search metadata and indexing foundations
-type: task
+type: enhancement
 depends_on: []
 ---
 

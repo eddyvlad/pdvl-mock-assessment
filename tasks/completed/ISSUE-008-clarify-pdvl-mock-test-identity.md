@@ -1,7 +1,7 @@
 ---
 id: ISSUE-008
 title: Clarify the landing page's PDVL mock test identity
-type: task
+type: content
 depends_on: []
 ---
 

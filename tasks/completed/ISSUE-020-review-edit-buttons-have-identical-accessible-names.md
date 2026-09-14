@@ -1,7 +1,7 @@
 ---
 id: ISSUE-020
 title: Review page Edit answer buttons are indistinguishable to assistive technology
-type: task
+type: bug
 depends_on: []
 ---
 

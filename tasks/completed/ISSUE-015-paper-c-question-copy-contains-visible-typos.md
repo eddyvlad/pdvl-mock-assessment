@@ -1,7 +1,7 @@
 ---
 id: ISSUE-015
 title: Paper C question copy contains visible spelling and grammar errors
-type: task
+type: content
 depends_on: []
 ---
 

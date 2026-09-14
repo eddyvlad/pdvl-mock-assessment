@@ -1,7 +1,7 @@
 ---
 id: ISSUE-016
 title: One Paper C choice contains an embedded answer letter that conflicts with the UI label
-type: task
+type: content
 depends_on: []
 ---
 

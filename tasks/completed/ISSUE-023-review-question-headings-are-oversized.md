@@ -1,7 +1,7 @@
 ---
 id: ISSUE-023
 title: Review page question headings are oversized and use the display heading style
-type: task
+type: design
 depends_on: []
 ---
 

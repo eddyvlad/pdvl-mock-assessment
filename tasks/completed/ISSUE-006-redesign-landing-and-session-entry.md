@@ -1,7 +1,7 @@
 ---
 id: ISSUE-006
 title: Redesign the Steady Signal landing page and session entry
-type: task
+type: feature
 depends_on:
   - ISSUE-005
 ---

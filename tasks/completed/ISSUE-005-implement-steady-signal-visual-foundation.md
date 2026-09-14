@@ -1,7 +1,7 @@
 ---
 id: ISSUE-005
 title: Implement the Steady Signal visual foundation and shell
-type: task
+type: design
 depends_on: []
 ---
 

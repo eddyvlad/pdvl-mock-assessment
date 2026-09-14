@@ -1,7 +1,7 @@
 ---
 id: ISSUE-007
 title: Build the Steady Signal guided assessment and results flow
-type: task
+type: feature
 depends_on:
   - ISSUE-006
 ---

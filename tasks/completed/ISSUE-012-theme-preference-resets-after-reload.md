@@ -1,7 +1,7 @@
 ---
 id: ISSUE-012
 title: Selected theme resets to system after a full reload
-type: task
+type: bug
 depends_on: []
 ---
 

@@ -1,7 +1,7 @@
 ---
 id: ISSUE-034
 title: Refresh framework and library dependencies
-type: task
+type: chore
 depends_on: []
 ---
 

@@ -1,7 +1,7 @@
 ---
 id: ISSUE-027
 title: Guided question navigation retains the previous scroll offset
-type: task
+type: bug
 depends_on: []
 ---
 

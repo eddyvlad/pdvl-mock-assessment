@@ -1,7 +1,7 @@
 ---
 id: ISSUE-033
 title: Add development assessment scenario controls
-type: task
+type: feature
 depends_on: []
 ---
 
