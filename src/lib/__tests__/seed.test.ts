@@ -1,5 +1,5 @@
+import { type Question, sampleQuestions } from "../questions";
 import { moduleRng } from "../seed";
-import { sampleQuestions, Question } from "../questions";
 
 test("mulberry32 deterministic", () => {
   const rng1 = moduleRng("aaaaaa", "m1");

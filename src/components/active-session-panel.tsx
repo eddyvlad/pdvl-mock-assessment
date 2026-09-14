@@ -1,10 +1,14 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { ArrowRight, RotateCcw, X } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
-import { getLatestResumableAttempt, removeAttempt, type AttemptRecordV2 } from '@/lib/attempt-storage';
-import { CONFIG } from '@/lib/config';
+import { ArrowRight, RotateCcw, X } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import {
+  type AttemptRecordV2,
+  getLatestResumableAttempt,
+  removeAttempt,
+} from "@/lib/attempt-storage";
+import { CONFIG } from "@/lib/config";
 
 function readLatestSession() {
   return getLatestResumableAttempt();
@@ -35,7 +39,7 @@ function DiscardSessionDialog({
     if (open && !dialog.open) {
       dialog.showModal();
       wasOpenRef.current = true;
-      dialog.querySelector<HTMLButtonElement>('[data-dialog-cancel]')?.focus();
+      dialog.querySelector<HTMLButtonElement>("[data-dialog-cancel]")?.focus();
     } else if (!open && dialog.open) {
       dialog.close();
       if (wasOpenRef.current) {
@@ -57,7 +61,7 @@ function DiscardSessionDialog({
         onClose();
       }}
       onKeyDown={(event) => {
-        if (event.key === 'Escape') {
+        if (event.key === "Escape") {
           event.preventDefault();
           onClose();
         }
@@ -70,13 +74,32 @@ function DiscardSessionDialog({
     >
       <div className="steady-dialog-panel">
         <p className="eyebrow mb-3">Before you start a new paper</p>
-        <h2 id="discard-session-title" className="mb-3 text-3xl">Discard this session?</h2>
-        <p id="discard-session-description" className="m-0 leading-7 text-muted-foreground">
-          Your saved answers for {label} will be deleted from this browser. You will not be able to continue this attempt.
+        <h2 id="discard-session-title" className="mb-3 text-3xl">
+          Discard this session?
+        </h2>
+        <p
+          id="discard-session-description"
+          className="m-0 leading-7 text-muted-foreground"
+        >
+          Your saved answers for {label} will be deleted from this browser. You
+          will not be able to continue this attempt.
         </p>
         <div className="steady-dialog-actions">
-          <button className="btn btn-secondary" type="button" data-dialog-cancel onClick={onClose}>Keep session</button>
-          <button className="btn btn-danger gap-2" type="button" onClick={onConfirm}>Discard session <X className="h-4 w-4" aria-hidden="true" /></button>
+          <button
+            className="btn btn-secondary"
+            type="button"
+            data-dialog-cancel
+            onClick={onClose}
+          >
+            Keep session
+          </button>
+          <button
+            className="btn btn-danger gap-2"
+            type="button"
+            onClick={onConfirm}
+          >
+            Discard session <X className="h-4 w-4" aria-hidden="true" />
+          </button>
         </div>
       </div>
     </dialog>
@@ -92,12 +115,12 @@ export default function ActiveSessionPanel() {
   useEffect(() => {
     const refresh = () => setAttempt(readLatestSession());
     refresh();
-    window.addEventListener('storage', refresh);
-    window.addEventListener('pdvl-attempt-change', refresh);
+    window.addEventListener("storage", refresh);
+    window.addEventListener("pdvl-attempt-change", refresh);
 
     return () => {
-      window.removeEventListener('storage', refresh);
-      window.removeEventListener('pdvl-attempt-change', refresh);
+      window.removeEventListener("storage", refresh);
+      window.removeEventListener("pdvl-attempt-change", refresh);
     };
   }, []);
 
@@ -106,7 +129,10 @@ export default function ActiveSessionPanel() {
       return;
     }
 
-    const refreshTime = () => setMinutesRemaining(Math.max(1, Math.ceil((attempt.expiresAt - Date.now()) / 60_000)));
+    const refreshTime = () =>
+      setMinutesRemaining(
+        Math.max(1, Math.ceil((attempt.expiresAt - Date.now()) / 60_000)),
+      );
     refreshTime();
     const timer = window.setInterval(refreshTime, 30_000);
 
@@ -120,20 +146,31 @@ export default function ActiveSessionPanel() {
   const paper = CONFIG[attempt.paper];
   const moduleConfig = paper?.modules[attempt.module];
   const answered = attempt.answers.filter((answer) => answer !== null).length;
-  const label = moduleConfig ? `Module ${moduleConfig.label}` : attempt.module.toUpperCase();
+  const label = moduleConfig
+    ? `Module ${moduleConfig.label}`
+    : attempt.module.toUpperCase();
   const sessionLabel = `${paper?.name ?? `Paper ${attempt.paper.toUpperCase()}`} · ${label}`;
 
   return (
-    <aside className="mb-12 border-l-4 border-accent bg-secondary px-5 py-5 sm:flex sm:items-center sm:justify-between sm:gap-6" aria-label="Continue last session">
+    <aside
+      className="mb-12 border-l-4 border-accent bg-secondary px-5 py-5 sm:flex sm:items-center sm:justify-between sm:gap-6"
+      aria-label="Continue last session"
+    >
       <div className="flex items-start gap-3">
-        <span className="mt-0.5 rounded-full bg-primary p-2 text-primary-foreground" aria-hidden="true">
+        <span
+          className="mt-0.5 rounded-full bg-primary p-2 text-primary-foreground"
+          aria-hidden="true"
+        >
           <RotateCcw className="h-4 w-4" />
         </span>
         <div>
           <p className="eyebrow mb-1">Continue last session</p>
-          <h2 className="mb-1 text-2xl">{paper?.name ?? `Paper ${attempt.paper.toUpperCase()}`} · {label}</h2>
+          <h2 className="mb-1 text-2xl">
+            {paper?.name ?? `Paper ${attempt.paper.toUpperCase()}`} · {label}
+          </h2>
           <p className="m-0 text-sm text-muted-foreground">
-            {answered} of {attempt.answers.length} answered · about {minutesRemaining} min left
+            {answered} of {attempt.answers.length} answered · about{" "}
+            {minutesRemaining} min left
           </p>
         </div>
       </div>

@@ -1,6 +1,6 @@
-import type { MetadataRoute } from 'next';
-import { siteUrl } from '@/lib/site-metadata';
+import type { MetadataRoute } from "next";
+import { siteUrl } from "@/lib/site-metadata";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [{ url: new URL('/', siteUrl).toString() }];
+  return [{ url: new URL("/", siteUrl).toString() }];
 }

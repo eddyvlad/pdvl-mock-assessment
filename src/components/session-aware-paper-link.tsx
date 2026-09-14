@@ -1,10 +1,14 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { ArrowRight, X } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { getLatestResumableAttempt, removeAttempt, type AttemptRecordV2 } from '@/lib/attempt-storage';
+import { ArrowRight, X } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import {
+  type AttemptRecordV2,
+  getLatestResumableAttempt,
+  removeAttempt,
+} from "@/lib/attempt-storage";
 
 interface Props {
   href: string;
@@ -13,12 +17,19 @@ interface Props {
   dialogId: string;
 }
 
-export default function SessionAwarePaperLink({ href, label, paperLabel, dialogId }: Props) {
+export default function SessionAwarePaperLink({
+  href,
+  label,
+  paperLabel,
+  dialogId,
+}: Props) {
   const router = useRouter();
   const triggerRef = useRef<HTMLAnchorElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const wasOpenRef = useRef(false);
-  const [activeAttempt, setActiveAttempt] = useState<AttemptRecordV2 | null>(null);
+  const [activeAttempt, setActiveAttempt] = useState<AttemptRecordV2 | null>(
+    null,
+  );
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   useEffect(() => {
@@ -30,7 +41,7 @@ export default function SessionAwarePaperLink({ href, label, paperLabel, dialogI
     if (isDialogOpen && !dialog.open) {
       dialog.showModal();
       wasOpenRef.current = true;
-      dialog.querySelector<HTMLButtonElement>('[data-dialog-cancel]')?.focus();
+      dialog.querySelector<HTMLButtonElement>("[data-dialog-cancel]")?.focus();
     } else if (!isDialogOpen && dialog.open) {
       dialog.close();
       if (wasOpenRef.current) {
@@ -76,7 +87,7 @@ export default function SessionAwarePaperLink({ href, label, paperLabel, dialogI
           closeDialog();
         }}
         onKeyDown={(event) => {
-          if (event.key === 'Escape') {
+          if (event.key === "Escape") {
             event.preventDefault();
             closeDialog();
           }
@@ -89,12 +100,25 @@ export default function SessionAwarePaperLink({ href, label, paperLabel, dialogI
       >
         <div className="steady-dialog-panel">
           <p className="eyebrow mb-3">Before you start a new paper</p>
-          <h2 id={`${dialogId}-title`} className="mb-3 text-3xl">Discard this session?</h2>
-          <p id={`${dialogId}-description`} className="m-0 leading-7 text-muted-foreground">
-            Your saved answers for {paperLabel} will be deleted from this browser. You will not be able to continue this attempt.
+          <h2 id={`${dialogId}-title`} className="mb-3 text-3xl">
+            Discard this session?
+          </h2>
+          <p
+            id={`${dialogId}-description`}
+            className="m-0 leading-7 text-muted-foreground"
+          >
+            Your saved answers for {paperLabel} will be deleted from this
+            browser. You will not be able to continue this attempt.
           </p>
           <div className="steady-dialog-actions">
-            <button className="btn btn-secondary" type="button" data-dialog-cancel onClick={closeDialog}>Keep session</button>
+            <button
+              className="btn btn-secondary"
+              type="button"
+              data-dialog-cancel
+              onClick={closeDialog}
+            >
+              Keep session
+            </button>
             <button
               className="btn btn-danger gap-2"
               type="button"

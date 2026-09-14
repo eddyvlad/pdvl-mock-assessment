@@ -1,12 +1,19 @@
-import { headers } from 'next/headers';
-import { datasetPath } from './dataset';
-import { getModuleRng, type Question, sampleQuestions } from './questions';
+import { headers } from "next/headers";
+import { datasetPath } from "./dataset";
+import { getModuleRng, type Question, sampleQuestions } from "./questions";
 
-export async function loadPracticeQuestions(paper: string, module: string, seed: string, count: number) {
+export async function loadPracticeQuestions(
+  paper: string,
+  module: string,
+  seed: string,
+  count: number,
+) {
   try {
-    const host = (await headers()).get('host') ?? 'localhost:3000';
-    const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
-    const response = await fetch(`${protocol}://${host}${datasetPath(paper, module)}`);
+    const host = (await headers()).get("host") ?? "localhost:3000";
+    const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
+    const response = await fetch(
+      `${protocol}://${host}${datasetPath(paper, module)}`,
+    );
     if (!response.ok) {
       return null;
     }

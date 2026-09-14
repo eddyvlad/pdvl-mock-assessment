@@ -1,9 +1,9 @@
-import { notFound, redirect } from 'next/navigation';
-import PracticeLoadError from '@/components/practice-load-error';
-import { CONFIG } from '@/lib/config';
-import { loadPracticeQuestions } from '@/lib/practice-data';
-import { generateSeed, isValidSeed } from '@/lib/seed';
-import ResultsClient from './ResultsClient';
+import { notFound, redirect } from "next/navigation";
+import PracticeLoadError from "@/components/practice-load-error";
+import { CONFIG } from "@/lib/config";
+import { loadPracticeQuestions } from "@/lib/practice-data";
+import { generateSeed, isValidSeed } from "@/lib/seed";
+import ResultsClient from "./ResultsClient";
 
 interface Params {
   paper: string;
@@ -34,9 +34,18 @@ export default async function Page({
     redirect(`/practice/${paper}/${module}/${generateSeed()}`);
   }
 
-  const questions = await loadPracticeQuestions(paper, module, seed, moduleConfig.count);
+  const questions = await loadPracticeQuestions(
+    paper,
+    module,
+    seed,
+    moduleConfig.count,
+  );
   if (!questions) {
-    return <PracticeLoadError retryHref={`/practice/${paper}/${module}/${seed}/result`} />;
+    return (
+      <PracticeLoadError
+        retryHref={`/practice/${paper}/${module}/${seed}/result`}
+      />
+    );
   }
 
   const query = await searchParams;

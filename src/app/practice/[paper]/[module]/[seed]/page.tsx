@@ -1,9 +1,9 @@
-import { notFound, redirect } from 'next/navigation';
-import PracticeLoadError from '@/components/practice-load-error';
-import { CONFIG } from '@/lib/config';
-import { loadPracticeQuestions } from '@/lib/practice-data';
-import { generateSeed, isValidSeed } from '@/lib/seed';
-import PracticeClient from './PracticeClient';
+import { notFound, redirect } from "next/navigation";
+import PracticeLoadError from "@/components/practice-load-error";
+import { CONFIG } from "@/lib/config";
+import { loadPracticeQuestions } from "@/lib/practice-data";
+import { generateSeed, isValidSeed } from "@/lib/seed";
+import PracticeClient from "./PracticeClient";
 
 interface Params {
   paper: string;
@@ -34,15 +34,23 @@ export default async function Page({
     redirect(`/practice/${paper}/${module}/${generateSeed()}`);
   }
 
-  const questions = await loadPracticeQuestions(paper, module, seed, moduleConfig.count);
+  const questions = await loadPracticeQuestions(
+    paper,
+    module,
+    seed,
+    moduleConfig.count,
+  );
   if (!questions) {
-    return <PracticeLoadError retryHref={`/practice/${paper}/${module}/${seed}`} />;
+    return (
+      <PracticeLoadError retryHref={`/practice/${paper}/${module}/${seed}`} />
+    );
   }
 
   const query = await searchParams;
   const questionValue = getStringParam(query.question);
   const returnValue = getStringParam(query.return);
-  const parsedQuestion = questionValue === undefined ? undefined : Number(questionValue);
+  const parsedQuestion =
+    questionValue === undefined ? undefined : Number(questionValue);
 
   return (
     <PracticeClient
@@ -53,9 +61,11 @@ export default async function Page({
       questions={questions}
       minutes={moduleConfig.minutes}
       attemptId={getStringParam(query.attempt)}
-      questionIndex={Number.isInteger(parsedQuestion) ? parsedQuestion : undefined}
-      returnToReview={returnValue === 'review'}
-      showDevTools={process.env.NODE_ENV === 'development'}
+      questionIndex={
+        Number.isInteger(parsedQuestion) ? parsedQuestion : undefined
+      }
+      returnToReview={returnValue === "review"}
+      showDevTools={process.env.NODE_ENV === "development"}
     />
   );
 }

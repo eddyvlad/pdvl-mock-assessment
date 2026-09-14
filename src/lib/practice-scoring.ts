@@ -1,14 +1,21 @@
-import type { AttemptRecordV2, SubmissionMode } from './attempt-storage';
-import type { Question } from './questions';
+import type { AttemptRecordV2, SubmissionMode } from "./attempt-storage";
+import type { Question } from "./questions";
 
 export function countAnswered(answers: Array<number | null>) {
   return answers.filter((answer) => answer !== null).length;
 }
 
-export function calculateScore(answers: Array<number | null>, questions: Question[]) {
-  return questions.reduce((score, question, index) => (
-    answers[index] !== null && answers[index] === question.correctIndex ? score + 1 : score
-  ), 0);
+export function calculateScore(
+  answers: Array<number | null>,
+  questions: Question[],
+) {
+  return questions.reduce(
+    (score, question, index) =>
+      answers[index] !== null && answers[index] === question.correctIndex
+        ? score + 1
+        : score,
+    0,
+  );
 }
 
 export function submitAttemptRecord(
@@ -19,7 +26,7 @@ export function submitAttemptRecord(
 ): AttemptRecordV2 {
   return {
     ...record,
-    status: 'submitted',
+    status: "submitted",
     submittedAt: now,
     submissionMode,
     updatedAt: now,
@@ -27,7 +34,10 @@ export function submitAttemptRecord(
   };
 }
 
-export function getTopicStats(answers: Array<number | null>, questions: Question[]) {
+export function getTopicStats(
+  answers: Array<number | null>,
+  questions: Question[],
+) {
   const topics = new Map<string, { correct: number; total: number }>();
 
   questions.forEach((question, index) => {

@@ -1,6 +1,6 @@
-import { notFound, redirect } from 'next/navigation';
-import { CONFIG } from '@/lib/config';
-import { generateSeed } from '@/lib/seed';
+import { notFound, redirect } from "next/navigation";
+import { CONFIG } from "@/lib/config";
+import { generateSeed } from "@/lib/seed";
 
 interface Params {
   paper: string;

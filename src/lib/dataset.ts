@@ -3,4 +3,3 @@ export function datasetPath(paper: string, module: string): string {
   const moduleFile = module.replace(/^m/, "");
   return `/datasets/${version}/paper-${paper}-module-${moduleFile}.json`;
 }
-

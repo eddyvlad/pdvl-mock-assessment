@@ -33,7 +33,9 @@ Paper B contains 25 questions in 30 minutes and requires 22 correct answers. Pap
 ## Development
 
 - `npm run dev`: start the development server.
-- `npm run lint`: run ESLint.
+- `npm run lint`: run Biome lint and format checks.
+- `npm run format`: format authored source and configuration files with Biome.
+- `npm run format:check`: check formatting without changing files.
 - `npm test`: run Jest tests.
 - `npm run typecheck`: run TypeScript type checks.
 - `npm run build`: create a production build.
