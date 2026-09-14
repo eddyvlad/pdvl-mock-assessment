@@ -63,3 +63,10 @@ The existing Jest tests cover data, scoring, storage, and seed behavior but do n
 ## Severity
 
 Medium
+
+## Completion notes
+
+- Replaced the wrapping review-card header with a two-column grid using a flexible, minimum-width content column and an auto-sized status column.
+- Kept Answered and Needs answer anchored at the top right with non-wrapping status labels, while long prompts and selected answers wrap inside the content column.
+- Verified at 320 by 640 that the first review card has aligned top edges, the status remains inside the card, and horizontal overflow is zero.
+- `npm run lint`, `npm run typecheck`, and `npm test -- --runInBand` pass.

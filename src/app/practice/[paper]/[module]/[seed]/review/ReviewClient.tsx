@@ -260,17 +260,17 @@ export default function ReviewClient({ paper, moduleKey, seed, questions, attemp
           const isAnswered = answer !== null && answer !== undefined;
           return (
             <li key={index} className={clsx('border bg-card p-4 sm:p-5', isAnswered ? 'border-border' : 'border-danger')}>
-              <div className="flex flex-wrap items-start justify-between gap-3">
-                <div className="flex items-start gap-3">
-                  <span className="font-mono text-sm font-bold text-accent">{String(index + 1).padStart(2, '0')}</span>
-                  <div>
+              <div className="grid min-w-0 grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
+                <div className="flex min-w-0 items-start gap-3">
+                  <span className="shrink-0 font-mono text-sm font-bold text-accent">{String(index + 1).padStart(2, '0')}</span>
+                  <div className="min-w-0">
                     <h2 className="review-question-heading mb-2">{question.prompt}</h2>
                     <p className={clsx('m-0 text-sm', isAnswered ? 'text-muted-foreground' : 'font-bold text-danger')}>
                       {isAnswered ? `Selected: ${String.fromCharCode(65 + Number(answer))}. ${question.choices[Number(answer)]}` : 'No answer selected'}
                     </p>
                   </div>
                 </div>
-                <span className={clsx('inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wide', isAnswered ? 'text-success' : 'text-danger')}>
+                <span className={clsx('inline-flex shrink-0 items-center gap-2 whitespace-nowrap text-xs font-bold uppercase tracking-wide', isAnswered ? 'text-success' : 'text-danger')}>
                   {isAnswered ? <CheckCircle2 className="h-4 w-4" aria-hidden="true" /> : <CircleAlert className="h-4 w-4" aria-hidden="true" />}
                   {isAnswered ? 'Answered' : 'Needs answer'}
                 </span>
