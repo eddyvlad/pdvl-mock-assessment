@@ -1,5 +1,8 @@
 ---
 id: ISSUE-026
+title: Result question prompts use oversized display typography
+type: task
+depends_on: []
 ---
 
 # Result question prompts use oversized display typography

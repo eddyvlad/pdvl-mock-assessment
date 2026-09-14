@@ -1,5 +1,8 @@
 ---
 id: ISSUE-024
+title: Add a visible Back to review action after editing an answer
+type: task
+depends_on: []
 ---
 
 # Add a visible Back to review action after editing an answer

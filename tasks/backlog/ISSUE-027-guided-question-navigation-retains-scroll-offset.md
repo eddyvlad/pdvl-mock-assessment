@@ -1,5 +1,8 @@
 ---
 id: ISSUE-027
+title: Guided question navigation retains the previous scroll offset
+type: task
+depends_on: []
 ---
 
 # Guided question navigation retains the previous scroll offset

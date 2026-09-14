@@ -2,6 +2,7 @@
 id: ISSUE-009
 title: Improve search metadata and indexing foundations
 type: task
+depends_on: []
 ---
 
 # Improve search metadata and indexing foundations

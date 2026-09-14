@@ -1,5 +1,8 @@
 ---
 id: ISSUE-011
+title: Reloading a bare practice URL starts a new attempt instead of resuming
+type: task
+depends_on: []
 ---
 
 # Reloading a bare practice URL starts a new attempt instead of resuming

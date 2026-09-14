@@ -1,5 +1,8 @@
 ---
 id: ISSUE-032
+title: Review-card answer status does not stay at the top right
+type: task
+depends_on: []
 ---
 
 # Review-card answer status does not stay at the top right

@@ -2,6 +2,7 @@
 id: ISSUE-002
 title: Create the Steady Study brand mockup
 type: task
+depends_on: []
 ---
 
 # Steady Study

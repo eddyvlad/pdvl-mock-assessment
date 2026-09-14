@@ -1,5 +1,8 @@
 ---
 id: ISSUE-015
+title: Paper C question copy contains visible spelling and grammar errors
+type: task
+depends_on: []
 ---
 
 # Paper C question copy contains visible spelling and grammar errors

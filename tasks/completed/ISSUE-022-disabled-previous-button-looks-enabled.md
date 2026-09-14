@@ -1,5 +1,8 @@
 ---
 id: ISSUE-022
+title: Disabled Previous button has the same affordance as an enabled secondary button
+type: task
+depends_on: []
 ---
 
 # Disabled Previous button has the same affordance as an enabled secondary button

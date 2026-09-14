@@ -1,5 +1,8 @@
 ---
 id: ISSUE-031
+title: Result topic signals expose raw lowercase taxonomy labels
+type: task
+depends_on: []
 ---
 
 # Result topic signals expose raw lowercase taxonomy labels

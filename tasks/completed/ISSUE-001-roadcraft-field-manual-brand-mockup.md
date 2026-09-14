@@ -2,6 +2,7 @@
 id: ISSUE-001
 title: Create the Roadcraft Field Manual brand mockup
 type: task
+depends_on: []
 ---
 
 # Roadcraft Field Manual

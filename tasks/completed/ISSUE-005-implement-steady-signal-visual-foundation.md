@@ -2,6 +2,7 @@
 id: ISSUE-005
 title: Implement the Steady Signal visual foundation and shell
 type: task
+depends_on: []
 ---
 
 # Implement the Steady Signal visual foundation and shell

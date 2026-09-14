@@ -1,5 +1,8 @@
 ---
 id: ISSUE-021
+title: Papers navigation anchor hides the section heading behind the sticky header
+type: task
+depends_on: []
 ---
 
 # Papers navigation anchor hides the section heading behind the sticky header

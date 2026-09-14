@@ -1,5 +1,8 @@
 ---
 id: ISSUE-014
+title: Paper A combined results omit the Module 1 and Module 2 subtotals
+type: task
+depends_on: []
 ---
 
 # Paper A combined results omit the Module 1 and Module 2 subtotals

@@ -2,6 +2,7 @@
 id: ISSUE-003
 title: Create the Night Signal brand mockup
 type: task
+depends_on: []
 ---
 
 # Night Signal

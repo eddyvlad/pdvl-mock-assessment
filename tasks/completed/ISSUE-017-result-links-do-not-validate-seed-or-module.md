@@ -1,5 +1,8 @@
 ---
 id: ISSUE-017
+title: Result links render an attempt against a mismatched seed
+type: task
+depends_on: []
 ---
 
 # Result links render an attempt against a mismatched seed

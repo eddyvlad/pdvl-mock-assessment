@@ -216,8 +216,20 @@ Run the following commands in the project root directory in order to test the pr
   filename and frontmatter.
 - Use `{ISSUE_TYPE}-{###}-{slug}.md` filenames. Keep lifecycle directories such as `tasks/backlog`,
   `tasks/in-progress`, `tasks/in-review`, and `tasks/completed` only when they contain real tasks.
-- Use minimal task frontmatter with stable identity and only meaningful typed relationships. The parent lifecycle directory
-  is authoritative for status; do not duplicate it in frontmatter without a real consumer.
+- Every task file must have frontmatter containing `id`, `title`, `type`, and `depends_on`. Use the following shape, with
+  `depends_on` as a list of stable task IDs and an empty list when the task has no prerequisites:
+
+  ```yaml
+  ---
+  id: ISSUE-###
+  title: Short task title
+  type: task
+  depends_on: []
+  ---
+  ```
+
+  Keep the frontmatter minimal beyond these required fields. The parent lifecycle directory is authoritative for status;
+  do not duplicate it in frontmatter without a real consumer.
 - Make each task self-contained enough for handoff. Do not silently expand its scope. Every task must produce at least one
   focused Git commit, with completion notes and durable findings promoted out of the task where appropriate.
 

@@ -2,6 +2,7 @@
 id: ISSUE-004
 title: Create the Steady Signal synthesis brand mockup
 type: task
+depends_on: []
 ---
 
 # Steady Signal

@@ -1,5 +1,8 @@
 ---
 id: ISSUE-025
+title: Result page opens at the previous review scroll position
+type: task
+depends_on: []
 ---
 
 # Result page opens at the previous review scroll position

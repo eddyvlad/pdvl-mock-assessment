@@ -1,5 +1,8 @@
 ---
 id: ISSUE-013
+title: Fixed theme controls obscure content on narrow screens
+type: task
+depends_on: []
 ---
 
 # Fixed theme controls obscure content on narrow screens

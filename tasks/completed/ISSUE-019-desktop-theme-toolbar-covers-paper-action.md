@@ -1,5 +1,8 @@
 ---
 id: ISSUE-019
+title: Fixed desktop theme toolbar covers the Paper C start action
+type: task
+depends_on: []
 ---
 
 # Fixed desktop theme toolbar covers the Paper C start action
