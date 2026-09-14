@@ -37,3 +37,13 @@ configuration when followed literally, which conflicts with the documented optio
 
 Verify the no-ID and valid-ID render paths, run lint, typecheck, tests, build, and `git diff --check`. Confirm no
 measurement ID or local secret is committed.
+
+## Completion notes
+
+- Changed `.env.example` to leave `GOOGLE_ANALYTICS_ID` empty by default, preventing a literal placeholder from
+  enabling the third-party integration when the example is copied.
+- Documented the opt-in path with a real Google Analytics Measurement ID in the README.
+- Preserved the existing layout guard, `gtag` guard, event names, payloads, and `@next/third-parties` integration.
+- Verification: full suite (10 suites, 46 tests), lint, typecheck, and `git diff --check` passed. Production builds
+  passed with analytics unset and with `G-TEST123`; no measurement ID or local secret is tracked. The test run
+  reports only the existing Watchman recrawl warning.

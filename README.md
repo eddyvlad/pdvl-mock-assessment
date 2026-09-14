@@ -29,6 +29,7 @@ Paper B contains 25 questions in 30 minutes and requires 22 correct answers. Pap
 2. Install dependencies with `npm ci` (or `npm install` when changing dependencies).
 3. Copy `.env.example` to `.env` and set `DATASET_VERSION` (defaults to `v2025-09`).
 4. Ensure question datasets exist at `public/datasets/${DATASET_VERSION}/`.
+5. Optionally set `GOOGLE_ANALYTICS_ID` to a real Google Analytics Measurement ID. Leave it empty to keep analytics disabled.
 
 ## Development
 
