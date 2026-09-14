@@ -270,10 +270,21 @@ Run the following commands in the project root directory in order to test the pr
 
 ## Local Codebase Memory MCP
 
+- The main repository uses the known Codebase Memory project `pdvl-mock-assessment` directly. Do not call
+  `list_projects` merely to discover or verify this known project.
+- Call `list_projects` only when the project identity is genuinely unknown or ambiguous, or when the task specifically
+  requires project discovery.
 - When the project-local configuration is available, prefer Codebase Memory MCP for structural code discovery with
   `search_graph`, `trace_path`, `get_code_snippet`, `query_graph`, `get_architecture`, and `search_code`.
 - Run `index_repository` before relying on graph results for a new or stale project. Use direct `rg` searches for exact
   literals, configuration, shell scripts, and other content the graph does not represent well.
+- For a separately indexed Git worktree, use the Codebase Memory project associated with that worktree rather than the
+  main-repository project. The agent that creates or uses that worktree-specific project deletes it with
+  `delete_project` when its task is complete.
+- A child agent may delete only the Codebase Memory project associated with its own worktree. It must not remove the Git
+  worktree.
+- The parent agent that created a Git worktree removes that worktree only after the child's work has been reviewed and
+  validated.
 - The local activation lives in ignored `.codex/config.toml` and `.agents/mcp_config.json`. Both must use this repository
   as `cwd` and set `CBM_ALLOWED_ROOT` to this repository root.
 - Keep the shared Codebase Memory cache outside the repository. Do not run `codebase-memory-mcp install`, change global

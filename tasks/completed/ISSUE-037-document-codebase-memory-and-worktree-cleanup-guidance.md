@@ -50,3 +50,13 @@ Area: Agent workflow documentation
 ## Severity
 
 Low
+
+## Completion notes
+
+- Documented `pdvl-mock-assessment` as the known main-repository Codebase Memory project.
+- Limited `list_projects` to genuinely unknown or ambiguous identities, or tasks that specifically require discovery.
+- Documented separate worktree project selection and deletion ownership, including the child-agent and parent-agent
+  boundary between Codebase Memory cleanup and Git worktree removal.
+- Kept all guidance in the existing `Local Codebase Memory MCP` section without changing application files or local MCP
+  configuration.
+- Verified with `npm run format:check` and `git diff --check`.
