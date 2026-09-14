@@ -20,21 +20,21 @@ The application should use current stable, mutually compatible framework, runtim
 ## Implementation scope
 
 - Review every direct dependency in `package.json` against the stable npm registry at implementation time and update the manifest and lockfile together.
-- The current review identified these target releases, subject to confirming they remain stable and compatible when implemented:
+- The implementation should use these stable releases, subject to confirming they remain available when the task is picked up:
   - Next.js and `@next/third-parties` 16.3.x;
   - React and React DOM 19.3.x;
   - Tailwind CSS and `@tailwindcss/postcss` 4.3.x;
   - `@tailwindcss/typography` 0.5.x;
-  - ESLint 10.x and `eslint-config-next` 16.3.x;
+  - ESLint 9.39.5 and `eslint-config-next` 16.3.x, because the plugin versions bundled by the current Next config do not support ESLint 10;
   - Jest 30.5.x;
-  - TypeScript 7.x;
+  - TypeScript 6.0.3, because the current `typescript-eslint` integration does not support TypeScript 7;
   - Lucide React 1.x;
   - current `@types/node`, `@types/react`, and `@types/react-dom` releases.
 - Remove unused `date-fns`.
 - Replace `ts-jest` with `@swc/jest`, adding compatible `@swc/core` and `@swc/helpers` packages if TypeScript 7 remains the selected stable target. Keep `tsc --noEmit` as the authoritative type-check command.
 - Preserve the existing `next build --webpack` script unless a dependency compatibility check requires a narrowly scoped change.
 - If the refreshed Lucide release requires it, keep server-component imports behind a client-only icon boundary without changing visible icon usage.
-- Add a Node.js engine requirement of `>=24.0.0` if the selected ESLint and framework versions require the documented baseline.
+- Add a Node.js engine requirement of `>=24.0.0` to match the documented baseline.
 - Update README setup and development notes to describe the supported Node.js version, clean-install workflow, and any relevant tooling migration.
 - Do not change routing, persistence, datasets, scoring, Paper A chaining, themes, or Google Analytics behaviour.
 
@@ -64,3 +64,12 @@ The application should use current stable, mutually compatible framework, runtim
 ## Severity
 
 Medium
+
+## Completion notes
+
+- Updated Next.js, React, Tailwind CSS, Lucide React, Jest, type packages, and SWC tooling. Removed unused `date-fns` and `ts-jest`.
+- Selected ESLint 9.39.5 and TypeScript 6.0.3 as the newest compatible combination. ESLint 10 currently fails with the plugin versions bundled by `eslint-config-next`, and TypeScript 7 is rejected by the current `typescript-eslint` integration.
+- Added the Node.js `>=24.0.0` engine requirement, explicit Jest type inclusion, SWC Jest transforms, and README tooling notes.
+- `npm ci`, lint, typecheck, 24 Jest tests, webpack build, and the local development-server smoke check passed.
+- `npm outdated` reports only the intentionally retained incompatible ESLint 10 and TypeScript 7 majors.
+- Audit results contain one moderate production transitive advisory and six total transitive advisories, with no critical findings. No forced audit remediation was applied.

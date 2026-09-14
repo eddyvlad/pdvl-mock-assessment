@@ -25,7 +25,7 @@ Paper B contains 25 questions in 30 minutes and requires 22 correct answers. Pap
 
 ## Setup
 
-1. Use Node.js 22.5 or newer.
+1. Use Node.js 24 or newer.
 2. Install dependencies with `npm install`.
 3. Copy `.env.example` to `.env` and set `DATASET_VERSION` (defaults to `v2025-09`).
 4. Ensure question datasets exist at `public/datasets/${DATASET_VERSION}/`.
@@ -37,6 +37,9 @@ Paper B contains 25 questions in 30 minutes and requires 22 correct answers. Pap
 - `npm test`: run Jest tests.
 - `npm run typecheck`: run TypeScript type checks.
 - `npm run build`: create a production build.
+
+The repository targets Node.js 24 or newer. Jest uses the SWC transform and
+TypeScript type checking runs separately through `npm run typecheck`.
 
 The repository-local agent-state allocator is validated separately with
 `node scripts/agent-state.test.mjs`. Reserve a task number immediately before
