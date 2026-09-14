@@ -39,3 +39,14 @@ preventable deployment hardening gap.
 
 Run lint, typecheck, tests, build, and a production-server header smoke check for `/`, `/practice`, and a dataset asset.
 Confirm the optional analytics path still renders when configured and that no required asset is blocked.
+
+## Completion notes
+
+- Added `next.config.ts` with `poweredByHeader: false` and a catch-all response baseline for MIME sniffing,
+  referrer leakage, and unwanted framing.
+- Added config-level coverage for the homepage, practice route, and static dataset asset.
+- Verified optional analytics remains application-controlled and no Content Security Policy was introduced without
+  a complete script inventory.
+- Verification: focused config test passed, full suite (10 suites, 46 tests), lint, typecheck, webpack build, and
+  `git diff --check` passed. A fresh production server returned 200 with all three headers for `/`, the practice
+  route, and the dataset asset, with no `X-Powered-By` header. Upstream hosting overrides remain unvalidated.
