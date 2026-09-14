@@ -303,7 +303,7 @@ export default function PracticeClient({
         <div className="mb-8 flex items-start justify-between gap-4">
           <div>
             <p className="eyebrow mb-3">Question {currentQuestion + 1}</p>
-            <h2 id={`question-${currentQuestion}`} className="mb-0 max-w-3xl font-sans text-2xl font-bold leading-8 tracking-normal sm:text-3xl">{question.prompt}</h2>
+            <h2 id={`question-${currentQuestion}`} className="practice-question-heading mb-0 max-w-3xl font-sans text-2xl font-bold leading-8 tracking-normal sm:text-3xl">{question.prompt}</h2>
           </div>
           <span className="hidden shrink-0 font-mono text-sm text-muted-foreground sm:inline">{String(currentQuestion + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}</span>
         </div>
