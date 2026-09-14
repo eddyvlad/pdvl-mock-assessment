@@ -63,3 +63,10 @@ The `Start Paper A`, `Start Paper B`, or `Start Paper C` link navigates directly
 ## Severity
 
 Medium
+
+## Completion notes
+
+- Added a client-side session-aware wrapper around each homepage Start Paper action.
+- An active resumable attempt now opens the native replacement dialog, focuses Keep session, and supports cancel, Escape, and backdrop dismissal without deleting the saved attempt.
+- Confirming removes the active attempt and navigates to the requested generated seed; when no resumable attempt exists, the link keeps its direct navigation behavior.
+- Browser verification covered cancel focus preservation and confirmation navigation on the homepage. `npm run lint`, `npm run typecheck`, and `npm test -- --runInBand` pass.

@@ -1,7 +1,7 @@
-import Link from 'next/link';
 import type { Metadata } from 'next';
-import { ArrowRight, BookOpen, CheckCircle2, Clock3, Layers3 } from 'lucide-react';
+import { BookOpen, CheckCircle2, Clock3, Layers3 } from 'lucide-react';
 import ActiveSessionPanel from '@/components/active-session-panel';
+import SessionAwarePaperLink from '@/components/session-aware-paper-link';
 import { CONFIG } from '@/lib/config';
 import { generateSeed } from '@/lib/seed';
 import { homepageDescription, homepageTitle } from '@/lib/site-metadata';
@@ -103,9 +103,12 @@ function PaperCard({ paperKey, seed }: { paperKey: PaperKey; seed: string }) {
       </div>
 
       <div className="mt-auto border-t border-border pt-5">
-        <Link className="btn btn-primary w-full gap-2" href={`/practice/${paperKey}/${firstModule[0]}/${seed}`}>
-          {details.action} <ArrowRight className="h-4 w-4" aria-hidden="true" />
-        </Link>
+        <SessionAwarePaperLink
+          dialogId={`replace-active-session-dialog-${paperKey}`}
+          href={`/practice/${paperKey}/${firstModule[0]}/${seed}`}
+          label={details.action}
+          paperLabel={paper.name}
+        />
       </div>
     </article>
   );
