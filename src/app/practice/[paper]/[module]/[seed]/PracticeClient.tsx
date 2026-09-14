@@ -20,11 +20,7 @@ import {
 } from "@/lib/attempt-storage";
 import { CONFIG } from "@/lib/config";
 import { buildScenarioAnswers, type DevScenario } from "@/lib/dev-scenarios";
-import {
-  calculateScore,
-  countAnswered,
-  submitAttemptRecord,
-} from "@/lib/practice-scoring";
+import { calculateScore, countAnswered, submitAttemptRecord } from "@/lib/practice-scoring";
 import type { Question } from "@/lib/questions";
 
 interface Props {
@@ -60,8 +56,7 @@ export default function PracticeClient({
   const total = questions.length;
   const basePath = `/practice/${paper}/${moduleKey}/${seed}`;
   const paperName = CONFIG[paper]?.name ?? `Paper ${paper.toUpperCase()}`;
-  const moduleName =
-    CONFIG[paper]?.modules[moduleKey]?.label ?? moduleKey.toUpperCase();
+  const moduleName = CONFIG[paper]?.modules[moduleKey]?.label ?? moduleKey.toUpperCase();
   const attemptRef = useRef<AttemptRecordV2 | null>(null);
   const initializedRouteRef = useRef<string | null>(null);
   const previousQuestionRef = useRef<number | null>(null);
@@ -71,9 +66,7 @@ export default function PracticeClient({
   const [attemptError, setAttemptError] = useState(false);
   const [grace, setGrace] = useState(3);
   const [timeLeft, setTimeLeft] = useState(minutes * 60);
-  const [previousModuleScore, setPreviousModuleScore] = useState<
-    number | undefined
-  >();
+  const [previousModuleScore, setPreviousModuleScore] = useState<number | undefined>();
   const isDevelopment = process.env.NODE_ENV === "development";
   const initializationKey = `${paper}/${moduleKey}/${seed}/${attemptId ?? ""}/${questionIndex ?? ""}`;
 
@@ -96,16 +89,10 @@ export default function PracticeClient({
         seed,
         score: finalRecord.score ?? calculateScore(record.answers, questions),
         total,
-        elapsed: Math.max(
-          0,
-          Math.floor((Date.now() - record.startedAt) / 1000),
-        ),
+        elapsed: Math.max(0, Math.floor((Date.now() - record.startedAt) / 1000)),
         auto: mode === "auto",
       });
-      router.replace(
-        `${basePath}/result?attempt=${encodeURIComponent(record.attemptId)}`,
-        { scroll: true },
-      );
+      router.replace(`${basePath}/result?attempt=${encodeURIComponent(record.attemptId)}`, { scroll: true });
     },
     [basePath, moduleKey, paper, questions, router, seed, total],
   );
@@ -126,10 +113,7 @@ export default function PracticeClient({
   const updateAnswer = useCallback(
     (index: number, choice: number) => {
       const current = attemptRef.current;
-      if (
-        current?.status !== "in-progress" ||
-        !questions[index]?.choices[choice]
-      ) {
+      if (current?.status !== "in-progress" || !questions[index]?.choices[choice]) {
         return;
       }
 
@@ -168,9 +152,7 @@ export default function PracticeClient({
     initializedRouteRef.current = initializationKey;
 
     const context = { paper, module: moduleKey, seed };
-    let stored = attemptId
-      ? readAttempt(attemptId)
-      : getLatestResumableAttempt();
+    let stored = attemptId ? readAttempt(attemptId) : getLatestResumableAttempt();
     if (attemptId && (!stored || !matchesAttemptContext(stored, context))) {
       setAttemptError(true);
       return;
@@ -179,22 +161,12 @@ export default function PracticeClient({
       stored = null;
     }
     if (stored?.status === "submitted") {
-      router.replace(
-        `${basePath}/result?attempt=${encodeURIComponent(stored.attemptId)}`,
-        { scroll: true },
-      );
+      router.replace(`${basePath}/result?attempt=${encodeURIComponent(stored.attemptId)}`, { scroll: true });
       return;
     }
-    if (
-      stored &&
-      stored.status === "in-progress" &&
-      isResumableAttempt(stored)
-    ) {
+    if (stored && stored.status === "in-progress" && isResumableAttempt(stored)) {
       const savedQuestion =
-        Number.isInteger(questionIndex) &&
-        questionIndex !== undefined &&
-        questionIndex >= 0 &&
-        questionIndex < total
+        Number.isInteger(questionIndex) && questionIndex !== undefined && questionIndex >= 0 && questionIndex < total
           ? questionIndex
           : Math.min(stored.currentQuestion, Math.max(total - 1, 0));
       const restored =
@@ -211,9 +183,7 @@ export default function PracticeClient({
       attemptRef.current = restored;
       setAttempt(restored);
       setGrace(0);
-      setTimeLeft(
-        Math.max(0, Math.ceil((restored.expiresAt - Date.now()) / 1000)),
-      );
+      setTimeLeft(Math.max(0, Math.ceil((restored.expiresAt - Date.now()) / 1000)));
       return;
     }
 
@@ -262,10 +232,7 @@ export default function PracticeClient({
     }
 
     if (grace > 0) {
-      const timer = window.setTimeout(
-        () => setGrace((value) => value - 1),
-        1_000,
-      );
+      const timer = window.setTimeout(() => setGrace((value) => value - 1), 1_000);
       return () => window.clearTimeout(timer);
     }
 
@@ -275,10 +242,7 @@ export default function PracticeClient({
         return;
       }
 
-      const remaining = Math.max(
-        0,
-        Math.ceil((current.expiresAt - Date.now()) / 1_000),
-      );
+      const remaining = Math.max(0, Math.ceil((current.expiresAt - Date.now()) / 1_000));
       setTimeLeft(remaining);
       if (remaining <= 0) {
         finishAttempt(current, "auto");
@@ -308,10 +272,7 @@ export default function PracticeClient({
         d: 3,
       };
       const choice = map[event.key.toLowerCase()];
-      if (
-        choice === undefined ||
-        !questions[current.currentQuestion]?.choices[choice]
-      ) {
+      if (choice === undefined || !questions[current.currentQuestion]?.choices[choice]) {
         return;
       }
 
@@ -328,11 +289,7 @@ export default function PracticeClient({
     const previousQuestion = previousQuestionRef.current;
     previousQuestionRef.current = nextQuestion ?? null;
 
-    if (
-      nextQuestion === undefined ||
-      previousQuestion === null ||
-      previousQuestion === nextQuestion
-    ) {
+    if (nextQuestion === undefined || previousQuestion === null || previousQuestion === nextQuestion) {
       return;
     }
 
@@ -353,16 +310,8 @@ export default function PracticeClient({
 
   const scenarioContext = { paper, module: moduleKey, previousModuleScore };
   const scenarioPlans = {
-    "all-correct": buildScenarioAnswers(
-      questions,
-      "all-correct",
-      scenarioContext,
-    ),
-    "pass-with-incorrect": buildScenarioAnswers(
-      questions,
-      "pass-with-incorrect",
-      scenarioContext,
-    ),
+    "all-correct": buildScenarioAnswers(questions, "all-correct", scenarioContext),
+    "pass-with-incorrect": buildScenarioAnswers(questions, "pass-with-incorrect", scenarioContext),
     fail: buildScenarioAnswers(questions, "fail", scenarioContext),
   };
   const applyScenario = (scenario: DevScenario) => {
@@ -377,26 +326,15 @@ export default function PracticeClient({
       <main className="page-shell">
         <div className="card mx-auto max-w-xl border-danger">
           <p className="eyebrow mb-3">Practice unavailable</p>
-          <h1 className="mb-4 text-4xl">
-            This practice attempt does not belong to this question set.
-          </h1>
+          <h1 className="mb-4 text-4xl">This practice attempt does not belong to this question set.</h1>
           <p className="mb-6 leading-7 text-muted-foreground">
-            Open the matching practice link or start a new attempt from the
-            landing page.
+            Open the matching practice link or start a new attempt from the landing page.
           </p>
           <div className="flex flex-wrap gap-3">
-            <button
-              className="btn btn-primary"
-              type="button"
-              onClick={() => router.replace(basePath)}
-            >
+            <button className="btn btn-primary" type="button" onClick={() => router.replace(basePath)}>
               Open this practice set
             </button>
-            <button
-              className="btn btn-secondary"
-              type="button"
-              onClick={() => router.replace("/")}
-            >
+            <button className="btn btn-secondary" type="button" onClick={() => router.replace("/")}>
               Back to landing
             </button>
           </div>
@@ -410,17 +348,12 @@ export default function PracticeClient({
       <main className="page-shell">
         <p className="eyebrow">Preparing your practice</p>
         <h1 className="mb-4 text-4xl">Loading the question set...</h1>
-        <p className="text-muted-foreground">
-          Your attempt will be saved as you work.
-        </p>
+        <p className="text-muted-foreground">Your attempt will be saved as you work.</p>
       </main>
     );
   }
 
-  const currentQuestion = Math.min(
-    attempt.currentQuestion,
-    Math.max(total - 1, 0),
-  );
+  const currentQuestion = Math.min(attempt.currentQuestion, Math.max(total - 1, 0));
   const question = questions[currentQuestion];
   const answered = countAnswered(attempt.answers);
   const progress = total === 0 ? 0 : ((currentQuestion + 1) / total) * 100;
@@ -436,9 +369,7 @@ export default function PracticeClient({
           <p className="eyebrow mb-2">
             {paperName} · Module {moduleName}
           </p>
-          <h1 className="mb-0 text-4xl sm:text-5xl">
-            Practice, one signal at a time.
-          </h1>
+          <h1 className="mb-0 text-4xl sm:text-5xl">Practice, one signal at a time.</h1>
         </div>
         <div
           className={clsx(
@@ -446,17 +377,11 @@ export default function PracticeClient({
             timeLeft <= 60 && grace === 0 ? "border-danger" : "border-accent",
           )}
         >
-          <p className="meta-label mb-1">
-            {grace > 0 ? "Get ready" : "Time remaining"}
-          </p>
+          <p className="meta-label mb-1">{grace > 0 ? "Get ready" : "Time remaining"}</p>
           <p
             className="m-0 flex items-center gap-2 font-mono text-xl font-bold"
             role="timer"
-            aria-label={
-              grace > 0
-                ? `Practice starts in ${grace} seconds`
-                : `${formatTime(timeLeft)} remaining`
-            }
+            aria-label={grace > 0 ? `Practice starts in ${grace} seconds` : `${formatTime(timeLeft)} remaining`}
           >
             <Clock3 className="h-4 w-4" aria-hidden="true" />
             {grace > 0 ? `Starts in ${grace}` : formatTime(timeLeft)}
@@ -464,9 +389,7 @@ export default function PracticeClient({
         </div>
       </header>
 
-      {isDevelopment && showDevTools && (
-        <DevScenarioPanel plans={scenarioPlans} onApply={applyScenario} />
-      )}
+      {isDevelopment && showDevTools && <DevScenarioPanel plans={scenarioPlans} onApply={applyScenario} />}
 
       <div className="mb-8 grid gap-3 sm:grid-cols-[1fr_auto] sm:items-center">
         <div>
@@ -484,22 +407,15 @@ export default function PracticeClient({
             aria-valuenow={currentQuestion + 1}
             aria-label={`Question ${currentQuestion + 1} of ${total}`}
           >
-            <div
-              className="h-full bg-accent transition-[width] duration-300"
-              style={{ width: `${progress}%` }}
-            />
+            <div className="h-full bg-accent transition-[width] duration-300" style={{ width: `${progress}%` }} />
           </div>
         </div>
         <span className="flex items-center gap-2 text-sm text-muted-foreground">
-          <ListChecks className="h-4 w-4" aria-hidden="true" /> Saved
-          automatically
+          <ListChecks className="h-4 w-4" aria-hidden="true" /> Saved automatically
         </span>
       </div>
 
-      <section
-        className="card border-primary/30 p-5 sm:p-8"
-        aria-labelledby={`question-${currentQuestion}`}
-      >
+      <section className="card border-primary/30 p-5 sm:p-8" aria-labelledby={`question-${currentQuestion}`}>
         <div className="mb-8 flex items-start justify-between gap-4">
           <div>
             <p className="eyebrow mb-3">Question {currentQuestion + 1}</p>
@@ -513,8 +429,7 @@ export default function PracticeClient({
             </h2>
           </div>
           <span className="hidden shrink-0 font-mono text-sm text-muted-foreground sm:inline">
-            {String(currentQuestion + 1).padStart(2, "0")} /{" "}
-            {String(total).padStart(2, "0")}
+            {String(currentQuestion + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
           </span>
         </div>
 
@@ -531,9 +446,7 @@ export default function PracticeClient({
                   htmlFor={id}
                   className={clsx(
                     "flex cursor-pointer items-start gap-4 border p-4 transition-colors hover:border-accent focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-ring",
-                    selected
-                      ? "border-primary bg-muted"
-                      : "border-border bg-background",
+                    selected ? "border-primary bg-muted" : "border-border bg-background",
                   )}
                 >
                   <input
@@ -546,17 +459,10 @@ export default function PracticeClient({
                     onChange={() => updateAnswer(currentQuestion, choiceIndex)}
                   />
                   <span className="flex gap-3 text-base leading-7">
-                    <span className="font-mono font-bold text-accent">
-                      {label}
-                    </span>
+                    <span className="font-mono font-bold text-accent">{label}</span>
                     <span>{choice}</span>
                   </span>
-                  {selected && (
-                    <Check
-                      className="ml-auto mt-1 h-5 w-5 shrink-0 text-primary"
-                      aria-label="Selected"
-                    />
-                  )}
+                  {selected && <Check className="ml-auto mt-1 h-5 w-5 shrink-0 text-primary" aria-label="Selected" />}
                 </label>
               );
             })}
@@ -578,8 +484,7 @@ export default function PracticeClient({
                 className="btn btn-secondary gap-2"
                 href={`${basePath}/review?attempt=${encodeURIComponent(attempt.attemptId)}`}
               >
-                <ArrowLeft className="h-4 w-4" aria-hidden="true" /> Back to
-                review
+                <ArrowLeft className="h-4 w-4" aria-hidden="true" /> Back to review
               </Link>
             ) : null}
           </div>
@@ -588,9 +493,7 @@ export default function PracticeClient({
             type="button"
             onClick={() => {
               if (currentQuestion === total - 1) {
-                router.push(
-                  `${basePath}/review?attempt=${encodeURIComponent(attempt.attemptId)}`,
-                );
+                router.push(`${basePath}/review?attempt=${encodeURIComponent(attempt.attemptId)}`);
               } else {
                 goToQuestion(currentQuestion + 1);
               }
@@ -602,13 +505,8 @@ export default function PracticeClient({
         </div>
       </section>
 
-      <p
-        className="mt-5 text-center text-sm text-muted-foreground"
-        aria-live={grace > 0 ? "polite" : undefined}
-      >
-        {grace > 0
-          ? `The timer starts after the ${grace}-second grace period.`
-          : "Use 1–4 or A–D to select an answer."}
+      <p className="mt-5 text-center text-sm text-muted-foreground" aria-live={grace > 0 ? "polite" : undefined}>
+        {grace > 0 ? `The timer starts after the ${grace}-second grace period.` : "Use 1–4 or A–D to select an answer."}
       </p>
     </main>
   );

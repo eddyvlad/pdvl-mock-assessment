@@ -2,19 +2,13 @@ import { formatTopicLabel } from "../topic-label";
 
 describe("formatTopicLabel", () => {
   it("turns taxonomy tags into readable title case", () => {
-    expect(formatTopicLabel("equipment_permissions")).toBe(
-      "Equipment Permissions",
-    );
-    expect(formatTopicLabel("route_planning_shortest")).toBe(
-      "Route Planning Shortest",
-    );
+    expect(formatTopicLabel("equipment_permissions")).toBe("Equipment Permissions");
+    expect(formatTopicLabel("route_planning_shortest")).toBe("Route Planning Shortest");
   });
 
   it("preserves known acronyms and branded names", () => {
     expect(formatTopicLabel("ivrd_pdpa")).toBe("IVRD PDPA");
-    expect(formatTopicLabel("vl_eligibility_obligations")).toBe(
-      "VL Eligibility Obligations",
-    );
+    expect(formatTopicLabel("vl_eligibility_obligations")).toBe("VL Eligibility Obligations");
     expect(formatTopicLabel("vlps")).toBe("VLPS");
     expect(formatTopicLabel("sgsecure_app")).toBe("SGSecure App");
   });

@@ -11,10 +11,7 @@ const SPECIAL_LABELS: Record<string, string> = {
 
 function formatWord(word: string) {
   const normalized = word.toLowerCase();
-  return (
-    SPECIAL_LABELS[normalized] ??
-    `${normalized.charAt(0).toUpperCase()}${normalized.slice(1)}`
-  );
+  return SPECIAL_LABELS[normalized] ?? `${normalized.charAt(0).toUpperCase()}${normalized.slice(1)}`;
 }
 
 export function formatTopicLabel(tag: string) {

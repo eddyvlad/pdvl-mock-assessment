@@ -556,11 +556,7 @@ a {
 }
 
 @utility hero-gradient {
-  background: radial-gradient(
-    circle at 80% 20%,
-    color-mix(in srgb, var(--accent) 12%, transparent),
-    transparent 38%
-  );
+  background: radial-gradient(circle at 80% 20%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 38%);
 }
 
 @utility feature-icon {

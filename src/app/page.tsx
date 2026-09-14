@@ -24,24 +24,21 @@ const PAPER_DETAILS = {
     letter: "A",
     eyebrow: "Two-part paper",
     title: "Safety and passenger care",
-    description:
-      "Build a complete Paper A attempt across on-the-road safety and essential passenger handling.",
+    description: "Build a complete Paper A attempt across on-the-road safety and essential passenger handling.",
     action: "Start Paper A",
   },
   b: {
     letter: "B",
     eyebrow: "Rules and regulations",
     title: "PDVL responsibilities",
-    description:
-      "Practise the rules and regulations that apply to private hire car driver vocational licence holders.",
+    description: "Practise the rules and regulations that apply to private hire car driver vocational licence holders.",
     action: "Start Paper B",
   },
   c: {
     letter: "C",
     eyebrow: "Route planning",
     title: "Digital navigation",
-    description:
-      "Test your understanding of route planning principles using digital navigational tools.",
+    description: "Test your understanding of route planning principles using digital navigational tools.",
     action: "Start Paper C",
   },
 } as const;
@@ -68,10 +65,7 @@ function PaperCard({ paperKey, seed }: { paperKey: PaperKey; seed: string }) {
   return (
     <article className="card flex h-full flex-col gap-6 p-6 sm:p-7">
       <div className="flex items-start justify-between gap-4">
-        <span
-          className="font-serif text-7xl leading-none text-primary"
-          aria-hidden="true"
-        >
+        <span className="font-serif text-7xl leading-none text-primary" aria-hidden="true">
           {details.letter}
         </span>
         <span className="eyebrow pt-2 text-right">{details.eyebrow}</span>
@@ -79,29 +73,18 @@ function PaperCard({ paperKey, seed }: { paperKey: PaperKey; seed: string }) {
 
       <div>
         <h2 className="mb-3 text-3xl">{paper.name}</h2>
-        <h3 className="mb-2 font-sans text-xl font-bold tracking-normal">
-          {details.title}
-        </h3>
-        <p className="m-0 text-sm leading-6 text-muted-foreground">
-          {details.description}
-        </p>
+        <h3 className="mb-2 font-sans text-xl font-bold tracking-normal">{details.title}</h3>
+        <p className="m-0 text-sm leading-6 text-muted-foreground">{details.description}</p>
       </div>
 
       <div className="flex-1 space-y-3 border-y border-border py-4">
         {modules.map(([moduleKey, module]) => (
           <div key={moduleKey} className="flex items-start gap-3">
-            <Layers3
-              className="mt-0.5 h-4 w-4 shrink-0 text-accent"
-              aria-hidden="true"
-            />
+            <Layers3 className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
             <div>
               <p className="m-0 text-sm font-bold">Module {module.label}</p>
               <p className="m-0 text-sm leading-5 text-muted-foreground">
-                {
-                  MODULE_DESCRIPTIONS[
-                    module.label as keyof typeof MODULE_DESCRIPTIONS
-                  ]
-                }
+                {MODULE_DESCRIPTIONS[module.label as keyof typeof MODULE_DESCRIPTIONS]}
               </p>
             </div>
           </div>
@@ -112,28 +95,19 @@ function PaperCard({ paperKey, seed }: { paperKey: PaperKey; seed: string }) {
         <div className="flex items-center gap-2">
           <BookOpen className="h-4 w-4 text-accent" aria-hidden="true" />
           <span>
-            <strong>
-              {modules.reduce((sum, [, module]) => sum + module.count, 0)}
-            </strong>{" "}
-            questions
+            <strong>{modules.reduce((sum, [, module]) => sum + module.count, 0)}</strong> questions
           </span>
         </div>
         <div className="flex items-center gap-2">
           <Clock3 className="h-4 w-4 text-accent" aria-hidden="true" />
           <span>
-            <strong>
-              {modules.reduce((sum, [, module]) => sum + module.minutes, 0)}
-            </strong>{" "}
-            minutes
+            <strong>{modules.reduce((sum, [, module]) => sum + module.minutes, 0)}</strong> minutes
           </span>
         </div>
         <div className="col-span-2 flex items-center gap-2 text-muted-foreground">
           <CheckCircle2 className="h-4 w-4 text-success" aria-hidden="true" />
           <span>
-            Paper pass mark:{" "}
-            <strong className="text-foreground">
-              {paper.passMark} correct
-            </strong>
+            Paper pass mark: <strong className="text-foreground">{paper.passMark} correct</strong>
           </span>
         </div>
       </div>
@@ -162,25 +136,19 @@ export default function Home() {
       <header className="mb-14 grid gap-8 lg:grid-cols-[1.35fr_0.65fr] lg:items-end">
         <div className="max-w-3xl">
           <p className="eyebrow mb-4">Singapore PDVL · practice test</p>
-          <h1 className="mb-6 max-w-2xl">
-            PDVL mock tests for steady exam preparation.
-          </h1>
+          <h1 className="mb-6 max-w-2xl">PDVL mock tests for steady exam preparation.</h1>
           <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
-            Prepare for Singapore&apos;s Private Hire Car Driver&apos;s
-            Vocational Licence (PDVL) with timed mock tests for Papers A, B and
-            C. Practise one question at a time, review your answers, and learn
-            from explanations after submitting.
+            Prepare for Singapore&apos;s Private Hire Car Driver&apos;s Vocational Licence (PDVL) with timed mock tests
+            for Papers A, B and C. Practise one question at a time, review your answers, and learn from explanations
+            after submitting.
           </p>
         </div>
         <div className="border-l-4 border-accent bg-muted p-5 text-sm leading-6">
           <p className="eyebrow mb-2">How it works</p>
           <p className="m-0">
-            Choose a paper, work through the guided questions, then review the
-            complete attempt before submitting.
+            Choose a paper, work through the guided questions, then review the complete attempt before submitting.
           </p>
-          <p className="mt-3 mb-0 font-bold text-foreground">
-            Keep your thinking steady under pressure.
-          </p>
+          <p className="mt-3 mb-0 font-bold text-foreground">Keep your thinking steady under pressure.</p>
         </div>
       </header>
 
@@ -195,8 +163,7 @@ export default function Home() {
             </h2>
           </div>
           <p className="m-0 max-w-sm text-sm leading-6 text-muted-foreground">
-            Every link creates a reproducible question set. You can share it or
-            retake the same set later.
+            Every link creates a reproducible question set. You can share it or retake the same set later.
           </p>
         </div>
 

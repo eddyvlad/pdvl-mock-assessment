@@ -22,15 +22,10 @@ function guaranteedWrongAnswer(question: Question) {
   return (question.correctIndex + 1) % question.choices.length;
 }
 
-function createAnswerPlan(
-  questions: Question[],
-  correctCount: number,
-): DevScenarioPlan {
+function createAnswerPlan(questions: Question[], correctCount: number): DevScenarioPlan {
   return {
     answers: questions.map((question, index) =>
-      index < correctCount
-        ? question.correctIndex
-        : guaranteedWrongAnswer(question),
+      index < correctCount ? question.correctIndex : guaranteedWrongAnswer(question),
     ),
   };
 }
@@ -47,9 +42,7 @@ export function buildScenarioAnswers(
   const paper = CONFIG[context.paper];
   const moduleConfig = paper?.modules[context.module];
   if (!paper || !moduleConfig) {
-    return disabled(
-      "This development scenario is unavailable for the selected question set.",
-    );
+    return disabled("This development scenario is unavailable for the selected question set.");
   }
 
   const total = questions.length;
@@ -68,9 +61,7 @@ export function buildScenarioAnswers(
     correctCount = paper.passMark - CONFIG.a.modules.m2.count - 1;
   } else if (context.paper === "a" && context.module === "m2") {
     if (context.previousModuleScore === undefined) {
-      return disabled(
-        "This Paper A scenario needs a matching submitted Module 1 result for the same seed.",
-      );
+      return disabled("This Paper A scenario needs a matching submitted Module 1 result for the same seed.");
     }
 
     if (scenario === "pass-with-incorrect") {
@@ -89,14 +80,11 @@ export function buildScenarioAnswers(
       }
     }
   } else {
-    correctCount =
-      scenario === "pass-with-incorrect" ? paper.passMark : paper.passMark - 1;
+    correctCount = scenario === "pass-with-incorrect" ? paper.passMark : paper.passMark - 1;
   }
 
   if (correctCount < 0 || correctCount > total) {
-    return disabled(
-      "This development scenario cannot reach its target with the selected question count.",
-    );
+    return disabled("This development scenario cannot reach its target with the selected question count.");
   }
 
   return createAnswerPlan(questions, correctCount);

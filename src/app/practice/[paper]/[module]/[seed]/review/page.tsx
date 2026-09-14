@@ -34,18 +34,9 @@ export default async function Page({
     redirect(`/practice/${paper}/${module}/${generateSeed()}`);
   }
 
-  const questions = await loadPracticeQuestions(
-    paper,
-    module,
-    seed,
-    moduleConfig.count,
-  );
+  const questions = await loadPracticeQuestions(paper, module, seed, moduleConfig.count);
   if (!questions) {
-    return (
-      <PracticeLoadError
-        retryHref={`/practice/${paper}/${module}/${seed}/review`}
-      />
-    );
+    return <PracticeLoadError retryHref={`/practice/${paper}/${module}/${seed}/review`} />;
   }
 
   const query = await searchParams;

@@ -31,7 +31,7 @@ The existing `/assess` route family is removed without redirects under the agree
 Use the v2 attempt records:
 
 ```ts
-type AttemptStatus = 'in-progress' | 'submitted';
+type AttemptStatus = "in-progress" | "submitted";
 
 interface AttemptRecordV2 {
   version: 2;
@@ -46,7 +46,7 @@ interface AttemptRecordV2 {
   answers: Array<number | null>;
   status: AttemptStatus;
   submittedAt?: number;
-  submissionMode?: 'manual' | 'auto';
+  submissionMode?: "manual" | "auto";
   score?: number;
 }
 ```

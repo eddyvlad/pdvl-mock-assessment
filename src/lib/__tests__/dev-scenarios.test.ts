@@ -22,11 +22,7 @@ describe("development assessment scenarios", () => {
     });
 
     expect(plan.answers).toEqual([0, 1, 1, 3, 2]);
-    expect(
-      plan.answers.every(
-        (answer, index) => answer === questions[index].correctIndex,
-      ),
-    ).toBe(true);
+    expect(plan.answers.every((answer, index) => answer === questions[index].correctIndex)).toBe(true);
     expect(questions).toEqual(original);
   });
 
@@ -36,20 +32,9 @@ describe("development assessment scenarios", () => {
       module: "4b",
     });
 
-    expect(
-      plan.answers.every(
-        (answer, index) =>
-          answer >= 0 && answer < questions[index].choices.length,
-      ),
-    ).toBe(true);
-    expect(
-      plan.answers.every(
-        (answer, index) => answer !== questions[index].correctIndex,
-      ),
-    ).toBe(true);
-    expect(
-      buildScenarioAnswers(questions, "fail", { paper: "c", module: "4b" }),
-    ).toEqual(plan);
+    expect(plan.answers.every((answer, index) => answer >= 0 && answer < questions[index].choices.length)).toBe(true);
+    expect(plan.answers.every((answer, index) => answer !== questions[index].correctIndex)).toBe(true);
+    expect(buildScenarioAnswers(questions, "fail", { paper: "c", module: "4b" })).toEqual(plan);
   });
 
   it("targets the configured standalone pass and fail scores", () => {
@@ -113,11 +98,7 @@ describe("development assessment scenarios", () => {
       }).disabledReason,
     ).toMatch(/Module 2/);
     expect(
-      calculateScore(
-        buildScenarioAnswers(moduleOne, "fail", { paper: "a", module: "m1" })
-          .answers,
-        moduleOne,
-      ),
+      calculateScore(buildScenarioAnswers(moduleOne, "fail", { paper: "a", module: "m1" }).answers, moduleOne),
     ).toBe(24);
     expect(
       calculateScore(

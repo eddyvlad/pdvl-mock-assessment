@@ -4,11 +4,7 @@ import { ArrowRight, X } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import {
-  type AttemptRecordV2,
-  getLatestResumableAttempt,
-  removeAttempt,
-} from "@/lib/attempt-storage";
+import { type AttemptRecordV2, getLatestResumableAttempt, removeAttempt } from "@/lib/attempt-storage";
 
 interface Props {
   href: string;
@@ -17,19 +13,12 @@ interface Props {
   dialogId: string;
 }
 
-export default function SessionAwarePaperLink({
-  href,
-  label,
-  paperLabel,
-  dialogId,
-}: Props) {
+export default function SessionAwarePaperLink({ href, label, paperLabel, dialogId }: Props) {
   const router = useRouter();
   const triggerRef = useRef<HTMLAnchorElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const wasOpenRef = useRef(false);
-  const [activeAttempt, setActiveAttempt] = useState<AttemptRecordV2 | null>(
-    null,
-  );
+  const [activeAttempt, setActiveAttempt] = useState<AttemptRecordV2 | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   useEffect(() => {
@@ -103,20 +92,12 @@ export default function SessionAwarePaperLink({
           <h2 id={`${dialogId}-title`} className="mb-3 text-3xl">
             Discard this session?
           </h2>
-          <p
-            id={`${dialogId}-description`}
-            className="m-0 leading-7 text-muted-foreground"
-          >
-            Your saved answers for {paperLabel} will be deleted from this
-            browser. You will not be able to continue this attempt.
+          <p id={`${dialogId}-description`} className="m-0 leading-7 text-muted-foreground">
+            Your saved answers for {paperLabel} will be deleted from this browser. You will not be able to continue this
+            attempt.
           </p>
           <div className="steady-dialog-actions">
-            <button
-              className="btn btn-secondary"
-              type="button"
-              data-dialog-cancel
-              onClick={closeDialog}
-            >
+            <button className="btn btn-secondary" type="button" data-dialog-cancel onClick={closeDialog}>
               Keep session
             </button>
             <button

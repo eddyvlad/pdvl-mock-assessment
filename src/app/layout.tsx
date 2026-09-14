@@ -4,11 +4,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import type { ReactNode } from "react";
 import NavBar from "@/components/nav-bar";
 import { APP_VERSION } from "@/lib/app-version";
-import {
-  homepageDescription,
-  homepageTitle,
-  siteUrl,
-} from "@/lib/site-metadata";
+import { homepageDescription, homepageTitle, siteUrl } from "@/lib/site-metadata";
 import ThemeToggle from "./theme-toggle";
 
 export const metadata: Metadata = {

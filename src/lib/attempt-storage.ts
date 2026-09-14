@@ -24,10 +24,7 @@ export interface AttemptRecordV2 {
 
 export type AttemptContext = Pick<AttemptRecordV2, "paper" | "module" | "seed">;
 
-export type AttemptStorage = Pick<
-  Storage,
-  "getItem" | "setItem" | "removeItem" | "key" | "length"
->;
+export type AttemptStorage = Pick<Storage, "getItem" | "setItem" | "removeItem" | "key" | "length">;
 
 function getBrowserStorage(): AttemptStorage | null {
   if (typeof window === "undefined") {
@@ -47,9 +44,7 @@ export function getAttemptStorageKey(attemptId: string) {
   return `${ATTEMPT_KEY_PREFIX}${attemptId}`;
 }
 
-export function parseAttemptRecord(
-  value: string | null,
-): AttemptRecordV2 | null {
+export function parseAttemptRecord(value: string | null): AttemptRecordV2 | null {
   if (!value) {
     return null;
   }
@@ -67,9 +62,7 @@ export function parseAttemptRecord(
       typeof parsed.updatedAt !== "number" ||
       typeof parsed.currentQuestion !== "number" ||
       !Array.isArray(parsed.answers) ||
-      !parsed.answers.every(
-        (answer) => answer === null || Number.isInteger(answer),
-      ) ||
+      !parsed.answers.every((answer) => answer === null || Number.isInteger(answer)) ||
       (parsed.status !== "in-progress" && parsed.status !== "submitted")
     ) {
       return null;
@@ -81,34 +74,21 @@ export function parseAttemptRecord(
   }
 }
 
-export function readAttempt(
-  attemptId: string,
-  storage: AttemptStorage | null = getBrowserStorage(),
-) {
-  return parseAttemptRecord(
-    storage?.getItem(getAttemptStorageKey(attemptId)) ?? null,
-  );
+export function readAttempt(attemptId: string, storage: AttemptStorage | null = getBrowserStorage()) {
+  return parseAttemptRecord(storage?.getItem(getAttemptStorageKey(attemptId)) ?? null);
 }
 
-export function writeAttempt(
-  record: AttemptRecordV2,
-  storage: AttemptStorage | null = getBrowserStorage(),
-) {
+export function writeAttempt(record: AttemptRecordV2, storage: AttemptStorage | null = getBrowserStorage()) {
   if (!storage) {
     return;
   }
 
-  storage.setItem(
-    getAttemptStorageKey(record.attemptId),
-    JSON.stringify(record),
-  );
+  storage.setItem(getAttemptStorageKey(record.attemptId), JSON.stringify(record));
   storage.setItem(ACTIVE_SESSION_KEY, record.attemptId);
   dispatchAttemptChange();
 }
 
-export function removeActiveSession(
-  storage: AttemptStorage | null = getBrowserStorage(),
-) {
+export function removeActiveSession(storage: AttemptStorage | null = getBrowserStorage()) {
   if (!storage) {
     return;
   }
@@ -117,10 +97,7 @@ export function removeActiveSession(
   dispatchAttemptChange();
 }
 
-export function removeAttempt(
-  attemptId: string,
-  storage: AttemptStorage | null = getBrowserStorage(),
-) {
+export function removeAttempt(attemptId: string, storage: AttemptStorage | null = getBrowserStorage()) {
   if (!storage) {
     return;
   }
@@ -132,16 +109,12 @@ export function removeAttempt(
   dispatchAttemptChange();
 }
 
-export function readActiveAttempt(
-  storage: AttemptStorage | null = getBrowserStorage(),
-) {
+export function readActiveAttempt(storage: AttemptStorage | null = getBrowserStorage()) {
   const attemptId = storage?.getItem(ACTIVE_SESSION_KEY);
   return attemptId ? readAttempt(attemptId, storage) : null;
 }
 
-export function listAttempts(
-  storage: AttemptStorage | null = getBrowserStorage(),
-) {
+export function listAttempts(storage: AttemptStorage | null = getBrowserStorage()) {
   if (!storage) {
     return [];
   }
@@ -162,29 +135,17 @@ export function listAttempts(
   return attempts;
 }
 
-export function isResumableAttempt(
-  record: AttemptRecordV2 | null,
-  now = Date.now(),
-) {
+export function isResumableAttempt(record: AttemptRecordV2 | null, now = Date.now()) {
   return record?.status === "in-progress" && record.expiresAt > now;
 }
 
-export function matchesAttemptContext(
-  record: AttemptRecordV2 | null,
-  context: AttemptContext,
-) {
+export function matchesAttemptContext(record: AttemptRecordV2 | null, context: AttemptContext) {
   return Boolean(
-    record &&
-      record.paper === context.paper &&
-      record.module === context.module &&
-      record.seed === context.seed,
+    record && record.paper === context.paper && record.module === context.module && record.seed === context.seed,
   );
 }
 
-export function getLatestResumableAttempt(
-  now = Date.now(),
-  storage: AttemptStorage | null = getBrowserStorage(),
-) {
+export function getLatestResumableAttempt(now = Date.now(), storage: AttemptStorage | null = getBrowserStorage()) {
   const activeAttempt = readActiveAttempt(storage);
   return isResumableAttempt(activeAttempt, now) ? activeAttempt : null;
 }

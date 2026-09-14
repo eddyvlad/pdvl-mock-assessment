@@ -1,9 +1,5 @@
 import { createAttemptRecord } from "../attempt-storage";
-import {
-  calculateScore,
-  getTopicStats,
-  submitAttemptRecord,
-} from "../practice-scoring";
+import { calculateScore, getTopicStats, submitAttemptRecord } from "../practice-scoring";
 import type { Question } from "../questions";
 
 const questions: Question[] = [
@@ -39,12 +35,7 @@ describe("practice scoring", () => {
       minutes: 30,
       now: 100,
     });
-    const submitted = submitAttemptRecord(
-      { ...record, answers: [0, 1, null] },
-      questions,
-      "auto",
-      500,
-    );
+    const submitted = submitAttemptRecord({ ...record, answers: [0, 1, null] }, questions, "auto", 500);
 
     expect(submitted).toMatchObject({
       status: "submitted",

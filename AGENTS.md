@@ -12,21 +12,21 @@ must respect during development.
 
 ## Current scope (what this app does)
 
-* Serves **MCQ** assessments for:
-    * **Paper A** (pass ≥ **30** correct total)
-        * Module 1: 30 Qs, 35 min
-        * Module 2: 5 Qs, 10 min
-    * **Paper B** (pass ≥ **22**): Module 3B — 25 Qs, 30 min
-    * **Paper C** (pass ≥ **12**): Module 4B, 15 Qs, 15 min (2–4 choices per question)
-* **All questions** have exactly one correct answer.
-* **Deterministic seeding** (Mulberry32 + base62 seed in URL) for reproducible selection and choice order.
-* **Guided questions** show one question at a time, followed by a review step and results page. Each attempt has a
+- Serves **MCQ** assessments for:
+  - **Paper A** (pass ≥ **30** correct total)
+    - Module 1: 30 Qs, 35 min
+    - Module 2: 5 Qs, 10 min
+  - **Paper B** (pass ≥ **22**): Module 3B — 25 Qs, 30 min
+  - **Paper C** (pass ≥ **12**): Module 4B, 15 Qs, 15 min (2–4 choices per question)
+- **All questions** have exactly one correct answer.
+- **Deterministic seeding** (Mulberry32 + base62 seed in URL) for reproducible selection and choice order.
+- **Guided questions** show one question at a time, followed by a review step and results page. Each attempt has a
   **3-second grace** countdown, persistent timer, and auto-submit on expiry.
-* **Paper A chaining:** M1 must be completed before M2; M2 reuses M1’s seed to compute the paper’s combined pass/fail.
+- **Paper A chaining:** M1 must be completed before M2; M2 reuses M1’s seed to compute the paper’s combined pass/fail.
 
 ## Data layout & versioning
 
-* **Runtime question pools** (served as static assets):
+- **Runtime question pools** (served as static assets):
 
   ```
   public/datasets/v2025-09/
@@ -35,131 +35,133 @@ must respect during development.
     paper-b-module-3b.json  # pool 153 → draw 25
     paper-c-module-4b.json  # pool 44  → draw 15
   ```
-* **Schema** (authoritative, build-time only): `schema/pdvl-question-pool.schema.json`
-* **Versioning:** Keep older versions under `public/datasets/<VERSION>/...` so old seeded links remain valid.
+
+- **Schema** (authoritative, build-time only): `schema/pdvl-question-pool.schema.json`
+- **Versioning:** Keep older versions under `public/datasets/<VERSION>/...` so old seeded links remain valid.
 
 ## Data contracts (must not break)
 
-* Question object:
+- Question object:
 
-    * `prompt: string`
-    * `choices: string[]` (length **2–4** for Module 4B; 4 for others)
-    * `correctIndex: number` (0-based)
-    * `explanation?: string`
-    * `tags?: string[]` (optional; lowercase snake_case topic metadata for result signals)
-    * `difficulty: "easy" | "medium" | "hard"` (required by the pool schema)
-* Pools per module:
-    * A-M1: 152 (draw 30)
-    * A-M2: 27  (draw 5)
-    * B-3B: 153 (draw 25)
-    * C-4B: 44  (draw 15)
+  - `prompt: string`
+  - `choices: string[]` (length **2–4** for Module 4B; 4 for others)
+  - `correctIndex: number` (0-based)
+  - `explanation?: string`
+  - `tags?: string[]` (optional; lowercase snake_case topic metadata for result signals)
+  - `difficulty: "easy" | "medium" | "hard"` (required by the pool schema)
+
+- Pools per module:
+  - A-M1: 152 (draw 30)
+  - A-M2: 27 (draw 5)
+  - B-3B: 153 (draw 25)
+  - C-4B: 44 (draw 15)
 
 ### Data format
 
 - Question schema: `schema/pdvl-question-pool.schema.json`
-    - `choices`: 2–4 strings
-    - `correctIndex`: 0-based
-    - `explanation`: optional but preferred
-    - `tags`: optional lowercase snake_case strings used for result topic signals (see `docs/taxonomy.md`)
-    - `difficulty`: one of `easy`, `medium`, or `hard`
+  - `choices`: 2–4 strings
+  - `correctIndex`: 0-based
+  - `explanation`: optional but preferred
+  - `tags`: optional lowercase snake_case strings used for result topic signals (see `docs/taxonomy.md`)
+  - `difficulty`: one of `easy`, `medium`, or `hard`
 
 ### Datasets
 
 - Resolved by `DATASET_VERSION` (see `.env`). Example:
-    - `public/datasets/v2025-09/paper-a-module-1.json`
-    - ...
+  - `public/datasets/v2025-09/paper-a-module-1.json`
+  - ...
 - Sampling is currently uniform and does not use tag weights. Tags are retained for result topic signals and future
   balancing work.
 
 ## Routing & seeding
 
-* Practice route shape: `/practice/:paper/:module/:seed`
-    * `:paper` ∈ `{a,b,c}`
-    * `:module` ∈ `{m1,m2,3b,4b}`
-    * `:seed` = **base62**, fixed length **6**
-* Review and result routes append `/review` and `/result` to the practice route.
-* If `:seed` is missing, generate a valid seed and **redirect** to the canonical URL.
-* **Randomization rules:**
-    * PRNG: **Mulberry32** with the 6-char seed.
-    * Derive a **module-scoped** RNG (mix in the module key) to avoid cross-module correlation.
-    * **Sample without replacement** to the module’s count.
-    * **Keep sampled order** (do not reshuffle question order).
-    * **Shuffle choices** deterministically (works for 2–4 choices); remap `correctIndex`.
+- Practice route shape: `/practice/:paper/:module/:seed`
+  - `:paper` ∈ `{a,b,c}`
+  - `:module` ∈ `{m1,m2,3b,4b}`
+  - `:seed` = **base62**, fixed length **6**
+- Review and result routes append `/review` and `/result` to the practice route.
+- If `:seed` is missing, generate a valid seed and **redirect** to the canonical URL.
+- **Randomization rules:**
+  - PRNG: **Mulberry32** with the 6-char seed.
+  - Derive a **module-scoped** RNG (mix in the module key) to avoid cross-module correlation.
+  - **Sample without replacement** to the module’s count.
+  - **Keep sampled order** (do not reshuffle question order).
+  - **Shuffle choices** deterministically (works for 2–4 choices); remap `correctIndex`.
 
 ## Paper A chaining & pass logic
 
-* Users must complete **A-M1** before **A-M2**.
-* A-M1 result view includes **Proceed to Module 2** that links to `/practice/a/m2/:seed` with the **same seed**.
-* A-M2 checks that a submitted A-M1 v2 attempt with the same seed exists in `localStorage`; otherwise, redirect to A-M1.
-* **Paper A score = M1\_correct + M2\_correct**; pass if **≥ 30**. Show module subtotals and combined total.
+- Users must complete **A-M1** before **A-M2**.
+- A-M1 result view includes **Proceed to Module 2** that links to `/practice/a/m2/:seed` with the **same seed**.
+- A-M2 checks that a submitted A-M1 v2 attempt with the same seed exists in `localStorage`; otherwise, redirect to A-M1.
+- **Paper A score = M1\_correct + M2\_correct**; pass if **≥ 30**. Show module subtotals and combined total.
 
 ## Timer, submission, and persistence
 
-* 3-second **grace** when page loads, then countdown starts.
-* **Auto-submit** on expiry; unanswered = incorrect.
-* Manual submit allowed; **warn** if unanswered remain.
-* Persist v2 attempts in `localStorage` under `pdvl:v2:attempt:{attemptId}`. Store the latest active attempt ID under
+- 3-second **grace** when page loads, then countdown starts.
+- **Auto-submit** on expiry; unanswered = incorrect.
+- Manual submit allowed; **warn** if unanswered remain.
+- Persist v2 attempts in `localStorage` under `pdvl:v2:attempt:{attemptId}`. Store the latest active attempt ID under
   `pdvl:v2:active-session`.
-* Each attempt stores `startedAt`, `expiresAt`, `updatedAt`, `currentQuestion`, `answers[]`, and its submission state.
-* On reload, restore a resumable in-progress attempt. If its expiry has passed, auto-submit it and route to results.
+- Each attempt stores `startedAt`, `expiresAt`, `updatedAt`, `currentQuestion`, `answers[]`, and its submission state.
+- On reload, restore a resumable in-progress attempt. If its expiry has passed, auto-submit it and route to results.
 
 ## Results & review
 
-* Show: score, pass/fail (paper-level where applicable), threshold, completion information, per-question correctness,
+- Show: score, pass/fail (paper-level where applicable), threshold, completion information, per-question correctness,
   correct answer, learner's answer, and **explanations** (when present).
-* Show a review step before submission with answered status, selected-answer summaries, and jump-to-question actions.
-* Actions: **Retake same seed**, **New seed**, and **Proceed to Module 2** for Paper A where applicable.
-* No PDF export required.
+- Show a review step before submission with answered status, selected-answer summaries, and jump-to-question actions.
+- Actions: **Retake same seed**, **New seed**, and **Proceed to Module 2** for Paper A where applicable.
+- No PDF export required.
 
 ## Landing page
 
-* Homepage title and description: maintained in `src/lib/site-metadata.ts` and used by the homepage metadata.
-* Module picker grouped by Paper (A/B/C) with question count, time, paper pass mark, and module descriptions.
-* A continue-session panel appears when a valid unfinished v2 attempt exists in the browser.
+- Homepage title and description: maintained in `src/lib/site-metadata.ts` and used by the homepage metadata.
+- Module picker grouped by Paper (A/B/C) with question count, time, paper pass mark, and module descriptions.
+- A continue-session panel appears when a valid unfinished v2 attempt exists in the browser.
 
 ## Topic metadata
 
-* `tags` are optional lowercase snake_case metadata used to aggregate topic signals on results pages.
-* Current question sampling is uniform. Do not describe the application as tag-balanced unless a separate sampling
+- `tags` are optional lowercase snake_case metadata used to aggregate topic signals on results pages.
+- Current question sampling is uniform. Do not describe the application as tag-balanced unless a separate sampling
   implementation is added.
 
 ## Accessibility & UX
 
-* Adaptive choice labels from A through D based on the number of choices.
-* Keyboard shortcuts: `1–4` / `A–D` to select an answer.
-* Progress bar (answered / total).
-* System, light, and dark theme selection with a persisted preference.
-* Mobile-first layout with large tap targets.
+- Adaptive choice labels from A through D based on the number of choices.
+- Keyboard shortcuts: `1–4` / `A–D` to select an answer.
+- Progress bar (answered / total).
+- System, light, and dark theme selection with a persisted preference.
+- Mobile-first layout with large tap targets.
 
 ## Analytics
 
-* Google Analytics (`gtag`) with events:
-    * `assessment_start` ({paper,module,seed,count,minutes,version})
-    * `answer_select` ({i,choice,changed})
-    * `assessment_submit` ({paper,module,seed,score,total,elapsed,auto})
-    * `view_result` ({paper,module,seed,score,total,pass})
-    * `copy_link` ({paper,module,seed})
-* Guard all GA calls if no Measurement ID is configured.
+- Google Analytics (`gtag`) with events:
+  - `assessment_start` ({paper,module,seed,count,minutes,version})
+  - `answer_select` ({i,choice,changed})
+  - `assessment_submit` ({paper,module,seed,score,total,elapsed,auto})
+  - `view_result` ({paper,module,seed,score,total,pass})
+  - `copy_link` ({paper,module,seed})
+- Guard all GA calls if no Measurement ID is configured.
 
 ## Error handling
 
-* JSON fetch fail/offline: friendly error with **Retry** + **Back to landing**.
-* Invalid seed (non-base62/length ≠6): auto-redirect to a new valid seed.
+- JSON fetch fail/offline: friendly error with **Retry** + **Back to landing**.
+- Invalid seed (non-base62/length ≠6): auto-redirect to a new valid seed.
 
 ## Non-functional notes
 
-* No application database or account system; question pools are static JSON assets and GA is the only third-party.
-* Keep bundles small; cache static datasets if desired.
+- No application database or account system; question pools are static JSON assets and GA is the only third-party.
+- Keep bundles small; cache static datasets if desired.
 
 ## Definition of Done (for changes in this repo)
 
-* Deterministic reproducibility: same seeded URL ⇒ same questions & choice order.
-* Paper A chaining & combined scoring work exactly as described.
-* Timer, grace, auto-submit, persistence, and restore behave as specified.
-* Explanations render on results; keyboard shortcuts & adaptive labels work.
-* Error states are friendly; GA events fire when configured.
-* Topic signals render when `tags` exist; sampling remains uniform unless balancing is implemented explicitly.
-* Versioned dataset paths supported, with old links still valid where files remain hosted.
+- Deterministic reproducibility: same seeded URL ⇒ same questions & choice order.
+- Paper A chaining & combined scoring work exactly as described.
+- Timer, grace, auto-submit, persistence, and restore behave as specified.
+- Explanations render on results; keyboard shortcuts & adaptive labels work.
+- Error states are friendly; GA events fire when configured.
+- Topic signals render when `tags` exist; sampling remains uniform unless balancing is implemented explicitly.
+- Versioned dataset paths supported, with old links still valid where files remain hosted.
 
 ## Dev Environment Tips
 
@@ -245,6 +247,7 @@ Run the following commands in the project root directory in order to test the pr
   Use the task's area and body for cross-cutting concerns such as accessibility, mobile, performance, or analytics.
   Keep the frontmatter minimal beyond these required fields. The parent lifecycle directory is authoritative for status;
   do not duplicate it in frontmatter without a real consumer.
+
 - Make each task self-contained enough for handoff. Do not silently expand its scope. Every task must produce at least one
   focused Git commit, with completion notes and durable findings promoted out of the task where appropriate.
 

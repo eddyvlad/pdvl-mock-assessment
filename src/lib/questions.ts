@@ -8,10 +8,7 @@ export interface Question {
   tags?: string[];
 }
 
-export function shuffleQuestionChoices(
-  q: Question,
-  rng: () => number,
-): Question {
+export function shuffleQuestionChoices(q: Question, rng: () => number): Question {
   const indices = q.choices.map((_, i) => i);
   for (let i = indices.length - 1; i > 0; i -= 1) {
     const j = Math.floor(rng() * (i + 1));
@@ -22,11 +19,7 @@ export function shuffleQuestionChoices(
   return { ...q, choices, correctIndex };
 }
 
-export function sampleQuestions(
-  pool: Question[],
-  count: number,
-  rng: () => number,
-): Question[] {
+export function sampleQuestions(pool: Question[], count: number, rng: () => number): Question[] {
   const indices = pool.map((_, i) => i);
   for (let i = 0; i < count; i += 1) {
     const j = i + Math.floor(rng() * (indices.length - i));

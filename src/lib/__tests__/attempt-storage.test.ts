@@ -67,21 +67,11 @@ describe("attempt storage v2", () => {
 
   it("uses the most recently updated unfinished attempt and ignores old or expired records", () => {
     const storage = createStorage({
-      "pdvl:old:record": JSON.stringify(
-        attempt({ attemptId: "old", updatedAt: 99_999 }),
-      ),
-      "pdvl:v2:attempt:expired": JSON.stringify(
-        attempt({ attemptId: "expired", expiresAt: 10, updatedAt: 90 }),
-      ),
+      "pdvl:old:record": JSON.stringify(attempt({ attemptId: "old", updatedAt: 99_999 })),
+      "pdvl:v2:attempt:expired": JSON.stringify(attempt({ attemptId: "expired", expiresAt: 10, updatedAt: 90 })),
     });
-    writeAttempt(
-      attempt({ attemptId: "older", updatedAt: 100, expiresAt: 5_000 }),
-      storage,
-    );
-    writeAttempt(
-      attempt({ attemptId: "latest", updatedAt: 200, expiresAt: 5_000 }),
-      storage,
-    );
+    writeAttempt(attempt({ attemptId: "older", updatedAt: 100, expiresAt: 5_000 }), storage);
+    writeAttempt(attempt({ attemptId: "latest", updatedAt: 200, expiresAt: 5_000 }), storage);
 
     expect(getLatestResumableAttempt(1_000, storage)?.attemptId).toBe("latest");
     expect(listAttempts(storage)).toHaveLength(3);
@@ -89,14 +79,8 @@ describe("attempt storage v2", () => {
 
   it("does not fall back to another record after the active pointer is cleared", () => {
     const storage = createStorage();
-    writeAttempt(
-      attempt({ attemptId: "first", updatedAt: 100, expiresAt: 5_000 }),
-      storage,
-    );
-    writeAttempt(
-      attempt({ attemptId: "second", updatedAt: 200, expiresAt: 5_000 }),
-      storage,
-    );
+    writeAttempt(attempt({ attemptId: "first", updatedAt: 100, expiresAt: 5_000 }), storage);
+    writeAttempt(attempt({ attemptId: "second", updatedAt: 200, expiresAt: 5_000 }), storage);
     storage.removeItem(ACTIVE_SESSION_KEY);
 
     expect(getLatestResumableAttempt(1_000, storage)).toBeNull();
@@ -120,10 +104,7 @@ describe("attempt storage v2", () => {
 
   it("does not treat submitted records as resumable", () => {
     const storage = createStorage();
-    writeAttempt(
-      attempt({ attemptId: "submitted", status: "submitted", updatedAt: 500 }),
-      storage,
-    );
+    writeAttempt(attempt({ attemptId: "submitted", status: "submitted", updatedAt: 500 }), storage);
 
     expect(getLatestResumableAttempt(1_000, storage)).toBeNull();
     expect(readActiveAttempt(storage)?.attemptId).toBe("submitted");
@@ -154,9 +135,7 @@ describe("attempt storage v2", () => {
         seed: "abc123",
       }),
     ).toBe(false);
-    expect(
-      matchesAttemptContext(null, { paper: "a", module: "m1", seed: "abc123" }),
-    ).toBe(false);
+    expect(matchesAttemptContext(null, { paper: "a", module: "m1", seed: "abc123" })).toBe(false);
   });
 
   it("rejects malformed records", () => {

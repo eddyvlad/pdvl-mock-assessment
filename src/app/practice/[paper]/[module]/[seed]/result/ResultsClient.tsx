@@ -2,26 +2,12 @@
 "use client";
 
 import clsx from "clsx";
-import {
-  ArrowRight,
-  ArrowUp,
-  CheckCircle2,
-  ClipboardCheck,
-  Home,
-  RotateCcw,
-  Share2,
-  XCircle,
-} from "lucide-react";
+import { ArrowRight, ArrowUp, CheckCircle2, ClipboardCheck, Home, RotateCcw, Share2, XCircle } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { trackAssessmentEvent } from "@/lib/analytics";
-import {
-  type AttemptRecordV2,
-  getLatestAttempt,
-  matchesAttemptContext,
-  readAttempt,
-} from "@/lib/attempt-storage";
+import { type AttemptRecordV2, getLatestAttempt, matchesAttemptContext, readAttempt } from "@/lib/attempt-storage";
 import { CONFIG } from "@/lib/config";
 import { calculateScore, getTopicStats } from "@/lib/practice-scoring";
 import type { Question } from "@/lib/questions";
@@ -42,20 +28,11 @@ function formatDuration(seconds: number) {
   return `${minutes} min ${remainingSeconds} sec`;
 }
 
-export default function ResultsClient({
-  paper,
-  moduleKey,
-  seed,
-  questions,
-  attemptId,
-  newSeed,
-}: Props) {
+export default function ResultsClient({ paper, moduleKey, seed, questions, attemptId, newSeed }: Props) {
   const router = useRouter();
   const basePath = `/practice/${paper}/${moduleKey}/${seed}`;
   const [attempt, setAttempt] = useState<AttemptRecordV2 | null>(null);
-  const [attemptError, setAttemptError] = useState<
-    "missing" | "mismatch" | "paper-a-chain" | null
-  >(null);
+  const [attemptError, setAttemptError] = useState<"missing" | "mismatch" | "paper-a-chain" | null>(null);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -94,9 +71,7 @@ export default function ResultsClient({
       return;
     }
 
-    const combinedScore = previousModule
-      ? (previousModule.score ?? 0) + score
-      : score;
+    const combinedScore = previousModule ? (previousModule.score ?? 0) + score : score;
     setAttempt(stored);
     trackAssessmentEvent("view_result", {
       paper,
@@ -104,10 +79,7 @@ export default function ResultsClient({
       seed,
       score,
       total: questions.length,
-      pass:
-        paper === "a" && moduleKey === "m1"
-          ? false
-          : combinedScore >= (CONFIG[paper]?.passMark ?? 0),
+      pass: paper === "a" && moduleKey === "m1" ? false : combinedScore >= (CONFIG[paper]?.passMark ?? 0),
     });
   }, [attemptId, moduleKey, paper, questions, seed]);
 
@@ -123,9 +95,7 @@ export default function ResultsClient({
   }
 
   function scrollToTop() {
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     window.scrollTo({
       top: 0,
       behavior: prefersReducedMotion ? "auto" : "smooth",
@@ -162,8 +132,7 @@ export default function ResultsClient({
     );
   }
 
-  const moduleScore =
-    attempt.score ?? calculateScore(attempt.answers, questions);
+  const moduleScore = attempt.score ?? calculateScore(attempt.answers, questions);
   const moduleConfig = CONFIG[paper]?.modules[moduleKey];
   const paperName = CONFIG[paper]?.name ?? `Paper ${paper.toUpperCase()}`;
   const moduleName = moduleConfig?.label ?? moduleKey.toUpperCase();
@@ -178,9 +147,7 @@ export default function ResultsClient({
             candidate.status === "submitted",
         )
       : null;
-  const combinedScore = previousModule
-    ? (previousModule.score ?? 0) + moduleScore
-    : null;
+  const combinedScore = previousModule ? (previousModule.score ?? 0) + moduleScore : null;
   const isPaperASecondModule = paper === "a" && moduleKey === "m2";
   const paperPass =
     paper === "a" && moduleKey === "m2"
@@ -188,9 +155,7 @@ export default function ResultsClient({
       : paper !== "a" && moduleScore >= modulePassMark;
   const isPaperAFirstModule = paper === "a" && moduleKey === "m1";
   const topicStats = getTopicStats(attempt.answers, questions);
-  const elapsed = attempt.submittedAt
-    ? Math.max(0, Math.floor((attempt.submittedAt - attempt.startedAt) / 1000))
-    : 0;
+  const elapsed = attempt.submittedAt ? Math.max(0, Math.floor((attempt.submittedAt - attempt.startedAt) / 1000)) : 0;
 
   return (
     <section className="space-y-10" aria-labelledby="result-heading">
@@ -201,11 +166,7 @@ export default function ResultsClient({
               {paperName} · Module {moduleName}
             </p>
             <h1 id="result-heading" className="mb-3 text-4xl sm:text-6xl">
-              {isPaperAFirstModule
-                ? "Module complete."
-                : paperPass
-                  ? "You passed."
-                  : "Keep practising."}
+              {isPaperAFirstModule ? "Module complete." : paperPass ? "You passed." : "Keep practising."}
             </h1>
             <p className="m-0 max-w-2xl leading-7 text-muted-foreground">
               {isPaperAFirstModule
@@ -232,19 +193,12 @@ export default function ResultsClient({
             ) : (
               <XCircle className="h-4 w-4" aria-hidden="true" />
             )}
-            {isPaperAFirstModule
-              ? "Paper A in progress"
-              : paperPass
-                ? "Pass"
-                : "Not passed"}
+            {isPaperAFirstModule ? "Paper A in progress" : paperPass ? "Pass" : "Not passed"}
           </span>
         </div>
 
         {isPaperASecondModule && (
-          <section
-            className="mb-4 grid gap-4 sm:grid-cols-3"
-            aria-label="Paper A score breakdown"
-          >
+          <section className="mb-4 grid gap-4 sm:grid-cols-3" aria-label="Paper A score breakdown">
             <div className="bg-muted p-4">
               <p className="meta-label mb-2">Module 1 subtotal</p>
               <p className="m-0 font-mono text-3xl font-bold text-primary">
@@ -260,8 +214,7 @@ export default function ResultsClient({
             <div className="bg-muted p-4">
               <p className="meta-label mb-2">Combined score</p>
               <p className="m-0 font-mono text-3xl font-bold text-primary">
-                {combinedScore ?? moduleScore}/
-                {CONFIG.a.modules.m1.count + CONFIG.a.modules.m2.count}
+                {combinedScore ?? moduleScore}/{CONFIG.a.modules.m1.count + CONFIG.a.modules.m2.count}
               </p>
             </div>
           </section>
@@ -278,19 +231,13 @@ export default function ResultsClient({
           )}
           <div className="bg-muted p-4">
             <p className="meta-label mb-2">Required</p>
-            <p className="m-0 font-mono text-3xl font-bold text-primary">
-              {modulePassMark} correct
-            </p>
+            <p className="m-0 font-mono text-3xl font-bold text-primary">{modulePassMark} correct</p>
           </div>
           <div className="bg-muted p-4">
             <p className="meta-label mb-2">Completed</p>
-            <p className="m-0 font-mono text-xl font-bold text-primary">
-              {formatDuration(elapsed)}
-            </p>
+            <p className="m-0 font-mono text-xl font-bold text-primary">{formatDuration(elapsed)}</p>
             <p className="m-0 text-xs text-muted-foreground">
-              {attempt.submissionMode === "auto"
-                ? "Time expired"
-                : "Submitted manually"}
+              {attempt.submissionMode === "auto" ? "Time expired" : "Submitted manually"}
             </p>
           </div>
         </div>
@@ -300,17 +247,10 @@ export default function ResultsClient({
         <Link className="btn btn-primary gap-2" href={basePath}>
           Retake same set <RotateCcw className="h-4 w-4" aria-hidden="true" />
         </Link>
-        <Link
-          className="btn btn-secondary gap-2"
-          href={`/practice/${paper}/${moduleKey}/${newSeed}`}
-        >
+        <Link className="btn btn-secondary gap-2" href={`/practice/${paper}/${moduleKey}/${newSeed}`}>
           New question set <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </Link>
-        <button
-          className="btn btn-secondary gap-2"
-          type="button"
-          onClick={copyLink}
-        >
+        <button className="btn btn-secondary gap-2" type="button" onClick={copyLink}>
           {copied ? (
             <ClipboardCheck className="h-4 w-4" aria-hidden="true" />
           ) : (
@@ -327,17 +267,10 @@ export default function ResultsClient({
         <div className="flex flex-wrap items-center justify-between gap-4 border-l-4 border-accent bg-muted p-5">
           <div>
             <p className="eyebrow mb-1">Next in Paper A</p>
-            <p className="m-0 font-bold">
-              Continue with Module 2 using the same seed.
-            </p>
+            <p className="m-0 font-bold">Continue with Module 2 using the same seed.</p>
           </div>
-          <button
-            className="btn btn-primary gap-2"
-            type="button"
-            onClick={() => router.push(`/practice/a/m2/${seed}`)}
-          >
-            Proceed to Module 2{" "}
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          <button className="btn btn-primary gap-2" type="button" onClick={() => router.push(`/practice/a/m2/${seed}`)}>
+            Proceed to Module 2 <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </button>
         </div>
       )}
@@ -365,8 +298,7 @@ export default function ResultsClient({
 
       {topicStats.length === 0 && (
         <p className="border-l-4 border-accent bg-muted p-4 text-sm text-muted-foreground">
-          Topic cues are not available for this module. Use the question
-          explanations below for your review.
+          Topic cues are not available for this module. Use the question explanations below for your review.
         </p>
       )}
 
@@ -384,19 +316,14 @@ export default function ResultsClient({
             return (
               <li
                 key={index}
-                className={clsx(
-                  "border bg-card p-5 sm:p-6",
-                  correct ? "border-success" : "border-danger",
-                )}
+                className={clsx("border bg-card p-5 sm:p-6", correct ? "border-success" : "border-danger")}
               >
                 <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
                   <div className="flex items-start gap-3">
                     <span className="font-mono text-sm font-bold text-accent">
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    <h3 className="result-question-heading m-0 max-w-3xl">
-                      {question.prompt}
-                    </h3>
+                    <h3 className="result-question-heading m-0 max-w-3xl">{question.prompt}</h3>
                   </div>
                   <span
                     className={clsx(
@@ -411,30 +338,22 @@ export default function ResultsClient({
                   <p
                     className={clsx(
                       "m-0 border-l-2 p-3",
-                      answer === null
-                        ? "border-danger text-danger"
-                        : "border-border text-muted-foreground",
+                      answer === null ? "border-danger text-danger" : "border-border text-muted-foreground",
                     )}
                   >
-                    <strong className="block text-foreground">
-                      Your answer
-                    </strong>
+                    <strong className="block text-foreground">Your answer</strong>
                     {answer === null || answer === undefined
                       ? "Unanswered"
                       : `${String.fromCharCode(65 + Number(answer))}. ${question.choices[Number(answer)]}`}
                   </p>
                   <p className="m-0 border-l-2 border-success p-3 text-muted-foreground">
-                    <strong className="block text-foreground">
-                      Correct answer
-                    </strong>
-                    {String.fromCharCode(65 + question.correctIndex)}.{" "}
-                    {question.choices[question.correctIndex]}
+                    <strong className="block text-foreground">Correct answer</strong>
+                    {String.fromCharCode(65 + question.correctIndex)}. {question.choices[question.correctIndex]}
                   </p>
                 </div>
                 {question.explanation && (
                   <p className="m-0 mt-4 border-t border-border pt-4 text-sm leading-6 text-muted-foreground">
-                    <strong className="text-foreground">Why:</strong>{" "}
-                    {question.explanation}
+                    <strong className="text-foreground">Why:</strong> {question.explanation}
                   </p>
                 )}
               </li>
@@ -444,11 +363,7 @@ export default function ResultsClient({
       </section>
 
       <div className="flex justify-end border-t border-border pt-6">
-        <button
-          className="btn btn-secondary gap-2"
-          type="button"
-          onClick={scrollToTop}
-        >
+        <button className="btn btn-secondary gap-2" type="button" onClick={scrollToTop}>
           <ArrowUp className="h-4 w-4" aria-hidden="true" /> Back to top
         </button>
       </div>

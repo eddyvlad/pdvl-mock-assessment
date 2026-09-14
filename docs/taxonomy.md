@@ -3,6 +3,7 @@
 This vocabulary reflects the tags currently used by the `v2025-09` question pools. Tags are optional metadata and must use lowercase snake_case when present. They are used for topic signals on results pages; question sampling remains uniform.
 
 ## M1 tags
+
 - `p2p_landscape`
 - `professionalism_conduct`
 - `health_wellness`
@@ -19,6 +20,7 @@ This vocabulary reflects the tags currently used by the `v2025-09` question pool
 - `passenger_safety`
 
 ## M2 tags
+
 - `customer_service_communication`
 - `safe_stopping`
 - `assistance_mobility`
@@ -34,6 +36,7 @@ This vocabulary reflects the tags currently used by the `v2025-09` question pool
 - `route_selection`
 
 ## M3B tags
+
 - `vl_eligibility_obligations`
 - `psv_rules_owner_duties`
 - `inspections`
@@ -48,6 +51,7 @@ This vocabulary reflects the tags currently used by the `v2025-09` question pool
 - `service_definitions`
 
 ## M4B tags
+
 - `route_planning_shortest`
 - `landmarks_region`
 - `nearest_facility`

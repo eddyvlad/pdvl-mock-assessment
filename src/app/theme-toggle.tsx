@@ -2,12 +2,7 @@
 
 import clsx from "clsx";
 import { Monitor, Moon, Sun } from "lucide-react";
-import {
-  type ComponentProps,
-  type ComponentType,
-  useEffect,
-  useSyncExternalStore,
-} from "react";
+import { type ComponentProps, type ComponentType, useEffect, useSyncExternalStore } from "react";
 
 type Theme = "system" | "light" | "dark";
 const STORAGE_KEY = "theme";
@@ -24,9 +19,7 @@ function readStoredTheme(): Theme {
   }
 
   const stored = localStorage.getItem(STORAGE_KEY);
-  return stored === "light" || stored === "dark" || stored === "system"
-    ? stored
-    : "system";
+  return stored === "light" || stored === "dark" || stored === "system" ? stored : "system";
 }
 
 function subscribeToTheme(onStoreChange: () => void) {
@@ -51,11 +44,7 @@ function subscribeToTheme(onStoreChange: () => void) {
 }
 
 export default function ThemeToggle() {
-  const theme = useSyncExternalStore(
-    subscribeToTheme,
-    readStoredTheme,
-    () => "system",
-  );
+  const theme = useSyncExternalStore(subscribeToTheme, readStoredTheme, () => "system");
 
   useEffect(() => {
     const root = document.documentElement;
@@ -98,8 +87,7 @@ export default function ThemeToggle() {
           aria-label={ariaLabel}
           aria-pressed={theme === value}
           className={clsx("btn btn-ghost h-9 min-h-0 w-9 rounded-full p-2", {
-            "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground":
-              theme === value,
+            "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground": theme === value,
           })}
           onClick={() => setTheme(value)}
         >

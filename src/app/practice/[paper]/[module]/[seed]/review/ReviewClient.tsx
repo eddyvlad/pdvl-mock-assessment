@@ -2,23 +2,10 @@
 "use client";
 
 import clsx from "clsx";
-import {
-  ArrowLeft,
-  ArrowRight,
-  CheckCircle2,
-  CircleAlert,
-  Clock3,
-  Send,
-} from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, CircleAlert, Clock3, Send } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import {
-  type RefObject,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { type RefObject, useCallback, useEffect, useRef, useState } from "react";
 import { trackAssessmentEvent } from "@/lib/analytics";
 import {
   type AttemptRecordV2,
@@ -28,11 +15,7 @@ import {
   writeAttempt,
 } from "@/lib/attempt-storage";
 import { CONFIG } from "@/lib/config";
-import {
-  calculateScore,
-  countAnswered,
-  submitAttemptRecord,
-} from "@/lib/practice-scoring";
+import { calculateScore, countAnswered, submitAttemptRecord } from "@/lib/practice-scoring";
 import type { Question } from "@/lib/questions";
 
 interface Props {
@@ -113,27 +96,14 @@ function SubmitAttemptDialog({
         <h2 id="submit-attempt-title" className="mb-3 text-3xl">
           Submit this attempt?
         </h2>
-        <p
-          id="submit-attempt-description"
-          className="m-0 leading-7 text-muted-foreground"
-        >
-          {unanswered} question{unanswered === 1 ? "" : "s"} unanswered.
-          Unanswered questions will count as incorrect.
+        <p id="submit-attempt-description" className="m-0 leading-7 text-muted-foreground">
+          {unanswered} question{unanswered === 1 ? "" : "s"} unanswered. Unanswered questions will count as incorrect.
         </p>
         <div className="steady-dialog-actions">
-          <button
-            className="btn btn-secondary"
-            type="button"
-            data-dialog-cancel
-            onClick={onClose}
-          >
+          <button className="btn btn-secondary" type="button" data-dialog-cancel onClick={onClose}>
             Keep reviewing
           </button>
-          <button
-            className="btn btn-primary gap-2"
-            type="button"
-            onClick={onConfirm}
-          >
+          <button className="btn btn-primary gap-2" type="button" onClick={onConfirm}>
             Submit attempt <Send className="h-4 w-4" aria-hidden="true" />
           </button>
         </div>
@@ -142,13 +112,7 @@ function SubmitAttemptDialog({
   );
 }
 
-export default function ReviewClient({
-  paper,
-  moduleKey,
-  seed,
-  questions,
-  attemptId,
-}: Props) {
+export default function ReviewClient({ paper, moduleKey, seed, questions, attemptId }: Props) {
   const router = useRouter();
   const basePath = `/practice/${paper}/${moduleKey}/${seed}`;
   const attemptRef = useRef<AttemptRecordV2 | null>(null);
@@ -182,16 +146,10 @@ export default function ReviewClient({
         seed,
         score: finalRecord.score ?? calculateScore(current.answers, questions),
         total: questions.length,
-        elapsed: Math.max(
-          0,
-          Math.floor((Date.now() - current.startedAt) / 1000),
-        ),
+        elapsed: Math.max(0, Math.floor((Date.now() - current.startedAt) / 1000)),
         auto: mode === "auto",
       });
-      router.replace(
-        `${basePath}/result?attempt=${encodeURIComponent(current.attemptId)}`,
-        { scroll: true },
-      );
+      router.replace(`${basePath}/result?attempt=${encodeURIComponent(current.attemptId)}`, { scroll: true });
     },
     [basePath, moduleKey, paper, questions, router, seed],
   );
@@ -203,19 +161,13 @@ export default function ReviewClient({
     }
 
     const stored = readAttempt(attemptId);
-    if (
-      !stored ||
-      !matchesAttemptContext(stored, { paper, module: moduleKey, seed })
-    ) {
+    if (!stored || !matchesAttemptContext(stored, { paper, module: moduleKey, seed })) {
       setAttemptError(true);
       setLoading(false);
       return;
     }
     if (stored.status === "submitted") {
-      router.replace(
-        `${basePath}/result?attempt=${encodeURIComponent(stored.attemptId)}`,
-        { scroll: true },
-      );
+      router.replace(`${basePath}/result?attempt=${encodeURIComponent(stored.attemptId)}`, { scroll: true });
       return;
     }
 
@@ -234,10 +186,7 @@ export default function ReviewClient({
         return;
       }
 
-      const remaining = Math.max(
-        0,
-        Math.ceil((current.expiresAt - Date.now()) / 1_000),
-      );
+      const remaining = Math.max(0, Math.ceil((current.expiresAt - Date.now()) / 1_000));
       setTimeLeft(remaining);
       if (remaining <= 0) {
         finishAttempt("auto");
@@ -266,9 +215,7 @@ export default function ReviewClient({
   }
 
   if (loading) {
-    return (
-      <p className="text-muted-foreground">Loading your saved answers...</p>
-    );
+    return <p className="text-muted-foreground">Loading your saved answers...</p>;
   }
 
   if (!attempt) {
@@ -300,8 +247,7 @@ export default function ReviewClient({
   const answered = countAnswered(attempt.answers);
   const unanswered = questions.length - answered;
   const paperName = CONFIG[paper]?.name ?? `Paper ${paper.toUpperCase()}`;
-  const moduleName =
-    CONFIG[paper]?.modules[moduleKey]?.label ?? moduleKey.toUpperCase();
+  const moduleName = CONFIG[paper]?.modules[moduleKey]?.label ?? moduleKey.toUpperCase();
 
   return (
     <section className="space-y-6" aria-labelledby="review-heading">
@@ -313,15 +259,10 @@ export default function ReviewClient({
           <h1 id="review-heading" className="mb-3 text-4xl sm:text-5xl">
             Review before you submit.
           </h1>
-          <p className="m-0 text-muted-foreground">
-            Check each answer once. You can jump back to any question.
-          </p>
+          <p className="m-0 text-muted-foreground">Check each answer once. You can jump back to any question.</p>
         </div>
         <div
-          className={clsx(
-            "border-l-4 bg-muted px-4 py-3 text-sm",
-            timeLeft <= 60 ? "border-danger" : "border-accent",
-          )}
+          className={clsx("border-l-4 bg-muted px-4 py-3 text-sm", timeLeft <= 60 ? "border-danger" : "border-accent")}
         >
           <span className="meta-label mb-1 block">Time remaining</span>
           <span
@@ -329,8 +270,7 @@ export default function ReviewClient({
             role="timer"
             aria-label={`${formatTime(timeLeft)} remaining`}
           >
-            <Clock3 className="h-4 w-4" aria-hidden="true" />{" "}
-            {formatTime(timeLeft)}
+            <Clock3 className="h-4 w-4" aria-hidden="true" /> {formatTime(timeLeft)}
           </span>
         </div>
       </header>
@@ -340,26 +280,17 @@ export default function ReviewClient({
           {answered} of {questions.length}
         </strong>{" "}
         answered
-        {unanswered > 0 && (
-          <span className="ml-2 text-danger">{unanswered} still open</span>
-        )}
+        {unanswered > 0 && <span className="ml-2 text-danger">{unanswered} still open</span>}
       </div>
 
       {unanswered > 0 && (
-        <div
-          className="flex items-start gap-3 border border-danger bg-card p-4"
-          role="alert"
-        >
-          <CircleAlert
-            className="mt-0.5 h-5 w-5 shrink-0 text-danger"
-            aria-hidden="true"
-          />
+        <div className="flex items-start gap-3 border border-danger bg-card p-4" role="alert">
+          <CircleAlert className="mt-0.5 h-5 w-5 shrink-0 text-danger" aria-hidden="true" />
           <p className="m-0 text-sm leading-6">
             <strong>
               {unanswered} question{unanswered === 1 ? "" : "s"} unanswered.
             </strong>{" "}
-            Submitting will count them as incorrect, and you will be asked to
-            confirm.
+            Submitting will count them as incorrect, and you will be asked to confirm.
           </p>
         </div>
       )}
@@ -371,10 +302,7 @@ export default function ReviewClient({
           return (
             <li
               key={index}
-              className={clsx(
-                "border bg-card p-4 sm:p-5",
-                isAnswered ? "border-border" : "border-danger",
-              )}
+              className={clsx("border bg-card p-4 sm:p-5", isAnswered ? "border-border" : "border-danger")}
             >
               <div className="grid min-w-0 grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
                 <div className="flex min-w-0 items-start gap-3">
@@ -382,17 +310,8 @@ export default function ReviewClient({
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <div className="min-w-0">
-                    <h2 className="review-question-heading mb-2">
-                      {question.prompt}
-                    </h2>
-                    <p
-                      className={clsx(
-                        "m-0 text-sm",
-                        isAnswered
-                          ? "text-muted-foreground"
-                          : "font-bold text-danger",
-                      )}
-                    >
+                    <h2 className="review-question-heading mb-2">{question.prompt}</h2>
+                    <p className={clsx("m-0 text-sm", isAnswered ? "text-muted-foreground" : "font-bold text-danger")}>
                       {isAnswered
                         ? `Selected: ${String.fromCharCode(65 + Number(answer))}. ${question.choices[Number(answer)]}`
                         : "No answer selected"}
@@ -423,8 +342,7 @@ export default function ReviewClient({
                   )
                 }
               >
-                Edit answer{" "}
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                Edit answer <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </button>
             </li>
           );
@@ -435,11 +353,7 @@ export default function ReviewClient({
         <button
           className="btn btn-secondary gap-2"
           type="button"
-          onClick={() =>
-            router.push(
-              `${basePath}?attempt=${encodeURIComponent(attempt.attemptId)}`,
-            )
-          }
+          onClick={() => router.push(`${basePath}?attempt=${encodeURIComponent(attempt.attemptId)}`)}
         >
           <ArrowLeft className="h-4 w-4" aria-hidden="true" /> Back to questions
         </button>

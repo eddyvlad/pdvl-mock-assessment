@@ -23,9 +23,7 @@ export function parseStoredResult(raw: string | null): StoredResult {
 
     return {
       answers: Array.isArray(parsed.answers)
-        ? parsed.answers.map((answer) =>
-            typeof answer === "number" ? answer : null,
-          )
+        ? parsed.answers.map((answer) => (typeof answer === "number" ? answer : null))
         : [],
       score: typeof parsed.score === "number" ? parsed.score : 0,
     };

@@ -1,5 +1,4 @@
-export const BASE62 =
-  "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+export const BASE62 = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 export function isValidSeed(seed: string): boolean {
   return /^[0-9a-zA-Z]{6}$/.test(seed);
@@ -15,9 +14,7 @@ export function generateSeed(length = 6): string {
 }
 
 export function decodeBase62(seed: string): number {
-  return seed
-    .split("")
-    .reduce((acc, char) => acc * 62 + BASE62.indexOf(char), 0);
+  return seed.split("").reduce((acc, char) => acc * 62 + BASE62.indexOf(char), 0);
 }
 
 export function mulberry32(a: number): () => number {

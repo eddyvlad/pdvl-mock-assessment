@@ -3,11 +3,7 @@
 import { ArrowRight, RotateCcw, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import {
-  type AttemptRecordV2,
-  getLatestResumableAttempt,
-  removeAttempt,
-} from "@/lib/attempt-storage";
+import { type AttemptRecordV2, getLatestResumableAttempt, removeAttempt } from "@/lib/attempt-storage";
 import { CONFIG } from "@/lib/config";
 
 function readLatestSession() {
@@ -77,27 +73,15 @@ function DiscardSessionDialog({
         <h2 id="discard-session-title" className="mb-3 text-3xl">
           Discard this session?
         </h2>
-        <p
-          id="discard-session-description"
-          className="m-0 leading-7 text-muted-foreground"
-        >
-          Your saved answers for {label} will be deleted from this browser. You
-          will not be able to continue this attempt.
+        <p id="discard-session-description" className="m-0 leading-7 text-muted-foreground">
+          Your saved answers for {label} will be deleted from this browser. You will not be able to continue this
+          attempt.
         </p>
         <div className="steady-dialog-actions">
-          <button
-            className="btn btn-secondary"
-            type="button"
-            data-dialog-cancel
-            onClick={onClose}
-          >
+          <button className="btn btn-secondary" type="button" data-dialog-cancel onClick={onClose}>
             Keep session
           </button>
-          <button
-            className="btn btn-danger gap-2"
-            type="button"
-            onClick={onConfirm}
-          >
+          <button className="btn btn-danger gap-2" type="button" onClick={onConfirm}>
             Discard session <X className="h-4 w-4" aria-hidden="true" />
           </button>
         </div>
@@ -129,10 +113,7 @@ export default function ActiveSessionPanel() {
       return;
     }
 
-    const refreshTime = () =>
-      setMinutesRemaining(
-        Math.max(1, Math.ceil((attempt.expiresAt - Date.now()) / 60_000)),
-      );
+    const refreshTime = () => setMinutesRemaining(Math.max(1, Math.ceil((attempt.expiresAt - Date.now()) / 60_000)));
     refreshTime();
     const timer = window.setInterval(refreshTime, 30_000);
 
@@ -146,9 +127,7 @@ export default function ActiveSessionPanel() {
   const paper = CONFIG[attempt.paper];
   const moduleConfig = paper?.modules[attempt.module];
   const answered = attempt.answers.filter((answer) => answer !== null).length;
-  const label = moduleConfig
-    ? `Module ${moduleConfig.label}`
-    : attempt.module.toUpperCase();
+  const label = moduleConfig ? `Module ${moduleConfig.label}` : attempt.module.toUpperCase();
   const sessionLabel = `${paper?.name ?? `Paper ${attempt.paper.toUpperCase()}`} · ${label}`;
 
   return (
@@ -157,10 +136,7 @@ export default function ActiveSessionPanel() {
       aria-label="Continue last session"
     >
       <div className="flex items-start gap-3">
-        <span
-          className="mt-0.5 rounded-full bg-primary p-2 text-primary-foreground"
-          aria-hidden="true"
-        >
+        <span className="mt-0.5 rounded-full bg-primary p-2 text-primary-foreground" aria-hidden="true">
           <RotateCcw className="h-4 w-4" />
         </span>
         <div>
@@ -169,8 +145,7 @@ export default function ActiveSessionPanel() {
             {paper?.name ?? `Paper ${attempt.paper.toUpperCase()}`} · {label}
           </h2>
           <p className="m-0 text-sm text-muted-foreground">
-            {answered} of {attempt.answers.length} answered · about{" "}
-            {minutesRemaining} min left
+            {answered} of {attempt.answers.length} answered · about {minutesRemaining} min left
           </p>
         </div>
       </div>

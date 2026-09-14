@@ -8,10 +8,7 @@ import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 
 const execFileAsync = promisify(execFile);
-const agentStateScript = path.join(
-  path.dirname(fileURLToPath(import.meta.url)),
-  "agent-state",
-);
+const agentStateScript = path.join(path.dirname(fileURLToPath(import.meta.url)), "agent-state");
 
 test("reports its version through the supported version flags", () => {
   for (const flag of ["--version", "-v", "version"]) {
@@ -55,10 +52,7 @@ test("fails with useful error when run outside a git repository", () => {
 
     assert.ok(error, "Expected command to fail outside git repo");
     assert.strictEqual(error.status, 1);
-    assert.match(
-      error.stderr,
-      /Ensure you are running inside a Git repository/i,
-    );
+    assert.match(error.stderr, /Ensure you are running inside a Git repository/i);
   } finally {
     fs.rmSync(tempDir, { recursive: true, force: true });
   }
@@ -77,10 +71,7 @@ test("allocates 001 on fresh repository with no issues", () => {
     assert.strictEqual(output, "001");
 
     const dbPath = path.join(tempDir, ".git", "agent", "state.sqlite");
-    assert.ok(
-      fs.existsSync(dbPath),
-      "Database must be created in .git/agent/state.sqlite",
-    );
+    assert.ok(fs.existsSync(dbPath), "Database must be created in .git/agent/state.sqlite");
 
     // Ensure working tree is clean
     const workingTreeFiles = fs.readdirSync(tempDir);
@@ -103,26 +94,11 @@ test("accounts for existing numbered issues in tasks subdirectories", () => {
     fs.mkdirSync(path.join(tempDir, "tasks", "in-review"), { recursive: true });
     fs.mkdirSync(path.join(tempDir, "tasks", "backlog"), { recursive: true });
 
-    fs.writeFileSync(
-      path.join(tempDir, "tasks", "completed", "ISSUE-001-audit.md"),
-      "# Task 1",
-    );
-    fs.writeFileSync(
-      path.join(tempDir, "tasks", "completed", "BUG-015-resume-fix.md"),
-      "# Bug 15",
-    );
-    fs.writeFileSync(
-      path.join(tempDir, "tasks", "in-review", "RESEARCH-020-routing.md"),
-      "# Research 20",
-    );
-    fs.writeFileSync(
-      path.join(tempDir, "tasks", "in-progress", "TASK-025-nav.md"),
-      "# Task 25",
-    );
-    fs.writeFileSync(
-      path.join(tempDir, "tasks", "backlog", "ISSUE-034-config.md"),
-      "# Task 34",
-    );
+    fs.writeFileSync(path.join(tempDir, "tasks", "completed", "ISSUE-001-audit.md"), "# Task 1");
+    fs.writeFileSync(path.join(tempDir, "tasks", "completed", "BUG-015-resume-fix.md"), "# Bug 15");
+    fs.writeFileSync(path.join(tempDir, "tasks", "in-review", "RESEARCH-020-routing.md"), "# Research 20");
+    fs.writeFileSync(path.join(tempDir, "tasks", "in-progress", "TASK-025-nav.md"), "# Task 25");
+    fs.writeFileSync(path.join(tempDir, "tasks", "backlog", "ISSUE-034-config.md"), "# Task 34");
 
     const output1 = execFileSync(agentStateScript, ["issue", "reserve"], {
       cwd: tempDir,
@@ -154,10 +130,7 @@ test("reconciles when repository issues are ahead of local SQLite sequence", () 
 
     // Simulate pulling newer commits from main that contain ISSUE-050
     fs.mkdirSync(path.join(tempDir, "tasks", "backlog"), { recursive: true });
-    fs.writeFileSync(
-      path.join(tempDir, "tasks", "backlog", "ISSUE-050-upstream-task.md"),
-      "# Upstream Task",
-    );
+    fs.writeFileSync(path.join(tempDir, "tasks", "backlog", "ISSUE-050-upstream-task.md"), "# Upstream Task");
 
     // Next reserve must reconcile and jump to 051
     const res2 = execFileSync(agentStateScript, ["issue", "reserve"], {
@@ -182,15 +155,7 @@ test("reports useful error for materially malformed issue filenames", () => {
     initGitRepo(tempDir);
 
     fs.mkdirSync(path.join(tempDir, "tasks", "backlog"), { recursive: true });
-    fs.writeFileSync(
-      path.join(
-        tempDir,
-        "tasks",
-        "backlog",
-        "ISSUE-invalidnumber-something.md",
-      ),
-      "# Invalid",
-    );
+    fs.writeFileSync(path.join(tempDir, "tasks", "backlog", "ISSUE-invalidnumber-something.md"), "# Invalid");
 
     let error;
     try {
@@ -246,9 +211,7 @@ test("multiple Git worktrees share the same coordination database", () => {
     assert.strictEqual(num2, "002");
 
     // Ensure database is in main .git/agent/state.sqlite and not inside worktree working copy
-    assert.ok(
-      fs.existsSync(path.join(mainDir, ".git", "agent", "state.sqlite")),
-    );
+    assert.ok(fs.existsSync(path.join(mainDir, ".git", "agent", "state.sqlite")));
     assert.ok(!fs.existsSync(path.join(worktreeDir, "state.sqlite")));
   } finally {
     try {
@@ -270,10 +233,7 @@ test("handles 4-digit issue numbers correctly without truncating", () => {
     initGitRepo(tempDir);
 
     fs.mkdirSync(path.join(tempDir, "tasks", "backlog"), { recursive: true });
-    fs.writeFileSync(
-      path.join(tempDir, "tasks", "backlog", "ISSUE-1000-large-issue.md"),
-      "# Task 1000",
-    );
+    fs.writeFileSync(path.join(tempDir, "tasks", "backlog", "ISSUE-1000-large-issue.md"), "# Task 1000");
 
     const output = execFileSync(agentStateScript, ["issue", "reserve"], {
       cwd: tempDir,
@@ -292,18 +252,9 @@ test("ignores non-issue markdown and system files", () => {
     initGitRepo(tempDir);
 
     fs.mkdirSync(path.join(tempDir, "tasks", "backlog"), { recursive: true });
-    fs.writeFileSync(
-      path.join(tempDir, "tasks", "backlog", "README.md"),
-      "# Tasks Readme",
-    );
-    fs.writeFileSync(
-      path.join(tempDir, "tasks", "backlog", "template.md"),
-      "# Template",
-    );
-    fs.writeFileSync(
-      path.join(tempDir, "tasks", "backlog", ".DS_Store"),
-      "junk",
-    );
+    fs.writeFileSync(path.join(tempDir, "tasks", "backlog", "README.md"), "# Tasks Readme");
+    fs.writeFileSync(path.join(tempDir, "tasks", "backlog", "template.md"), "# Template");
+    fs.writeFileSync(path.join(tempDir, "tasks", "backlog", ".DS_Store"), "junk");
 
     const output = execFileSync(agentStateScript, ["issue", "reserve"], {
       cwd: tempDir,

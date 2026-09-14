@@ -26,21 +26,23 @@ Paper B contains 25 questions in 30 minutes and requires 22 correct answers. Pap
 ## Setup
 
 1. Use Node.js 24 or newer.
-2. Install dependencies with `npm install`.
+2. Install dependencies with `npm ci` (or `npm install` when changing dependencies).
 3. Copy `.env.example` to `.env` and set `DATASET_VERSION` (defaults to `v2025-09`).
 4. Ensure question datasets exist at `public/datasets/${DATASET_VERSION}/`.
 
 ## Development
 
 - `npm run dev`: start the development server.
-- `npm run lint`: run Biome lint and format checks.
-- `npm run format`: format authored source and configuration files with Biome.
-- `npm run format:check`: check formatting without changing files.
+- `npm run lint`: run Biome lint checks and verify Markdown/YAML formatting with Prettier.
+- `npm run format`: format authored code and configuration files with Biome, then Markdown/YAML files with Prettier.
+- `npm run format:check`: check both formatter scopes without changing files.
 - `npm test`: run Jest tests.
 - `npm run typecheck`: run TypeScript type checks.
 - `npm run build`: create a production build.
 
-The repository targets Node.js 24 or newer. Jest uses the SWC transform and
+The repository targets Node.js 24 or newer. Biome owns authored JavaScript,
+TypeScript, TSX, CSS, and JSON formatting. Prettier owns tracked Markdown and
+YAML files; the formatters do not overlap. Jest uses the SWC transform and
 TypeScript type checking runs separately through `npm run typecheck`.
 
 The repository-local agent-state allocator is validated separately with
