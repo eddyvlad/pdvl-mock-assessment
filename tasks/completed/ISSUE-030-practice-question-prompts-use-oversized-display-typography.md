@@ -62,3 +62,10 @@ The practice prompt is displayed in Georgia at approximately 28px on the 390px v
 ## Severity
 
 Medium
+
+## Completion notes
+
+- The implementation is present in `6146c4d` (`fix(typography): unify question prompt styling`).
+- Browser verification confirmed the practice, review, and result prompts use Georgia, remain capped at the intended responsive size, retain the configured colors, and avoid horizontal overflow at mobile and desktop widths.
+- Light and dark practice states, the review state, and the submitted result state were checked with Paper C content, including long prompts.
+- Answer navigation, review submission, scoring, and the existing submit dialog remained functional during verification.
