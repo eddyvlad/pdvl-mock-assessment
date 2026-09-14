@@ -53,3 +53,13 @@ can break deployments that terminate TLS outside the Node process.
 
 Run focused tests, `npm run lint`, `npm run typecheck`, `npm test -- --runInBand`, `npm run build`, and the HTTP
 production-server reproduction above. Check `git diff --check`.
+
+## Completion notes
+
+- Added a validated dataset protocol helper that preserves development HTTP behaviour, accepts the first trusted
+  `X-Forwarded-Proto` value outside development, and falls back to the protocol in `HOST` before defaulting to HTTPS.
+- Added coverage for forwarded protocols, local HTTP production configuration, invalid configuration fallback, and
+  friendly fetch failure handling.
+- Verified with 39 passing tests, lint, typecheck, production build, `git diff --check`, and
+  `HOST=http://localhost:3001 npm run start -- -p 3001`. The representative Paper B practice route returned 200 and
+  rendered question content.
