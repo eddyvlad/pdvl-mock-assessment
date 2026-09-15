@@ -31,6 +31,10 @@ function expectedCanonicalTagUrl(baseUrl) {
   return expectedCanonicalUrl(baseUrl).replace(/\/$/, "");
 }
 
+function resolveCanonicalBaseUrl(baseUrl, configuredValue) {
+  return configuredValue ? normalizeBaseUrl(configuredValue) : baseUrl;
+}
+
 function extractSitemapLocations(xml) {
   return Array.from(xml.matchAll(/<loc>([^<]+)<\/loc>/g), (match) => match[1]);
 }
@@ -83,12 +87,13 @@ async function checkRedirect(baseUrl, path, expectedPrefix, label) {
 
 async function run() {
   const baseUrl = normalizeBaseUrl(process.env.PRODUCTION_URL);
+  const canonicalBaseUrl = resolveCanonicalBaseUrl(baseUrl, process.env.EXPECTED_CANONICAL_URL);
   const seed = process.env.PRODUCTION_SMOKE_SEED ?? "abc123";
   assert(/^[0-9A-Za-z]{6}$/.test(seed), "PRODUCTION_SMOKE_SEED must be a six-character base62 seed");
 
   const homepage = await checkSuccessfulPage(baseUrl, "/", "homepage");
   assert(
-    homepage.body.includes(`<link rel="canonical" href="${expectedCanonicalTagUrl(baseUrl)}"`),
+    homepage.body.includes(`<link rel="canonical" href="${expectedCanonicalTagUrl(canonicalBaseUrl)}"`),
     "homepage canonical URL is incorrect",
   );
   assert(
@@ -122,11 +127,11 @@ async function run() {
 
   const sitemap = await checkSuccessfulPage(baseUrl, "/sitemap.xml", "sitemap route");
   assert(
-    JSON.stringify(extractSitemapLocations(sitemap.body)) === JSON.stringify([expectedCanonicalUrl(baseUrl)]),
+    JSON.stringify(extractSitemapLocations(sitemap.body)) === JSON.stringify([expectedCanonicalUrl(canonicalBaseUrl)]),
     "sitemap does not contain only the canonical homepage",
   );
 
-  console.log(`Production smoke checks passed for ${baseUrl}`);
+  console.log(`Production smoke checks passed for ${baseUrl} (canonical ${canonicalBaseUrl})`);
 }
 
 if (require.main === module) {
@@ -142,4 +147,5 @@ module.exports = {
   expectedCanonicalTagUrl,
   extractSitemapLocations,
   normalizeBaseUrl,
+  resolveCanonicalBaseUrl,
 };

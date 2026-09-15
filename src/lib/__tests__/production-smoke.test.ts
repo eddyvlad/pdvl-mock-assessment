@@ -4,12 +4,14 @@ const {
   expectedCanonicalUrl,
   extractSitemapLocations,
   normalizeBaseUrl,
+  resolveCanonicalBaseUrl,
 } = require("../../../scripts/production-smoke.cjs") as {
   containsAnalyticsMarkup: (html: string) => boolean;
   expectedCanonicalTagUrl: (baseUrl: string) => string;
   expectedCanonicalUrl: (baseUrl: string) => string;
   extractSitemapLocations: (xml: string) => string[];
   normalizeBaseUrl: (value?: string) => string;
+  resolveCanonicalBaseUrl: (baseUrl: string, configuredValue?: string) => string;
 };
 
 describe("production smoke helpers", () => {
@@ -22,6 +24,13 @@ describe("production smoke helpers", () => {
   it("builds the canonical homepage URL", () => {
     expect(expectedCanonicalUrl("https://example.com/app")).toBe("https://example.com/");
     expect(expectedCanonicalTagUrl("https://example.com/app")).toBe("https://example.com");
+  });
+
+  it("allows preview checks to expect the production canonical origin", () => {
+    expect(
+      expectedCanonicalUrl(resolveCanonicalBaseUrl("https://preview.example.com", "https://pdvl.eddyhidayat.com")),
+    ).toBe("https://pdvl.eddyhidayat.com/");
+    expect(expectedCanonicalUrl(resolveCanonicalBaseUrl("https://example.com"))).toBe("https://example.com/");
   });
 
   it("extracts sitemap locations and detects analytics markup", () => {

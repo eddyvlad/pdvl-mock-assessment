@@ -29,7 +29,7 @@ Paper B contains 25 questions in 30 minutes and requires 22 correct answers. Pap
 2. Install dependencies with `npm ci` (or `npm install` when changing dependencies).
 3. Copy `.env.example` to `.env` and set `DATASET_VERSION` (defaults to `v2025-09`).
 4. Ensure question datasets exist at `public/datasets/${DATASET_VERSION}/`.
-5. Optionally set `GOOGLE_ANALYTICS_ID` to a real Google Analytics Measurement ID. Leave it empty to keep analytics disabled.
+5. Leave `GOOGLE_ANALYTICS_ID` empty or absent. Analytics remains disabled until consent and privacy requirements are deliberately addressed.
 
 ## Development
 
@@ -42,6 +42,8 @@ Paper B contains 25 questions in 30 minutes and requires 22 correct answers. Pap
 - `npm run build`: create a production build.
 - `PRODUCTION_URL=https://example.com npm run smoke:production`: check an authorized deployment's public routes,
   metadata, datasets, headers, redirects, and analytics-off configuration.
+- `PRODUCTION_URL=https://preview.example.com EXPECTED_CANONICAL_URL=https://pdvl.eddyhidayat.com npm run smoke:production`:
+  check a preview deployment while expecting the production canonical origin.
 
 The repository targets Node.js 24 or newer. Biome owns authored JavaScript,
 TypeScript, TSX, CSS, and JSON formatting. Prettier owns tracked Markdown and
@@ -54,11 +56,22 @@ creating a numbered task file with `scripts/agent-state issue reserve`.
 
 ## Production release
 
-The first-release sequence, Vercel settings, environment contract, smoke checks,
+The first formal release is `v2.0.0`. The earlier `0.x` versions represent
+pre-release history and were the intended v1 product milestone. The release
+sequence, version hook, Vercel settings, environment contract, smoke checks,
 rollback, and recovery procedures are documented in
 [docs/first-production-release.md](./docs/first-production-release.md). Production
-deployment is an explicitly authorized operator action; do not merge to `main`
-or run a provider production command as part of local validation.
+deployment occurs through the protected `main` branch after preview and quality
+checks pass. The package is private and is not published to npm.
+
+To create a release commit and tag from a clean release branch, run:
+
+```text
+npm version 2.0.0 -m "chore(release): %s"
+```
+
+The `npm version` hook generates `CHANGELOG.md`, updates the package metadata,
+creates the release commit, and creates the `v2.0.0` tag.
 
 ## Search metadata and indexing
 
