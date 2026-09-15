@@ -40,6 +40,8 @@ Paper B contains 25 questions in 30 minutes and requires 22 correct answers. Pap
 - `npm test`: run Jest tests.
 - `npm run typecheck`: run TypeScript type checks.
 - `npm run build`: create a production build.
+- `PRODUCTION_URL=https://example.com npm run smoke:production`: check an authorized deployment's public routes,
+  metadata, datasets, headers, redirects, and analytics-off configuration.
 
 The repository targets Node.js 24 or newer. Biome owns authored JavaScript,
 TypeScript, TSX, CSS, and JSON formatting. Prettier owns tracked Markdown and

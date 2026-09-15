@@ -14,7 +14,8 @@
     "format": "biome format --write . && prettier --write \"**/*.{md,yml,yaml}\"",
     "format:check": "biome format . && prettier --check \"**/*.{md,yml,yaml}\"",
     "test": "jest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "smoke:production": "node scripts/production-smoke.cjs"
   },
   "dependencies": {
     "@next/third-parties": "^16.3.5",
