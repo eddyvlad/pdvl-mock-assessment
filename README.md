@@ -52,6 +52,14 @@ The repository-local agent-state allocator is validated separately with
 `node scripts/agent-state.test.mjs`. Reserve a task number immediately before
 creating a numbered task file with `scripts/agent-state issue reserve`.
 
+## Production release
+
+The first-release sequence, Vercel settings, environment contract, smoke checks,
+rollback, and recovery procedures are documented in
+[docs/first-production-release.md](./docs/first-production-release.md). Production
+deployment is an explicitly authorized operator action; do not merge to `main`
+or run a provider production command as part of local validation.
+
 ## Search metadata and indexing
 
 Set `HOST` to the public HTTPS origin before deploying. The default value is
