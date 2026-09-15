@@ -121,7 +121,7 @@ async function run() {
 
   const robots = await checkSuccessfulPage(baseUrl, "/robots.txt", "robots route");
   assert(
-    robots.body.includes(new URL("/sitemap.xml", `${baseUrl}/`).toString()),
+    robots.body.includes(new URL("/sitemap.xml", `${canonicalBaseUrl}/`).toString()),
     "robots does not reference the sitemap",
   );
 
