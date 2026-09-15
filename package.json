@@ -10,7 +10,7 @@
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",
-    "version": "node scripts/generate-changelog.mjs && git add CHANGELOG.md",
+    "version": "node scripts/generate-changelog.mjs && prettier --write CHANGELOG.md && git add CHANGELOG.md",
     "lint": "biome check . && prettier --check \"**/*.{md,yml,yaml}\"",
     "format": "biome format --write . && prettier --write \"**/*.{md,yml,yaml}\"",
     "format:check": "biome format . && prettier --check \"**/*.{md,yml,yaml}\"",
