@@ -10,7 +10,7 @@
     "correctIndex": 1,
     "explanation": "You must hold a vocational licence granted by the Registrar to drive a PSV.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -25,7 +25,7 @@
     "correctIndex": 2,
     "explanation": "A vocational licence ceases to be valid 3 years from the date specified unless renewed.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -40,7 +40,7 @@
     "correctIndex": 2,
     "explanation": "Update your address in GoBusiness within 7 days of moving.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -55,7 +55,7 @@
     "correctIndex": 2,
     "explanation": "Your Registrar‑specified ID must be displayed unless lost/destroyed or a replacement is pending.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -70,7 +70,7 @@
     "correctIndex": 1,
     "explanation": "Scheduled cross‑border services require prior approval from the Registrar.",
     "tags": [
-      "PSV_rules_owner_duties"
+      "psv_rules_owner_duties"
     ],
     "difficulty": "medium"
   },
@@ -85,7 +85,7 @@
     "correctIndex": 2,
     "explanation": "Courier pick‑up/delivery without a passenger is not allowed unless authorised.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -100,7 +100,7 @@
     "correctIndex": 1,
     "explanation": "Obstructing examination is an offence under the PSV Rules.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -145,7 +145,7 @@
     "correctIndex": 2,
     "explanation": "Radio receivers are generally allowed; recorders/TV require permission.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -160,7 +160,7 @@
     "correctIndex": 3,
     "explanation": "VLPS scheduled offences 5A–5D carry 21 points for unauthorised A/V recorders.",
     "tags": [
-      "VLPS",
+      "vlps",
       "equipment_permissions"
     ],
     "difficulty": "medium"
@@ -176,7 +176,7 @@
     "correctIndex": 2,
     "explanation": "Prominent notices are required when IVRDs capture personal data.",
     "tags": [
-      "IVRD_PDPA"
+      "ivrd_pdpa"
     ],
     "difficulty": "medium"
   },
@@ -191,7 +191,7 @@
     "correctIndex": 2,
     "explanation": "The PSV Rules provide for fines and/or jail in addition to VLPS points.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -206,7 +206,7 @@
     "correctIndex": 2,
     "explanation": "Access is restricted to protect commuter privacy and safety.",
     "tags": [
-      "IVRD_PDPA"
+      "ivrd_pdpa"
     ],
     "difficulty": "medium"
   },
@@ -221,7 +221,7 @@
     "correctIndex": 1,
     "explanation": "Professionalism is required at all times.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -251,7 +251,7 @@
     "correctIndex": 0,
     "explanation": "Remain in the driver’s seat unless there’s a reasonable cause.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -266,7 +266,7 @@
     "correctIndex": 1,
     "explanation": "Do not obstruct other drivers.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -281,7 +281,7 @@
     "correctIndex": 2,
     "explanation": "Smoking is prohibited whether stationary, moving or parked.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -296,7 +296,7 @@
     "correctIndex": 2,
     "explanation": "Remind passengers about seat belts and no smoking.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -311,7 +311,7 @@
     "correctIndex": 2,
     "explanation": "Use the shortest/direct route unless there’s a valid reason.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -326,8 +326,8 @@
     "correctIndex": 2,
     "explanation": "VLPS has been in force since June 2003.",
     "tags": [
-      "VLPS",
-      "VL_eligibility_obligations"
+      "vlps",
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -342,7 +342,7 @@
     "correctIndex": 1,
     "explanation": "Suspension applies for 6–20 points within 24 months.",
     "tags": [
-      "VLPS"
+      "vlps"
     ],
     "difficulty": "medium"
   },
@@ -357,7 +357,7 @@
     "correctIndex": 2,
     "explanation": "More than 20 points within 24 months leads to revocation.",
     "tags": [
-      "VLPS"
+      "vlps"
     ],
     "difficulty": "medium"
   },
@@ -372,7 +372,7 @@
     "correctIndex": 2,
     "explanation": "Points/suspensions are cleared after a 24‑month clean record.",
     "tags": [
-      "VLPS"
+      "vlps"
     ],
     "difficulty": "medium"
   },
@@ -402,7 +402,7 @@
     "correctIndex": 2,
     "explanation": "Bookings are made via an operator/app; not street hail.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -417,7 +417,7 @@
     "correctIndex": 2,
     "explanation": "Do not display hiring fares on the exterior.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -432,7 +432,7 @@
     "correctIndex": 3,
     "explanation": "Keep at least 9 m clear unless permitted (e.g., bus bay rules).",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -447,7 +447,7 @@
     "correctIndex": 1,
     "explanation": "Courier services need approval from the Registrar.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -462,7 +462,7 @@
     "correctIndex": 0,
     "explanation": "Avoid leaving the car unattended unless necessary.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -492,7 +492,7 @@
     "correctIndex": 2,
     "explanation": "Affix at top‑right (front) and top‑left (rear) as seen from outside.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -537,7 +537,7 @@
     "correctIndex": 2,
     "explanation": "AICs are authorised for decal affixation.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -567,7 +567,7 @@
     "correctIndex": 2,
     "explanation": "Decal checks incur an additional inspection fee.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -628,7 +628,7 @@
     "correctIndex": 2,
     "explanation": "Three relevant offences within a year can trigger a general suspension order.",
     "tags": [
-      "VLPS",
+      "vlps",
       "operators_enforcement"
     ],
     "difficulty": "medium"
@@ -644,7 +644,7 @@
     "correctIndex": 1,
     "explanation": "Drivers under the operator will be directed to stop chauffeured services.",
     "tags": [
-      "VLPS",
+      "vlps",
       "operators_enforcement"
     ],
     "difficulty": "medium"
@@ -660,7 +660,7 @@
     "correctIndex": 3,
     "explanation": "Comfort is a taxi operator, not a ride‑hail service operator.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -675,7 +675,7 @@
     "correctIndex": 2,
     "explanation": "Deposit prohibited items with police immediately.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -705,7 +705,7 @@
     "correctIndex": 1,
     "explanation": "Always obtain a receipt from the recipient.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -720,7 +720,7 @@
     "correctIndex": 2,
     "explanation": "Use shortest/direct route unless there is a reasonable cause.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "hard"
   },
@@ -735,7 +735,7 @@
     "correctIndex": 2,
     "explanation": "No smoking at any time—stationary, moving or parked.",
     "tags": [
-      "IVRD_PDPA"
+      "ivrd_pdpa"
     ],
     "difficulty": "medium"
   },
@@ -750,7 +750,7 @@
     "correctIndex": 1,
     "explanation": "Remind them to belt up and that smoking is prohibited.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -765,7 +765,7 @@
     "correctIndex": 2,
     "explanation": "Harassment is prohibited; maintain civil conduct.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -780,7 +780,7 @@
     "correctIndex": 2,
     "explanation": "Do not leave the car unattended without a reasonable cause.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -795,7 +795,7 @@
     "correctIndex": 2,
     "explanation": "Do not obstruct other drivers.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -810,7 +810,7 @@
     "correctIndex": 2,
     "explanation": "Do not alter/deface; apply for a proper replacement.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -825,7 +825,7 @@
     "correctIndex": 2,
     "explanation": "Courier pick‑up/delivery is prohibited unless authorised.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -840,7 +840,7 @@
     "correctIndex": 2,
     "explanation": "Obstructing an inspection is an offence.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -870,7 +870,7 @@
     "correctIndex": 2,
     "explanation": "Decals are vehicle‑specific and non‑transferrable.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -930,7 +930,7 @@
     "correctIndex": 1,
     "explanation": "Two identical decals are required (front top‑right, rear top‑left).",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -945,7 +945,7 @@
     "correctIndex": 2,
     "explanation": "The correct commencement was June 2003.",
     "tags": [
-      "VLPS"
+      "vlps"
     ],
     "difficulty": "medium"
   },
@@ -960,7 +960,7 @@
     "correctIndex": 1,
     "explanation": "6–20 points → suspension.",
     "tags": [
-      "VLPS"
+      "vlps"
     ],
     "difficulty": "medium"
   },
@@ -975,7 +975,7 @@
     "correctIndex": 2,
     "explanation": "More than 20 points → revocation.",
     "tags": [
-      "VLPS"
+      "vlps"
     ],
     "difficulty": "medium"
   },
@@ -990,7 +990,7 @@
     "correctIndex": 1,
     "explanation": "A 24‑month clean record clears points and suspensions.",
     "tags": [
-      "VLPS"
+      "vlps"
     ],
     "difficulty": "medium"
   },
@@ -1005,7 +1005,7 @@
     "correctIndex": 3,
     "explanation": "Comfort is a taxi operator.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -1020,7 +1020,7 @@
     "correctIndex": 2,
     "explanation": "Three relevant offences in the preceding 12‑month period.",
     "tags": [
-      "VLPS",
+      "vlps",
       "operators_enforcement"
     ],
     "difficulty": "medium"
@@ -1066,7 +1066,7 @@
     "correctIndex": 2,
     "explanation": "A radio receiver is allowed; recorders/TV require permission.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -1081,7 +1081,7 @@
     "correctIndex": 2,
     "explanation": "Radio receivers are generally allowed; recorders/TV require permission.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -1111,7 +1111,7 @@
     "correctIndex": 2,
     "explanation": "Use the shortest/direct route unless there’s a valid reason.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -1126,7 +1126,7 @@
     "correctIndex": 0,
     "explanation": "Avoid leaving the car unattended unless necessary.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -1141,7 +1141,7 @@
     "correctIndex": 2,
     "explanation": "AICs are authorised for decal affixation.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -1156,7 +1156,7 @@
     "correctIndex": 3,
     "explanation": "Decals are not transferrable across vehicles.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -1201,7 +1201,7 @@
     "correctIndex": 2,
     "explanation": "Access is restricted to authorised persons.",
     "tags": [
-      "IVRD_PDPA"
+      "ivrd_pdpa"
     ],
     "difficulty": "medium"
   },
@@ -1216,7 +1216,7 @@
     "correctIndex": 1,
     "explanation": "Two identical decals are required.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -1276,7 +1276,7 @@
     "correctIndex": 1,
     "explanation": "Notices are required under PDPA‑aligned guidelines.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -1291,7 +1291,7 @@
     "correctIndex": 2,
     "explanation": "More than 20 points → revocation.",
     "tags": [
-      "VLPS"
+      "vlps"
     ],
     "difficulty": "medium"
   },
@@ -1306,7 +1306,7 @@
     "correctIndex": 3,
     "explanation": "Decals are not transferrable across vehicles.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -1351,7 +1351,7 @@
     "correctIndex": 2,
     "explanation": "Access is restricted to authorised persons.",
     "tags": [
-      "IVRD_PDPA"
+      "ivrd_pdpa"
     ],
     "difficulty": "medium"
   },
@@ -1366,7 +1366,7 @@
     "correctIndex": 1,
     "explanation": "Two identical decals are required.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -1426,7 +1426,7 @@
     "correctIndex": 1,
     "explanation": "Notices are required under PDPA‑aligned guidelines.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -1441,7 +1441,7 @@
     "correctIndex": 2,
     "explanation": "More than 20 points → revocation.",
     "tags": [
-      "VLPS"
+      "vlps"
     ],
     "difficulty": "medium"
   },
@@ -1486,7 +1486,7 @@
     "correctIndex": 2,
     "explanation": "A vocational licence is granted by the Registrar (Land Transport Authority).",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -1501,7 +1501,7 @@
     "correctIndex": 2,
     "explanation": "Update your address within 7 days via the specified channel.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -1546,7 +1546,7 @@
     "correctIndex": 2,
     "explanation": "Prominent notices are required under PDPA‑aligned guidance.",
     "tags": [
-      "IVRD_PDPA"
+      "ivrd_pdpa"
     ],
     "difficulty": "medium"
   },
@@ -1561,7 +1561,7 @@
     "correctIndex": 2,
     "explanation": "Access is restricted to authorised persons for privacy/safety.",
     "tags": [
-      "IVRD_PDPA"
+      "ivrd_pdpa"
     ],
     "difficulty": "medium"
   },
@@ -1681,7 +1681,7 @@
     "correctIndex": 3,
     "explanation": "Unauthorised A/V recorders can attract 21 demerit points under VLPS schedules.",
     "tags": [
-      "VLPS",
+      "vlps",
       "equipment_permissions"
     ],
     "difficulty": "medium"
@@ -1697,7 +1697,7 @@
     "correctIndex": 2,
     "explanation": "More than 20 points in 24 months results in revocation.",
     "tags": [
-      "VLPS"
+      "vlps"
     ],
     "difficulty": "medium"
   },
@@ -1727,7 +1727,7 @@
     "correctIndex": 2,
     "explanation": "Unaccompanied goods require prior approval; otherwise do not carry.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -1742,7 +1742,7 @@
     "correctIndex": 2,
     "explanation": "Unaccompanied goods require prior approval; otherwise do not carry.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -1757,7 +1757,7 @@
     "correctIndex": 2,
     "explanation": "Unaccompanied goods require prior approval; otherwise do not carry.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -1817,7 +1817,7 @@
     "correctIndex": 2,
     "explanation": "Provide the vehicle for examination when directed by the Registrar/authorised officer.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -1937,7 +1937,7 @@
     "correctIndex": 1,
     "explanation": "Do not alter/deface official identification; apply for replacement.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -1952,7 +1952,7 @@
     "correctIndex": 1,
     "explanation": "Do not alter/deface official identification; apply for replacement.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -1967,7 +1967,7 @@
     "correctIndex": 1,
     "explanation": "Do not alter/deface official identification; apply for replacement.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -2027,7 +2027,7 @@
     "correctIndex": 1,
     "explanation": "A 24‑month clean record clears prior points/suspensions.",
     "tags": [
-      "VLPS"
+      "vlps"
     ],
     "difficulty": "medium"
   },
@@ -2042,7 +2042,7 @@
     "correctIndex": 2,
     "explanation": "More than 20 points → revocation.",
     "tags": [
-      "VLPS"
+      "vlps"
     ],
     "difficulty": "medium"
   },
@@ -2057,7 +2057,7 @@
     "correctIndex": 3,
     "explanation": "Decals are not transferrable across vehicles.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -2102,7 +2102,7 @@
     "correctIndex": 2,
     "explanation": "Access is restricted to authorised persons.",
     "tags": [
-      "IVRD_PDPA"
+      "ivrd_pdpa"
     ],
     "difficulty": "medium"
   },
@@ -2117,7 +2117,7 @@
     "correctIndex": 1,
     "explanation": "Two identical decals are required.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -2177,7 +2177,7 @@
     "correctIndex": 1,
     "explanation": "Notices are required under PDPA‑aligned guidelines.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -2192,7 +2192,7 @@
     "correctIndex": 2,
     "explanation": "More than 20 points → revocation.",
     "tags": [
-      "VLPS"
+      "vlps"
     ],
     "difficulty": "medium"
   },
@@ -2207,7 +2207,7 @@
     "correctIndex": 3,
     "explanation": "Decals are not transferrable across vehicles.",
     "tags": [
-      "VL_eligibility_obligations"
+      "vl_eligibility_obligations"
     ],
     "difficulty": "medium"
   },
@@ -2252,7 +2252,7 @@
     "correctIndex": 2,
     "explanation": "Access is restricted to authorised persons.",
     "tags": [
-      "IVRD_PDPA"
+      "ivrd_pdpa"
     ],
     "difficulty": "medium"
   },
@@ -2267,7 +2267,7 @@
     "correctIndex": 1,
     "explanation": "More than 20 points within 24 months typically leads to revocation.",
     "tags": [
-      "VLPS"
+      "vlps"
     ],
     "difficulty": "hard"
   },
@@ -2282,7 +2282,7 @@
     "correctIndex": 2,
     "explanation": "Access to IVRD footage is restricted to protect commuter privacy.",
     "tags": [
-      "IVRD_PDPA"
+      "ivrd_pdpa"
     ],
     "difficulty": "hard"
   },

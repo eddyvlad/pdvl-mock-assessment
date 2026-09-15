@@ -18,7 +18,7 @@ export function decodeBase62(seed: string): number {
 }
 
 export function mulberry32(a: number): () => number {
-  return function () {
+  return () => {
     a |= 0;
     a = (a + 0x6d2b79f5) | 0;
     let t = Math.imul(a ^ (a >>> 15), 1 | a);
@@ -34,4 +34,3 @@ export function moduleRng(seed: string, moduleKey: string): () => number {
   }
   return mulberry32(base >>> 0);
 }
-

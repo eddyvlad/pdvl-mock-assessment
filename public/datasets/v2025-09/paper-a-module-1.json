@@ -413,7 +413,7 @@
       "Follow as closely as possible"
     ],
     "correctIndex": 1,
-    "explanation": "Steel plates are slippery; increase following distance and avoid floodwaters.",
+    "explanation": "Wet weather reduces grip and visibility; increase following distance and avoid floodwaters.",
     "tags": [
       "hazards_weather_visibility"
     ],
@@ -700,7 +700,7 @@
     "correctIndex": 1,
     "explanation": "Using mobile devices while driving carries 12 points and fines/imprisonment per offence.",
     "tags": [
-      "DIPS_offences"
+      "dips_offences"
     ],
     "difficulty": "medium"
   },
@@ -850,7 +850,7 @@
     "correctIndex": 2,
     "explanation": "Per DIPS table: 21–30 km/h over = 8 demerit points (higher within school zones).",
     "tags": [
-      "DIPS_offences"
+      "dips_offences"
     ],
     "difficulty": "medium"
   },
@@ -865,7 +865,7 @@
     "correctIndex": 2,
     "explanation": "31–40 km/h over = 10 demerit points (higher within school zones).",
     "tags": [
-      "DIPS_offences"
+      "dips_offences"
     ],
     "difficulty": "medium"
   },
@@ -880,7 +880,7 @@
     "correctIndex": 3,
     "explanation": "41–50 km/h over = 12 points; prosecution in court is likely as severity increases.",
     "tags": [
-      "DIPS_offences"
+      "dips_offences"
     ],
     "difficulty": "medium"
   },
@@ -895,7 +895,7 @@
     "correctIndex": 1,
     "explanation": "51–60 km/h over = 18 demerit points and prosecution in court.",
     "tags": [
-      "DIPS_offences"
+      "dips_offences"
     ],
     "difficulty": "medium"
   },
@@ -2202,7 +2202,7 @@
     "correctIndex": 2,
     "explanation": "Module 1 lists $400 with 12 demerit points for this offence.",
     "tags": [
-      "DIPS_offences"
+      "dips_offences"
     ],
     "difficulty": "medium"
   },

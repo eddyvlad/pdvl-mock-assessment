@@ -40,3 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 /.idea/
+
+# local agent tooling
+.agents/mcp_config.json
+.agents/scratchpad/
+.codex/config.toml
+.playwright-mcp/

@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Steady Signal synthesis brand direction mockup for PDVL practice assessments">
+  <title>Steady Signal | PDVL practice assessments</title>
+  <style>
+    :root {
+      --light-ivory: #faf6ef;
+      --light-olive: #283c32;
+      --light-sage: #e2ebdd;
+      --light-clay: #a24632;
+      --light-plum: #604866;
+      --light-line: #d6d0c7;
+      --light-white: #fffdf9;
+      --dark-black: #101719;
+      --dark-slate: #1d292d;
+      --dark-mist: #f1f5f2;
+      --dark-grey: #b5c3c5;
+      --dark-lime: #d6f45b;
+      --dark-coral: #ff9b85;
+      --dark-line: #506268;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Trebuchet MS", Arial, sans-serif;
+      --mono: ui-monospace, SFMono-Regular, Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--light-ivory); font-family: var(--sans); font-size: 1rem; line-height: 1.55; }
+    input, button { font: inherit; }
+    a { color: inherit; }
+    .theme-option { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    .page {
+      --bg: var(--light-ivory);
+      --surface: var(--light-white);
+      --surface-alt: var(--light-sage);
+      --ink: var(--light-olive);
+      --muted: #647069;
+      --line: var(--light-line);
+      --accent: var(--light-plum);
+      --accent-strong: var(--light-olive);
+      --selected: var(--light-sage);
+      --warning: var(--light-clay);
+      --warning-bg: #f0dcd5;
+      --focus: var(--light-clay);
+      min-height: 100vh;
+      color: var(--ink);
+      background: var(--bg);
+    }
+    #theme-dark:checked ~ .page {
+      --bg: var(--dark-black);
+      --surface: var(--dark-slate);
+      --surface-alt: #26353a;
+      --ink: var(--dark-mist);
+      --muted: var(--dark-grey);
+      --line: var(--dark-line);
+      --accent: var(--dark-lime);
+      --accent-strong: var(--dark-mist);
+      --selected: var(--dark-slate);
+      --warning: var(--dark-coral);
+      --warning-bg: rgb(255 155 133 / .1);
+      --focus: var(--dark-coral);
+    }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    :focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+    #theme-light:focus-visible ~ .page label[for="theme-light"], #theme-dark:focus-visible ~ .page label[for="theme-dark"] { outline: 3px solid var(--focus); outline-offset: 3px; }
+    .wrap { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+    .site-header { border-bottom: 1px solid var(--line); background: var(--bg); }
+    .header-inner { display: flex; min-height: 82px; align-items: center; justify-content: space-between; gap: 24px; }
+    .wordmark { display: inline-flex; align-items: center; gap: 11px; color: var(--ink); font-family: var(--serif); font-size: 1.55rem; font-weight: 700; text-decoration: none; }
+    .mark { display: grid; width: 32px; height: 32px; place-items: center; border: 1px solid var(--ink); border-radius: 50%; background: var(--ink); color: var(--bg); font-family: var(--sans); font-size: .76rem; font-weight: 700; }
+    .header-tools { display: flex; align-items: center; gap: 23px; }
+    .nav { display: flex; flex-wrap: wrap; gap: 20px; color: var(--muted); font-size: .82rem; }
+    .nav a { text-decoration: none; text-underline-offset: 5px; }
+    .nav a:hover { color: var(--ink); text-decoration: underline; }
+    .theme-switch { display: flex; margin: 0; padding: 3px; border: 1px solid var(--line); border-radius: 5px; background: var(--surface); }
+    .theme-switch label { min-width: 58px; padding: 5px 8px; color: var(--muted); font-family: var(--mono); font-size: .62rem; text-align: center; text-transform: uppercase; cursor: pointer; }
+    #theme-light:checked ~ .page label[for="theme-light"], #theme-dark:checked ~ .page label[for="theme-dark"] { border-radius: 3px; background: var(--accent-strong); color: var(--bg); }
+    .hero { position: relative; overflow: hidden; padding: clamp(70px, 11vw, 135px) 0 105px; border-bottom: 1px solid var(--line); }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) 310px; align-items: center; gap: clamp(50px, 10vw, 140px); }
+    .eyebrow, .section-number { margin: 0 0 13px; color: var(--accent); font-family: var(--mono); font-size: .69rem; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { line-height: 1.02; letter-spacing: -.045em; }
+    h1, h2 { font-family: var(--serif); font-weight: 700; }
+    h1 { max-width: 750px; margin-bottom: 25px; font-size: clamp(3.5rem, 9vw, 8rem); }
+    h2 { margin-bottom: 17px; font-size: clamp(2.5rem, 5vw, 5rem); }
+    h3 { margin-bottom: 8px; font-family: var(--serif); font-size: 1.48rem; }
+    .lede { max-width: 600px; margin-bottom: 31px; color: var(--muted); font-size: 1.16rem; }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+    .button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; padding: 11px 18px; border: 1px solid var(--accent-strong); border-radius: 4px; background: var(--accent-strong); color: var(--bg); font-size: .78rem; font-weight: 700; text-decoration: none; }
+    .button.secondary { background: transparent; color: var(--ink); }
+    .button:hover { border-color: var(--accent); background: var(--accent); color: var(--bg); }
+    .signal-art { position: relative; min-height: 330px; }
+    .signal-paper { position: absolute; top: 25px; left: 25px; width: 210px; height: 270px; transform: rotate(-7deg); border: 1px solid var(--ink); background: var(--surface-alt); }
+    .signal-paper::after { content: ""; position: absolute; right: 27px; bottom: 31px; width: 94px; height: 94px; border: 1px solid var(--ink); border-radius: 50%; }
+    .signal-paper::before { content: ""; position: absolute; top: 29px; left: 27px; width: 97px; height: 1px; background: var(--ink); box-shadow: 0 13px 0 var(--ink), 0 26px 0 var(--ink); }
+    .signal-card { position: absolute; top: 61px; left: 90px; width: 194px; height: 242px; transform: rotate(7deg); border: 1px solid var(--line); background: var(--surface); box-shadow: 8px 8px 0 rgb(40 60 50 / .12); }
+    .signal-card::before { content: "12 / 25"; position: absolute; top: 25px; left: 25px; color: var(--accent); font-family: var(--mono); font-size: .71rem; }
+    .signal-card::after { content: "steady signal"; position: absolute; right: 23px; bottom: 21px; color: var(--accent); font-family: var(--mono); font-size: .61rem; text-transform: uppercase; }
+    .section { padding: 96px 0; border-bottom: 1px solid var(--line); }
+    .section-heading { display: grid; grid-template-columns: minmax(260px, .8fr) 1fr; align-items: end; gap: 75px; margin-bottom: 43px; }
+    .section-heading p { max-width: 500px; margin-bottom: 4px; color: var(--muted); }
+    .paper-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .paper-card { display: flex; min-height: 340px; flex-direction: column; padding: 22px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+    .paper-card.featured { border-color: var(--accent); background: var(--surface-alt); box-shadow: 6px 6px 0 rgb(40 60 50 / .12); }
+    .paper-top { display: flex; align-items: start; justify-content: space-between; gap: 14px; margin-bottom: 31px; }
+    .paper-letter { color: var(--accent); font-family: var(--serif); font-size: 4.5rem; font-weight: 700; line-height: .7; }
+    .tag { color: var(--muted); font-family: var(--mono); font-size: .61rem; letter-spacing: .05em; text-transform: uppercase; }
+    .paper-card p { color: var(--muted); }
+    .paper-card.featured p { color: var(--ink); }
+    .paper-meta { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: auto 0 23px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-family: var(--mono); font-size: .62rem; text-transform: uppercase; }
+    .paper-meta strong { display: block; margin-top: 4px; color: var(--ink); font-size: .85rem; }
+    .paper-card .button { width: 100%; }
+    .assessment { background: var(--surface-alt); }
+    .assessment-grid { display: grid; grid-template-columns: minmax(0, 1fr) 270px; gap: 30px; align-items: start; }
+    .assessment-main { min-width: 0; }
+    .status-strip { display: grid; grid-template-columns: 1.2fr 1fr 1fr; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--line); }
+    .status { padding: 15px 17px; border-right: 1px solid var(--line); }
+    .status:last-child { border-right: 0; }
+    .status small { display: block; color: var(--muted); font-family: var(--mono); font-size: .62rem; letter-spacing: .04em; text-transform: uppercase; }
+    .status strong { display: block; margin-top: 4px; color: var(--accent); font-family: var(--mono); font-size: 1rem; }
+    .question { margin-top: 19px; padding: 25px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+    .question-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin-bottom: 18px; color: var(--accent); font-family: var(--mono); font-size: .64rem; letter-spacing: .06em; text-transform: uppercase; }
+    fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
+    legend { max-width: 730px; padding: 0; font-family: var(--serif); font-size: 1.48rem; font-weight: 700; line-height: 1.18; }
+    .answers { display: grid; gap: 8px; margin-top: 22px; }
+    .answer { display: flex; min-height: 55px; align-items: center; gap: 11px; padding: 10px 13px; border: 1px solid var(--line); border-radius: 7px; color: var(--ink); cursor: pointer; }
+    .answer:hover { border-color: var(--accent-strong); background: var(--surface-alt); }
+    .answer.selected { border: 2px solid var(--accent-strong); padding: 9px 12px; background: var(--selected); }
+    .answer input { width: 19px; height: 19px; accent-color: var(--accent-strong); }
+    .answer-key { display: grid; width: 27px; height: 27px; flex: 0 0 27px; place-items: center; border: 1px solid var(--ink); border-radius: 50%; font-size: .74rem; font-weight: 700; }
+    .warning { margin-top: 17px; padding: 16px 18px; border-left: 4px solid var(--warning); background: var(--warning-bg); }
+    .warning strong { display: block; margin-bottom: 2px; color: var(--warning); font-family: var(--serif); font-size: 1.13rem; }
+    .tool-panel { padding: 3px 0 0 3px; }
+    .tool-panel h3 { margin-bottom: 12px; }
+    .tool-panel p, .tool-panel li { color: var(--muted); font-size: .87rem; }
+    .tool-list { margin: 27px 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+    .tool-list li { padding: 12px 0; border-bottom: 1px solid var(--line); }
+    .setting { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 13px 0; border-bottom: 1px solid var(--line); color: var(--muted); font-size: .8rem; }
+    .switch { display: inline-flex; width: 42px; height: 24px; align-items: center; padding: 3px; border: 1px solid var(--ink); border-radius: 16px; background: var(--surface); }
+    .switch::after { content: ""; width: 16px; height: 16px; border-radius: 50%; background: var(--line); }
+    .switch.on { justify-content: end; background: var(--accent-strong); }
+    .switch.on::after { background: var(--surface-alt); }
+    .results-grid { display: grid; grid-template-columns: .78fr 1.22fr; gap: 60px; align-items: start; }
+    .result-summary { padding: 27px; border-top: 4px solid var(--accent); border-bottom: 1px solid var(--ink); background: var(--surface); }
+    .score-label { color: var(--muted); font-family: var(--mono); font-size: .65rem; letter-spacing: .06em; text-transform: uppercase; }
+    .score { display: block; margin: 14px 0 7px; color: var(--accent); font-family: var(--mono); font-size: clamp(4.2rem, 9vw, 7.3rem); line-height: .8; letter-spacing: -.12em; }
+    .pass { color: var(--accent-strong); font-family: var(--serif); font-size: 1.35rem; font-weight: 700; }
+    .review { padding-top: 4px; }
+    .review h3 { margin-bottom: 19px; font-size: 2rem; }
+    .review-table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+    .review-table th, .review-table td { padding: 13px 10px 13px 0; border-top: 1px solid var(--line); text-align: left; vertical-align: top; }
+    .review-table th { width: 27%; color: var(--muted); font-family: var(--mono); font-size: .62rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+    .wrong { color: var(--warning); font-weight: 700; }
+    .right { color: var(--accent-strong); font-weight: 700; }
+    .explanation { margin-top: 19px; padding: 18px 20px; border-left: 4px solid var(--accent-strong); background: var(--surface-alt); }
+    .explanation strong { font-family: var(--serif); font-size: 1.17rem; }
+    .explanation p { margin: 4px 0 0; }
+    .foundations { background: var(--accent-strong); color: var(--bg); }
+    .foundations .section-number, .foundations .section-heading p { color: var(--surface-alt); }
+    .foundations h2 { color: var(--bg); }
+    .foundation-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 38px; }
+    .foundation-grid h3 { color: var(--surface-alt); }
+    .swatches { display: flex; flex-wrap: wrap; gap: 8px; }
+    .swatch { display: grid; width: 62px; height: 62px; place-items: end start; padding: 5px; border: 1px solid var(--bg); background: var(--surface); color: var(--ink); font-family: var(--mono); font-size: .59rem; }
+    .swatch.accent { background: var(--accent); color: var(--bg); }
+    .swatch.warning { margin: 0; border: 1px solid var(--bg); background: var(--warning); color: var(--bg); }
+    .type-sample { margin: 0; font-family: var(--serif); font-size: 2.1rem; line-height: .95; }
+    .mono-sample { margin: 11px 0 0; color: var(--surface-alt); font-family: var(--mono); font-size: .73rem; }
+    .foundation-copy .dark-copy { display: none; }
+    #theme-dark:checked ~ .page .foundation-copy .light-copy { display: none; }
+    #theme-dark:checked ~ .page .foundation-copy .dark-copy { display: inline; }
+    .footer { padding: 27px 0 42px; color: var(--muted); font-family: var(--mono); font-size: .67rem; }
+
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 28px, 600px); }
+      .header-inner { align-items: start; flex-direction: column; padding: 18px 0; }
+      .header-tools { align-items: start; flex-direction: column; gap: 13px; }
+      .hero-grid, .section-heading, .assessment-grid, .results-grid, .foundation-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 62px; }
+      .signal-art { min-height: 270px; margin-top: -10px; }
+      .signal-paper { left: 12%; width: 190px; height: 235px; }
+      .signal-card { left: 34%; width: 175px; height: 215px; }
+      .section { padding: 70px 0; }
+      .section-heading { gap: 12px; margin-bottom: 30px; }
+      .paper-grid { grid-template-columns: 1fr; }
+      .paper-card { min-height: 0; }
+      .status-strip { grid-template-columns: 1fr 1fr; }
+      .status:first-child { grid-column: 1 / -1; border-right: 0; border-bottom: 1px solid var(--line); }
+      .status:nth-child(2) { border-right: 1px solid var(--line); }
+      .question, .result-summary { padding: 20px 16px; }
+      legend { font-size: 1.28rem; }
+      .foundation-grid { gap: 30px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <input class="theme-option" id="theme-light" name="theme" type="radio" checked>
+  <input class="theme-option" id="theme-dark" name="theme" type="radio">
+  <div class="page">
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="wordmark" href="#landing"><span class="mark" aria-hidden="true">S</span> Steady Signal</a>
+        <div class="header-tools">
+          <nav class="nav" aria-label="Mockup sections"><a href="#papers">Papers</a><a href="#assessment">Practice</a><a href="#results">Review</a></nav>
+          <fieldset class="theme-switch"><legend class="sr-only">Theme preview</legend><label for="theme-light">Light</label><label for="theme-dark">Dark</label></fieldset>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="landing"><div class="wrap hero-grid"><div><p class="eyebrow">PDVL practice assessments / clear status, calm focus</p><h1>Make room to think. Know what comes next.</h1><p class="lede">Timed mock papers for private-hire drivers. Choose a paper with confidence, keep the essentials in view during the test, and review the result when the paper is complete.</p><div class="actions"><a class="button" href="#papers">Choose a paper</a><a class="button secondary" href="#assessment">View practice excerpt</a></div></div><div class="signal-art" role="img" aria-label="Decorative paper and signal marker"><span class="signal-paper"></span><span class="signal-card"></span></div></div></section>
+
+      <section class="section" id="papers"><div class="wrap"><div class="section-heading"><div><span class="section-number">01 / choose a paper</span><h2>Start with a clear route.</h2></div><p>Paper cards put the subject, time, questions, and pass mark together. Paper A shows the two-module sequence before the learner begins.</p></div><div class="paper-grid"><article class="paper-card featured"><div class="paper-top"><span class="paper-letter">A</span><span class="tag">two modules</span></div><h3>Paper A</h3><p>On-the-road safety, passenger engagement, and handling techniques.</p><div class="paper-meta"><span>Questions<strong>35 total</strong></span><span>Pass mark<strong>30 correct</strong></span></div><a class="button" href="#assessment">Start Paper A</a></article><article class="paper-card"><div class="paper-top"><span class="paper-letter">B</span><span class="tag">module 3B</span></div><h3>Paper B</h3><p>Rules and regulations for private-hire car driver licence holders.</p><div class="paper-meta"><span>Questions<strong>25</strong></span><span>Duration<strong>30 min</strong></span><span>Pass mark<strong>22 correct</strong></span><span>Format<strong>MCQ</strong></span></div><a class="button secondary" href="#assessment">View Paper B</a></article><article class="paper-card"><div class="paper-top"><span class="paper-letter">C</span><span class="tag">module 4B</span></div><h3>Paper C</h3><p>Route planning using digital navigational tools.</p><div class="paper-meta"><span>Subject<strong>Module 4B</strong></span><span>Format<strong>MCQ</strong></span></div><a class="button secondary" href="#assessment">View Paper C</a></article></div></div></section>
+
+      <section class="section assessment" id="assessment"><div class="wrap"><div class="section-heading"><div><span class="section-number">02 / assessment excerpt</span><h2>Keep the test in view.</h2></div><p>Roadcraft's test structure carries over here: status first, then the question list, with tools and warnings kept close enough to act on.</p></div><div class="assessment-grid"><div class="assessment-main"><div class="status-strip"><div class="status"><small>Time remaining</small><strong>18:42</strong></div><div class="status"><small>Answered</small><strong>12 of 25</strong></div><div class="status"><small>Paper / module</small><strong>B / 3B</strong></div></div><article class="question"><div class="question-head"><span>Q13 / sample content</span><span>Illustrative question</span></div><fieldset><legend>Which response best supports a passenger who needs the route explained before the trip?</legend><div class="answers"><label class="answer"><input type="radio" name="route-question"><span class="answer-key">A</span><span>Explain the route clearly and check that it is understood.</span></label><label class="answer selected"><input type="radio" name="route-question" checked><span class="answer-key">B</span><span>Ask the passenger to wait until the journey is over.</span></label><label class="answer"><input type="radio" name="route-question"><span class="answer-key">C</span><span>Skip the explanation if the route is familiar.</span></label><label class="answer"><input type="radio" name="route-question"><span class="answer-key">D</span><span>Use only abbreviations to keep the trip moving.</span></label></div></fieldset></article><article class="question"><div class="question-head"><span>Q14 / sample content</span><span>Illustrative question</span></div><fieldset><legend>What is the best next step when a question needs more thought?</legend><div class="answers"><label class="answer"><input type="radio" name="next-question"><span class="answer-key">A</span><span>Leave it unanswered and submit immediately.</span></label><label class="answer"><input type="radio" name="next-question"><span class="answer-key">B</span><span>Choose an answer, then review it before submitting.</span></label></div></fieldset></article><div class="warning"><strong>4 questions still need an answer.</strong><span>Review the marked questions before you submit. Unanswered questions count as incorrect.</span></div><div class="actions" style="margin-top:20px"><a class="button" href="#results">Submit paper</a><a class="button secondary" href="#papers">Back to papers</a></div></div><aside class="tool-panel"><h3>Assessment tools</h3><p>The essentials stay available without adding a second workflow.</p><ul class="tool-list"><li>Use 1-4 or A-D to select an option.</li><li>Press Enter to submit when ready.</li><li>A 3-second grace countdown begins on load.</li></ul><div class="setting"><span>High contrast</span><span class="switch on" aria-label="High contrast enabled" role="img"></span></div><div class="setting"><span>Large text</span><span class="switch" aria-label="Large text disabled" role="img"></span></div></aside></div></div></section>
+
+      <section class="section" id="results"><div class="wrap"><div class="section-heading"><div><span class="section-number">03 / completed paper</span><h2>Review the next step.</h2></div><p>The score leads, the explanation follows, and the next actions stay clear in either theme.</p></div><div class="results-grid"><article class="result-summary"><span class="score-label">Paper B / score</span><span class="score">23/25</span><span class="pass">Pass, 22 required</span><p style="margin-top:24px;color:var(--muted)">Completed in 24 minutes. Review the correction, then choose the next paper.</p><div class="actions" style="margin-top:22px"><a class="button" href="#papers">Retake same questions</a><a class="button secondary" href="#papers">New question set</a></div></article><article class="review"><h3>One answer to revisit</h3><table class="review-table"><tbody><tr><th>Question 07</th><td>Which action gives a passenger the clearest route information?</td></tr><tr><th>Your answer</th><td class="wrong">C / Give no explanation</td></tr><tr><th>Correct answer</th><td class="right">A / Explain and check</td></tr></tbody></table><div class="explanation"><strong>Explanation</strong><p>A clear explanation helps the passenger understand the planned route and gives them an opportunity to ask questions.</p></div><p style="margin-top:20px"><a href="#landing">Share this assessment</a></p></article></div></div></section>
+
+      <section class="section foundations" aria-labelledby="foundation-title"><div class="wrap"><div class="section-heading"><div><span class="section-number">04 / theme foundation</span><h2 id="foundation-title">One structure, two modes.</h2></div><p class="foundation-copy"><span class="light-copy">Light mode uses Steady Study's warm foundation.</span><span class="dark-copy">Dark mode uses Night Signal's focused status palette.</span> The type and information order remain stable.</p></div><div class="foundation-grid"><div><h3>Current palette</h3><div class="swatches"><span class="swatch">Surface</span><span class="swatch accent">Accent</span><span class="swatch warning">Warning</span></div></div><div><h3>Typography</h3><p class="type-sample">Make room<br>to think.</p><p class="mono-sample">18:42 / 12 OF 25 / PAPER B</p></div><div><h3>Controls and focus</h3><div class="actions"><a class="button" href="#landing">Primary</a><a class="button secondary" href="#landing">Secondary</a></div><p style="margin-top:12px;color:var(--surface-alt)">Focus uses a separate visible outline.</p></div></div></div></section>
+    </main>
+    <footer class="footer"><div class="wrap">Steady Signal / PDVL practice assessments / static brand exploration</div></footer>
+  </div>
+</body>
+</html>
